@@ -1,0 +1,33 @@
+{
+  "target": "tmp\\10-第一卷小篇章纲输出.md",
+  "agent_md": { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\10-小篇章纲-agent.md" },
+  "agent": "10-小篇章纲-agent",
+  "task_type": "阶段10-第一卷小篇章纲",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 32000,
+  "temperature": 0.3,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\10-第一卷小篇章纲",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "user_prompt": "请生成第一卷《觉醒与魅魔契约》的小篇章纲，也就是第一卷的细纲级事件单元。\n\n硬性要求：\n1. 输出必须使用 FILE 分块，路径相对于项目根目录；FILE 后直接写 Markdown，不要包代码围栏。\n2. 必须生成 `outlines/arc/volume-01/00-第一卷小篇章总览.md` 和每个小篇章独立文件。\n3. 第一卷预计 1—45 章，拆成约 8—10 个小篇章，每个小篇章约 4—6 章。\n4. 每个小篇章必须包含：篇章定位、章节范围、篇章起点状态、篇章终点状态、主线任务、情感任务、核心冲突、事件链、爽点安排、情感节点、伏笔埋设/回收、状态变化、结尾钩子、下一篇章承接。\n5. 第一卷必须承接：黄金前三章倒序强钩子、苏念职业觉醒低评、莉莉娅呼唤与第一永久契约、林清雪现实侧吃醋/关心、高考小秘境打脸、黑契会/圣痕残纹暗线、青璃呼唤作为卷末钩子。\n6. 实力节奏必须遵守最新状态轨迹：第一卷末主角团约二阶，第二卷进入三阶；不要再写第一卷末三四阶。\n7. 男主统一为苏念；林清雪不是召唤物；吸血鬼公主当前名为克露露。不得出现旧名。不要使用“接口”等技术化语言。\n8. 后宫亲密只写隐晦氛围、称呼变化、契约同步、战后状态、吃醋和调侃，不写露骨过程。\n\n建议文件：\n- outlines/arc/volume-01/00-第一卷小篇章总览.md\n- outlines/arc/volume-01/01-倒序强钩子与魅魔契约.md\n- outlines/arc/volume-01/02-职业觉醒与低评召唤师.md\n- outlines/arc/volume-01/03-莉莉娅适应地球与林清雪吃醋.md\n- outlines/arc/volume-01/04-镜湖小秘境前置训练.md\n- outlines/arc/volume-01/05-高考小秘境初段打脸.md\n- outlines/arc/volume-01/06-秘境异常与黑契会暗线.md\n- outlines/arc/volume-01/07-二阶突破与江海重点关注.md\n- outlines/arc/volume-01/08-旧港裂隙与青璃呼唤.md",
+  "context_files": [
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\00-总卷纲.md", "label": "总卷纲", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\01-第一卷-觉醒与魅魔契约.md", "label": "第一卷卷纲", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\00-卷级状态索引.md", "label": "卷级状态索引", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\苏念.md", "label": "状态轨迹-苏念", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\林清雪.md", "label": "状态轨迹-林清雪", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\莉莉娅.md", "label": "状态轨迹-莉莉娅", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\地球-江海市前期势力.md", "label": "状态轨迹-江海市前期势力", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\地球-华夏大秘境镇守体系.md", "label": "状态轨迹-华夏镇守体系", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\深渊世界-魔巢诸侯.md", "label": "状态轨迹-深渊势力", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md", "label": "正式作品企划", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\00-世界观总览.md", "label": "世界观总览", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md", "label": "力量体系", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\00-人物总览.md", "label": "人物总览", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\势力总览.md", "label": "势力总览", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\rough\\00-故事粗纲.md", "label": "故事线粗纲", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\emotion\\00-情感线粗纲.md", "label": "情感线粗纲", "required": true }
+  ]
+}

@@ -1,0 +1,3 @@
+已处理该 task-link 回调：未验收完成，已调用 `continue` 要求 `opencode/engineering-leader` 继续推进。
+
+原因：报告明确说明目前只完成了规划验收与正文第一批子任务发布/链接，正文草稿、最终 `novel.md`、`README.md` 均尚未产出，不满足“五万字完整玄幻小说”父任务验收标准。

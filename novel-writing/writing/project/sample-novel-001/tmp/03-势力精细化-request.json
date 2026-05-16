@@ -1,0 +1,60 @@
+{
+  "user_prompt": "请基于正式作品企划和已入库世界观，重跑阶段03势力设定，并输出可直接入库的精细版势力资产。\n\n硬性要求：\n1. 男主名字已经改为“苏念”，不得再出现“林烬”。\n2. 神明世界必须独一档最强，是幕后推动多界融合的终局敌人。\n3. 势力主要围绕：几个世界、各世界对应主要战力水准、每个世界内部各种势力。\n4. 每个重要势力都要写得详细，尤其 T0/T1 势力。\n5. 每个重要势力必须有详细代表人物，代表人物要能在后续人物阶段直接扩展。\n6. 不要用“接口”这类技术化语言；请使用小说设定语言，例如“关联势力、关系线、背景势力、支脉、派系、传承、权柄、暗线”。\n7. 输出要适合拆分入库到 assets/factions/。\n\n请用 FILE 分块输出，路径相对于项目根目录，例如：\nFILE: assets/factions/势力总览.md\n...\nFILE: assets/factions/T0-神明世界-神庭秩序.md\n...\n\n需要至少覆盖并细化：\n- 势力总览\n- 神明世界/神庭秩序\n- 地球/华夏大秘境镇守体系\n- 深渊世界/魔巢诸侯\n- 修仙世界/昆墟宗门联盟\n- 机甲世界/钢穹机甲联合体\n- 巨龙世界/龙渊古龙诸巢\n- 地球/江海市前期势力\n- 女主原世界关联势力\n\n额外输出格式要求：FILE 分块后直接写 Markdown 正文，不要用 `markdown 代码围栏包裹文件内容。",
+  "temperature": 0.35,
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\03-势力精细化",
+  "task_type": "阶段03-势力精细化重跑",
+  "target": "tmp\\03-势力精细化重跑输出.md",
+  "model": "MoreCode/gpt-5.5",
+  "context_files": [
+    {
+      "label": "正式作品企划",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "required": true
+    },
+    {
+      "label": "世界观总览",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\00-世界观总览.md",
+      "required": true
+    },
+    {
+      "label": "世界类型",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\01-世界类型.md",
+      "required": true
+    },
+    {
+      "label": "世界地图",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\02-世界地图.md",
+      "required": true
+    },
+    {
+      "label": "世界规则",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "required": true
+    },
+    {
+      "label": "力量体系",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "required": true
+    },
+    {
+      "label": "世界故事背景",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\07-世界故事背景.md",
+      "required": true
+    },
+    {
+      "label": "势力基础信息层模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\01-势力基础信息层模板.md",
+      "required": true
+    }
+  ],
+  "agent": "03-势力-agent",
+  "extra": {
+    "note": "用户要求精修势力agent后重跑势力；每个势力及代表人物都要详细；先已将男主名改为苏念。"
+  },
+  "agent_md": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\03-势力-agent.md",
+  "max_tokens": 30000,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001"
+}

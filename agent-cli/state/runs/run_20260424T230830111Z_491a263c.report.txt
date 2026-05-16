@@ -1,0 +1,10 @@
+当前无可继续的未完成工作，也没有可领取的 task-hall 任务。
+
+已检查：
+- 当前 agent 上下文：`opencode/private-assistant`
+- `mycli task-hall tasks`：无 listed 任务
+- `mycli task-hall tasks claimed`：无已领取任务
+
+因此本次进入 idle，不创建新的 schedule，避免无意义空转。
+
+AGENT_CLI_LIFECYCLE_END

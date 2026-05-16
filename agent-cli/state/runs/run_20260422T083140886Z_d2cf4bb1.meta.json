@@ -1,0 +1,29 @@
+﻿{
+  "finished_at_utc": "2026-04-22T08:31:55.6573721Z",
+  "session_id": "ses_24baee891ffetf2dx7RXnVOKOB",
+  "return_mode": "silent",
+  "round": 1,
+  "json_parse_error_count": 0,
+  "report_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T083140886Z_d2cf4bb1.report.txt",
+  "source": "opencode",
+  "cwd": "",
+  "provider_command": [
+    "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+    "run",
+    "tell me a joke",
+    "--agent",
+    "private-assistant",
+    "--format",
+    "json"
+  ],
+  "status": "success",
+  "event_count": 3,
+  "exit_code": 0,
+  "session_name": "",
+  "run_id": "run_20260422T083140886Z_d2cf4bb1",
+  "started_at_utc": "2026-04-22T08:31:40.9053734Z",
+  "agent": "opencode/private-assistant",
+  "event_log_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T083140886Z_d2cf4bb1.events.jsonl",
+  "prompt": "tell me a joke",
+  "raw_output_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T083140886Z_d2cf4bb1.raw.log"
+}

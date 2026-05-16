@@ -1,0 +1,33 @@
+﻿{
+    "session_id":  "ses_241d9f7b3ffeMqi0Lc2w61CcA3",
+    "session_name":  "",
+    "prompt":  "要支持项目注册，项目查询，项目当前状态管理，以及项目需要的推进项，等等持续性的，要分项目类型，项目状态，我们先设计项目状态",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "--session",
+                             "ses_241d9f7b3ffeMqi0Lc2w61CcA3",
+                             "要支持项目注册，项目查询，项目当前状态管理，以及项目需要的推进项，等等持续性的，要分项目类型，项目状态，我们先设计项目状态",
+                             "--agent",
+                             "private-assistant",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T064516084Z_da2a184c.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T064516084Z_da2a184c.raw.log",
+    "run_id":  "run_20260424T064516084Z_da2a184c",
+    "source":  "opencode",
+    "event_count":  35,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T064516084Z_da2a184c.report.txt",
+    "finished_at_utc":  "2026-04-24T06:50:08.2505079Z",
+    "round":  2,
+    "started_at_utc":  "2026-04-24T06:45:16.0923423Z"
+}

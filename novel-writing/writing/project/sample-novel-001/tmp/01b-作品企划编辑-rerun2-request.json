@@ -1,0 +1,27 @@
+{
+  "agent": "01b-作品企划编辑-agent",
+  "task_type": "作品企划编辑",
+  "model": "MoreCode/gpt-5.5",
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\01b-作品企划编辑-agent.md"
+  },
+  "user_prompt": "请在上一版《01b-作品企划编辑稿-学院弱化版.md》的基础上继续编辑，不要重开新方向。\n\n千束最新反馈：\n1. 女主结构改为：一个人类女主 + 一堆召唤兽女主。\n2. 召唤兽女主就是男主的召唤兽女主，但必须是成年、具有人格与自愿意志的类人/智慧女性召唤兽，不写动物化性内容，不写强迫。\n3. 所有主要女主都是男主后宫，都会和男主发展到性关系；但正文不写露骨过程。\n4. 人类女主气质更清纯、关系推进更含蓄；召唤兽女主更开放、更主动、更有异族风情。\n5. 节奏要快：最好前期一个小篇章收一个女召唤兽，约十几章收一个的节奏。\n6. 性行为描写需要隐晦：可以描写事后状态、次日氛围、称呼变化、衣物/房间细节、契约亲密度变化、旁人调侃、女主态度变化等暗示；不要写露骨器官、动作和具体过程。\n7. 学院/高考仍只作为前期模块，中后期自由扩展到都市秘境、全球事件、异界危机和召唤兽女主原世界线。\n8. 保留快节奏爽文、主角嘴贫但聪明、召唤师、多女主后宫、魅魔/女吸血鬼/精灵等战斗女召唤兽。\n\n请按作品企划模板字段输出一版新的可入库候选稿。重点修改：篇幅规划、核心卖点、主角团、故事主线、雷点、宏观调控。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\01b-作品企划编辑-rerun2",
+  "target": "tmp\\01b-作品企划编辑稿-召唤兽后宫版.md",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\01b-作品企划编辑稿-学院弱化版.md",
+      "label": "上一版学院弱化企划编辑稿"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\01_作品企划\\00-作品企划总表.md",
+      "label": "作品企划模板"
+    }
+  ],
+  "extra": {
+    "阶段": "01b-作品企划编辑-召唤兽后宫版",
+    "输出落盘目标": "tmp/01b-作品企划编辑稿-召唤兽后宫版.md",
+    "注意": "只传上一版编辑稿和作品企划模板；所有亲密关系限定成年、类人/智慧、自愿、非露骨表达。"
+  }
+}

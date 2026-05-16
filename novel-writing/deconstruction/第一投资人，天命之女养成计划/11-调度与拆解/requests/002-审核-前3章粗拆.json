@@ -1,0 +1,29 @@
+{
+  "agent": "拆书-审核评估agent",
+  "task_type": "拆书审核评估",
+  "model": "MoreCode/gpt-5.4",
+  "max_tokens": 8192,
+  "temperature": 0.2,
+  "system_prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\prompts\\拆书\\13-审核评估agent.md"
+  },
+  "user_prompt": "请审核前3章章节粗拆结果是否满足预期。重点检查：1）是否只是剧情复述；2）是否区分事实/推测/待验证；3）是否有足够的本章功能、冲突、情绪、爽点、伏笔、结尾钩子；4）是否识别搞笑点、抽象点、名场面、名句、爽点短摘并做解析；5）是否能支撑后续索引更新；6）是否有大段原文复制风险；7）请指出需要返工的问题，并给出应该如何精修 prompt 的具体建议。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "target": "08-审核与评估\\拆解完整性检查.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\11-调度与拆解\\agent-runs",
+  "context_files": [
+    {
+      "path": "00-拆解总览\\拆解说明.md",
+      "label": "拆解说明"
+    },
+    {
+      "path": "07-章节拆解\\chapters\\batch-001-003.md",
+      "label": "前3章粗拆结果"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\prompts\\拆书\\03-章节粗拆agent.md",
+      "label": "当前章节粗拆提示词"
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "name": "clash",
+  "summary": "CLI wrapper for the local Clash for Windows core and REST controller",
+  "source": "D:\\software_inf\\clash\\clash\\Clash for Windows | C:\\Users\\38188\\.config\\clash",
+  "commands": [
+    {
+      "name": "status",
+      "summary": "Show Clash runtime status, version, mode, and active selectors",
+      "args": [],
+      "prefixArgs": [
+        "status"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "version",
+      "summary": "Show Clash API version and local core version",
+      "args": [],
+      "prefixArgs": [
+        "version"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "config",
+      "summary": "Show local Clash config paths and current runtime config",
+      "args": [],
+      "prefixArgs": [
+        "config"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "mode",
+      "summary": "Show the current Clash mode",
+      "args": [],
+      "prefixArgs": [
+        "mode"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "mode-set",
+      "summary": "Switch Clash mode to rule, global, or direct",
+      "args": [
+        {
+          "name": "mode",
+          "required": true,
+          "summary": "Target mode: rule, global, or direct",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "mode-set"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "selectors",
+      "summary": "List selector-like proxy groups and their current active choice",
+      "args": [],
+      "prefixArgs": [
+        "selectors"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "selector",
+      "summary": "Show details for a selector group, defaulting to GLOBAL",
+      "args": [
+        {
+          "name": "name",
+          "required": false,
+          "summary": "Selector group name such as GLOBAL or TapFog",
+          "type": "string",
+          "default": "GLOBAL"
+        }
+      ],
+      "prefixArgs": [
+        "selector"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "use",
+      "summary": "Switch a selector group to the target proxy or subgroup",
+      "args": [
+        {
+          "name": "selector",
+          "required": true,
+          "summary": "Selector group name",
+          "type": "string"
+        },
+        {
+          "name": "proxy",
+          "required": true,
+          "summary": "Proxy name to activate inside the selector",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "use"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "proxies",
+      "summary": "List leaf proxies with optional keyword filtering",
+      "args": [
+        {
+          "name": "keyword",
+          "required": false,
+          "summary": "Optional name filter substring",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "proxies"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "countries",
+      "summary": "Group proxies by country, optionally limited to one selector",
+      "args": [
+        {
+          "name": "selector",
+          "required": false,
+          "summary": "Optional selector name to limit the grouping scope",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "countries"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "country",
+      "summary": "List proxies that belong to one country",
+      "args": [
+        {
+          "name": "country",
+          "required": true,
+          "summary": "Country name such as 香港, 日本, 美国, 新加坡",
+          "type": "string"
+        },
+        {
+          "name": "selector",
+          "required": false,
+          "summary": "Optional selector name to limit the listing scope",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "country"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "country-use",
+      "summary": "Switch a selector to the fastest healthy proxy inside one country",
+      "args": [
+        {
+          "name": "selector",
+          "required": true,
+          "summary": "Selector group to control",
+          "type": "string"
+        },
+        {
+          "name": "country",
+          "required": true,
+          "summary": "Country name such as 香港, 日本, 美国, 新加坡",
+          "type": "string"
+        },
+        {
+          "name": "url",
+          "required": false,
+          "summary": "Probe URL",
+          "type": "string",
+          "default": "https://www.gstatic.com/generate_204"
+        },
+        {
+          "name": "timeoutMs",
+          "required": false,
+          "summary": "Timeout in milliseconds",
+          "type": "number",
+          "default": 5000
+        }
+      ],
+      "prefixArgs": [
+        "country-use"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "test",
+      "summary": "Run a delay test against one proxy",
+      "args": [
+        {
+          "name": "proxy",
+          "required": true,
+          "summary": "Proxy name to test",
+          "type": "string"
+        },
+        {
+          "name": "url",
+          "required": false,
+          "summary": "Probe URL",
+          "type": "string",
+          "default": "https://www.gstatic.com/generate_204"
+        },
+        {
+          "name": "timeoutMs",
+          "required": false,
+          "summary": "Timeout in milliseconds",
+          "type": "number",
+          "default": 5000
+        }
+      ],
+      "prefixArgs": [
+        "test"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "providers",
+      "summary": "List Clash proxy providers",
+      "args": [],
+      "prefixArgs": [
+        "providers"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "rules",
+      "summary": "Show the first N active Clash rules",
+      "args": [
+        {
+          "name": "limit",
+          "required": false,
+          "summary": "How many rules to print",
+          "type": "number",
+          "default": 20
+        }
+      ],
+      "prefixArgs": [
+        "rules"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "auto-start",
+      "summary": "Run a background auto switcher that keeps one country on its fastest healthy node",
+      "args": [
+        {
+          "name": "selector",
+          "required": true,
+          "summary": "Selector group to control",
+          "type": "string"
+        },
+        {
+          "name": "country",
+          "required": true,
+          "summary": "Country name such as 香港, 日本, 美国, 新加坡",
+          "type": "string"
+        },
+        {
+          "name": "intervalSec",
+          "required": false,
+          "summary": "How often to re-evaluate the country group",
+          "type": "number",
+          "default": 60
+        },
+        {
+          "name": "timeoutMs",
+          "required": false,
+          "summary": "Timeout in milliseconds for each delay probe",
+          "type": "number",
+          "default": 5000
+        },
+        {
+          "name": "url",
+          "required": false,
+          "summary": "Probe URL",
+          "type": "string",
+          "default": "https://www.gstatic.com/generate_204"
+        }
+      ],
+      "prefixArgs": [
+        "auto-start"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "auto-stop",
+      "summary": "Stop the background auto switcher",
+      "args": [],
+      "prefixArgs": [
+        "auto-stop"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "auto-status",
+      "summary": "Show current auto switcher status and last decision",
+      "args": [],
+      "prefixArgs": [
+        "auto-status"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "start",
+      "summary": "Start Clash for Windows if it is not already running",
+      "args": [],
+      "prefixArgs": [
+        "start"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "stop",
+      "summary": "Stop running Clash for Windows and clash core processes",
+      "args": [],
+      "prefixArgs": [
+        "stop"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "restart",
+      "summary": "Restart Clash for Windows",
+      "args": [],
+      "prefixArgs": [
+        "restart"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "check-config",
+      "summary": "Validate the local Clash config file with the bundled core",
+      "args": [],
+      "prefixArgs": [
+        "check-config"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    },
+    {
+      "name": "native",
+      "summary": "Pass arguments directly to the local clash-win64 core",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Native clash core arguments such as -v or -t",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "native"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\clash\\scripts\\clash-cli.ps1"
+    }
+  ]
+}

@@ -1,0 +1,375 @@
+{
+  "provider": "mytokenland",
+  "requested_model": "claude-sonnet-4-6",
+  "config_path": "D:\\agent_workspace\\projects\\mult_agent\\config\\llm.json",
+  "notes": [
+    "This benchmark uses non-streaming requests.",
+    "Output speed is approximated by completion_tokens/second and chars/second over full request time.",
+    "The provider may route the requested model name to another backend model; returned_model captures the actual response value."
+  ],
+  "warmup": {
+    "ok": true,
+    "latency_seconds": 3.456,
+    "finish_reason": "stop",
+    "error": "",
+    "content_preview": "OK",
+    "content_length_chars": 2,
+    "completion_tokens": 27,
+    "tokens_per_second": 7.812,
+    "chars_per_second": 0.579,
+    "returned_model": "MiniMax-M2.7"
+  },
+  "multiturn": {
+    "turns": [
+      {
+        "turn": 1,
+        "prompt": "用一句话介绍你自己。",
+        "ok": true,
+        "latency_seconds": 2.873,
+        "finish_reason": "stop",
+        "error": "",
+        "content_preview": "我是你的AI助手，可以帮你回答问题、提供信息和进行对话。",
+        "content_length_chars": 28,
+        "completion_tokens": 52,
+        "tokens_per_second": 18.102,
+        "chars_per_second": 9.747,
+        "returned_model": "MiniMax-M2.7"
+      },
+      {
+        "turn": 2,
+        "prompt": "现在再用两句话解释什么是多轮对话测试。",
+        "ok": true,
+        "latency_seconds": 6.559,
+        "finish_reason": "stop",
+        "error": "",
+        "content_preview": "多轮对话测试是指在对话系统中连续进行多个对话回合，验证系统能否正确理解上下文、保持话题连贯性，并给出合理的回复。这种测试主要用于评估聊天机器人、语音助手等系统的长期交互能力。",
+        "content_length_chars": 87,
+        "completion_tokens": 97,
+        "tokens_per_second": 14.788,
+        "chars_per_second": 13.264,
+        "returned_model": "MiniMax-M2.5-highspeed"
+      },
+      {
+        "turn": 3,
+        "prompt": "请列出三个会影响响应速度的常见因素，每点不超过12个字。",
+        "ok": true,
+        "latency_seconds": 5.787,
+        "finish_reason": "stop",
+        "error": "",
+        "content_preview": "1. 服务器负载过高\n2. 网络传输延迟\n3. 请求数据量过大",
+        "content_length_chars": 31,
+        "completion_tokens": 172,
+        "tokens_per_second": 29.724,
+        "chars_per_second": 5.357,
+        "returned_model": "MiniMax-M2.7"
+      },
+      {
+        "turn": 4,
+        "prompt": "基于前文，用80字以内总结如何提高并发稳定性。",
+        "ok": true,
+        "latency_seconds": 6.343,
+        "finish_reason": "stop",
+        "error": "",
+        "content_preview": "提高并发稳定性可通过以下方式：优化服务器架构，采用负载均衡分散请求压力；使用缓存减少数据库查询；控制连接池大小，避免资源耗尽；实施限流熔断机制，防止突发流量冲击；优化代码执行效率，降低单次响应耗时。",
+        "content_length_chars": 99,
+        "completion_tokens": 109,
+        "tokens_per_second": 17.185,
+        "chars_per_second": 15.608,
+        "returned_model": "MiniMax-M2.5-highspeed"
+      },
+      {
+        "turn": 5,
+        "prompt": "最后，用一句话确认你记得我们正在测试 claude-sonnet-4-6。",
+        "ok": true,
+        "latency_seconds": 7.902,
+        "finish_reason": "stop",
+        "error": "",
+        "content_preview": "在整个对话中，您并未提及正在测试 claude-sonnet-4-6，我无法确认这一点。",
+        "content_length_chars": 44,
+        "completion_tokens": 197,
+        "tokens_per_second": 24.931,
+        "chars_per_second": 5.568,
+        "returned_model": "MiniMax-M2.7"
+      }
+    ],
+    "summary": {
+      "success_count": 5,
+      "failure_count": 0,
+      "count": 5,
+      "avg_seconds": 5.893,
+      "p50_seconds": 6.343,
+      "p95_seconds": 7.902,
+      "max_seconds": 7.902,
+      "avg_tokens_per_second": 20.946,
+      "avg_chars_per_second": 9.909
+    }
+  },
+  "output_speed": {
+    "ok": true,
+    "latency_seconds": 27.88,
+    "finish_reason": "stop",
+    "error": "",
+    "content_preview": "# 如何评估大模型的响应速度、输出速度与并发能力\n\n在人工智能应用日益普及的今天，大语言模型的性能评估已成为企业选型和优化的关键环节。不同应用场景对模型响应有着截然不同的要求：实时对话需要毫秒级响应，内容生成需要稳定的输出流速，而企业级应用则考验着高并发下的稳定性。理解并准确评估这三项核心指标，是构建高效AI系统的基础。\n\n## 一、响应速度的评估\n\n响应速度是指从用户发送请求到模型开始返回首个T",
+    "content_length_chars": 1855,
+    "completion_tokens": 1102,
+    "tokens_per_second": 39.526,
+    "chars_per_second": 66.535,
+    "returned_model": "MiniMax-M2.5-highspeed"
+  },
+  "concurrency": [
+    {
+      "concurrency": 1,
+      "wall_seconds": 2.27,
+      "success_count": 1,
+      "failure_count": 0,
+      "returned_model_counts": {
+        "MiniMax-M2.7": 1
+      },
+      "latency_summary": {
+        "count": 1,
+        "avg_seconds": 2.268,
+        "p50_seconds": 2.268,
+        "p95_seconds": 2.268,
+        "max_seconds": 2.268
+      },
+      "results": [
+        {
+          "ok": true,
+          "latency_seconds": 2.268,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-1",
+          "content_length_chars": 4,
+          "completion_tokens": 28,
+          "tokens_per_second": 12.346,
+          "chars_per_second": 1.764,
+          "returned_model": "MiniMax-M2.7"
+        }
+      ]
+    },
+    {
+      "concurrency": 2,
+      "wall_seconds": 2.805,
+      "success_count": 2,
+      "failure_count": 0,
+      "returned_model_counts": {
+        "MiniMax-M2.5-highspeed": 2
+      },
+      "latency_summary": {
+        "count": 2,
+        "avg_seconds": 2.736,
+        "p50_seconds": 2.668,
+        "p95_seconds": 2.804,
+        "max_seconds": 2.804
+      },
+      "results": [
+        {
+          "ok": true,
+          "latency_seconds": 2.804,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-1",
+          "content_length_chars": 4,
+          "completion_tokens": 16,
+          "tokens_per_second": 5.707,
+          "chars_per_second": 1.427,
+          "returned_model": "MiniMax-M2.5-highspeed"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 2.668,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-2",
+          "content_length_chars": 4,
+          "completion_tokens": 35,
+          "tokens_per_second": 13.121,
+          "chars_per_second": 1.5,
+          "returned_model": "MiniMax-M2.5-highspeed"
+        }
+      ]
+    },
+    {
+      "concurrency": 4,
+      "wall_seconds": 3.829,
+      "success_count": 4,
+      "failure_count": 0,
+      "returned_model_counts": {
+        "MiniMax-M2.7": 2,
+        "MiniMax-M2.5-highspeed": 2
+      },
+      "latency_summary": {
+        "count": 4,
+        "avg_seconds": 3.091,
+        "p50_seconds": 3.786,
+        "p95_seconds": 3.823,
+        "max_seconds": 3.823
+      },
+      "results": [
+        {
+          "ok": true,
+          "latency_seconds": 2.141,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-1",
+          "content_length_chars": 4,
+          "completion_tokens": 21,
+          "tokens_per_second": 9.808,
+          "chars_per_second": 1.868,
+          "returned_model": "MiniMax-M2.7"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 2.613,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-2",
+          "content_length_chars": 4,
+          "completion_tokens": 30,
+          "tokens_per_second": 11.483,
+          "chars_per_second": 1.531,
+          "returned_model": "MiniMax-M2.7"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 3.786,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-3",
+          "content_length_chars": 4,
+          "completion_tokens": 43,
+          "tokens_per_second": 11.357,
+          "chars_per_second": 1.056,
+          "returned_model": "MiniMax-M2.5-highspeed"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 3.823,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-4",
+          "content_length_chars": 4,
+          "completion_tokens": 26,
+          "tokens_per_second": 6.8,
+          "chars_per_second": 1.046,
+          "returned_model": "MiniMax-M2.5-highspeed"
+        }
+      ]
+    },
+    {
+      "concurrency": 8,
+      "wall_seconds": 3.754,
+      "success_count": 8,
+      "failure_count": 0,
+      "returned_model_counts": {
+        "MiniMax-M2.7": 7,
+        "MiniMax-M2.5": 1
+      },
+      "latency_summary": {
+        "count": 8,
+        "avg_seconds": 2.811,
+        "p50_seconds": 2.668,
+        "p95_seconds": 3.747,
+        "max_seconds": 3.747
+      },
+      "results": [
+        {
+          "ok": true,
+          "latency_seconds": 3.398,
+          "finish_reason": "length",
+          "error": "",
+          "content_preview": "",
+          "content_length_chars": 0,
+          "completion_tokens": 64,
+          "tokens_per_second": 18.833,
+          "chars_per_second": 0.0,
+          "returned_model": "MiniMax-M2.7"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 2.452,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-1",
+          "content_length_chars": 4,
+          "completion_tokens": 16,
+          "tokens_per_second": 6.525,
+          "chars_per_second": 1.631,
+          "returned_model": "MiniMax-M2.7"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 2.279,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-2",
+          "content_length_chars": 4,
+          "completion_tokens": 25,
+          "tokens_per_second": 10.97,
+          "chars_per_second": 1.755,
+          "returned_model": "MiniMax-M2.7"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 2.668,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-3",
+          "content_length_chars": 4,
+          "completion_tokens": 21,
+          "tokens_per_second": 7.872,
+          "chars_per_second": 1.499,
+          "returned_model": "MiniMax-M2.7"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 3.747,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-5",
+          "content_length_chars": 4,
+          "completion_tokens": 38,
+          "tokens_per_second": 10.141,
+          "chars_per_second": 1.067,
+          "returned_model": "MiniMax-M2.5"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 2.483,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-6",
+          "content_length_chars": 4,
+          "completion_tokens": 16,
+          "tokens_per_second": 6.443,
+          "chars_per_second": 1.611,
+          "returned_model": "MiniMax-M2.7"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 2.899,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-7",
+          "content_length_chars": 4,
+          "completion_tokens": 23,
+          "tokens_per_second": 7.934,
+          "chars_per_second": 1.38,
+          "returned_model": "MiniMax-M2.7"
+        },
+        {
+          "ok": true,
+          "latency_seconds": 2.564,
+          "finish_reason": "stop",
+          "error": "",
+          "content_preview": "OK-8",
+          "content_length_chars": 4,
+          "completion_tokens": 26,
+          "tokens_per_second": 10.142,
+          "chars_per_second": 1.56,
+          "returned_model": "MiniMax-M2.7"
+        }
+      ]
+    }
+  ]
+}

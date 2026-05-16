@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\02-请求\\十章单内容拆解\\range-041-050.characters.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-195310\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-195310\\输出.md",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\llm_call.py\", line 680, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\llm_call.py\", line 668, in main\n    print(text)\nUnicodeEncodeError: 'gbk' codec can't encode character '\\u2194' in position 28690: illegal multibyte sequence\n"
+}

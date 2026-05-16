@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\04-主要人物设定-request.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\04-人物设定\\20260511-212852\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\04-人物设定\\20260511-212852\\输出.md",
+  "returncode": 0,
+  "stdout": "data: {\"id\":\"\",\"object\":\"chat.completion.chunk\",\"created\":0,\"model\":\"gpt-5.5\",\"system_fingerprint\":\"\",\"choices\":[],\"usage\":{\"prompt_tokens\":4625,\"completion_tokens\":0,\"total_tokens\":4625,\"prompt_tokens_details\":{\"cached_tokens\":0,\"text_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0},\"completion_tokens_details\":{\"text_tokens\":0,\"audio_tokens\":0,\"reasoning_tokens\":0},\"input_tokens\":0,\"output_tokens\":0,\"input_tokens_details\":null,\"claude_cache_creation_5_m_tokens\":0,\"claude_cache_creation_1_h_tokens\":0}}\n\ndata: [DONE]\n\n\n",
+  "stderr": "",
+  "target": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\04-主要人物设定输出.md",
+  "split_output_files": {
+    "ok": false,
+    "base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+    "block_style": "plain",
+    "blocks": 0,
+    "written": [],
+    "errors": []
+  }
+}

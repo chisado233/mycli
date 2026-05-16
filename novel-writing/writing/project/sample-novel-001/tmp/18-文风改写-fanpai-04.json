@@ -1,0 +1,67 @@
+{
+  "target": "drafts/volume-01/arc-01/style-fanpai/04.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\18-正文修改-agent.md"
+  },
+  "agent": "18-正文修改-agent",
+  "task_type": "阶段18-文风改写-天命反派文风-第4章",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 14000,
+  "temperature": 0.45,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\18-文风改写\\fanpai\\04",
+  "user_prompt": "请把【第4章：深渊房间里的真名陷阱】按“天命反派文风”进行文风改写，输出完整 Markdown 正文版本，保存为独立风格版本，不覆盖原稿。\n只学习文风控制文件中的节奏、句式、系统反馈、吐槽、爽点组织，不复制样本书角色、设定、桥段、原句。\n文风目标：高爽度、信息差、高位者心态、系统结算、压制感和扮猪吃虎。\n必须保留当前项目设定：苏念是正向主角；明面职业召唤师，觉醒后一阶一段；问题是普通召唤对象无回应、召唤位空置、资源门槛高；取消职业潜能/潜力评级/职业稳定性/不稳定召唤系等旧口径；林清雪职业是冰霜舞者；莉莉娅是深渊魅魔女主。\n改写要求：\n1. 保持本章剧情功能和关键事件不变，只改文风、节奏、对白密度、系统反馈与爽点呈现。\n2. 段落更适合移动端，少长段，多短句。\n3. 不要写旧名，不要技术化出戏词。\n4. 不要刻意反复写年龄词；亲密/暧昧只保持隐晦氛围，不写露骨。\n5. 输出包含正文、修订说明、状态变更日志草案、AI审核表。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\天命反派，开局拿下女帝师尊\\文风控制.md",
+      "label": "文风控制-天命反派文风",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "作品企划",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "label": "世界规则",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "label": "力量体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-group\\volume-01\\arc-01\\00-五章纲.md",
+      "label": "五章纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-detail\\volume-01\\arc-01\\04-单章细纲.md",
+      "label": "第4章单章细纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\versions\\04-v2.md",
+      "label": "原章节-第4章：深渊房间里的真名陷阱",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\versions\\01-v5.md",
+      "label": "前文第1章v5",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\versions\\02-v4.md",
+      "label": "基准第2章v4",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\versions\\03-v2.md",
+      "label": "基准第3章v2",
+      "required": false
+    }
+  ]
+}

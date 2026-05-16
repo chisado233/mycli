@@ -1,0 +1,6 @@
+
+[32;1mProcessId   : [0m4708
+[32;1mCommandLine : [0m"D:\anaconda\python.exe" D:\agent_workspace\capability-library\mycli\remote-pc\command-server\command_ser
+              ver.py --host 10.66.0.2 --port 18082 --allow 10.66.0.1 --cwd D:\agent_workspace --timeout 180 --log D:\ag
+              ent_workspace\capability-library\mycli\remote-pc\logs\command-server.log
+

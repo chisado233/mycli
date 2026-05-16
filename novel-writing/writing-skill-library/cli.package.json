@@ -1,0 +1,21 @@
+{
+  "name": "writing-skill-library",
+  "summary": "Writing technique skill library module",
+  "source": "D:\\agent_workspace\\capability-library\\skill-library\\novel-writing\\modules\\writing-skill-library.md",
+  "commands": [
+    {
+      "name": "open",
+      "summary": "Print the writing skill library module discussion file path",
+      "args": [],
+      "prefixArgs": ["writing-skill-library", "open"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\module.ps1"
+    },
+    {
+      "name": "show",
+      "summary": "Display the writing skill library module discussion notes",
+      "args": [],
+      "prefixArgs": ["writing-skill-library", "show"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\module.ps1"
+    }
+  ]
+}

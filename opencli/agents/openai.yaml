@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenCLI Project"
+  short_description: "Work with the local OpenCLI project."
+  default_prompt: "Use the OpenCLI project skill to inspect, run, test, or extend D:\\agent_workspace\\projects\\OpenCLI."

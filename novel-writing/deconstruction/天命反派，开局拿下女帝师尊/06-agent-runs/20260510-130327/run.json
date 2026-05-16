@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\02-请求\\十章单内容拆解\\range-361-370.summary-index.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-130327\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-130327\\输出.md",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "[llm-call] Request failed for https://tob.1314mc.net/v1/chat/completions: <urlopen error [WinError 10054] 远程主机强迫关闭了一个现有的连接。>\n"
+}

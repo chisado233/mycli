@@ -1,0 +1,32 @@
+﻿{
+    "network":  {
+                    "cidr":  "10.66.0.0/24",
+                    "server":  {
+                                   "name":  "tencent-cloud-hub",
+                                   "publicIp":  "49.232.183.40",
+                                   "wireguardIp":  "10.66.0.1",
+                                   "wireguardPort":  51820
+                               }
+                },
+    "localDevice":  "A",
+    "devices":  {
+                    "A":  {
+                              "name":  "A",
+                              "os":  "windows",
+                              "wireguardIp":  "10.66.0.2",
+                              "smbUser":  "remote_admin",
+                              "sshUser":  "remote_admin",
+                              "sshKeyPath":  "%USERPROFILE%\\.ssh\\remote_pc_a_ed25519",
+                              "remoteShell":  "powershell-ssh"
+                          },
+                    "B":  {
+                              "name":  "B",
+                              "os":  "windows",
+                              "wireguardIp":  "10.66.0.3",
+                              "smbUser":  "remote_admin",
+                              "sshUser":  "remote_admin",
+                              "sshKeyPath":  "%USERPROFILE%\\.ssh\\remote_pc_b_ed25519",
+                              "remoteShell":  "powershell-ssh"
+                          }
+                }
+}

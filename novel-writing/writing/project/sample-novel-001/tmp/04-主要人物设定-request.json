@@ -1,0 +1,23 @@
+{
+  "target": "tmp\\04-主要人物设定输出.md",
+  "agent_md": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\04-人物-agent.md",
+  "user_prompt": "请根据正式企划、世界观、势力设定、故事线粗纲和情感线粗纲，完成这份粗纲中的所有主要人物设定并入库。\n\n硬性要求：\n1. 男主统一为“苏念”，不得出现旧名。\n2. 不要使用“接口”这类技术化语言。\n3. 所有核心女主必须明确成年、自愿、类人/智慧对象；亲密相关只做合规边界描述，不写露骨过程。\n4. 人物设定要足够详细，不只是标签。每个主要人物必须包含：身份、外貌气质、性格心理、核心欲望、核心恐惧、缺陷、底线、背景经历、能力、资源、与苏念关系、与主角团关系、所属势力关系、剧情功能、情感功能、成长路线、雷点/行为边界。\n5. 反派也要有目标、压迫、行动逻辑和代表性威胁，不能只是坏。\n6. 输出用 FILE 分块，路径相对于项目根目录，FILE 后直接写 Markdown，不要包代码围栏。\n\n必须入库的主角团主要人物：\n- 苏念\n- 林清雪\n- 莉莉娅\n- 艾瑟琳\n- 青璃\n- 诺雅\n- 白九璃\n- 希尔薇\n- 伊芙琳\n- 影弥\n\n必须入库的主要反派/对立人物（可基于粗纲和势力设定命名/细化）：\n- 白金神使/神庭前中期代表\n- 黑契会首领或核心执行者\n- 深渊梦魇主母\n- 血月王庭保守派代表\n- 修仙世界魔修/被神谕诱导的宗门野心家\n- 机甲世界试图回收诺雅的军工财团代表\n\n必须入库的关键配角/功能人物（可基于势力设定命名/细化）：\n- 江海镇守使/官方正面代表\n- 星海学院召唤系导师\n- 林清雪现实侧相关配角或同学竞争者\n\n输出文件建议：\n- assets/characters/00-人物总览.md\n- assets/characters/01-主角团/苏念.md\n- assets/characters/01-主角团/林清雪.md\n- assets/characters/01-主角团/莉莉娅.md\n- assets/characters/01-主角团/艾瑟琳.md\n- assets/characters/01-主角团/青璃.md\n- assets/characters/01-主角团/诺雅.md\n- assets/characters/01-主角团/白九璃.md\n- assets/characters/01-主角团/希尔薇.md\n- assets/characters/01-主角团/伊芙琳.md\n- assets/characters/01-主角团/影弥.md\n- assets/characters/02-反派/白金神使.md\n- assets/characters/02-反派/黑契会首领.md\n- assets/characters/02-反派/梦魇主母.md\n- assets/characters/02-反派/血月王庭保守派代表.md\n- assets/characters/02-反派/黑莲魔修.md\n- assets/characters/02-反派/军工财团董事.md\n- assets/characters/03-配角/江海镇守使.md\n- assets/characters/03-配角/星海学院召唤系导师.md\n- assets/characters/03-配角/林清雪同学竞争者.md",
+  "temperature": 0.35,
+  "task_type": "阶段04-主要人物设定",
+  "max_tokens": 32000,
+  "agent": "04-人物-agent",
+  "split_output_files": true,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "model": "MoreCode/gpt-5.5",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\04-人物设定",
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\04-人物设定-精简上下文.md",
+      "label": "人物设定精简上下文",
+      "relate": false,
+      "required": true
+    }
+  ]
+}

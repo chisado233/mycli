@@ -1,0 +1,31 @@
+{
+  "agent": "01b-作品企划编辑-agent",
+  "task_type": "作品企划编辑",
+  "model": "MoreCode/gpt-5.5",
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\01b-作品企划编辑-agent.md"
+  },
+  "user_prompt": "请把上一回修订候选重新编辑成一版更简洁、更可入库的作品企划编辑稿。\n\n千束最新反馈：\n1. 上一回修订候选也不是很满意。\n2. 学院风可以保留，但只占一部分，不要让整本书长期绑定异能高考/学院竞争。\n3. 前期可以用学院/高考/选拔作为入场与早期爽点；后续要允许自由发挥，转向更广阔的都市异能、秘境、异界召唤、全球事件、女主原世界危机等。\n4. 核心仍保留：都市异能、主角召唤师、多女主后宫、召唤魅魔/女吸血鬼/精灵等女性角色战斗、快节奏爽文、主角嘴贫但聪明。\n5. 女主仍希望七八个左右，有强弱梯度，有不同类型；但本次不要写超长矩阵，只在主角团部分简洁列出。\n6. 后宫关系要明确推进，不太监；不写露骨过程，用关系变化、事后日常、称呼变化、同居/契约默契等侧面体现。\n7. 删除/禁止沿用上一版《午夜召唤事务所》的影门事务所、命运债务、官方备案、事务所案件流。\n\n请注意：\n- 不要再输出 3 个候选方向。\n- 不要写成长篇分析。\n- 按作品企划模板字段输出。\n- 学院/高考只作为前期模块，不作为全书唯一主线。\n- 目标是生成一个可供千束审阅、之后可合并进 assets/planning/00-作品企划.md 的编辑候选稿。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\01b-作品企划编辑-rerun",
+  "target": "tmp\\01b-作品企划编辑稿-学院弱化版.md",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "旧版正式作品企划"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\01-作品企划-修订候选.md",
+      "label": "上一回修订候选"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\01_作品企划\\00-作品企划总表.md",
+      "label": "作品企划模板"
+    }
+  ],
+  "extra": {
+    "阶段": "01b-作品企划编辑",
+    "输出落盘目标": "tmp/01b-作品企划编辑稿-学院弱化版.md",
+    "注意": "本次只传作品企划模板，不传 00-通用写作流程规则.md。学院风只保留为前期模块。"
+  }
+}

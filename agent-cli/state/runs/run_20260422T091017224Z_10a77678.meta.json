@@ -1,0 +1,29 @@
+﻿{
+  "event_log_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T091017224Z_10a77678.events.jsonl",
+  "prompt": "echo stream testing",
+  "cwd": "",
+  "provider_command": [
+    "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+    "run",
+    "echo stream testing",
+    "--agent",
+    "private-assistant",
+    "--format",
+    "json"
+  ],
+  "started_at_utc": "2026-04-22T09:10:17.2379715Z",
+  "report_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T091017224Z_10a77678.report.txt",
+  "session_name": "",
+  "finished_at_utc": "2026-04-22T09:10:41.5833043Z",
+  "exit_code": 0,
+  "source": "opencode",
+  "return_mode": "stream",
+  "event_count": 3,
+  "raw_output_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T091017224Z_10a77678.raw.log",
+  "round": 1,
+  "json_parse_error_count": 0,
+  "session_id": "ses_24b8b8a1affedYqv0BHjcjy5BI",
+  "status": "success",
+  "agent": "opencode/private-assistant",
+  "run_id": "run_20260422T091017224Z_10a77678"
+}

@@ -1,0 +1,29 @@
+﻿{
+    "session_id":  "ses_2457aa079ffeZBD34EEgAmd5XN",
+    "session_name":  "",
+    "prompt":  "Reply with OK only in one short line.",
+    "cwd":  "",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "Reply with OK only in one short line.",
+                             "--agent",
+                             "private-assistant",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260423T132632210Z_1994a93b.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260423T132632210Z_1994a93b.raw.log",
+    "run_id":  "run_20260423T132632210Z_1994a93b",
+    "source":  "opencode",
+    "event_count":  3,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260423T132632210Z_1994a93b.report.txt",
+    "finished_at_utc":  "2026-04-23T13:26:54.0111271Z",
+    "round":  1,
+    "started_at_utc":  "2026-04-23T13:26:32.2221569Z"
+}

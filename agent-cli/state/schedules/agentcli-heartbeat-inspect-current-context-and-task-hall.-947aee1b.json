@@ -1,0 +1,33 @@
+﻿{
+  "start_time_local": "2026-04-25T08:00:17.1924791+08:00",
+  "created_at_utc": "2026-04-24T23:40:17.5810747Z",
+  "agent": "opencode/private-assistant",
+  "task_name": "agentcli-heartbeat-inspect-current-context-and-task-hall.-947aee1b",
+  "task_path": "\\agent-cli\\",
+  "session": "",
+  "session_name": "project-requirement-analyst-heartbeat",
+  "fork": false,
+  "prompt": "Heartbeat: inspect current context and task-hall. If no active work and suitable listed task exists, read it fully before claiming. If waiting after publishing or delegating work, create an agent-cli schedule for this session. If lifecycle should end, include AGENT_CLI_LIFECYCLE_END.",
+  "cwd": "D:\\agent_workspace",
+  "model": "MoreCode/gpt-5.4-pro",
+  "return_mode": "silent",
+  "command": [
+    "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1",
+    "run",
+    "--agent",
+    "opencode/private-assistant",
+    "--model",
+    "MoreCode/gpt-5.4-pro",
+    "--session_name",
+    "project-requirement-analyst-heartbeat",
+    "--prompt",
+    "Heartbeat: inspect current context and task-hall. If no active work and suitable listed task exists, read it fully before claiming. If waiting after publishing or delegating work, create an agent-cli schedule for this session. If lifecycle should end, include AGENT_CLI_LIFECYCLE_END.",
+    "--cwd",
+    "D:\\agent_workspace",
+    "--return_mode",
+    "silent"
+  ],
+  "continue": false,
+  "schedule_id": "agentcli-heartbeat-inspect-current-context-and-task-hall.-947aee1b",
+  "status": "registered"
+}

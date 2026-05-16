@@ -1,0 +1,151 @@
+{
+  "name": "agent-workflow",
+  "summary": "Scaffold, validate, and run agent workflow projects",
+  "source": "D:\\agent_workspace\\capability-library\\agent-system-rules\\agent-workflow",
+  "commands": [
+    {
+      "name": "init",
+      "summary": "Create a new workflow project scaffold",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments for init, such as <target_dir> --workflow-id <id> --name <display-name>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "init"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\agent-workflow\\scripts\\agent-workflow.ps1"
+    },
+    {
+      "name": "scaffold",
+      "summary": "Generate step directories from workflow.json",
+      "args": [
+        {
+          "name": "project_dir",
+          "required": true,
+          "summary": "Workflow project directory",
+          "type": "path"
+        }
+      ],
+      "prefixArgs": [
+        "scaffold"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\agent-workflow\\scripts\\agent-workflow.ps1"
+    },
+    {
+      "name": "validate",
+      "summary": "Validate workflow.json and scaffold layout",
+      "args": [
+        {
+          "name": "project_dir",
+          "required": true,
+          "summary": "Workflow project directory",
+          "type": "path"
+        }
+      ],
+      "prefixArgs": [
+        "validate"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\agent-workflow\\scripts\\agent-workflow.ps1"
+    },
+    {
+      "name": "graph",
+      "summary": "Generate a workflow graph snapshot",
+      "args": [
+        {
+          "name": "project_dir",
+          "required": true,
+          "summary": "Workflow project directory",
+          "type": "path"
+        }
+      ],
+      "prefixArgs": [
+        "graph"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\agent-workflow\\scripts\\agent-workflow.ps1"
+    },
+    {
+      "name": "debug-step",
+      "summary": "Prepare an isolated debug directory for one step",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments for debug-step, such as <project_dir> <step_id>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "debug-step"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\agent-workflow\\scripts\\agent-workflow.ps1"
+    },
+    {
+      "name": "start-run",
+      "summary": "Start a workflow run",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments for start-run, such as <project_dir> [--input-json <path>] [--context-json <path>]",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "start-run"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\agent-workflow\\scripts\\agent-workflow.ps1"
+    },
+    {
+      "name": "inject-event",
+      "summary": "Inject an event into a listener step",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments for inject-event, such as <project_dir> <run_id> <step_id> plus --event-json or --event-text",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "inject-event"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\agent-workflow\\scripts\\agent-workflow.ps1"
+    },
+    {
+      "name": "status",
+      "summary": "Read workflow run status",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments for status, such as <project_dir> <run_id>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "status"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\agent-workflow\\scripts\\agent-workflow.ps1"
+    },
+    {
+      "name": "review-step",
+      "summary": "Approve or reject a waiting review step",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments for review-step, such as <project_dir> <run_id> <target> --decision approve|reject [--reason <text>]",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "review-step"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\agent-workflow\\scripts\\agent-workflow.ps1"
+    }
+  ]
+}

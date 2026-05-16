@@ -1,0 +1,106 @@
+{
+  "task_type": "range-121-130 剧情内容拆解 十章单内容拆解-前后五章-绝对路径",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 30000,
+  "temperature": 0.2,
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\agent\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对第121-130章进行十章单内容拆解。\n\n目标范围：121-130。\n上下文范围：116-135（前后各五章原文上下文）。\n当前内容类别：剧情内容拆解。\n本次只输出当前类别，不要扩展到其他类别。\n\n质量侧重点：因果链：逐章覆盖目标十章，写清每章目标、阻碍、行动、结果、新问题。\n\n重要规则：\n1. 因为当前按内容类别拆开跑，context_files 只传入当前类别相关模板；不要自行补写无关类别。\n2. 原文上下文虽然包含上文/下文，但只输出目标范围 121-130 的当前类别正式内容；上文与下文只用于理解前后因果、人物状态和伏笔，不得输出为正式拆解或素材来源，除非用于解释目标章节中的内容。\n3. 摘取必须高质量，宁缺毋滥；不要写“主角很强”“关系变好”“很爽”这类空泛判断。\n4. 素材类每条高价值素材必须包含 YAML、source、source_range、tag、status、merge_policy、证据、解析、可复用边界、禁止照搬点。\n5. 若当前类别是剧情内容拆解，必须逐章覆盖目标十章。\n6. 输出必须使用 <<<FILE: 绝对路径>>> 多文件格式，路径放在当前类别输出根目录下。\n7. 最后输出本类别质量自检。\n\n输出精简要求：\n1. 每个 <<<FILE: ...>>> 对应的 md 正文不超过 2000 中文字。\n2. 只摘取最有意义的高价值内容，宁缺毋滥；不要为了凑数量输出普通信息。\n3. 如果某类别素材很少，可以只输出 1-3 条高质量素材 + 质量自检。\n4. 证据使用关键原文短引或详细场景概述，不要大段堆原文。\n5. 解析集中写“为什么有用 / 如何复用 / 禁止照搬点”，避免泛泛复述剧情。\n\n输出文件路径规则：\n1. 所有 <<<FILE: ...>>> 必须使用以下输出根目录内的绝对路径：\nD:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-121-130\\剧情内容拆解\n2. 不得使用相对路径，不得使用 ..，不得写到输出根目录外。\n3. 不得输出 03-输出/... 这种长相对路径，也不得重复嵌套类别目录。\n4. 示例：<<<FILE: D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-121-130\\剧情内容拆解\\\\001+高价值素材标题.md>>>",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "target": "03-输出\\十章单内容拆解\\range-121-130\\剧情内容拆解\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-121-130\\剧情内容拆解",
+  "context_files": [
+    {
+      "label": "12-剧情内容拆解模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\12-剧情内容拆解模板.md"
+    },
+    {
+      "label": "15-质量自检模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\15-质量自检模板.md"
+    },
+    {
+      "label": "上文116",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\116-第116章 龙泉.md"
+    },
+    {
+      "label": "上文117",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\117-第117章 神剑之争.md"
+    },
+    {
+      "label": "上文118",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\118-第118章 清点收获.md"
+    },
+    {
+      "label": "上文119",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\119-第119章 炼化灵丹，王昊天后手.md"
+    },
+    {
+      "label": "上文120",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\120-第120章 跨越万年的情谊.md"
+    },
+    {
+      "label": "目标121",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\121-第121章 山海的妥协，王昊天再现（三合一大章）.md"
+    },
+    {
+      "label": "目标122",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\122-第122章 展露神隐之体，王昊天投鼠忌器.md"
+    },
+    {
+      "label": "目标123",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\123-第123章 紫姨（二合一）.md"
+    },
+    {
+      "label": "目标124",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\124-第124章 顾瑶紫之威.md"
+    },
+    {
+      "label": "目标125",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\125-第125章 山海归心（二合一）.md"
+    },
+    {
+      "label": "目标126",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\126-第126章 拿下山海.md"
+    },
+    {
+      "label": "目标127",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\127-第127章 天地熔炉初步解封.md"
+    },
+    {
+      "label": "目标128",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\128-第128章 武灵到来.md"
+    },
+    {
+      "label": "目标129",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\129-第129章 武灵的小心思.md"
+    },
+    {
+      "label": "目标130",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\130-第130章 仙古圣体叶不凡.md"
+    },
+    {
+      "label": "下文131",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\131-第131章 圣体之威.md"
+    },
+    {
+      "label": "下文132",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\132-第132章 烈阳耀世.md"
+    },
+    {
+      "label": "下文133",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\133-第133章 叶不凡取胜，打断突破.md"
+    },
+    {
+      "label": "下文134",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\134-第134章 顾云出场，武灵动手.md"
+    },
+    {
+      "label": "下文135",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\135-第135章 异象碰撞.md"
+    }
+  ]
+}

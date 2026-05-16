@@ -1,0 +1,110 @@
+{
+  "task_type": "range-181-190 爽点 十章单内容拆解-前后五章-绝对路径",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 30000,
+  "temperature": 0.2,
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\agent\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对第181-190章进行十章单内容拆解。\n\n目标范围：181-190。\n上下文范围：176-195（前后各五章原文上下文）。\n当前内容类别：爽点。\n本次只输出当前类别，不要扩展到其他类别。\n\n质量侧重点：爽点机制：期待建立、压抑/误判、触发动作、即时反馈、外部见证、后续余波。\n\n重要规则：\n1. 因为当前按内容类别拆开跑，context_files 只传入当前类别相关模板；不要自行补写无关类别。\n2. 原文上下文虽然包含上文/下文，但只输出目标范围 181-190 的当前类别正式内容；上文与下文只用于理解前后因果、人物状态和伏笔，不得输出为正式拆解或素材来源，除非用于解释目标章节中的内容。\n3. 摘取必须高质量，宁缺毋滥；不要写“主角很强”“关系变好”“很爽”这类空泛判断。\n4. 素材类每条高价值素材必须包含 YAML、source、source_range、tag、status、merge_policy、证据、解析、可复用边界、禁止照搬点。\n5. 若当前类别是剧情内容拆解，必须逐章覆盖目标十章。\n6. 输出必须使用 <<<FILE: 绝对路径>>> 多文件格式，路径放在当前类别输出根目录下。\n7. 最后输出本类别质量自检。\n\n输出精简要求：\n1. 每个 <<<FILE: ...>>> 对应的 md 正文不超过 2000 中文字。\n2. 只摘取最有意义的高价值内容，宁缺毋滥；不要为了凑数量输出普通信息。\n3. 如果某类别素材很少，可以只输出 1-3 条高质量素材 + 质量自检。\n4. 证据使用关键原文短引或详细场景概述，不要大段堆原文。\n5. 解析集中写“为什么有用 / 如何复用 / 禁止照搬点”，避免泛泛复述剧情。\n\n输出文件路径规则：\n1. 所有 <<<FILE: ...>>> 必须使用以下输出根目录内的绝对路径：\nD:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-181-190\\爽点\n2. 不得使用相对路径，不得使用 ..，不得写到输出根目录外。\n3. 不得输出 03-输出/... 这种长相对路径，也不得重复嵌套类别目录。\n4. 示例：<<<FILE: D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-181-190\\爽点\\\\001+高价值素材标题.md>>>",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "target": "03-输出\\十章单内容拆解\\range-181-190\\爽点\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-181-190\\爽点",
+  "context_files": [
+    {
+      "label": "01-素材库总规则.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\01-素材库总规则.md"
+    },
+    {
+      "label": "03-爽点素材模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\03-爽点素材模板.md"
+    },
+    {
+      "label": "15-质量自检模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\15-质量自检模板.md"
+    },
+    {
+      "label": "上文176",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\176-第176章 仓皇逃窜，顾昭君的打算.md"
+    },
+    {
+      "label": "上文177",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\177-第177章 顾昭君归心.md"
+    },
+    {
+      "label": "上文178",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\178-第178章 女频主角.md"
+    },
+    {
+      "label": "上文179",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\179-第179章 严厉的父亲.md"
+    },
+    {
+      "label": "上文180",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\180-第180章 百花圣地.md"
+    },
+    {
+      "label": "目标181",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\181-第181章 没办法，他给的实在是太多了.md"
+    },
+    {
+      "label": "目标182",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\182-第182章 风流帝子（二合一）.md"
+    },
+    {
+      "label": "目标183",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\183-第183章 破而后立，再遇天命之子.md"
+    },
+    {
+      "label": "目标184",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\184-第184章 洛寒烟.md"
+    },
+    {
+      "label": "目标185",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\185-第185章 想要英雄救美的天命之子（二合一）.md"
+    },
+    {
+      "label": "目标186",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\186-第186章 弟子犯错，师尊买单（二合一）.md"
+    },
+    {
+      "label": "目标187",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\187-第187章 洛寒烟妥协，天命之子破大防（二合一）.md"
+    },
+    {
+      "label": "目标188",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\188-第188章 一夜五十日，身陷囹圄，绝望的洛寒烟（二合一）.md"
+    },
+    {
+      "label": "目标189",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\189-第189章 共处，高冷的洛寒烟，可爱的两小只.md"
+    },
+    {
+      "label": "目标190",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\190-第190章 调戏洛寒烟，封帝丹（二合一）.md"
+    },
+    {
+      "label": "下文191",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\191-第191章 百变顾云，寒烟心惧，引出洛河大帝虚影.md"
+    },
+    {
+      "label": "下文192",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\192-第192章 灭大帝虚影，顾瑶紫的真正战力.md"
+    },
+    {
+      "label": "下文193",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\193-第193章 以身入局，以死谋生（二合一）.md"
+    },
+    {
+      "label": "下文194",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\194-第194章 突破化龙，口是心非洛寒烟（二合一）.md"
+    },
+    {
+      "label": "下文195",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\195-第195章 吞天魔功.md"
+    }
+  ]
+}

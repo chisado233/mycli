@@ -1,0 +1,52 @@
+{
+  "agent": "拆书-还原写作agent-2000字五章批次",
+  "task_type": "006-010章还原写作练习-每章2000字以上",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 70000,
+  "temperature": 0.58,
+  "system_prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\prompts\\拆书\\17-还原写作agent.md"
+  },
+  "user_prompt": "请基于内容拆解和文风拆解，写第6-。\n\n硬性要求：\n- 每章正文必须 2000 字以上，推荐 2200-3200 字。\n- 五章一跑是为了控制总请求长度，不是让单章变短。\n- 每章一个文件，输出多文件 FILE 块。\n- 只能复现结构、节奏、人物目标和文风气质，不能照搬原文句子，不能把原文摘录拼进练习稿。\n- 不要写成摘要；必须写成可阅读的正文。\n- 高光/爽点/喜剧递进场景必须展开，不能一笔带过。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "target": "闭环试验-1-10章-内容文风写作对比\\output\\03-还原写作-五章批次-2000字以上\\batch-006-010\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\output\\03-还原写作-五章批次-2000字以上\\batch-006-010",
+  "context_files": [
+    {
+      "label": "内容拆解6-10原始输出",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\output\\01-内容拆解\\batch-006-010\\_raw.md"
+    },
+    {
+      "label": "文风控制卡",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\output\\02-文风拆解\\04-写作agent输入\\文风控制卡.md"
+    },
+    {
+      "label": "叙述节奏",
+      "required": false,
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\output\\02-文风拆解\\01-风格参数\\叙述节奏.md"
+    },
+    {
+      "label": "吐槽与笑点",
+      "required": false,
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\output\\02-文风拆解\\01-风格参数\\吐槽与笑点.md"
+    },
+    {
+      "label": "爽点表达",
+      "required": false,
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\output\\02-文风拆解\\01-风格参数\\爽点表达.md"
+    },
+    {
+      "label": "对话风格",
+      "required": false,
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\output\\02-文风拆解\\01-风格参数\\对话风格.md"
+    },
+    {
+      "label": "上一轮写作评估建议",
+      "required": false,
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\output\\04-对比评估\\02-三方prompt调参建议\\还原写作agent.md"
+    }
+  ]
+}

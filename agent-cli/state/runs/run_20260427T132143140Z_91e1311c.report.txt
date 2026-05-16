@@ -1,0 +1,20 @@
+已处理该 watched task 回调。
+
+结论：**不验收完成，已执行 `continue`**。
+
+原因：最新报告明确当前只完成了规划阶段与正文第一批子任务发布/链接；正文草稿、最终 `novel.md`、`README.md`、约五万字正文、字数估算与全文自检都尚未完成，不满足原任务验收标准。
+
+已调用：
+
+```powershell
+mycli task-hall task-link continue task_20260427_204238_2c1cfd opencode/private-assistant "<返工/续推要求>"
+```
+
+命令输出显示：
+
+```text
+Lifecycle wake started: wake_20260427_212302_930_task_link.continued pid=49228
+Task-link continued: task_20260427_204238_2c1cfd
+```
+
+虽然 Bash 工具最后因 120 秒超时结束，但关键操作已经成功返回 `Task-link continued`，并已触发 lifecycle wake。

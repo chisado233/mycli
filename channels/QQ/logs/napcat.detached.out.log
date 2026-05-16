@@ -1,0 +1,59 @@
+argv[0]:D:\agent_workspace\capability-library\mycli\channels\QQ\napcat\NapCatWinBootMain.exe
+argv[1]:D:\app\QQNT\QQ.exe
+argv[2]:D:\agent_workspace\capability-library\mycli\channels\QQ\napcat\NapCatWinBootHook.dll
+argv[3]:3279329186
+Boot Command:"D:\app\QQNT\QQ.exe" --enable-logging -q 3279329186
+[NapCat Backend] Main Process ID:20468
+Creating pipe: \\.\pipe\NapCat_20468
+[NapCat Backend] Process resumed
+config_current_version:9.9.20-36580
+config_prev_version:
+load from:D:\app\QQNT\versions\9.9.20-36580\QQNT.dll
+NapCat Shell App Loading...
+05-16 15:51:48 [[32minfo[39m] [PacketHandler] 加载成功
+05-16 15:51:48 [[32minfo[39m] [Napi2NativeLoader] 加载成功
+05-16 15:51:48 [[32minfo[39m] [FFmpeg] 检查 Native Addon 可用性...
+05-16 15:51:48 [[32minfo[39m] [FFmpeg] ✓ 使用 Native Addon 适配器
+05-16 15:51:48 [[32minfo[39m] [PacketHandler] 初始化成功
+05-16 15:51:48 [[32minfo[39m] [NapCat] [Core] NapCat.Core Version: 4.18.1
+05-16 15:51:50 [[32minfo[39m] [NapCat] [WebUi] WebUi Token: chisado
+05-16 15:51:50 [[32minfo[39m] [NapCat] [WebUi] WebUi User Panel Url: http://127.0.0.1:6099/webui?token=chisado
+05-16 15:51:50 [[32minfo[39m] [NapCat] [WebUi] WebUi User Panel Url: http://0.0.0.0:6099/webui?token=chisado
+05-16 15:51:50 [[32minfo[39m] 等待网络连接...
+05-16 15:51:51 [[32minfo[39m] 网络已连接
+05-16 15:51:51 [[32minfo[39m] 正在快速登录  3279329186
+05-16 15:51:54 [[32minfo[39m] [NapCat] 已启用数据库辅助支持能力
+05-16 15:51:54 [[34mdebug[39m] 本账号数据/缓存目录： D:\文档\Tencent Files\NapCat\data
+05-16 15:51:54 [[34mdebug[39m] [Core] [Config] 配置文件D:\agent_workspace\capability-library\mycli\channels\QQ\napcat\config\napcat_3279329186.json加载 {"fileLog":false,"consoleLog":true,"fileLogLevel":"debug","consoleLogLevel":"info","packetBackend":"auto","packetServer":"","o3HookMode":1,"bypass":{"hook":false,"window":false,"module":false,"process":false,"container":false,"js":false},"autoTimeSync":true}
+05-16 15:51:54 [[32minfo[39m] [ServerTime] 时间同步完成，偏差 -1633ms
+05-16 15:51:54 [[31merror[39m] [Core] [Packet] PacketBackend 不支持当前QQ版本架构：9.9.20-36580-x64，
+            请参照 https://github.com/NapNeko/NapCatQQ/releases/tag/v4.18.1 配置正确的QQ版本！
+05-16 15:51:54 [[32minfo[39m] [AdapterManager] 开始初始化协议适配器...
+05-16 15:51:54 [[32minfo[39m] [Notice] [OneBot11] [network] 配置加载
+WebSocket服务: 127.0.0.1:3001, : 已启动
+
+05-16 15:51:54 [[32minfo[39m] [Plugins] 插件目录存在，开始加载插件
+05-16 15:51:54 [[32minfo[39m] [PluginManager] Opening plugin manager...
+05-16 15:51:54 [[32minfo[39m] [OneBot] [WebSocket Server] Server Started undefined:undefined
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [PluginManager] Scanned 1 plugins
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [Plugin: napcat-plugin-builtin] NapCat 内置插件已初始化
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [Plugin: napcat-plugin-builtin] WebUI 路由已注册:
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [Plugin: napcat-plugin-builtin]   - API 路由(需认证): /api/Plugin/ext/napcat-plugin-builtin/
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [Plugin: napcat-plugin-builtin]   - API 路由(无认证): /plugin/napcat-plugin-builtin/api/
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [Plugin: napcat-plugin-builtin]   - 扩展页面: /plugin/napcat-plugin-builtin/page/dashboard
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [Plugin: napcat-plugin-builtin]   - 静态资源: /plugin/napcat-plugin-builtin/files/static/
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [Plugin: napcat-plugin-builtin]   - 内存资源: /plugin/napcat-plugin-builtin/mem/dynamic/
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [PluginManager] Initialized plugin: napcat-plugin-builtin v1.0.0
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [PluginManager] Loaded 1 plugins
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [PluginManager] Plugin manager opened with 1 plugins loaded
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [AdapterManager] OneBot11 适配器初始化完成
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [AdapterManager] NapCat Protocol 适配器未启用，跳过初始化
+05-16 15:51:54 [[32minfo[39m] 酒寄彩叶 | [AdapterManager] 协议适配器初始化完成，已加载 2 个适配器
+GetParentProcessPath 1GetParentProcessPath 2GetParentProcessPath 3GetParentProcessPath 4GetParentProcessPath 5GetParentProcessPath D:\app\QQNT\QQ.exe129 js loaded
+05-16 15:58:03 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [世界是个巨大的ntr(381889153)] 好久没做ppt了
+05-16 15:58:06 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [世界是个巨大的ntr(381889153)] [图片]
+05-16 15:58:19 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [我是兵马俑，守嬴政好爽(951953406)] 不是要钱就是智障
+05-16 15:58:21 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [我是兵马俑，守嬴政好爽(951953406)] 没招了
+05-16 15:58:29 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [世界是个巨大的ntr(381889153)] 彩叶在吗
+05-16 15:58:44 [[32minfo[39m] 酒寄彩叶 | 发送 -> 群聊 [群聊已解散(895102465)] [酒寄彩叶(3279329186)] 彩叶调用 agent 失败：agent produced no reply text
+05-16 15:58:52 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [世界是个巨大的ntr(381889153)] [表情 /惊吓]

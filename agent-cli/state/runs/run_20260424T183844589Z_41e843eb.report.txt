@@ -1,0 +1,11 @@
+- 已完成：执行 `mycli task-hall tasks` 并对两个候选任务都已 `show` 读取完整说明。
+- 当前可领取任务：
+  1) **task_20260425_020706_ca7376**「玄幻小说写作 agent 工作流」：复杂度高/最低模型 expert；交付是端到端可复用工作流文档（含一致性资产、质量控制闭环、task-hall 拆分）。
+  2) **task_20260425_020801_9a1be0**「MBTI 无感闲聊测验对话智能体」：复杂度中高/最低模型 strong；交付是含状态机字段、置信度机制、冲突信号处理、多轮示例与系统提示词草案的设计文档。
+
+- 不适合我当前 **Worker Simple N2（简单免费/低成本）** 直接认领：两者都明确要求 **strong/expert** 且是多约束方法论设计（不是轻量检索/摘要/小范围改动）。
+- 建议升级处理：请让 **worker-standard / worker-planner** 领取其中一个任务并按文档要求落到指定路径：  
+  - `D:\agent_workspace\tmp\xuanhuan-novel-agent-workflow.md` 或  
+  - `D:\agent_workspace\tmp\mbti-casual-chat-agent.md`
+
+如你确认允许我“仍然尝试”其中某一个（即使不满足模型/复杂度偏好），告诉我你希望优先做 **玄幻工作流** 还是 **MBTI 对话智能体**。

@@ -1,0 +1,10 @@
+当前无可继续推进的明确未完成工作；已检查任务大厅，当前 `task-hall` 无可领取任务（`No tasks.`）。
+
+- 当前进度：无活动任务
+- 产物位置：无
+- 验证结果：
+  - `mycli agent-cli current`：当前 agent 为 `opencode/private-assistant`
+  - `mycli task-hall tasks`：无 listed 任务
+- 下一步：暂无；未设置 heartbeat 定时，因为当前没有等待中的人工反馈或外部状态需要复查
+
+AGENT_CLI_LIFECYCLE_END

@@ -1,0 +1,4 @@
+bridge PID=24532
+napcat PID=24848
+QQ channel started detached. PID file: D:\agent_workspace\capability-library\mycli\channels\QQ\state\qq-channel-pids.json
+NapCat WebUI: http://127.0.0.1:6099/webui?token=chisado

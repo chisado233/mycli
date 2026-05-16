@@ -1,0 +1,81 @@
+{
+  "name": "writing",
+  "summary": "Novel writing workflow assets and dynamic asset library commands",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "commands": [
+    {
+      "name": "asset-lib",
+      "summary": "Manage and search writing-time dynamic asset sub-libraries",
+      "args": [
+        {
+          "name": "action",
+          "required": false,
+          "summary": "init, libs, info, index, search, compose, chapter-context, path, or help",
+          "type": "string"
+        },
+        {
+          "name": "--root <path>",
+          "required": false,
+          "summary": "Asset library root. Defaults to writing\\asset-libraries.",
+          "type": "string"
+        },
+        {
+          "name": "--lib <name>",
+          "required": false,
+          "summary": "Sub-library name. Defaults to default.",
+          "type": "string"
+        },
+        {
+          "name": "--query <text>",
+          "required": false,
+          "summary": "Rough text query for search or compose. Can be repeated.",
+          "type": "string"
+        },
+        {
+          "name": "--kind <kind>",
+          "required": false,
+          "summary": "Filter by kind: planning, worldview, character, faction, outline kinds, state, snapshot, log, inbox, template, or any.",
+          "type": "string"
+        },
+        {
+          "name": "--stage <stage>",
+          "required": false,
+          "summary": "Filter by stage/granularity text such as volume, arc, five-chapter, chapter-interval.",
+          "type": "string"
+        },
+        {
+          "name": "--chapter <n>",
+          "required": false,
+          "summary": "Match chapter number in path/body, useful for chapter writing context retrieval.",
+          "type": "number"
+        },
+        {
+          "name": "--from <n> --to <n>",
+          "required": false,
+          "summary": "Match a chapter range in path/body for interval retrieval.",
+          "type": "number"
+        },
+        {
+          "name": "--include-content",
+          "required": false,
+          "summary": "Include content excerpts in search output.",
+          "type": "boolean"
+        },
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Output structured JSON where supported.",
+          "type": "boolean"
+        },
+        {
+          "name": "--out <path>",
+          "required": false,
+          "summary": "Compose output path. Defaults to the library composed-context directory.",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": ["asset-lib"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\scripts\\asset-lib-runner.ps1"
+    }
+  ]
+}

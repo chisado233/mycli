@@ -1,0 +1,27 @@
+{
+  "agent": "01b-作品企划编辑-agent",
+  "task_type": "作品企划编辑",
+  "model": "MoreCode/gpt-5.5",
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\01b-作品企划编辑-agent.md"
+  },
+  "user_prompt": "请在上一版《01b-作品企划编辑稿-魅魔吸量后宫版.md》的基础上做小幅编辑，不要重开新方向，不要大改结构。\n\n千束最新反馈：\n1. 人类女主苏浅夏改名为：林清雪。\n2. 吸血鬼公主艾瑟琳的人设改为：雌小鬼感，嘴硬、爱挑衅、表面嚣张，实际容易被主角反制/破防；仍是成年类人智慧召唤兽女主。\n3. 狐狸女主白九璃明确为：白毛狐狸、拱火绿茶，负责主动挑逗、挑拨修罗场、装无辜、茶言茶语、情报交易和后宫日常拱火；仍是成年类人智慧召唤兽女主。\n\n请按作品企划模板字段输出新的可入库候选稿。重点只改作品名如有必要、主角团、文风、雷点、宏观调控中相关角色描述；保持每3-4章一次隐晦亲密/挑逗/修罗场节点，保留魅魔吸量书名方向。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\01b-作品企划编辑-rerun4",
+  "target": "tmp\\01b-作品企划编辑稿-角色微调版.md",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\01b-作品企划编辑稿-魅魔吸量后宫版.md",
+      "label": "上一版魅魔吸量后宫企划编辑稿"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\01_作品企划\\00-作品企划总表.md",
+      "label": "作品企划模板"
+    }
+  ],
+  "extra": {
+    "阶段": "01b-作品企划编辑-角色微调版",
+    "输出落盘目标": "tmp/01b-作品企划编辑稿-角色微调版.md",
+    "注意": "只做角色名与人设微调；所有亲密关系仍限定成年、自愿、类人/智慧、非露骨表达。"
+  }
+}

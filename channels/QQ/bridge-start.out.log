@@ -1,0 +1,3 @@
+[2026-04-28T10:57:42.766Z] Connecting to NapCat ws://127.0.0.1:3001?access_token=***
+[2026-04-28T10:57:42.802Z] Connected to NapCat WebSocket
+[2026-04-28T10:59:03.323Z] NapCat websocket closed 1006 

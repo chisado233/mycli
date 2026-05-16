@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\02-请求\\十章单内容拆解\\range-081-090.style.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-234653\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-234653\\输出.md",
+  "returncode": 0,
+  "stdout": "<<<FILE: D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-081-090\\文学风格收集\\001+威压议事与利益冷叙.md>>>\n---\nname: 威压议事与利益冷叙\ndescription: 用准帝威压、茶水动作和家族利益话术，制造“强者谈判不靠吼而靠秩序压迫”的仙侠权力场。\nsource: 天命反派，开局拿下女帝师尊\nsource_range: 第081章\ntag:\n  - 文学风格收集\n  - 仙侠感\n  - 权力压迫\n  - 对话驱动\n  - 冷峻\nstatus: 成品候选\nmerge_policy: 可直接入库\n---\n\n# 威压议事与利益冷叙\n\n## 风格概述\n\n第081章庚金仙宫议事段，核心不是动作冲突，而是“强者威压 + 家族利益 + 冷静反问”构成的权力压迫。姜岚身上“剑气涌动”“准帝六重天威势毫无保留”，但姜道玄只“云淡风轻”“放下茶水”，形成强弱反差：真正的权威不急于爆发，而是用一句“你可有更好的对策？”把对方逼回现实。\n\n## 证据\n\n- “姜岚的身上涌动着剑气，眸色凌厉死死盯着面前的姜道玄。”\n- “姜道玄却是一副云淡风轻的模样，淡淡瞥了她一眼。放下手中的茶水……”\n- “那可是从仙古就传承下来的家族……只有三大仙族长生不朽，屹立不倒。”\n\n## 解析\n\n这类文风把“家族婚姻”写成宗门政治，不靠长篇设定说明，而靠对话中的价值排序：个人幸福 < 家族攀附 < 仙族秩序。姜道玄的句式多用反问和判断句，如“难不成”“你还看不清楚形势吗”，语气像宣判；姜岚则用情感伦理反击，形成“人情 vs 秩序”的对撞。\n\n## 可复用边界\n\n适合：联姻、宗门站队、家族议事、强者压迫弱者、女眷命运被安排。  \n不适合：轻松日常、纯甜宠、低位人物互怼。\n\n## 模仿提示\n\n写强者议事时，可让真正掌权者有一个缓慢动作：放茶、抬眼、敲案、拂袖；再用一句反问削弱对方全部气势。环境可保持安静，让压迫来自话语逻辑。\n\n## 原创模仿示例\n\n她袖中剑意已将案角削出细白裂纹。  \n上首之人却只把茶盏转了半圈，连眼皮也未抬。  \n“你说不嫁。”他问，“那你拿什么替宗门挡明年的北境兵锋？”\n\n## 禁止照搬点\n\n不可照搬“仙古顾家”“庚金仙宫”“姜晴联姻”等专名与关系链；可迁移的是“威压被冷静动作压住、亲情被利益反问逼退”的结构。\n",
+  "stderr": "",
+  "target": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-081-090\\文学风格收集\\_raw.md",
+  "split_output_files": {
+    "ok": true,
+    "base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-081-090\\文学风格收集",
+    "block_style": "angle",
+    "blocks": 1,
+    "written": [
+      "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-081-090\\文学风格收集\\001+威压议事与利益冷叙.md"
+    ],
+    "errors": []
+  }
+}

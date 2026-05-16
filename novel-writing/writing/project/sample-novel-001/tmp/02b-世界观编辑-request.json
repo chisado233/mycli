@@ -1,0 +1,59 @@
+{
+  "agent": "02b-世界观编辑-agent",
+  "task_type": "世界观编辑",
+  "model": "MoreCode/gpt-5.5",
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\02b-世界观编辑-agent.md"
+  },
+  "user_prompt": "请基于新版正式作品企划和上一版世界观候选，重修世界观，不要直接沿用旧的“星潮全球觉醒”逻辑。\n\n千束最新反馈：\n1. 世界观核心很明确：多元世界同时游戏入侵，地球主世界也被卷入。\n2. 秘境不是普通副本，而是多个世界的融合点。\n3. 小秘境：世界交融产生的独立空间碎片，适合前期学院、职业高考、城市事件、资源争夺。\n4. 大秘境：稳定或半稳定的世界通道，部分能真正进入异世界，由军方/官方镇守。请给这些大秘境取吸引人的名字，例如龙渊、魔巢这类。至少设计巨龙世界、深渊世界、修仙世界、机甲世界相关的大秘境/通道。\n5. 大秘境会有异世界生物进攻，是主世界防线和军方镇守重点。\n6. 男主主要在主世界活动：前期学院、秘境、职业考核、城市特殊事件；但等级达到节点时，会被界约召唤传送到异世界，去完成女主祈愿/考验并收女。\n7. 收女本质是游戏规则安排男主成为女主故事中的一个合理人物，类似角色扮演任务；男主要用符合该世界和该女主欲望/心愿的方式完成任务，让女主认可并愿意成为召唤物。\n8. 关于亲密内容：世界观里只写规则边界和表达方式，不写露骨过程；可以概括为某些女主的祈愿/考验会包含强烈亲密关系需求，但正文仍按正式企划要求隐晦表达、事后描写、暗示，不写露骨器官动作。\n9. 世界观要服务快节奏爽文，不要设定百科化。\n\n请按世界观编辑 agent 的格式，输出一版可入库候选稿，重点修改：世界观总览、世界类型、世界地图、世界规则、力量体系、资源体系、世界故事背景、待拍板。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\02b-世界观编辑",
+  "target": "tmp\\02b-世界观编辑稿-多界游戏入侵版.md",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "新版已入库正式作品企划"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\02-世界观候选.md",
+      "label": "上一版世界观候选稿"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\02_世界观\\00-世界观总览.md",
+      "label": "世界观总览模板"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\02_世界观\\01-世界类型.md",
+      "label": "世界类型模板"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\02_世界观\\02-世界地图.md",
+      "label": "世界地图模板"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\02_世界观\\03-世界规则.md",
+      "label": "世界规则模板"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\02_世界观\\04-力量体系.md",
+      "label": "力量体系模板"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\02_世界观\\05-器物层级.md",
+      "label": "器物层级模板"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\02_世界观\\06-资源体系.md",
+      "label": "资源体系模板"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\02_世界观\\07-世界故事背景.md",
+      "label": "世界故事背景模板"
+    }
+  ],
+  "extra": {
+    "阶段": "02b-世界观编辑",
+    "输出落盘目标": "tmp/02b-世界观编辑稿-多界游戏入侵版.md",
+    "注意": "重修世界观为多元世界同时游戏入侵；秘境为世界融合点；大秘境/通道由军方镇守；亲密相关只写隐晦规则边界。"
+  }
+}

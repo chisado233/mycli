@@ -1,0 +1,31 @@
+﻿{
+  "session_id": "ses_1db69b81cffecz9UsS0nW7truT",
+  "agent": "opencode/private-assistant",
+  "source": "opencode",
+  "started_at_utc": "2026-05-14T03:44:46.6596977Z",
+  "exit_code": 0,
+  "event_count": 2,
+  "cwd": "D:\\agent_workspace",
+  "finished_at_utc": "2026-05-14T03:45:01.4694008Z",
+  "status": "success",
+  "raw_output_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260514T034446653Z_f7f3a2ae.raw.log",
+  "report_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260514T034446653Z_f7f3a2ae.report.txt",
+  "run_id": "run_20260514T034446653Z_f7f3a2ae",
+  "prompt": "请写一首关于夜晚、风和远方的中文短诗，8行以内。",
+  "session_name": "",
+  "json_parse_error_count": 0,
+  "provider_command": [
+    "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+    "run",
+    "请写一首关于夜晚、风和远方的中文短诗，8行以内。",
+    "--agent",
+    "private-assistant",
+    "--dir",
+    "D:\\agent_workspace",
+    "--format",
+    "json"
+  ],
+  "event_log_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260514T034446653Z_f7f3a2ae.events.jsonl",
+  "return_mode": "silent",
+  "round": 1
+}

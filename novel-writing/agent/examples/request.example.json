@@ -1,0 +1,30 @@
+{
+  "agent": "写作agent",
+  "task_type": "章节细纲",
+  "model": "MoreCode/gpt-5.4",
+  "max_tokens": 4096,
+  "temperature": 0.3,
+  "system_prompt": "你是小说写作系统的写作 agent。你必须严格依据传入的上下文文件生成内容，不得违反雷点，不得偏离写作核心。",
+  "user_prompt": "请根据上下文生成目标章节细纲。输出 Markdown。",
+  "project": "D:\\agent_workspace\\projects\\novels\\示例小说",
+  "target": "05-大纲/01-第一卷/章节细纲/第001章.md",
+  "context_files": [
+    {
+      "path": "01-作品企划/写作核心.md",
+      "label": "写作核心"
+    },
+    {
+      "path": "01-作品企划/雷点.md",
+      "label": "雷点"
+    },
+    {
+      "path": "02-世界观/世界观总览.md",
+      "label": "世界观总览"
+    },
+    {
+      "path": "05-大纲/01-第一卷/章节细纲/第001章.md",
+      "label": "第001章细纲",
+      "relate": true
+    }
+  ]
+}

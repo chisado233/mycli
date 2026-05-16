@@ -1,0 +1,8 @@
+{
+  "name": "cron-ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local dashboard for mycli cron tasks",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" }
+}

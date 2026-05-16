@@ -1,0 +1,18 @@
+{
+  "target": "states\\volume\\factions\\钢穹机甲联合体.md",
+  "agent_md": { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\09-卷级状态表-agent.md" },
+  "agent": "09-卷级状态表-agent",
+  "task_type": "阶段09-单势力卷级状态轨迹-钢穹机甲联合体",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 16000,
+  "temperature": 0.25,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\09-卷级状态轨迹\\factions\\钢穹机甲联合体",
+  "user_prompt": "请只生成【钢穹机甲联合体】这一势力的卷级状态轨迹，直接输出完整 Markdown 正文，不要 FILE 分块，不要代码围栏。记录卷0开篇前到第七卷结束每个卷分界点状态。状态来源标记为“计划状态”。必须包含：白塔议会/天穹工造/苍蓝军团等派系状态、技术资源、诺雅归属争议、对苏念认知、损失收益、下卷行动。不写剧情复述，写状态变化。不得出现旧名，不要使用“接口”等技术化语言。",
+  "context_files": [
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T1-机甲世界-钢穹机甲联合体.md", "label": "势力资产-机甲", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\00-总卷纲.md", "label": "总卷纲", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\00-人物总览.md", "label": "人物总览", "required": true }
+  ]
+}

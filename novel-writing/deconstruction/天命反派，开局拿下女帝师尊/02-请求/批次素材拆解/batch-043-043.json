@@ -1,0 +1,66 @@
+{
+  "task_type": "043章素材库分类拆书-单章返工",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 25000,
+  "temperature": 0.2,
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\agent\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对第043章进行素材库分类版高质量拆书。\n\n目标范围：043-043。\n上下文范围：041-045。\n\n重要规则：\n1. 单章返工批次，优先保证完成和拆分成功。\n2. 只输出目标章节 043 的正式拆解和素材；上下文章节只参考，不得输出为正式章节拆解。\n3. 必须输出：00-总览、01-剧情内容拆解/chapter-043.md、02-可复用素材库若干、03-索引、04-质量自检。\n4. 高价值素材需包含 YAML、source、source_range、tag、status、merge_policy、证据、写法解析、可复用变体、禁止照搬点。\n5. 输出必须使用 <<<FILE: 相对路径/文件名.md>>> 多文件格式。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "target": "03-输出\\批次拆解\\batch-043-043\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-043-043",
+  "context_files": [
+    {
+      "label": "素材库总规则",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\01-素材库总规则.md"
+    },
+    {
+      "label": "剧情内容拆解模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\12-剧情内容拆解模板.md"
+    },
+    {
+      "label": "质量自检模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\15-质量自检模板.md"
+    },
+    {
+      "label": "伏笔素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\04-伏笔素材模板.md"
+    },
+    {
+      "label": "人物设定素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\05-人物设定素材模板.md"
+    },
+    {
+      "label": "力量体系素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\07-力量体系素材模板.md"
+    },
+    {
+      "label": "世界设定素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\08-世界设定素材模板.md"
+    },
+    {
+      "label": "上文041",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\041-第41章 天命之子姗姗来迟.md"
+    },
+    {
+      "label": "上文042",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\042-第42章 林萧吃瘪.md"
+    },
+    {
+      "label": "目标043",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\043-第43章 蛇族女王炎姬.md"
+    },
+    {
+      "label": "下文044",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\044-第44章 高贵的女王大人.md"
+    },
+    {
+      "label": "下文045",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\045-第45章 安慰女王受伤的心灵.md"
+    }
+  ]
+}

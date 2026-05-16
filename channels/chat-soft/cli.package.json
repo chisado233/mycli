@@ -1,0 +1,28 @@
+{
+  "name": "chat-soft",
+  "summary": "Chat Soft mobile/server channel and local agent bridge",
+  "source": "D:\\agent_workspace\\projects\\chat_soft",
+  "commands": [
+    {
+      "name": "start-detached",
+      "summary": "Start Chat Soft local agent bridge in detached mode",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\chat-soft\\start-detached.ps1"
+    },
+    {
+      "name": "status-detached",
+      "summary": "Show Chat Soft cloud server and local bridge status",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\chat-soft\\status-detached.ps1"
+    },
+    {
+      "name": "stop-detached",
+      "summary": "Stop Chat Soft local agent bridge process",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\chat-soft\\stop-detached.ps1"
+    }
+  ]
+}

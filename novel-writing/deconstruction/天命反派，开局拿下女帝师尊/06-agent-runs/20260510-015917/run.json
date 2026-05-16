@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\02-请求\\十章单内容拆解\\range-151-160.summary-index.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-015917\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-015917\\输出.md",
+  "returncode": 0,
+  "stdout": "<<<FILE: D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-151-160\\完整故事概要与索引质量自检\\001+151-160阶段概要.md>>>\n---\nname: 第151-160章阶段概要\ndescription: 摇光宴席到仙藤谈判、大罗道塔第三层开启的阶段概要，核心是反派压制、情感确认与后续战力布局。\nsource: 《天命反派，开局拿下女帝师尊》\nsource_range: 第151章-第160章\ntag:\n  - 完整故事概要\n  - 阶段概要\n  - 宴会打脸\n  - 情感推进\n  - 升级流\nstatus: 阶段素材\nmerge_policy: 阶段汇总\n---\n\n# 第151-160章阶段概要\n\n## 一句话卖点\n顾云在摇光圣地宴席上以“醉酒”做局，连续收割姬瑶珺与萧梦雨的情感与信任，当众镇压叶不凡，顺势引出不死仙藤与仙藤祖地，再开启大罗道塔第三层与系统规则新信息。\n\n## 主角与目标\n顾云的目标分三层：一是当场压死叶不凡的气焰；二是把姬瑶珺从“同门/恩情”彻底导向“自己人”；三是借藤华之手，把叶不凡送去更适合后续利用的轨道，同时为自己后续四极境与古经修炼铺路。\n\n## 核心矛盾\n表面矛盾是叶不凡抢人、要救师姐；实质矛盾是“天命之子的热血叙事”撞上顾云的绝对压制与资源碾压。姬白衣夹在圣地利益、救命恩情与顾家威压之间，被迫倒向现实。\n\n## 主要阶段\n1. 摇光宴席持续升温，顾云左拥右抱，制造压迫与暧昧并行的局面。  \n2. 叶不凡强闯、挑衅、挑战，先被一掌镇压，再被姬瑶珺亲手断情。  \n3. 不死仙藤藤华现身，以仙藤之心换人，进一步引出仙藤祖地与万物神鼎线索。  \n4. 顾云回收战果，进入大罗道塔第三层，系统补充“天命会制造系统流主角”的新规则。\n\n## 关键反转\n叶不凡以为自己靠圣体突破翻盘，结果仍被顾云一掌碾碎；姬瑶珺以为自己只是“问心无愧”，实际上已被顾云彻底重塑立场；藤华以为只是赎人，实际上把仙藤祖地的入口和后续宝物线一起送到顾云面前。\n\n## 情感线\n顾云-姬瑶珺：从试探、同床共枕、同池共浴，推进到“亲口断绝叶不凡情缘”。  \n顾云-萧梦雨：从工具型陪侍推进到被安抚、被赏识，形成长期打窝。  \n顾云-顾瑶紫：从护道关系滑向半公开亲昵，形成“明面长辈、私下默契”张力。\n\n## 结局方向 / 阶段落点\n这一段把“圣地宴席副本”收束成三条后续主线：叶不凡去仙藤一族续命与升级；顾云回顾家挑古经、冲四极；姬瑶珺完成情感站队，成为顾云稳定的关系支点。\n\n## 可复用结构\n先用宴席/才艺/酒局制造关系黏性，再用强敌闯入触发当众打脸，接着安排“女主亲手断情”，最后以高价值交易和新地图收尾，形成爽点、情感与世界线三线并进。\n",
+  "stderr": "",
+  "target": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-151-160\\完整故事概要与索引质量自检\\_raw.md",
+  "split_output_files": {
+    "ok": true,
+    "base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-151-160\\完整故事概要与索引质量自检",
+    "block_style": "angle",
+    "blocks": 1,
+    "written": [
+      "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-151-160\\完整故事概要与索引质量自检\\001+151-160阶段概要.md"
+    ],
+    "errors": []
+  }
+}

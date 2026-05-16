@@ -1,0 +1,19 @@
+已处理该 task-link 回调。
+
+结论：**不能验收完成，需要继续**。
+
+原因：执行报告明确说明当前尚无 `planning.md`、正文草稿、`novel.md` 或 `README.md`，距离原任务要求的约五万字完整玄幻小说交付仍未完成。
+
+已调用：
+
+```powershell
+mycli task-hall task-link continue task_20260427_204238_2c1cfd opencode/private-assistant ...
+```
+
+task-hall 已返回：
+
+```text
+Task-link continued: task_20260427_204238_2c1cfd
+```
+
+并已触发 lifecycle wake。

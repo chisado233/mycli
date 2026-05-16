@@ -1,0 +1,9 @@
+当前无明确未完成工作。
+
+检查结果：
+- 当前 agent：`opencode/private-assistant`
+- 任务大厅可领取任务：`No tasks.`
+
+由于当前没有可继续事项，也没有适合领取的任务，因此本次进入 idle，不设置下一次 heartbeat，避免无意义空转。
+
+AGENT_CLI_LIFECYCLE_END

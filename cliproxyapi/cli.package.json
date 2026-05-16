@@ -1,0 +1,23 @@
+{
+  "name": "cliproxyapi",
+  "summary": "Manage the local CLIProxyAPI Go server, config, keys, startup, logs, and tests",
+  "source": "D:\\agent_workspace\\projects\\CLIProxyAPI",
+  "commands": [
+    {"name":"status","summary":"Show CLIProxyAPI config, Go, port, key, and listener status","args":[],"prefixArgs":["status"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"init-config","summary":"Create config.yaml from config.example.yaml when missing","args":[],"prefixArgs":["init-config"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"set-api-key","summary":"Set local client API key under api-keys","args":[{"name":"key","required":false,"summary":"Optional local API key; generated if omitted","type":"string"}],"prefixArgs":["set-api-key"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"set-management-key","summary":"Set remote-management.secret-key for Management API and cache plaintext locally","args":[{"name":"key","required":false,"summary":"Optional management key; generated if omitted","type":"string"}],"prefixArgs":["set-management-key"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"start","summary":"Start CLIProxyAPI in background via go run with config.yaml --no-browser --local-model","args":[{"name":"args","required":false,"summary":"Extra server flags","type":"string[]"}],"prefixArgs":["start"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"stop","summary":"Stop CLIProxyAPI by pid file or listening port","args":[],"prefixArgs":["stop"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"restart","summary":"Restart CLIProxyAPI in background","args":[{"name":"args","required":false,"summary":"Extra server flags","type":"string[]"}],"prefixArgs":["restart"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"test-api","summary":"Call /v1/models with configured local API key","args":[],"prefixArgs":["test-api"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"logs","summary":"Show server.out.log and server.err.log","args":[],"prefixArgs":["logs"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"build","summary":"Build cli-proxy-api.exe from ./cmd/server","args":[],"prefixArgs":["build"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"run","summary":"Run raw go run ./cmd/server with supplied arguments","args":[{"name":"args","required":false,"summary":"Server flags such as --config config.yaml --no-browser --local-model","type":"string[]"}],"prefixArgs":["run"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"test","summary":"Run go test ./...","args":[],"prefixArgs":["test"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"mod-download","summary":"Run go mod download","args":[],"prefixArgs":["mod-download"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"docker-up","summary":"Start via docker compose up -d --build","args":[],"prefixArgs":["docker-up"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"docker-down","summary":"Stop docker compose stack","args":[],"prefixArgs":["docker-down"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"},
+    {"name":"native","summary":"Pass through directly to go in the CLIProxyAPI project root","args":[{"name":"args","required":false,"summary":"Raw go arguments, e.g. version or test ./...","type":"string[]"}],"prefixArgs":["native"],"entry":"D:\\agent_workspace\\capability-library\\mycli\\cliproxyapi\\scripts\\cliproxyapi.ps1"}
+  ]
+}

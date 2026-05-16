@@ -1,0 +1,82 @@
+{
+  "target": "drafts/volume-01/arc-01/05.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\15-章节写作-agent.md"
+  },
+  "agent": "15-章节写作-agent",
+  "task_type": "阶段15-第一卷第一小篇章正文-05",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 14000,
+  "temperature": 0.45,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\15-第一小篇章正文\\05",
+  "user_prompt": "请根据单章细纲写【第5章：第一永久契约】正文初稿。目标字数约 3500—5000 中文字，网文男频快节奏，开篇抓人，语言通俗，有画面，有对话，有爽点和钩子。输出完整 Markdown：先正文，再“本章完成任务检查 / 状态变更日志草案 / AI审核表”。\n硬性限制：所有角色成年；亲密关系只写事后氛围、称呼变化、契约印记、灵能透支、环境细节与调侃，不写露骨过程、器官或具体动作；不得强迫、奴役、洗脑；莉莉娅是独立智慧生命不是普通召唤兽；林清雪不是召唤物；不得使用旧名和技术化出戏词。\n连续性：若有前文正文，请承接前文语气和已发生事件。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "作品企划",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "label": "力量体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "label": "世界规则",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\苏念.md",
+      "label": "人物资产-苏念",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\莉莉娅.md",
+      "label": "人物资产-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\林清雪.md",
+      "label": "人物资产-林清雪",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\01-倒序强钩子与魅魔契约.md",
+      "label": "第一小篇章纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-group\\volume-01\\arc-01\\00-五章纲.md",
+      "label": "第一小篇章五章纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-detail\\volume-01\\arc-01\\05-单章细纲.md",
+      "label": "单章细纲-第5章：第一永久契约",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\01.md",
+      "label": "前文正文-第1章",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\02.md",
+      "label": "前文正文-第2章",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\03.md",
+      "label": "前文正文-第3章",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\04.md",
+      "label": "前文正文-第4章",
+      "required": false
+    }
+  ]
+}

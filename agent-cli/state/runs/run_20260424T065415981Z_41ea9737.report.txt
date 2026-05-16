@@ -1,0 +1,1626 @@
+千束，这个补充很关键。你说的其实是在提醒：**项目不只有“一次性完成型”，还有“持续运行型”和“长期维护型”。**
+
+所以我们前面那个：
+
+```text
+idea -> proposed -> planned -> active -> completed -> maintenance -> archived
+```
+
+对一次性项目可以，但对“素材库 / 每日新闻热点收集 / 持续运行的数据管道”不够准确。
+
+我刚刚也查到本地已有一个旧的 `project-skill-manager` 规则，里面已经有类似概念：
+
+```text
+todo
+done
+sustained
+skill_dependent
+```
+
+其中 `sustained` 就是你说的“素材库等持续型项目”。
+
+所以新 `project-manager` 设计应该吸收这个概念，但不能只用 `sustained` 一个状态，因为它会和生命周期、运行状态、维护状态混在一起。
+
+---
+
+# 1. 核心修正：项目有两种根本形态
+
+我建议先增加一个非常重要的字段：
+
+```json
+"project_mode": "finite | continuous"
+```
+
+或者叫：
+
+```json
+"operating_model": "finite | continuous"
+```
+
+我更推荐 `operating_model`，因为它表达的是“这个项目怎么运作”。
+
+## 1.1 `finite`：有限交付型项目
+
+这类项目有明确终点：
+
+- 写一个 CLI
+- 做一个 skill
+- 修一个功能
+- 完成一篇文档
+- 做一次技术调研
+- 迁移一个仓库
+- 实现一个 workflow
+
+典型路径：
+
+```text
+需求 -> 可行性 -> 架构 -> 施工 -> 验证 -> 交付 -> 维护 -> 归档
+```
+
+## 1.2 `continuous`：持续运行型项目
+
+这类项目没有传统“完成”终点，而是要持续产出/持续更新/持续运行：
+
+- 素材库
+- 每日新闻热点收集
+- 模型榜单追踪
+- 定时爬取/整理/发布
+- 长期知识库维护
+- 监控项目
+- 每周报告生成
+- 内容运营流水线
+- 数据集持续积累
+- agent 长期自动巡检
+
+典型路径：
+
+```text
+需求 -> 可行性 -> 架构 -> 施工 -> 验证 -> 上线运行 -> 持续运行 -> 维护/优化 -> 暂停/退役
+```
+
+这个 `continuous` 就是旧规则里的 `sustained`，但我们把它建模得更精确。
+
+---
+
+# 2. 不要把“持续性”放进 lifecycle
+
+之前旧规则：
+
+```text
+todo / done / sustained / skill_dependent
+```
+
+问题是它把不同维度混在一起了：
+
+| 旧状态 | 实际含义 |
+|---|---|
+| `todo` | 生命周期：未完成 |
+| `done` | 生命周期：完成 |
+| `sustained` | 项目模式：持续运行型 |
+| `skill_dependent` | 依赖保护/删除策略 |
+
+所以新模型应该拆开：
+
+```json
+{
+  "operating_model": "continuous",
+  "lifecycle": "operation",
+  "activity": "running",
+  "protection": ["skill_dependent"]
+}
+```
+
+而不是：
+
+```json
+"status": "sustained"
+```
+
+---
+
+# 3. 生命周期应该加入“持续运行”阶段
+
+结合你给的阶段：
+
+```text
+前期需求设计
+项目可行性分析
+架构设计
+施工
+验证
+持续运行
+维护
+```
+
+我建议 `phase` 改成更贴近这个完整过程：
+
+```text
+intake
+requirements
+feasibility
+architecture
+planning
+construction
+validation
+delivery
+operation
+maintenance
+closure
+```
+
+其中：
+
+| phase | 中文 |
+|---|---|
+| `intake` | 项目录入/初始收集 |
+| `requirements` | 需求设计 |
+| `feasibility` | 可行性分析 |
+| `architecture` | 架构设计 |
+| `planning` | 施工计划/任务拆解 |
+| `construction` | 施工/实现 |
+| `validation` | 验证 |
+| `delivery` | 交付/上线准备 |
+| `operation` | 持续运行 |
+| `maintenance` | 维护 |
+| `closure` | 关闭/归档 |
+
+我建议用 `construction`，不用 `implementation`，因为你说“施工”，这个词在 agent 项目里很贴切，既包含写代码，也包含搭流程、整理素材、配置环境、建设数据管道。
+
+---
+
+# 4. lifecycle 也要支持 operation
+
+之前 lifecycle 是：
+
+```text
+idea
+proposed
+planned
+active
+on_hold
+completed
+maintenance
+archived
+cancelled
+rejected
+```
+
+这个对持续项目不自然。
+
+我建议调整成：
+
+```text
+idea
+proposed
+approved
+building
+validating
+operational
+maintaining
+paused
+retired
+archived
+cancelled
+rejected
+```
+
+但这会和 `phase` 有些重复。
+
+所以更稳妥的做法是：
+
+## lifecycle 保持粗粒度
+
+```text
+idea
+proposed
+planned
+active
+operational
+maintenance
+paused
+completed
+retired
+archived
+cancelled
+rejected
+```
+
+### 含义
+
+| lifecycle | 含义 |
+|---|---|
+| `idea` | 想法阶段 |
+| `proposed` | 已提出，未立项 |
+| `planned` | 已立项/准备做 |
+| `active` | 正在建设或推进 |
+| `operational` | 已上线/已进入持续运行 |
+| `maintenance` | 主要建设结束，进入维护 |
+| `paused` | 暂停 |
+| `completed` | 有限项目完成 |
+| `retired` | 持续项目退役 |
+| `archived` | 归档 |
+| `cancelled` | 取消 |
+| `rejected` | 不做 |
+
+这样：
+
+- 一次性项目可以走 `completed`
+- 持续性项目可以走 `operational`
+- 持续项目不需要假装 `done`
+- 退役用 `retired`，不是 `completed`
+
+---
+
+# 5. finite 和 continuous 两套路由
+
+## 5.1 有限交付型项目路径
+
+```text
+idea
+  -> proposed
+  -> planned
+  -> active
+  -> completed
+  -> maintenance
+  -> archived
+```
+
+对应 phase：
+
+```text
+intake
+-> requirements
+-> feasibility
+-> architecture
+-> planning
+-> construction
+-> validation
+-> delivery
+-> maintenance
+-> closure
+```
+
+## 5.2 持续运行型项目路径
+
+```text
+idea
+  -> proposed
+  -> planned
+  -> active
+  -> operational
+  -> maintenance
+  -> operational
+  -> retired
+  -> archived
+```
+
+对应 phase：
+
+```text
+intake
+-> requirements
+-> feasibility
+-> architecture
+-> planning
+-> construction
+-> validation
+-> delivery
+-> operation
+-> maintenance
+-> operation
+-> retirement
+-> closure
+```
+
+这里要注意：
+
+```text
+operation <-> maintenance
+```
+
+是反复切换的。
+
+例如每日热点项目：
+
+- 正常每天运行：`operational + operation`
+- 发现采集源坏了：`operational + maintenance` 或 `maintenance + maintenance`
+- 修完继续跑：`operational + operation`
+- 不再需要：`retired + closure`
+
+---
+
+# 6. activity 要增加 running
+
+我们之前的 activity 是：
+
+```text
+idle
+active
+waiting_user
+waiting_agent
+waiting_external
+waiting_review
+blocked
+scheduled
+```
+
+但持续运行型项目需要表达：
+
+- 正在按计划运行
+- 调度器正在跑
+- 最近一次运行成功/失败
+- 下次运行时间
+- 运行退化但没完全阻塞
+
+所以建议 activity 改成：
+
+```text
+idle
+active
+running
+scheduled
+waiting_user
+waiting_agent
+waiting_external
+waiting_review
+blocked
+degraded
+paused
+```
+
+## 6.1 新增状态
+
+| activity | 含义 |
+|---|---|
+| `running` | 持续项目正在正常运行 |
+| `degraded` | 仍在运行，但有部分失败/质量下降 |
+| `paused` | 人为暂停活动 |
+
+这样每日新闻项目可以是：
+
+```json
+"lifecycle": "operational",
+"phase": "operation",
+"activity": "running",
+"health": "green"
+```
+
+如果某个数据源失败：
+
+```json
+"lifecycle": "operational",
+"phase": "operation",
+"activity": "degraded",
+"health": "yellow",
+"attention": ["needs_maintenance"]
+```
+
+如果全部失败：
+
+```json
+"lifecycle": "operational",
+"phase": "maintenance",
+"activity": "blocked",
+"health": "red",
+"attention": ["needs_unblock"]
+```
+
+---
+
+# 7. health 对持续项目要引入运行健康
+
+`health` 仍然可以保留：
+
+```text
+green
+yellow
+red
+gray
+```
+
+但它的判断对持续项目应看运行情况：
+
+| health | 持续项目含义 |
+|---|---|
+| `green` | 最近运行正常，产出符合预期 |
+| `yellow` | 有部分失败、延迟、质量下降 |
+| `red` | 无法运行、连续失败、产出不可用 |
+| `gray` | 缺少运行记录，无法判断 |
+
+为了支持这个，需要在状态里增加一个 `operations` 摘要对象。
+
+---
+
+# 8. 增加 `operations` 对象
+
+对 `continuous` 项目，项目状态必须记录运行信息。
+
+建议：
+
+```json
+"operations": {
+  "schedule": "daily",
+  "schedule_expr": "0 8 * * *",
+  "last_run_at": "2026-04-24T08:00:00+08:00",
+  "last_run_status": "success",
+  "last_success_at": "2026-04-24T08:00:00+08:00",
+  "next_run_at": "2026-04-25T08:00:00+08:00",
+  "consecutive_failures": 0,
+  "run_count_7d": 7,
+  "success_count_7d": 7,
+  "output_summary": "Collected 32 hot topics and generated daily digest.",
+  "runbook": "runbooks/daily-news.md"
+}
+```
+
+## 8.1 `last_run_status`
+
+```text
+success
+partial
+failed
+skipped
+unknown
+```
+
+这个字段非常有用。
+
+例如：
+
+```json
+"activity": "degraded",
+"health": "yellow",
+"operations": {
+  "last_run_status": "partial",
+  "consecutive_failures": 0
+}
+```
+
+---
+
+# 9. 增加维护相关状态
+
+你说“还有项目的后续维护”，所以要明确维护不是失败，它是一种正常状态。
+
+## 9.1 maintenance 的两种情况
+
+### A. 有限项目的维护
+
+例如一个 CLI 已经交付，但偶尔修 bug：
+
+```json
+"operating_model": "finite",
+"lifecycle": "maintenance",
+"phase": "maintenance",
+"activity": "idle"
+```
+
+### B. 持续项目的维护
+
+例如每日热点采集项目源站变了，需要修：
+
+```json
+"operating_model": "continuous",
+"lifecycle": "operational",
+"phase": "maintenance",
+"activity": "active"
+```
+
+或者如果维护期间暂停运行：
+
+```json
+"lifecycle": "maintenance",
+"phase": "maintenance",
+"activity": "paused"
+```
+
+所以这里有一个重要原则：
+
+> `maintenance` 可以是 lifecycle，也可以是 phase，但含义不同。
+
+为了避免混乱，我建议：
+
+- `lifecycle = maintenance`：项目整体处于维护期。
+- `phase = maintenance`：当前工作内容是维护。
+- continuous 项目正常情况下可长期保持 `lifecycle = operational`，即便当前 phase 短暂进入 `maintenance`。
+
+---
+
+# 10. delivery 对持续项目要改理解
+
+之前 delivery 是：
+
+```text
+none
+concept
+draft
+prototype
+usable
+delivered
+verified
+published
+deprecated
+```
+
+对于持续项目，“delivered”不是终点，更像“已上线”。
+
+所以可以保留这个字段，但解释为：
+
+```text
+delivery = 当前项目能力/系统/资产的成熟度
+```
+
+持续项目：
+
+```text
+none -> concept -> draft -> prototype -> usable -> verified -> published
+```
+
+进入 `published` 后才适合：
+
+```json
+"lifecycle": "operational"
+```
+
+---
+
+# 11. attention 增加持续项目相关项
+
+原来：
+
+```text
+needs_user_decision
+needs_user_input
+needs_scope_confirmation
+needs_review
+needs_validation
+needs_unblock
+needs_cleanup
+needs_handoff
+```
+
+建议增加：
+
+```text
+needs_maintenance
+needs_operation_check
+needs_schedule_setup
+needs_runbook
+needs_retirement_decision
+```
+
+含义：
+
+| attention | 含义 |
+|---|---|
+| `needs_maintenance` | 需要维护修复 |
+| `needs_operation_check` | 需要检查运行状态 |
+| `needs_schedule_setup` | 需要配置定时/持续运行机制 |
+| `needs_runbook` | 缺少运行手册 |
+| `needs_retirement_decision` | 是否退役需要用户决策 |
+
+---
+
+# 12. 最终推荐状态模型 v0.2
+
+```json
+{
+  "project": {
+    "id": "daily-hot-news",
+    "name": "每日热点新闻收集",
+    "type": "research",
+    "operating_model": "continuous",
+    "domain": "content-ops",
+    "root": "D:\\agent_workspace\\projects\\daily-hot-news",
+    "owner": "千束",
+    "tags": ["daily", "news", "hot-topics", "automation"]
+  },
+  "status": {
+    "registration": "indexed",
+    "lifecycle": "operational",
+    "phase": "operation",
+    "activity": "running",
+    "health": "green",
+    "delivery": "published",
+    "attention": [],
+    "summary": "Daily hot-topic collection is running normally.",
+    "updated_at": "2026-04-24T08:10:00+08:00",
+    "updated_by": "scheduler"
+  },
+  "current": {
+    "goal_id": "goal-0001",
+    "milestone_id": null,
+    "task_id": null,
+    "next_action_id": "next-ops-check",
+    "summary": "Monitor next scheduled run."
+  },
+  "operations": {
+    "schedule": "daily",
+    "schedule_expr": "0 8 * * *",
+    "last_run_at": "2026-04-24T08:00:00+08:00",
+    "last_run_status": "success",
+    "last_success_at": "2026-04-24T08:00:00+08:00",
+    "next_run_at": "2026-04-25T08:00:00+08:00",
+    "consecutive_failures": 0,
+    "run_count_7d": 7,
+    "success_count_7d": 7,
+    "output_summary": "Collected 32 hot topics and generated daily digest.",
+    "runbook": "runbooks/daily-news.md"
+  }
+}
+```
+
+---
+
+# 13. 素材库项目示例
+
+素材库不一定有自动调度，但它是持续积累型。
+
+```json
+{
+  "project": {
+    "id": "asset-library",
+    "name": "素材库",
+    "type": "documentation",
+    "operating_model": "continuous",
+    "domain": "asset-management",
+    "tags": ["assets", "library", "long-term"]
+  },
+  "status": {
+    "registration": "indexed",
+    "lifecycle": "operational",
+    "phase": "operation",
+    "activity": "idle",
+    "health": "green",
+    "delivery": "usable",
+    "attention": [],
+    "summary": "素材库已可用，按需持续补充。",
+    "updated_at": "2026-04-24T00:00:00+08:00",
+    "updated_by": "assistant"
+  },
+  "operations": {
+    "schedule": "on_demand",
+    "last_run_at": null,
+    "last_run_status": "unknown",
+    "next_run_at": null,
+    "output_summary": "Current library is maintained manually/on-demand.",
+    "runbook": "runbooks/asset-library.md"
+  }
+}
+```
+
+注意这里：
+
+```json
+"activity": "idle"
+```
+
+不是坏事。  
+因为它是按需持续项目，不一定时时运行。
+
+---
+
+# 14. 对我们当前 project-manager 的修正
+
+`project-manager` 本身是一个有限交付型能力建设项目：
+
+```json
+{
+  "project": {
+    "id": "project-manager",
+    "type": "capability",
+    "operating_model": "finite"
+  },
+  "status": {
+    "lifecycle": "planned",
+    "phase": "requirements",
+    "activity": "waiting_user",
+    "health": "green",
+    "delivery": "concept",
+    "attention": ["needs_user_decision"],
+    "summary": "Status model is being refined to support finite and continuous projects."
+  }
+}
+```
+
+等我们开始写 `README.md / SKILL.md / schemas`：
+
+```json
+"lifecycle": "active",
+"phase": "construction",
+"activity": "active",
+"delivery": "draft"
+```
+
+等验证 mycli 注册：
+
+```json
+"phase": "validation",
+"delivery": "usable"
+```
+
+等注册完成：
+
+```json
+"phase": "delivery",
+"delivery": "published"
+```
+
+后续如果只是维护：
+
+```json
+"lifecycle": "maintenance",
+"phase": "maintenance",
+"activity": "idle"
+```
+
+---
+
+# 15. 这次我建议拍板的新版本
+
+## 15.1 新增字段
+
+必须新增：
+
+```json
+"operating_model": "finite | continuous"
+```
+
+可选未来扩展：
+
+```text
+recurring
+on_demand
+daemon
+pipeline
+library
+```
+
+但第一版只用 `finite / continuous` 足够。
+
+---
+
+## 15.2 修改 lifecycle
+
+改为：
+
+```text
+idea
+proposed
+planned
+active
+operational
+maintenance
+paused
+completed
+retired
+archived
+cancelled
+rejected
+```
+
+---
+
+## 15.3 修改 phase
+
+改为你说的完整链路：
+
+```text
+intake
+requirements
+feasibility
+architecture
+planning
+construction
+validation
+delivery
+operation
+maintenance
+retirement
+closure
+```
+
+---
+
+## 15.4 修改 activity
+
+改为：
+
+```text
+idle
+active
+running
+scheduled
+waiting_user
+waiting_agent
+waiting_external
+waiting_review
+blocked
+degraded
+paused
+```
+
+---
+
+## 15.5 delivery 保持
+
+```text
+none
+concept
+draft
+prototype
+usable
+delivered
+verified
+published
+deprecated
+```
+
+---
+
+## 15.6 attention 增加
+
+```text
+needs_maintenance
+needs_operation_check
+needs_schedule_setup
+needs_runbook
+needs_retirement_decision
+```
+
+---
+
+# 16. 最关键的设计结论
+
+我建议最终原则是：
+
+```text
+operating_model 决定项目是不是持续型
+lifecycle 表示项目整体生命状态
+phase 表示当前工作阶段
+activity 表示当前动作/等待/运行情况
+operations 表示持续运行数据
+maintenance 既可以是整体维护期，也可以是当前维护阶段
+```
+
+这样就能同时支持：
+
+- 前期需求设计
+- 项目可行性分析
+- 架构设计
+- 施工
+- 验证
+- 持续运行
+- 后续维护
+- 素材库这种长期积累型
+- 每日热点收集这种定时运行型
+- 已完成项目的维护
+- 已退役持续项目的归档
+
+这个版本比之前更符合你说的“持续性项目”。Oracle 的分析和我们刚才方向高度一致，而且它给了一个更“克制”的版本：**不要把状态枚举搞太多，重点是拆轴。**
+
+我建议我们把两版融合一下：
+
+- 用我的版本保留 capability-library 需要的 `delivery / attention / operations`
+- 用 Oracle 的版本收敛 `lifecycle`，避免状态过多
+- 把 `finite / ongoing` 明确作为最重要分叉
+
+下面是我建议的 **project-manager 项目状态 v0.3**。
+
+---
+
+# Project Status v0.3
+
+## 1. 核心原则
+
+项目状态不是一条线，而是几个维度：
+
+```text
+project_mode        项目运行模式
+lifecycle_status    项目是否还活着
+phase               当前处在哪个项目阶段
+activity_status     当前推进/运行状态
+health_status       健康度
+delivery_status     交付/成熟度
+attention[]         需要关注的事项
+operations          持续项目的运行摘要
+```
+
+其中最核心的是前三个：
+
+```text
+project_mode
+lifecycle_status
+phase
+```
+
+---
+
+# 2. 最关键字段：project_mode
+
+```text
+project_mode:
+- finite
+- ongoing
+```
+
+## `finite`
+
+有限交付型项目。
+
+例如：
+
+- 做一个 CLI
+- 创建一个 skill
+- 写一篇文档
+- 完成一次调研
+- 搭一个 workflow
+- 修一个功能
+
+它可以完成：
+
+```text
+finite -> completed
+```
+
+## `ongoing`
+
+持续运行型项目。
+
+例如：
+
+- 素材库
+- 每日新闻热点收集
+- 舆情监控
+- 定时数据采集
+- 长期知识库
+- 每周报告生成
+- agent 自动巡检
+
+它不应该标记为 `completed`，而应该长期处于：
+
+```text
+active + operations
+```
+
+最后如果不用了，是：
+
+```text
+retired
+```
+
+不是 completed。
+
+---
+
+# 3. 生命周期状态 lifecycle_status
+
+我建议采纳 Oracle 的简化版本：
+
+```text
+proposed
+active
+paused
+completed
+retired
+archived
+```
+
+但我建议加回一个 `planned`，因为你经常会有“已经决定做，但还没施工”的状态。
+
+所以 v0.3：
+
+```text
+lifecycle_status:
+- proposed
+- planned
+- active
+- paused
+- completed
+- retired
+- archived
+```
+
+## 含义
+
+| 状态 | 含义 |
+|---|---|
+| `proposed` | 已提出，尚未确定要做 |
+| `planned` | 已立项/决定做，正在设计或排计划 |
+| `active` | 正在建设、推进、运行或维护 |
+| `paused` | 暂停 |
+| `completed` | 已完成，仅适合 `finite` |
+| `retired` | 已退役，尤其适合 `ongoing` |
+| `archived` | 已归档，只保留记录 |
+
+我暂时不保留：
+
+```text
+idea
+rejected
+cancelled
+maintenance
+operational
+```
+
+原因：
+
+- `idea` 可以视为 `proposed` 的早期。
+- `rejected/cancelled` 可以通过 `retired` 或 `archived` + reason 表达。
+- `maintenance` 更适合做 `phase`。
+- `operational` 更适合做 `phase = operations` + `activity = stable/running`。
+
+---
+
+# 4. 当前阶段 phase
+
+这里直接吸收你说的完整链路。
+
+```text
+phase:
+- intake
+- requirements
+- feasibility
+- architecture
+- planning
+- construction
+- validation
+- launch
+- operations
+- maintenance
+- retirement
+- closure
+```
+
+## 中文对应
+
+| phase | 中文 |
+|---|---|
+| `intake` | 项目录入/初始接收 |
+| `requirements` | 前期需求设计 |
+| `feasibility` | 项目可行性分析 |
+| `architecture` | 架构设计 |
+| `planning` | 施工计划/任务拆解 |
+| `construction` | 施工/建设/实现 |
+| `validation` | 验证/测试/验收 |
+| `launch` | 上线/发布/交付准备 |
+| `operations` | 持续运行 |
+| `maintenance` | 维护/修复/优化 |
+| `retirement` | 退役处理 |
+| `closure` | 关闭/归档 |
+
+我建议保留 `planning`，因为“架构设计”和“施工计划”不是一回事：
+
+- `architecture`：怎么设计系统
+- `planning`：怎么拆任务、排优先级、安排推进
+
+---
+
+# 5. 活动状态 activity_status
+
+Oracle 建议：
+
+```text
+queued
+in_progress
+blocked
+waiting
+stable
+needs_attention
+```
+
+我建议稍微扩展一点，以支持持续项目：
+
+```text
+activity_status:
+- queued
+- in_progress
+- scheduled
+- stable
+- running
+- waiting
+- blocked
+- degraded
+- paused
+- needs_attention
+```
+
+## 含义
+
+| activity | 含义 |
+|---|---|
+| `queued` | 排队中，还没开始 |
+| `in_progress` | 人或 agent 正在推进 |
+| `scheduled` | 已排期/等待定时触发 |
+| `stable` | 稳定可用/稳定运行 |
+| `running` | 当前正在运行任务/周期流程 |
+| `waiting` | 等外部输入、用户、审核、资源 |
+| `blocked` | 阻塞，无法推进 |
+| `degraded` | 仍能运行，但质量下降或部分失败 |
+| `paused` | 暂停活动 |
+| `needs_attention` | 需要关注，但不一定阻塞 |
+
+如果想更细，后续可以加：
+
+```json
+"waiting_reason": "user | agent | external | review | resource"
+```
+
+不要把 waiting 拆太多放进主枚举。
+
+---
+
+# 6. 健康状态 health_status
+
+```text
+health_status:
+- green
+- yellow
+- red
+- gray
+```
+
+| health | 含义 |
+|---|---|
+| `green` | 正常 |
+| `yellow` | 有风险/部分异常 |
+| `red` | 明确失败/阻塞/不可用 |
+| `gray` | 信息不足，无法判断 |
+
+这个适合 dashboard。
+
+---
+
+# 7. 交付成熟度 delivery_status
+
+这个字段对 capability-library 很重要，因为“写完”和“注册可用”不是一回事。
+
+```text
+delivery_status:
+- none
+- concept
+- draft
+- prototype
+- usable
+- delivered
+- verified
+- published
+- deprecated
+```
+
+## 含义
+
+| delivery | 含义 |
+|---|---|
+| `none` | 没有成果 |
+| `concept` | 概念/方案 |
+| `draft` | 初稿 |
+| `prototype` | 原型 |
+| `usable` | 可内部使用 |
+| `delivered` | 已交付 |
+| `verified` | 已验证 |
+| `published` | 已发布/注册/接入正式入口 |
+| `deprecated` | 已废弃 |
+
+对 `project-manager` 这种能力包：
+
+- 只有 README：`draft`
+- 有 CLI/SKILL 但没验证：`usable`
+- 通过验证：`verified`
+- 注册到 `mycli` / `skill-library`：`published`
+
+---
+
+# 8. attention[]
+
+这个用数组。
+
+基础：
+
+```text
+needs_user_decision
+needs_user_input
+needs_scope_confirmation
+needs_review
+needs_validation
+needs_unblock
+needs_cleanup
+needs_handoff
+```
+
+持续项目新增：
+
+```text
+needs_maintenance
+needs_operation_check
+needs_schedule_setup
+needs_runbook
+needs_retirement_decision
+```
+
+示例：
+
+```json
+"attention": [
+  "needs_maintenance",
+  "needs_operation_check"
+]
+```
+
+---
+
+# 9. operations：持续项目运行摘要
+
+对于 `project_mode = ongoing` 的项目，建议有 `operations` 对象。
+
+```json
+"operations": {
+  "cadence": "daily",
+  "trigger": "schedule",
+  "schedule_expr": "0 8 * * *",
+  "last_run_at": "2026-04-24T08:00:00+08:00",
+  "last_run_status": "success",
+  "last_success_at": "2026-04-24T08:00:00+08:00",
+  "next_run_at": "2026-04-25T08:00:00+08:00",
+  "consecutive_failures": 0,
+  "run_count_7d": 7,
+  "success_count_7d": 7,
+  "output_summary": "Collected 32 hot topics and generated daily digest.",
+  "runbook": "runbooks/daily-news.md"
+}
+```
+
+## cadence
+
+```text
+on_demand
+hourly
+daily
+weekly
+monthly
+event_driven
+daemon
+manual
+```
+
+## trigger
+
+```text
+manual
+schedule
+event
+watcher
+daemon
+agent
+workflow
+```
+
+## last_run_status
+
+```text
+success
+partial
+failed
+skipped
+unknown
+```
+
+这比把“运行成功/失败”塞进 `lifecycle_status` 干净得多。
+
+---
+
+# 10. 状态转移
+
+## 10.1 finite 项目主路径
+
+```text
+proposed
+-> planned
+-> active
+-> completed
+-> archived
+```
+
+phase：
+
+```text
+intake
+-> requirements
+-> feasibility
+-> architecture
+-> planning
+-> construction
+-> validation
+-> launch
+-> closure
+```
+
+如果交付后有维护：
+
+```text
+completed/maintenance
+-> active/maintenance
+-> active/validation
+-> completed
+```
+
+也可以生命周期保持 `completed`，phase 进入 `maintenance`，这个之后可以再细定。
+
+---
+
+## 10.2 ongoing 项目主路径
+
+```text
+proposed
+-> planned
+-> active
+-> retired
+-> archived
+```
+
+phase：
+
+```text
+intake
+-> requirements
+-> feasibility
+-> architecture
+-> planning
+-> construction
+-> validation
+-> launch
+-> operations
+-> maintenance
+-> validation
+-> operations
+...循环...
+-> retirement
+-> closure
+```
+
+最关键规则：
+
+```text
+ongoing 不进入 completed
+ongoing 结束时进入 retired
+```
+
+---
+
+# 11. 持续运行项目的状态例子
+
+## 每日新闻热点收集
+
+```json
+{
+  "project": {
+    "id": "daily-hot-news",
+    "name": "每日新闻热点收集",
+    "type": "research",
+    "project_mode": "ongoing",
+    "domain": "content-ops",
+    "tags": ["daily", "news", "hot-topics"]
+  },
+  "status": {
+    "registration": "indexed",
+    "lifecycle": "active",
+    "phase": "operations",
+    "activity": "stable",
+    "health": "green",
+    "delivery": "published",
+    "attention": [],
+    "summary": "每日热点收集稳定运行。",
+    "updated_at": "2026-04-24T08:10:00+08:00",
+    "updated_by": "scheduler"
+  },
+  "operations": {
+    "cadence": "daily",
+    "trigger": "schedule",
+    "schedule_expr": "0 8 * * *",
+    "last_run_at": "2026-04-24T08:00:00+08:00",
+    "last_run_status": "success",
+    "last_success_at": "2026-04-24T08:00:00+08:00",
+    "next_run_at": "2026-04-25T08:00:00+08:00",
+    "consecutive_failures": 0,
+    "run_count_7d": 7,
+    "success_count_7d": 7,
+    "output_summary": "Collected 32 hot topics and generated daily digest.",
+    "runbook": "runbooks/daily-hot-news.md"
+  }
+}
+```
+
+## 部分数据源坏了
+
+```json
+"status": {
+  "lifecycle": "active",
+  "phase": "operations",
+  "activity": "degraded",
+  "health": "yellow",
+  "attention": ["needs_maintenance"],
+  "summary": "主流程仍可运行，但微博热榜源连续失败。"
+},
+"operations": {
+  "last_run_status": "partial",
+  "consecutive_failures": 0
+}
+```
+
+## 完全跑不起来
+
+```json
+"status": {
+  "lifecycle": "active",
+  "phase": "maintenance",
+  "activity": "blocked",
+  "health": "red",
+  "attention": ["needs_unblock", "needs_maintenance"],
+  "summary": "采集流程连续失败，需要修复。"
+},
+"operations": {
+  "last_run_status": "failed",
+  "consecutive_failures": 3
+}
+```
+
+---
+
+# 12. 素材库项目例子
+
+素材库也是 ongoing，但不一定定时运行。
+
+```json
+{
+  "project": {
+    "id": "asset-library",
+    "name": "素材库",
+    "type": "documentation",
+    "project_mode": "ongoing",
+    "domain": "asset-management"
+  },
+  "status": {
+    "registration": "indexed",
+    "lifecycle": "active",
+    "phase": "operations",
+    "activity": "stable",
+    "health": "green",
+    "delivery": "usable",
+    "attention": [],
+    "summary": "素材库可用，按需持续补充。"
+  },
+  "operations": {
+    "cadence": "on_demand",
+    "trigger": "manual",
+    "last_run_status": "unknown",
+    "runbook": "runbooks/asset-library.md"
+  }
+}
+```
+
+这里 `stable` 比 `idle` 更合适，因为素材库处于“稳定可用”状态，不是“没人管”。
+
+---
+
+# 13. 推荐最终字段结构
+
+```json
+{
+  "project": {
+    "id": "project-manager",
+    "name": "Project Manager",
+    "type": "capability",
+    "project_mode": "finite",
+    "domain": "agent-system-rules",
+    "root": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager",
+    "owner": "千束",
+    "tags": []
+  },
+  "status": {
+    "registration": "registered",
+    "lifecycle": "planned",
+    "phase": "requirements",
+    "activity": "waiting",
+    "health": "green",
+    "delivery": "concept",
+    "attention": ["needs_user_decision"],
+    "summary": "Designing project status model with support for ongoing projects.",
+    "updated_at": "2026-04-24T00:00:00+08:00",
+    "updated_by": "assistant"
+  },
+  "current": {
+    "goal_id": "goal-0001",
+    "task_id": "task-0001",
+    "next_action_id": "next-0001",
+    "summary": "Confirm project status v0.3."
+  },
+  "operations": null
+}
+```
+
+对于 `finite` 项目：
+
+```json
+"operations": null
+```
+
+对于 `ongoing` 项目：
+
+```json
+"operations": {...}
+```
+
+---
+
+# 14. 我建议现在锁定的 v0.3 枚举
+
+```text
+project_mode:
+  finite | ongoing
+
+lifecycle:
+  proposed | planned | active | paused | completed | retired | archived
+
+phase:
+  intake | requirements | feasibility | architecture | planning |
+  construction | validation | launch | operations | maintenance |
+  retirement | closure
+
+activity:
+  queued | in_progress | scheduled | stable | running |
+  waiting | blocked | degraded | paused | needs_attention
+
+health:
+  green | yellow | red | gray
+
+delivery:
+  none | concept | draft | prototype | usable |
+  delivered | verified | published | deprecated
+
+operation.last_run_status:
+  success | partial | failed | skipped | unknown
+```
+
+---
+
+# 15. 关键约束
+
+必须写进规则里：
+
+1. `project_mode = ongoing` 不应进入 `completed`。
+2. `project_mode = ongoing` 的正常长期状态是：
+   ```text
+   lifecycle = active
+   phase = operations
+   activity = stable / running / scheduled
+   ```
+3. `project_mode = ongoing` 停止服务应进入：
+   ```text
+   lifecycle = retired
+   phase = retirement
+   ```
+4. `completed` 只用于 `finite`。
+5. `archived` 是只读归档态。
+6. `phase = maintenance` 不代表项目失败，只表示当前工作是维护。
+7. `activity = degraded` 表示还在运行，但质量下降或部分失败。
+8. `operations` 只对 ongoing 必填，对 finite 可为空。
+
+---
+
+# 16. 我的建议
+
+我建议我们就以 v0.3 为基础继续往下设计。
+
+下一步可以设计三件事之一：
+
+1. `project.json` schema；
+2. `status.md` 展示模板；
+3. `next_actions` / 推进项模型。
+
+如果按依赖顺序，我建议先做：
+
+```text
+project.json schema
+```
+
+因为状态模型需要先落成结构化 schema，后面注册、查询、状态更新都依赖它。

@@ -1,0 +1,44 @@
+﻿{
+  "commands": [
+    {
+      "name": "monitor-ui",
+      "summary": "Start QQ-like channel message and connectivity monitor UI in detached mode",
+      "args": [
+        {
+          "name": "port",
+          "required": false,
+          "summary": "Local HTTP port, defaults to 45990",
+          "type": "string",
+          "default": null
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\monitor-ui\\start.ps1"
+    },
+    {
+      "name": "monitor-ui-stop",
+      "summary": "Stop detached channel monitor UI",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\monitor-ui\\stop.ps1"
+    },
+    {
+      "name": "monitor-ui-open",
+      "summary": "Start detached channel monitor UI and open it in Edge",
+      "args": [
+        {
+          "name": "port",
+          "required": false,
+          "summary": "Local HTTP port, defaults to 45990",
+          "type": "string",
+          "default": null
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\monitor-ui\\start-open.ps1"
+    }
+  ],
+  "name": "channels",
+  "summary": "Manage messaging channels and bridges",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\channels"
+}

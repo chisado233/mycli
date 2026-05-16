@@ -1,0 +1,24 @@
+千束，我找到了，`D:\study\2026春\概率论` 下面目前有 6 份答案文件：
+
+```text
+D:\study\2026春\概率论\Probabilites - TD01 - corrige.pdf
+D:\study\2026春\概率论\Probabilites - TD02 - corrige.pdf
+D:\study\2026春\概率论\Probabilites - TD03 - corrige(1).pdf
+D:\study\2026春\概率论\Probabilites - TD04 - corrige.pdf
+D:\study\2026春\概率论\Probabilites - TD05 - corrige(2).pdf
+D:\study\2026春\概率论\Probabilites - TD06 - corrige.pdf
+```
+
+对应的习题原文件也在同目录：
+
+```text
+Probabilites - TD01.pdf
+Probabilites - TD02.pdf
+Probabilites - TD03.pdf
+Probabilites - TD04(1).pdf
+Probabilites - TD05.pdf
+Probabilites - TD06(1).pdf
+```
+
+我已经确认这些 `corrige` PDF 都能提取出答案文本。  
+如果你要，我可以继续把 **TD01–TD06 的答案全文按 TD 分条贴出来**，不然一条消息会非常长。

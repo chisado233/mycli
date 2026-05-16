@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Workspace UI</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="grain"></div>
+  <main class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">AW</div>
+        <div>
+          <div class="eyebrow">Agent Workspace</div>
+          <h1>Control Atlas</h1>
+        </div>
+      </div>
+      <div class="search-wrap">
+        <span>⌕</span>
+        <input id="search" placeholder="搜索包、项目或 UI" />
+      </div>
+      <label class="filter-toggle" title="隐藏没有接入子 UI 的目录，只保留已接入节点及其父级路径">
+        <input id="uiOnly" type="checkbox" />
+        <span class="switch"><span></span></span>
+        <span>只看已接入 UI</span>
+      </label>
+      <div class="tree-head">
+        <span>目录</span>
+        <button id="refreshTree" title="刷新目录">↻</button>
+      </div>
+      <nav id="tree" class="tree"></nav>
+    </aside>
+    <section class="content">
+      <header class="hero">
+        <div>
+          <div class="eyebrow">Unified launcher</div>
+          <h2 id="nodeTitle">agent-workspace</h2>
+          <p id="nodeSubtitle">选择左侧节点，查看路径、UI 接入状态和启动入口。</p>
+        </div>
+        <div class="status-card">
+          <span id="clock">--:--</span>
+          <small>local control plane</small>
+        </div>
+      </header>
+      <div class="grid">
+        <article class="panel details-panel">
+          <div class="panel-title">
+            <span>节点详情</span>
+            <span id="kindBadge" class="badge">workspace</span>
+          </div>
+          <dl class="details">
+            <dt>路径</dt><dd id="nodePath">D:\agent_workspace</dd>
+            <dt>类型</dt><dd id="nodeKind">workspace</dd>
+            <dt>UI Manifest</dt><dd id="manifestPath">未接入</dd>
+          </dl>
+        </article>
+        <article class="panel action-panel">
+          <div class="panel-title">
+            <span>子 UI 控制</span>
+            <span id="onlineBadge" class="badge muted">未接入</span>
+          </div>
+          <p id="uiDescription" class="muted-text">这个节点没有声明子 UI。项目目录仍会显示在左侧，但只有存在 .agent-ui.json 时才可启动或打开。</p>
+          <div class="button-row">
+            <button id="startBtn" class="primary" disabled>启动</button>
+            <button id="stopBtn" disabled>停止</button>
+            <button id="openBtn" class="accent" disabled>打开子 UI</button>
+          </div>
+          <div id="uiUrl" class="url-pill">No UI URL</div>
+        </article>
+      </div>
+      <article class="panel console-panel">
+        <div class="panel-title">
+          <span>执行回显</span>
+          <button id="clearLog">清空</button>
+        </div>
+        <pre id="consoleLog">准备就绪。workspace-ui 将通过 mycli 调度子 UI。</pre>
+      </article>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

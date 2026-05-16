@@ -1,0 +1,33 @@
+﻿{
+    "session_id":  "ses_24152869cffeHspB1tweygRbTp",
+    "session_name":  "",
+    "prompt":  "上github搜索codex注册机",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "--session",
+                             "ses_24152869cffeHspB1tweygRbTp",
+                             "上github搜索codex注册机",
+                             "--agent",
+                             "private-assistant",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T085422175Z_23074b03.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T085422175Z_23074b03.raw.log",
+    "run_id":  "run_20260424T085422175Z_23074b03",
+    "source":  "opencode",
+    "event_count":  17,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T085422175Z_23074b03.report.txt",
+    "finished_at_utc":  "2026-04-24T08:57:43.2779815Z",
+    "round":  3,
+    "started_at_utc":  "2026-04-24T08:54:22.1857570Z"
+}

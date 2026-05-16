@@ -1,0 +1,102 @@
+{
+  "target": "states\\volume\\characters\\莉莉娅.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\09-卷级状态表-agent.md"
+  },
+  "agent": "09-卷级状态表-agent",
+  "task_type": "阶段09-单人物卷级状态轨迹-莉莉娅",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 20000,
+  "temperature": 0.25,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\09-卷级状态轨迹\\characters\\莉莉娅",
+  "user_prompt": "请只生成【莉莉娅】这一名主角团的卷级状态轨迹，直接输出完整 Markdown 正文，不要 FILE 分块，不要代码围栏。必须严格按照《人物卷级状态轨迹模板》的结构填写，不要删减模板关键栏目。目标是记录该人物在卷0开篇前、第一卷结束、第二卷结束……第七卷结束这些卷分界点的状态。状态来源统一标记为“计划状态”。重点必须细写：实力等级/阶位、力量体系变化、新增能力、能力代价/限制、契约状态、情感阶段、情感推进证据、与苏念关系、与主角团关系、资源装备、伤势/污染、掌握信息、隐瞒秘密、下卷承接。不要写成每卷剧情复述，而要写状态变化表。男主名为苏念；林清雪不是召唤物；所有亲密进展只写隐晦氛围/关系阶段/契约同步/称呼变化等合规表达。不得出现旧名，不要使用“接口”等技术化语言。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\00-人物卷级状态轨迹模板.md",
+      "label": "人物卷级状态轨迹模板",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\莉莉娅.md",
+      "label": "人物资产-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\00-总卷纲.md",
+      "label": "00-总卷纲.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\01-第一卷-觉醒与魅魔契约.md",
+      "label": "01-第一卷-觉醒与魅魔契约.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\02-第二卷-星海学院与剑冢试炼.md",
+      "label": "02-第二卷-星海学院与剑冢试炼.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\03-第三卷-深渊夜庭与血月王庭.md",
+      "label": "03-第三卷-深渊夜庭与血月王庭.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\04-第四卷-昆墟天门与万狐幻局.md",
+      "label": "04-第四卷-昆墟天门与万狐幻局.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\05-第五卷-钢穹裂港与机娘回收战.md",
+      "label": "05-第五卷-钢穹裂港与机娘回收战.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\06-第六卷-多界战场与神庭圣痕.md",
+      "label": "06-第六卷-多界战场与神庭圣痕.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\07-第七卷-神门降临与诸界反神.md",
+      "label": "07-第七卷-神门降临与诸界反神.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "正式作品企划",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\00-世界观总览.md",
+      "label": "世界观总览",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "label": "力量体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\00-人物总览.md",
+      "label": "人物总览",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\势力总览.md",
+      "label": "势力总览",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\rough\\00-故事粗纲.md",
+      "label": "故事线粗纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\emotion\\00-情感线粗纲.md",
+      "label": "情感线粗纲",
+      "required": true
+    }
+  ]
+}

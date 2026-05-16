@@ -1,0 +1,4 @@
+- 已检查：当前无正在进行的 agent-cli 工作（agent-cli current 无有效未完成任务）
+- 已检查：任务大厅无可领取任务（task-hall tasks 返回 No tasks）
+
+当前状态：idle。暂无适合的轻量任务可继续处理。

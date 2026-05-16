@@ -1,0 +1,98 @@
+{
+  "name": "agent",
+  "summary": "Novel writing agent loop and prompt templates",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent",
+  "commands": [
+    {
+      "name": "open",
+      "summary": "Print the novel-writing agent package path",
+      "args": [],
+      "prefixArgs": ["open"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\agent.ps1"
+    },
+    {
+      "name": "show",
+      "summary": "Display the agent package design notes",
+      "args": [],
+      "prefixArgs": ["show"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\agent.ps1"
+    },
+    {
+      "name": "prompts",
+      "summary": "List available agent prompt templates",
+      "args": [],
+      "prefixArgs": ["prompts"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\agent.ps1"
+    },
+    {
+      "name": "prompt",
+      "summary": "Display one agent prompt template by name",
+      "args": [
+        {
+          "name": "name",
+          "required": true,
+          "summary": "Prompt template file name without .md",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": ["prompt"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\agent.ps1"
+    },
+    {
+      "name": "build-prompt",
+      "summary": "Build a prompt from a JSON request with Markdown context files",
+      "args": [
+        {
+          "name": "request_json",
+          "required": true,
+          "summary": "Path to JSON request file",
+          "type": "path"
+        }
+      ],
+      "prefixArgs": ["build-prompt"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\agent.ps1"
+    },
+    {
+      "name": "run",
+      "summary": "Run a JSON-defined novel-writing agent request via llm-call",
+      "args": [
+        {
+          "name": "request_json",
+          "required": true,
+          "summary": "Path to JSON request file",
+          "type": "path"
+        }
+      ],
+      "prefixArgs": ["run"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\agent.ps1"
+    },
+    {
+      "name": "collect-context",
+      "summary": "Expand related Markdown context files from a JSON request",
+      "args": [
+        {
+          "name": "request_json",
+          "required": true,
+          "summary": "Path to JSON request file",
+          "type": "path"
+        }
+      ],
+      "prefixArgs": ["collect-context"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\agent.ps1"
+    },
+    {
+      "name": "apply-relations",
+      "summary": "Apply relation JSON fields into target Markdown YAML frontmatter",
+      "args": [
+        {
+          "name": "relation_json",
+          "required": true,
+          "summary": "Path to relation JSON file",
+          "type": "path"
+        }
+      ],
+      "prefixArgs": ["apply-relations"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\agent.ps1"
+    }
+  ]
+}

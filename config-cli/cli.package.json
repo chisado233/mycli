@@ -1,0 +1,60 @@
+{
+  "name": "config-cli",
+  "summary": "Discover and describe workspace config files",
+  "source": "D:\\agent_workspace\\config",
+  "commands": [
+    {
+      "name": "configs",
+      "summary": "List configs with name, description, and path",
+      "args": [
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Return JSON instead of a table",
+          "type": "switch"
+        }
+      ],
+      "prefixArgs": [
+        "list"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\config-cli\\scripts\\config-cli.ps1"
+    },
+    {
+      "name": "find",
+      "summary": "Find one config by name and return its metadata",
+      "args": [
+        {
+          "name": "name",
+          "required": true,
+          "summary": "Config name or file stem to find",
+          "type": "string"
+        },
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Return JSON instead of a table",
+          "type": "switch"
+        }
+      ],
+      "prefixArgs": [
+        "find"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\config-cli\\scripts\\config-cli.ps1"
+    },
+    {
+      "name": "validate",
+      "summary": "Validate that every config has a description field",
+      "args": [],
+      "prefixArgs": [
+        "validate"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\config-cli\\scripts\\config-cli.ps1"
+    },
+    {
+      "name": "native",
+      "summary": "Forward all remaining arguments to config-cli",
+      "args": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\config-cli\\scripts\\config-cli.ps1"
+    }
+  ]
+}

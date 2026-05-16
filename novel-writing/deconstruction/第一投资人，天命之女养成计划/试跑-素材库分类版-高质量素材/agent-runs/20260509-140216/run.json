@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\试跑-素材库分类版-高质量素材\\requests\\001-素材库分类-021-030.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\试跑-素材库分类版-高质量素材\\agent-runs\\20260509-140216\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\试跑-素材库分类版-高质量素材\\agent-runs\\20260509-140216\\输出.md",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "[llm-call] Request failed for http://www.1314mc.net:3333/v1/chat/completions: timed out\n"
+}

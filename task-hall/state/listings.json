@@ -1,0 +1,1036 @@
+﻿[
+    {
+        "id":  "task_20260427_105142_0cac7a",
+        "title":  "QA debug task",
+        "kind":  "custom",
+        "status":  "cancelled",
+        "priority":  10,
+        "tags":  [
+                     "debug"
+                 ],
+        "created_at":  "04/27/2026 10:51:42",
+        "listed_at":  "2026-04-27T10:51:42.4000428+08:00",
+        "claimed_by":  null,
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "debug-session",
+        "required_agent_type":  "qa",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_105142_0cac7a"
+    },
+    {
+        "id":  "task_20260427_204238_2c1cfd",
+        "title":  "写一本五万字玄幻小说",
+        "kind":  "custom",
+        "status":  "claimed",
+        "priority":  80,
+        "tags":  [
+                     "writing",
+                     "novel",
+                     "xuanhuan",
+                     "longform"
+                 ],
+        "created_at":  "2026-04-27T20:42:38.8516194+08:00",
+        "listed_at":  "2026-04-27T20:42:38.8516194+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/private-assistant",
+        "publisher_session":  "",
+        "required_agent_type":  "",
+        "parent_id":  null,
+        "child_ids":  {
+
+                      },
+        "watchers":  {
+
+                     },
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_204238_2c1cfd"
+    },
+    {
+        "id":  "task_20260424_235830_bc716b",
+        "title":  "测试任务大厅前台提交链路",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  5,
+        "tags":  [
+                     "smoke",
+                     "frontdesk"
+                 ],
+        "created_at":  "04/24/2026 23:58:30",
+        "listed_at":  "2026-04-24T23:58:30.773224+08:00",
+        "claimed_by":  "opencode/private-assistant",
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260424_235830_bc716b"
+    },
+    {
+        "id":  "task_20260427_103618_1248f5",
+        "title":  "Middle Builder debug task",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  10,
+        "tags":  [
+                     "debug"
+                 ],
+        "created_at":  "04/27/2026 10:36:18",
+        "listed_at":  "2026-04-27T10:36:18.2670956+08:00",
+        "claimed_by":  "opencode/middle-builder-3",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "debug-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_103618_1248f5"
+    },
+    {
+        "id":  "task_20260427_105142_0e51fd",
+        "title":  "Agent creator debug task",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  10,
+        "tags":  [
+                     "debug"
+                 ],
+        "created_at":  "04/27/2026 10:51:42",
+        "listed_at":  "2026-04-27T10:51:42.5463555+08:00",
+        "claimed_by":  "opencode/engineering-agent-creator",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "debug-session",
+        "required_agent_type":  "agent-creator",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_105142_0e51fd"
+    },
+    {
+        "id":  "task_20260427_195223_0a2d32",
+        "title":  "Multi leader dryrun 1",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  14,
+        "tags":  [
+                     "smoke",
+                     "dryrun"
+                 ],
+        "created_at":  "04/27/2026 19:52:23",
+        "listed_at":  "2026-04-27T19:52:23.8165736+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_195223_0a2d32"
+    },
+    {
+        "id":  "task_20260427_195224_b9cc13",
+        "title":  "Multi leader dryrun 2",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  14,
+        "tags":  [
+                     "smoke",
+                     "dryrun"
+                 ],
+        "created_at":  "04/27/2026 19:52:24",
+        "listed_at":  "2026-04-27T19:52:24.1481372+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_195224_b9cc13"
+    },
+    {
+        "id":  "task_20260427_195224_c0c088",
+        "title":  "Multi leader dryrun 3",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  14,
+        "tags":  [
+                     "smoke",
+                     "dryrun"
+                 ],
+        "created_at":  "04/27/2026 19:52:24",
+        "listed_at":  "2026-04-27T19:52:24.443705+08:00",
+        "claimed_by":  null,
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_195224_c0c088"
+    },
+    {
+        "id":  "task_20260427_194219_6f802a",
+        "title":  "Multi leader smoke 3",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  15,
+        "tags":  [
+                     "smoke",
+                     "multi-leader"
+                 ],
+        "created_at":  "04/27/2026 19:42:19",
+        "listed_at":  "2026-04-27T19:42:19.4380839+08:00",
+        "claimed_by":  null,
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_194219_6f802a"
+    },
+    {
+        "id":  "task_20260427_194219_1616c6",
+        "title":  "Multi leader smoke 2",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  15,
+        "tags":  [
+                     "smoke",
+                     "multi-leader"
+                 ],
+        "created_at":  "04/27/2026 19:42:19",
+        "listed_at":  "2026-04-27T19:42:19.3312012+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_194219_1616c6"
+    },
+    {
+        "id":  "task_20260427_194219_4e97e6",
+        "title":  "Multi leader smoke 1",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  15,
+        "tags":  [
+                     "smoke",
+                     "multi-leader"
+                 ],
+        "created_at":  "04/27/2026 19:42:19",
+        "listed_at":  "2026-04-27T19:42:19.161892+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_194219_4e97e6"
+    },
+    {
+        "id":  "task_20260427_194636_c8782f",
+        "title":  "Multi leader capacity test 1",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  16,
+        "tags":  [
+                     "smoke",
+                     "multi-leader-capacity"
+                 ],
+        "created_at":  "04/27/2026 19:46:36",
+        "listed_at":  "2026-04-27T19:46:36.7845859+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_194636_c8782f"
+    },
+    {
+        "id":  "task_20260427_194636_522a9b",
+        "title":  "Multi leader capacity test 2",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  16,
+        "tags":  [
+                     "smoke",
+                     "multi-leader-capacity"
+                 ],
+        "created_at":  "04/27/2026 19:46:36",
+        "listed_at":  "2026-04-27T19:46:36.9673333+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_194636_522a9b"
+    },
+    {
+        "id":  "task_20260427_194637_f85ddb",
+        "title":  "Multi leader capacity test 3",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  16,
+        "tags":  [
+                     "smoke",
+                     "multi-leader-capacity"
+                 ],
+        "created_at":  "04/27/2026 19:46:37",
+        "listed_at":  "2026-04-27T19:46:37.0898344+08:00",
+        "claimed_by":  null,
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_194637_f85ddb"
+    },
+    {
+        "id":  "task_20260427_192817_a43be1",
+        "title":  "Lifecycle wake smoke task",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  20,
+        "tags":  [
+                     "smoke wake"
+                 ],
+        "created_at":  "04/27/2026 19:28:17",
+        "listed_at":  "2026-04-27T19:28:17.5011364+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_192817_a43be1"
+    },
+    {
+        "id":  "task_20260427_005236_80355b",
+        "title":  "Smoke Task",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  50,
+        "tags":  [
+
+                 ],
+        "created_at":  "04/27/2026 00:52:36",
+        "listed_at":  "2026-04-27T00:52:36.7797756+08:00",
+        "claimed_by":  null,
+        "publish_mode":  "watched",
+        "publisher_agent":  "",
+        "publisher_session":  "",
+        "required_agent_type":  "",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_005236_80355b"
+    },
+    {
+        "id":  "task_20260427_005353_a71cc7",
+        "title":  "Smoke Task 2",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  50,
+        "tags":  [
+
+                 ],
+        "created_at":  "04/27/2026 00:53:53",
+        "listed_at":  "2026-04-27T00:53:53.5156099+08:00",
+        "claimed_by":  null,
+        "publish_mode":  "watched",
+        "publisher_agent":  "",
+        "publisher_session":  "",
+        "required_agent_type":  "",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_005353_a71cc7"
+    },
+    {
+        "id":  "task_20260427_005457_23051f",
+        "title":  "Smoke Task 3",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  50,
+        "tags":  [
+
+                 ],
+        "created_at":  "04/27/2026 00:54:57",
+        "listed_at":  "2026-04-27T00:54:57.7858032+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "",
+        "publisher_session":  "",
+        "required_agent_type":  "",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_005457_23051f"
+    },
+    {
+        "id":  "task_20260427_005519_2018d8",
+        "title":  "Smoke Task 4",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  50,
+        "tags":  [
+
+                 ],
+        "created_at":  "04/27/2026 00:55:19",
+        "listed_at":  "2026-04-27T00:55:19.5613792+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "",
+        "publisher_session":  "",
+        "required_agent_type":  "",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_005519_2018d8"
+    },
+    {
+        "id":  "task_20260427_005818_4b76ca",
+        "title":  "Smoke Task 5",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  50,
+        "tags":  [
+                     "smoke"
+                 ],
+        "created_at":  "04/27/2026 00:58:18",
+        "listed_at":  "2026-04-27T00:58:18.2667888+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "ses_smoke",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_005818_4b76ca"
+    },
+    {
+        "id":  "task_20260425_020801_9a1be0",
+        "title":  "设计无感闲聊式 MBTI 测验对话智能体",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  65,
+        "tags":  [
+                     "mbti",
+                     "conversation-agent",
+                     "prompt-design",
+                     "psychology",
+                     "ux"
+                 ],
+        "created_at":  "04/25/2026 02:08:01",
+        "listed_at":  "2026-04-25T02:08:01.8568415+08:00",
+        "claimed_by":  "opencode/private-assistant",
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260425_020801_9a1be0"
+    },
+    {
+        "id":  "task_20260425_020706_ca7376",
+        "title":  "设计玄幻小说写作 agent 工作流",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  70,
+        "tags":  [
+                     "writing",
+                     "workflow",
+                     "agent",
+                     "xuanhuan",
+                     "novel"
+                 ],
+        "created_at":  "04/25/2026 02:07:06",
+        "listed_at":  "2026-04-25T02:07:06.4462645+08:00",
+        "claimed_by":  "opencode/private-assistant",
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260425_020706_ca7376"
+    },
+    {
+        "id":  "task_20260427_235537_9244cb",
+        "title":  "五万字玄幻小说最终整合、README 与验收自检",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  74,
+        "tags":  [
+                     "writing novel xuanhuan qa"
+                 ],
+        "created_at":  "2026-04-27T23:55:37.5706147+08:00",
+        "listed_at":  "2026-04-27T23:55:37.5706147+08:00",
+        "claimed_by":  "opencode/engineering-qa",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "qa",
+        "parent_id":  "task_20260427_204238_2c1cfd",
+        "child_ids":  {
+
+                      },
+        "watchers":  {
+
+                     },
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_235537_9244cb"
+    },
+    {
+        "id":  "task_20260427_235537_814ec0",
+        "title":  "五万字玄幻小说正文第二批写作",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  76,
+        "tags":  [
+                     "writing novel xuanhuan draft"
+                 ],
+        "created_at":  "04/27/2026 23:55:37",
+        "listed_at":  "2026-04-27T23:55:37.5472354+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_204238_2c1cfd",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_235537_814ec0"
+    },
+    {
+        "id":  "task_20260427_235537_62c2f5",
+        "title":  "五万字玄幻小说正文第三批写作与结局收束",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  76,
+        "tags":  [
+                     "writing novel xuanhuan draft"
+                 ],
+        "created_at":  "04/27/2026 23:55:37",
+        "listed_at":  "2026-04-27T23:55:37.589092+08:00",
+        "claimed_by":  null,
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_204238_2c1cfd",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_235537_62c2f5"
+    },
+    {
+        "id":  "task_20260427_235537_603a22",
+        "title":  "五万字玄幻小说正文第一批写作",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  78,
+        "tags":  [
+                     "writing novel xuanhuan draft"
+                 ],
+        "created_at":  "04/27/2026 23:55:37",
+        "listed_at":  "2026-04-27T23:55:37.363689+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_204238_2c1cfd",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_235537_603a22"
+    },
+    {
+        "id":  "task_20260427_012216_f3be94",
+        "title":  "玄幻工作流验证：整体架构 QA 与一致性检查",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  80,
+        "tags":  [
+                     "xuanhuan validation qa"
+                 ],
+        "created_at":  "04/27/2026 01:22:16",
+        "listed_at":  "2026-04-27T01:22:16.1515627+08:00",
+        "claimed_by":  "opencode/engineering-qa",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "",
+        "required_agent_type":  "qa",
+        "parent_id":  "task_20260427_011633_f950d3",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_012216_f3be94"
+    },
+    {
+        "id":  "task_20260427_124157_c331fe",
+        "title":  "GitHub热点仓库长期报告骨架首版施工",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  80,
+        "tags":  [
+                     "github-hot-repos report scaffold"
+                 ],
+        "created_at":  "04/27/2026 12:41:57",
+        "listed_at":  "2026-04-27T12:41:57.7548738+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_124029_cdeffd",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_124157_c331fe"
+    },
+    {
+        "id":  "task_20260427_204845_4a2b3f",
+        "title":  "五万字玄幻小说整体设定与章节规划",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  80,
+        "tags":  [
+                     "writing novel xuanhuan planning"
+                 ],
+        "created_at":  "04/27/2026 20:48:45",
+        "listed_at":  "2026-04-27T20:48:45.8918994+08:00",
+        "claimed_by":  null,
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_204238_2c1cfd",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_204845_4a2b3f"
+    },
+    {
+        "id":  "task_20260427_211250_df7a5e",
+        "title":  "五万字玄幻小说正文第一批写作",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  80,
+        "tags":  [
+                     "xuanhuan writing draft"
+                 ],
+        "created_at":  "04/27/2026 21:12:50",
+        "listed_at":  "2026-04-27T21:12:50.4102021+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_204238_2c1cfd",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_211250_df7a5e"
+    },
+    {
+        "id":  "task_20260427_221314_cb964a",
+        "title":  "五万字玄幻小说正文第二批写作",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  80,
+        "tags":  [
+                     "xuanhuan writing draft"
+                 ],
+        "created_at":  "04/27/2026 22:13:14",
+        "listed_at":  "2026-04-27T22:13:14.8098608+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_204238_2c1cfd",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_221314_cb964a"
+    },
+    {
+        "id":  "task_20260427_222122_ef7b50",
+        "title":  "五万字玄幻小说正文第三批写作与结局收束",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  80,
+        "tags":  [
+                     "xuanhuan writing draft"
+                 ],
+        "created_at":  "04/27/2026 22:21:22",
+        "listed_at":  "2026-04-27T22:21:22.3738921+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_204238_2c1cfd",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_222122_ef7b50"
+    },
+    {
+        "id":  "task_20260427_223315_cae52b",
+        "title":  "五万字玄幻小说最终整合、README 与验收自检",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  80,
+        "tags":  [
+                     "xuanhuan qa integration"
+                 ],
+        "created_at":  "04/27/2026 22:33:15",
+        "listed_at":  "2026-04-27T22:33:15.2223008+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "qa",
+        "parent_id":  "task_20260427_204238_2c1cfd",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_223315_cae52b"
+    },
+    {
+        "id":  "task_20260427_012216_cc0b60",
+        "title":  "玄幻工作流验证：审校与返工流程检查",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  85,
+        "tags":  [
+                     "xuanhuan validation review"
+                 ],
+        "created_at":  "04/27/2026 01:22:16",
+        "listed_at":  "2026-04-27T01:22:16.066333+08:00",
+        "claimed_by":  "opencode/middle-builder-2",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_011633_f950d3",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_012216_cc0b60"
+    },
+    {
+        "id":  "task_20260427_012215_2911de",
+        "title":  "玄幻工作流验证：章节 brief 与正文草稿实跑",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  85,
+        "tags":  [
+                     "xuanhuan validation chapter"
+                 ],
+        "created_at":  "04/27/2026 01:22:16",
+        "listed_at":  "2026-04-27T01:22:16.0014252+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_011633_f950d3",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_012215_2911de"
+    },
+    {
+        "id":  "task_20260427_113850_8bab6e",
+        "title":  "GitHub/Vite 本地部署烟测执行",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  85,
+        "tags":  [
+                     "engineering",
+                     "github",
+                     "deploy",
+                     "smoke"
+                 ],
+        "created_at":  "04/27/2026 11:38:50",
+        "listed_at":  "2026-04-27T11:38:50.0159986+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_113401_32f8b3",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_113850_8bab6e"
+    },
+    {
+        "id":  "task_20260427_125828_c0f3c7",
+        "title":  "github-hot-repos-report 无 token 脚本与调度方案",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  85,
+        "tags":  [
+                     "github trending automation schedule"
+                 ],
+        "created_at":  "04/27/2026 12:58:28",
+        "listed_at":  "2026-04-27T12:58:28.1916776+08:00",
+        "claimed_by":  "opencode/middle-builder-2",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_125725_840a21",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_125828_c0f3c7"
+    },
+    {
+        "id":  "task_20260427_122731_5f5671",
+        "title":  "GitHub 热点抓取任务",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  88,
+        "tags":  [
+                     "github trending research"
+                 ],
+        "created_at":  "04/27/2026 12:27:31",
+        "listed_at":  "2026-04-27T12:27:31.116513+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_122731_5f5671"
+    },
+    {
+        "id":  "task_20260427_012215_9f6a87",
+        "title":  "玄幻工作流验证：世界观与升级体系实跑",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  90,
+        "tags":  [
+                     "xuanhuan validation worldbuilding"
+                 ],
+        "created_at":  "04/27/2026 01:22:15",
+        "listed_at":  "2026-04-27T01:22:15.8588983+08:00",
+        "claimed_by":  "opencode/senior-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "",
+        "required_agent_type":  "senior-builder",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_012215_9f6a87"
+    },
+    {
+        "id":  "task_20260427_125828_2d854b",
+        "title":  "github-hot-repos-report 首份真实热点报告",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  90,
+        "tags":  [
+                     "github trending report"
+                 ],
+        "created_at":  "04/27/2026 12:58:28",
+        "listed_at":  "2026-04-27T12:58:28.1543228+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_125725_840a21",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_125828_2d854b"
+    },
+    {
+        "id":  "task_20260427_185331_0a8d3b",
+        "title":  "GitHub 热点报告完整抓取与正式报告生成",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  90,
+        "tags":  [
+                     "github",
+                     "trending",
+                     "operations",
+                     "rehearsal"
+                 ],
+        "created_at":  "04/27/2026 18:53:31",
+        "listed_at":  "2026-04-27T18:53:31.8782105+08:00",
+        "claimed_by":  "opencode/middle-builder",
+        "publish_mode":  "watched",
+        "publisher_agent":  "opencode/engineering-leader",
+        "publisher_session":  "unknown-session",
+        "required_agent_type":  "middle-builder",
+        "parent_id":  "task_20260427_185115_3f8a39",
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_185331_0a8d3b"
+    },
+    {
+        "id":  "task_20260427_113401_32f8b3",
+        "title":  "GitHub 项目本地部署跑通工程任务",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  92,
+        "tags":  [
+                     "engineering github deploy"
+                 ],
+        "created_at":  "04/27/2026 11:34:01",
+        "listed_at":  "2026-04-27T11:34:01.7509817+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  "task_20260427_113850_8bab6e",
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_113401_32f8b3"
+    },
+    {
+        "id":  "task_20260427_124029_cdeffd",
+        "title":  "GitHub 热点仓库长期报告项目：leader 拆任务指挥 builder",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  94,
+        "tags":  [
+                     "github trending ongoing engineering"
+                 ],
+        "created_at":  "04/27/2026 12:40:30",
+        "listed_at":  "2026-04-27T12:40:30.0043549+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  "task_20260427_124157_c331fe",
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_124029_cdeffd"
+    },
+    {
+        "id":  "task_20260427_010906_857c20",
+        "title":  "工程部 Leader 接手玄幻小说工作流项目",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  95,
+        "tags":  [
+                     "engineering xuanhuan leader"
+                 ],
+        "created_at":  "04/27/2026 01:09:06",
+        "listed_at":  "2026-04-27T01:09:06.0250717+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  null,
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_010906_857c20"
+    },
+    {
+        "id":  "task_20260427_125725_840a21",
+        "title":  "GitHub 热点长期报告：真实报告、脚本与调度方案",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  95,
+        "tags":  [
+                     "github trending automation schedule"
+                 ],
+        "created_at":  "04/27/2026 12:57:25",
+        "listed_at":  "2026-04-27T12:57:25.8380918+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  "task_20260427_125828_c0f3c7",
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_125725_840a21"
+    },
+    {
+        "id":  "task_20260427_011633_f950d3",
+        "title":  "玄幻小说写作工作流搭建任务（二次发布）",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  96,
+        "tags":  [
+                     "engineering xuanhuan workflow"
+                 ],
+        "created_at":  "04/27/2026 01:16:33",
+        "listed_at":  "2026-04-27T01:16:33.0572727+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  [
+                          "task_20260427_012216_cc0b60",
+                          "task_20260427_012216_f3be94"
+                      ],
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_011633_f950d3"
+    },
+    {
+        "id":  "task_20260427_185115_3f8a39",
+        "title":  "GitHub 热点长期报告：完整周期性抓取演练",
+        "kind":  "custom",
+        "status":  "done",
+        "priority":  96,
+        "tags":  [
+                     "github trending operations rehearsal"
+                 ],
+        "created_at":  "04/27/2026 18:51:15",
+        "listed_at":  "2026-04-27T18:51:15.6211361+08:00",
+        "claimed_by":  "opencode/engineering-leader",
+        "publish_mode":  "watched",
+        "publisher_agent":  "system/lifecycle",
+        "publisher_session":  "",
+        "required_agent_type":  "engineering-leader",
+        "parent_id":  null,
+        "child_ids":  "task_20260427_185331_0a8d3b",
+        "watchers":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_185115_3f8a39"
+    },
+    {
+        "id":  "task_20260424_235438_f482c7",
+        "title":  "测试任务大厅前台提交链路",
+        "kind":  "custom",
+        "status":  "draft",
+        "priority":  5,
+        "tags":  [
+                     "smoke",
+                     "frontdesk"
+                 ],
+        "created_at":  "2026-04-24T23:54:38.354352+08:00",
+        "listed_at":  null,
+        "claimed_by":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260424_235438_f482c7"
+    },
+    {
+        "id":  "task_20260424_235616_cbd2b7",
+        "title":  "测试任务大厅前台提交链路",
+        "kind":  "custom",
+        "status":  "draft",
+        "priority":  5,
+        "tags":  [
+                     "smoke",
+                     "frontdesk"
+                 ],
+        "created_at":  "2026-04-24T23:56:16.7503705+08:00",
+        "listed_at":  null,
+        "claimed_by":  null,
+        "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260424_235616_cbd2b7"
+    }
+]

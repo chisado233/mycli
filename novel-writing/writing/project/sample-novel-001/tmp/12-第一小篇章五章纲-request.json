@@ -1,0 +1,102 @@
+{
+  "target": "outlines/chapter-group/volume-01/arc-01/00-五章纲.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\12-五章纲-agent.md"
+  },
+  "agent": "12-五章纲-agent",
+  "task_type": "阶段12-第一卷第一小篇章五章纲",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 12000,
+  "temperature": 0.25,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\12-第一小篇章五章纲",
+  "user_prompt": "请把第一卷第一小篇章《倒序强钩子与魅魔契约》（第1—5章）拆成可直接进入单章细纲与正文写作的五章纲。要求每章都有章节目标、核心事件、爽点、情感点、信息增量、结尾钩子、起点/终点状态。第一章必须直接呈现苏念与莉莉娅发生关系后的事后状态和契约结果，但正文阶段只允许隐晦氛围，不写露骨过程；第4—5章倒序解释成年、清醒、自愿、契约确认。第2章低评打压，第3章资源困境和界域行者呼唤，第4章深渊危机同步，第5章清醒确认与第一永久契约。不得使用旧名和技术化出戏词。林清雪只作为现实侧人类女主关心埋点，不是召唤物。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "作品企划",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "label": "力量体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "label": "世界规则",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\苏念.md",
+      "label": "人物资产-苏念",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\莉莉娅.md",
+      "label": "人物资产-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\林清雪.md",
+      "label": "人物资产-林清雪",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\03-配角\\方明远.md",
+      "label": "人物资产-方明远",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\苏念.md",
+      "label": "卷级状态-苏念",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\莉莉娅.md",
+      "label": "卷级状态-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\林清雪.md",
+      "label": "卷级状态-林清雪",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\01-第一卷-觉醒与魅魔契约.md",
+      "label": "第一卷卷纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\01-倒序强钩子与魅魔契约.md",
+      "label": "第一小篇章纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\苏念.md",
+      "label": "第一小篇章人物状态-苏念",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\莉莉娅.md",
+      "label": "第一小篇章人物状态-莉莉娅",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\林清雪.md",
+      "label": "第一小篇章人物状态-林清雪",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\方明远.md",
+      "label": "第一小篇章人物状态-方明远",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\reports\\asset-audit\\20260512-资产对齐审核.md",
+      "label": "资产对齐审核报告",
+      "required": true
+    }
+  ]
+}

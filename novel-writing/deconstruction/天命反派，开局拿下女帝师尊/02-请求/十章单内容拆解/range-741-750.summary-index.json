@@ -1,0 +1,114 @@
+{
+  "task_type": "range-741-750 完整故事概要与索引质量自检 十章单内容拆解-前后五章-绝对路径",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 30000,
+  "temperature": 0.2,
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\agent\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对第741-750章进行十章单内容拆解。\n\n目标范围：741-750。\n上下文范围：736-755（前后各五章原文上下文）。\n当前内容类别：完整故事概要与索引质量自检。\n本次只输出当前类别，不要扩展到其他类别。\n\n质量侧重点：概要与索引：十章概要、灵活记录、素材索引、质量自检，强调可供后续阶段汇总调用。\n\n重要规则：\n1. context_files 只传入当前类别相关模板；不要自行补写无关类别。\n2. 原文上下文虽然包含上文/下文，但只输出目标范围 741-750 的当前类别正式内容；上文与下文只用于理解前后因果、人物状态和伏笔，不得输出为正式拆解或素材来源，除非用于解释目标章节中的内容。\n3. 摘取必须高质量，宁缺毋滥；不要写“主角很强”“关系变好”“很爽”这类空泛判断。\n4. 素材类每条高价值素材必须包含 YAML、source、source_range、tag、status、merge_policy、证据、解析、可复用边界、禁止照搬点。\n5. 若当前类别是剧情内容拆解，必须逐章覆盖目标章节。\n6. 输出必须使用 <<<FILE: 绝对路径>>> 多文件格式，路径放在当前类别输出根目录下。\n7. 最后输出本类别质量自检。\n\n输出精简要求：\n1. 每个 <<<FILE: ...>>> 对应的 md 正文不超过 2000 中文字。\n2. 只摘取最有意义的高价值内容，宁缺毋滥；不要为了凑数量输出普通信息。\n3. 如果某类别素材很少，可以只输出 1-3 条高质量素材 + 质量自检。\n4. 证据使用关键原文短引或详细场景概述，不要大段堆原文。\n5. 解析集中写“为什么有用 / 如何复用 / 禁止照搬点”，避免泛泛复述剧情。\n\n输出文件路径规则：\n1. 所有 <<<FILE: ...>>> 必须使用以下输出根目录内的绝对路径：\nD:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-741-750\\完整故事概要与索引质量自检\n2. 不得使用相对路径，不得使用 ..，不得写到输出根目录外。\n3. 不得输出 03-输出/... 这种长相对路径，也不得重复嵌套类别目录。\n4. 示例：<<<FILE: D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-741-750\\完整故事概要与索引质量自检\\\\001+高价值素材标题.md>>>",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "target": "03-输出\\十章单内容拆解\\range-741-750\\完整故事概要与索引质量自检\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-741-750\\完整故事概要与索引质量自检",
+  "context_files": [
+    {
+      "label": "01-素材库总规则.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\01-素材库总规则.md"
+    },
+    {
+      "label": "09-完整故事概要模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\09-完整故事概要模板.md"
+    },
+    {
+      "label": "11-灵活记录模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\11-灵活记录模板.md"
+    },
+    {
+      "label": "15-质量自检模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\15-质量自检模板.md"
+    },
+    {
+      "label": "上文736",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\736-第736章 被做局了（二合一）.md"
+    },
+    {
+      "label": "上文737",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\737-第737章 顺手的事儿.md"
+    },
+    {
+      "label": "上文738",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\738-第738章 归来.md"
+    },
+    {
+      "label": "上文739",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\739-第739章 复苏（二合一）.md"
+    },
+    {
+      "label": "上文740",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\740-第740章 出发（二合一）.md"
+    },
+    {
+      "label": "目标741",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\741-第741章 门户.md"
+    },
+    {
+      "label": "目标742",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\742-第742章 圣光子.md"
+    },
+    {
+      "label": "目标743",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\743-第743章 新的天命，万倍返还系统（二合一）.md"
+    },
+    {
+      "label": "目标744",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\744-第744章 石壁（二合一）.md"
+    },
+    {
+      "label": "目标745",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\745-第745章 震惊众人（二合一）.md"
+    },
+    {
+      "label": "目标746",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\746-第746章 超越（二合一）.md"
+    },
+    {
+      "label": "目标747",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\747-第747章 直接打碎，顾云略微出手.md"
+    },
+    {
+      "label": "目标748",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\748-第748章 剑仙子vs雪千年.md"
+    },
+    {
+      "label": "目标749",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\749-第749章 解开心结，反败为胜（二合一）.md"
+    },
+    {
+      "label": "目标750",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\750-第750章 横扫（二合一）.md"
+    },
+    {
+      "label": "下文751",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\751-第751章 霜雪神剑.md"
+    },
+    {
+      "label": "下文752",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\752-第752章 鼓动.md"
+    },
+    {
+      "label": "下文753",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\753-第753章 张尘终出手（二合一）.md"
+    },
+    {
+      "label": "下文754",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\754-第754章 拿来吧你.md"
+    },
+    {
+      "label": "下文755",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\755-第755章 张尘殡天，神剑认主.md"
+    }
+  ]
+}

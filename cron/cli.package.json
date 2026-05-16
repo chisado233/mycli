@@ -1,0 +1,147 @@
+{
+  "name": "cron",
+  "summary": "Register and manage persistent or one-time scheduled command/script tasks",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\cron",
+  "commands": [
+    {
+      "name": "task-list",
+      "summary": "List registered cron tasks and scheduler state",
+      "args": [
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Return JSON instead of a table",
+          "type": "switch"
+        }
+      ],
+      "prefixArgs": ["task-list"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    },
+    {
+      "name": "add-command",
+      "summary": "Register a scheduled task from an inline command",
+      "args": [
+        {
+          "name": "id",
+          "required": true,
+          "summary": "Stable task id",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Schedule options followed by -- <command...>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["add-command"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    },
+    {
+      "name": "add-script",
+      "summary": "Register a scheduled task from a script file, optionally copying it into the task folder",
+      "args": [
+        {
+          "name": "id",
+          "required": true,
+          "summary": "Stable task id",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Schedule options and --script <path> [--copy-script] [-- <script args...>]",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["add-script"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    },
+    {
+      "name": "enable",
+      "summary": "Enable one registered cron task",
+      "args": [{"name":"id","required":true,"summary":"Task id","type":"string"}],
+      "prefixArgs": ["enable"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    },
+    {
+      "name": "disable",
+      "summary": "Disable one registered cron task",
+      "args": [{"name":"id","required":true,"summary":"Task id","type":"string"}],
+      "prefixArgs": ["disable"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    },
+    {
+      "name": "delete",
+      "summary": "Delete one cron task from Task Scheduler and local state",
+      "args": [{"name":"id","required":true,"summary":"Task id","type":"string"}],
+      "prefixArgs": ["delete"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    },
+    {
+      "name": "run",
+      "summary": "Run one registered cron task immediately and record logs",
+      "args": [{"name":"id","required":true,"summary":"Task id","type":"string"}],
+      "prefixArgs": ["run"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    },
+    {
+      "name": "show",
+      "summary": "Show one cron task JSON and scheduler state",
+      "args": [{"name":"id","required":true,"summary":"Task id","type":"string"}],
+      "prefixArgs": ["show"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    },
+    {
+      "name": "logs",
+      "summary": "Show recent execution records for one cron task",
+      "args": [
+        {"name":"id","required":true,"summary":"Task id","type":"string"},
+        {"name":"--last","required":false,"summary":"Number of recent runs to show","type":"int"}
+      ],
+      "prefixArgs": ["logs"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    },
+    {
+      "name": "status",
+      "summary": "Show cron storage roots and task counts",
+      "args": [],
+      "prefixArgs": ["status"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    },
+    {
+      "name": "ui",
+      "summary": "Start cron scheduler UI in detached mode",
+      "args": [{"name":"port","required":false,"summary":"Local HTTP port, defaults to 46010","type":"string"}],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\ui\\start.ps1"
+    },
+    {
+      "name": "ui-stop",
+      "summary": "Stop detached cron scheduler UI",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\ui\\stop.ps1"
+    },
+    {
+      "name": "ui-open",
+      "summary": "Start cron scheduler UI and open it in Edge",
+      "args": [{"name":"port","required":false,"summary":"Local HTTP port, defaults to 46010","type":"string"}],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\ui\\start-open.ps1"
+    },
+    {
+      "name": "ui-status",
+      "summary": "Show cron scheduler UI detached process and health status",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\ui\\status.ps1"
+    },
+    {
+      "name": "native",
+      "summary": "Forward all remaining arguments to the cron native script",
+      "args": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cron\\scripts\\cron.ps1"
+    }
+  ]
+}

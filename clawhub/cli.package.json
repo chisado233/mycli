@@ -1,0 +1,194 @@
+{
+  "name": "clawhub",
+  "summary": "Wrapper for the ClawHub CLI to search, inspect, install, update, and publish OpenClaw skills",
+  "source": "npm package: clawhub | https://clawhub.ai | https://github.com/openclaw/clawhub",
+  "commands": [
+    {
+      "name": "native",
+      "summary": "Run the upstream clawhub CLI through npx and pass all remaining arguments unchanged",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Native clawhub arguments, for example --help, search <query>, or install <slug>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "clawhub"
+      ],
+      "entry": "C:\\Program Files\\nodejs\\npx.ps1"
+    },
+    {
+      "name": "search",
+      "summary": "Search ClawHub skills by query",
+      "args": [
+        {
+          "name": "query",
+          "required": true,
+          "summary": "Search query terms",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "clawhub",
+        "search"
+      ],
+      "entry": "C:\\Program Files\\nodejs\\npx.ps1"
+    },
+    {
+      "name": "explore",
+      "summary": "Browse latest or popular skills from the ClawHub registry",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options such as --limit <n>, --sort newest|downloads|rating|installs|trending, or --json",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "clawhub",
+        "explore"
+      ],
+      "entry": "C:\\Program Files\\nodejs\\npx.ps1"
+    },
+    {
+      "name": "inspect",
+      "summary": "Inspect ClawHub skill metadata or files without installing",
+      "args": [
+        {
+          "name": "slug",
+          "required": true,
+          "summary": "Skill slug to inspect",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options such as --files, --file <path>, --version <version>, --tag <tag>, --versions, or --json",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "clawhub",
+        "inspect"
+      ],
+      "entry": "C:\\Program Files\\nodejs\\npx.ps1"
+    },
+    {
+      "name": "install",
+      "summary": "Install a ClawHub skill into the selected workdir skills directory",
+      "args": [
+        {
+          "name": "slug",
+          "required": true,
+          "summary": "Skill slug to install",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options such as --workdir <dir>, --dir <dir>, --version <version>, or --force",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "clawhub",
+        "install"
+      ],
+      "entry": "C:\\Program Files\\nodejs\\npx.ps1"
+    },
+    {
+      "name": "update",
+      "summary": "Update one installed skill or all installed ClawHub skills",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Optional slug and options such as --all, --force, --no-input, --workdir <dir>, or --dir <dir>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "clawhub",
+        "update"
+      ],
+      "entry": "C:\\Program Files\\nodejs\\npx.ps1"
+    },
+    {
+      "name": "list-installed",
+      "summary": "List installed skills in the selected ClawHub workdir",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options such as --workdir <dir> or --dir <dir>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "clawhub",
+        "list"
+      ],
+      "entry": "C:\\Program Files\\nodejs\\npx.ps1"
+    },
+    {
+      "name": "uninstall",
+      "summary": "Uninstall an installed ClawHub skill from the selected workdir",
+      "args": [
+        {
+          "name": "slug",
+          "required": true,
+          "summary": "Skill slug to uninstall",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options such as --workdir <dir> or --dir <dir>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "clawhub",
+        "uninstall"
+      ],
+      "entry": "C:\\Program Files\\nodejs\\npx.ps1"
+    },
+    {
+      "name": "sync",
+      "summary": "Scan local skills and publish new or updated ones through ClawHub",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options such as --root <dir>, --all, --dry-run, --workdir <dir>, or --no-input",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "clawhub",
+        "sync"
+      ],
+      "entry": "C:\\Program Files\\nodejs\\npx.ps1"
+    },
+    {
+      "name": "login",
+      "summary": "Authenticate to ClawHub for publishing or account operations",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options such as --token <token>; avoid exposing tokens in logs",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "clawhub",
+        "login"
+      ],
+      "entry": "C:\\Program Files\\nodejs\\npx.ps1"
+    }
+  ]
+}

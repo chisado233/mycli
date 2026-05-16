@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\09-势力状态轨迹-巨龙世界-龙渊古龙诸巢.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\09-卷级状态轨迹\\factions\\巨龙世界-龙渊古龙诸巢\\20260512-005740\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\09-卷级状态轨迹\\factions\\巨龙世界-龙渊古龙诸巢\\20260512-005740\\输出.md",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "[llm-call] HTTP 524 from http://www.1314mc.net:3333/v1/chat/completions: {\"error\":{\"message\":\"openai_error\",\"type\":\"bad_response_status_code\",\"param\":\"\",\"code\":\"bad_response_status_code\"}}\n"
+}

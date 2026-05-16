@@ -1,0 +1,32 @@
+﻿{
+  "id": "task_20260427_125828_c0f3c7",
+  "title": "github-hot-repos-report 无 token 脚本与调度方案",
+  "kind": "custom",
+  "status": "done",
+  "priority": 85,
+  "tags": [
+    "github trending automation schedule"
+  ],
+  "created_at": "2026-04-27T12:58:28.1916776+08:00",
+  "updated_at": "2026-04-27T13:19:50.9876048+08:00",
+  "listed_at": "2026-04-27T12:58:28.1916776+08:00",
+  "task_md": "task.md",
+  "task_dir": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_125828_c0f3c7",
+  "publish_mode": "watched",
+  "publisher_agent": "opencode/engineering-leader",
+  "publisher_session": "unknown-session",
+  "required_agent_type": "middle-builder",
+  "child_ids": [],
+  "watchers": [],
+  "task_link": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\task-links\\task_20260427_125828_c0f3c7.json",
+  "source_md": "D:\\agent_workspace\\tmp\\github-hot-repos-report-script-schedule-task.md",
+  "parent_id": "task_20260427_125725_840a21",
+  "claimed_at": "2026-04-27T13:05:05.5261402+08:00",
+  "claimed_by": "opencode/middle-builder-2",
+  "executor_session": "ses_232a52f23ffep03nRvXGG0ntUJ",
+  "last_recovered_at": "2026-04-27T13:18:37.9668528+08:00",
+  "last_recover_output": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_125828_c0f3c7\\recover-output-20260427_131837.txt",
+  "result": "验收通过：已提供无 token Python 标准库脚本、运行/语法验证记录、失败兜底提示、runbook 更新与 schedule-plan 调度方案；当前网络 SSL 超时导致未生成成功候选文件，已如实记录且符合任务边界。",
+  "done_at": "2026-04-27T13:19:50.9838175+08:00",
+  "done_by": "opencode/engineering-leader"
+}

@@ -1,0 +1,33 @@
+﻿{
+    "session_id":  "ses_24259126dffeTdrtnwWatL0lCR",
+    "session_name":  "",
+    "prompt":  "那你先搜一下aliyun的服务器的skill，然后试着搞个网页端部署到服务器",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "--session",
+                             "ses_24259126dffeTdrtnwWatL0lCR",
+                             "那你先搜一下aliyun的服务器的skill，然后试着搞个网页端部署到服务器",
+                             "--agent",
+                             "private-assistant",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T043827331Z_bb42c88f.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T043827331Z_bb42c88f.raw.log",
+    "run_id":  "run_20260424T043827331Z_bb42c88f",
+    "source":  "opencode",
+    "event_count":  69,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T043827331Z_bb42c88f.report.txt",
+    "finished_at_utc":  "2026-04-24T04:41:48.5881160Z",
+    "round":  5,
+    "started_at_utc":  "2026-04-24T04:38:27.3394451Z"
+}

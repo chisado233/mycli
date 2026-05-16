@@ -1,0 +1,110 @@
+{
+  "task_type": "range-041-050 爽点 十章单内容拆解-前后五章上下文",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 45000,
+  "temperature": 0.2,
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\agent\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对第041-050章进行十章单内容拆解。\n\n当前内容类别：爽点。\n目标范围：041-050。\n上下文范围：036-055（前后五章全文 + 目标十章全文）。\n\n重要规则：\n1. 只输出目标范围内的“爽点”正式内容；上文和下文只用于理解前后因果、人物状态和伏笔，不得输出为正式拆解或素材来源，除非用于解释目标章节中的内容。\n2. 只输出当前内容类别，不要扩展到其他类别。\n3. 当前类别质量侧重点：重点注重爽点机制。必须分析期待建立、压抑/误判、触发动作、即时反馈、外部见证、后续余波。\n4. 素材类必须包含 source、source_range、证据、解析、可复用边界、禁止照搬点；不要写空泛判断。\n5. 输出精简要求：每个 <<<FILE>>> 对应的 md 正文不超过 2000 中文字；只摘取最有意义的高价值素材，宁缺毋滥；不要为了凑数量输出普通信息；证据使用短引或场景概述，不要大段堆原文。\n6. 如果本类别素材很少，可以只输出 1-3 条高质量素材 + 质量自检，不要硬凑。\n7. 输出必须使用 <<<FILE: 绝对路径>>> 多文件格式。\n\n输出文件路径规则：所有 <<<FILE: ...>>> 必须使用以下输出根目录内的绝对路径；不得使用相对路径，不得使用 ..，不得写到输出根目录外。\n输出根目录：D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\03-输出\\十章单内容拆解\\range-041-050\\爽点\n",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒",
+  "target": "03-输出\\十章单内容拆解\\range-041-050\\爽点\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\06-agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\03-输出\\十章单内容拆解\\range-041-050\\爽点",
+  "context_files": [
+    {
+      "label": "01-素材库总规则",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\01-素材库总规则.md"
+    },
+    {
+      "label": "03-爽点素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\03-爽点素材模板.md"
+    },
+    {
+      "label": "15-质量自检模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\15-质量自检模板.md"
+    },
+    {
+      "label": "上文036",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\036-第036章 陈道玄突破，这™叫气海？.md"
+    },
+    {
+      "label": "上文037",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\037-第037章 消息传遍都城，罗天宗真的被灭门了.md"
+    },
+    {
+      "label": "上文038",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\038-第038章 轻轻亲一口师尊应该不会被发现吧？.md"
+    },
+    {
+      "label": "上文039",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\039-第039章 师尊的味道....太喜欢了.md"
+    },
+    {
+      "label": "上文040",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\040-第040章 系统回收功能，亏大了.md"
+    },
+    {
+      "label": "目标041",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\041-第041章 秘境之事，亲自指点神通.md"
+    },
+    {
+      "label": "目标042",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\042-第042章 嫣然愿意服侍师尊.md"
+    },
+    {
+      "label": "目标043",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\043-第043章 给嫣然亲手来个精油开背.md"
+    },
+    {
+      "label": "目标044",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\044-第044章 冷嫣然的师尊牌抱枕.md"
+    },
+    {
+      "label": "目标045",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\045-第045章 嫣然下山，目标赤云谷秘境.md"
+    },
+    {
+      "label": "目标046",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\046-第046章 东洲势力，白衣圣女？.md"
+    },
+    {
+      "label": "目标047",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\047-第047章 冷嫣然降临，有好戏看了.md"
+    },
+    {
+      "label": "目标048",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\048-第048章 三息离开，我改主意了.md"
+    },
+    {
+      "label": "目标049",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\049-第049章 陈道玄降临！镇杀任老祖（必看）.md"
+    },
+    {
+      "label": "目标050",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\050-第050章 笑着笑着，就把人杀了.md"
+    },
+    {
+      "label": "下文051",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\051-第051章 李神若满足收徒条件.md"
+    },
+    {
+      "label": "下文052",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\052-第052章 这一招，逼退陈道玄三步.md"
+    },
+    {
+      "label": "下文053",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\053-第053章 系统，我九千系统点呢？.md"
+    },
+    {
+      "label": "下文054",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\054-第054章 小本本先记上，秘境之争开启.md"
+    },
+    {
+      "label": "下文055",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\01-原文\\章节\\055-第055章 上百头通玄，一头归墟，不愧是仙人考核.md"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+﻿{
+  "command_id": "cmd_20260424T021102518Z_1b52b4",
+  "session_id": "ps_20260424T021050294Z_567e8f",
+  "text": "=41; +1; Get-Location | Select-Object -ExpandProperty Path",
+  "created_at_utc": "2026-04-24T02:11:02.5215513Z"
+}

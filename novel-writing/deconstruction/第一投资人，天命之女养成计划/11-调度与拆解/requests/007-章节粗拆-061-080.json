@@ -1,0 +1,194 @@
+{
+  "agent": "拆书-章节粗拆agent",
+  "task_type": "章节粗拆-20章批次",
+  "model": "MoreCode/gemini-3-flash",
+  "max_tokens": 30000,
+  "temperature": 0.2,
+  "system_prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\prompts\\拆书\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对《第一投资人，天命之女养成计划》进行批量章节粗拆。本轮目标拆解范围：第61-80章；上下文参考范围：第50-90章。你必须只输出第61-80章的逐章完整拆解；第50-90章中目标范围外的章节只用于理解前后文，不要输出逐章拆解。硬性要求：第61-80章共20章必须全部逐章输出，不得只输出节选示例，不得用批次汇总代替未输出章节。每章按精修后的章节粗拆格式输出，注意判断类型、证据锚点、伏笔状态枚举、高光素材复用风险、索引更新价值。最后输出本批次汇总、待验证问题总表、原文复制风险自检，并说明上下文参考对判断有什么帮助。 本轮使用紧凑批量格式：每章250-600字，确保目标范围20章完整覆盖。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "target": "07-章节拆解\\chapters\\batch-061-080.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\11-调度与拆解\\agent-runs",
+  "context_files": [
+    {
+      "label": "拆解说明",
+      "path": "00-拆解总览\\拆解说明.md"
+    },
+    {
+      "label": "章节索引",
+      "path": "12-长篇上下文管理\\章节索引.md"
+    },
+    {
+      "label": "前3章复验拆解",
+      "required": false,
+      "path": "07-章节拆解\\chapters\\batch-001-003-v2.md"
+    },
+    {
+      "label": "参考上下文章节 050 第50章 你想知道师父的胸围还是爱好",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\050-第50章 你想知道师父的胸围还是爱好.md"
+    },
+    {
+      "label": "参考上下文章节 051 第51章 比想象中还要柔软",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\051-第51章 比想象中还要柔软.md"
+    },
+    {
+      "label": "参考上下文章节 052 第52章 咱们还是去看跳舞吧",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\052-第52章 咱们还是去看跳舞吧.md"
+    },
+    {
+      "label": "参考上下文章节 053 第53章 简直有丧人伦",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\053-第53章 简直有丧人伦.md"
+    },
+    {
+      "label": "参考上下文章节 054 第54章 对我的财力一无所知",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\054-第54章 对我的财力一无所知.md"
+    },
+    {
+      "label": "参考上下文章节 055 第55章 我不喜欢矮的",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\055-第55章 我不喜欢矮的.md"
+    },
+    {
+      "label": "参考上下文章节 056 第56章 我已经等不及了",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\056-第56章 我已经等不及了.md"
+    },
+    {
+      "label": "参考上下文章节 057 第57章 这个盲目自信的女人",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\057-第57章 这个盲目自信的女人.md"
+    },
+    {
+      "label": "参考上下文章节 058 第58章 云挽晴被他弄哭了",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\058-第58章 云挽晴被他弄哭了.md"
+    },
+    {
+      "label": "参考上下文章节 059 第59章 我们联手把他榨干",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\059-第59章 我们联手把他榨干.md"
+    },
+    {
+      "label": "参考上下文章节 060 第60章 你也不想被别人知道吧",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\060-第60章 你也不想被别人知道吧.md"
+    },
+    {
+      "label": "参考上下文章节 061 第61章 你想得美",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\061-第61章 你想得美.md"
+    },
+    {
+      "label": "参考上下文章节 062 第62章 可能他们跟你一样好色吧",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\062-第62章 可能他们跟你一样好色吧.md"
+    },
+    {
+      "label": "参考上下文章节 063 第63章 我什么都没有看到",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\063-第63章 我什么都没有看到.md"
+    },
+    {
+      "label": "参考上下文章节 064 第64章 我帮你监督他",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\064-第64章 我帮你监督他.md"
+    },
+    {
+      "label": "参考上下文章节 065 第65章 温泉遐思",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\065-第65章 温泉遐思.md"
+    },
+    {
+      "label": "参考上下文章节 066 第66章 优势在我",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\066-第66章 优势在我.md"
+    },
+    {
+      "label": "参考上下文章节 067 第67章 果然翻车了吧",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\067-第67章 果然翻车了吧.md"
+    },
+    {
+      "label": "参考上下文章节 068 第68章 师父你别蹭了",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\068-第68章 师父你别蹭了.md"
+    },
+    {
+      "label": "参考上下文章节 069 第69章 师父求你了",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\069-第69章 师父求你了.md"
+    },
+    {
+      "label": "参考上下文章节 070 第70章 我不装了我摊牌了",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\070-第70章 我不装了我摊牌了.md"
+    },
+    {
+      "label": "参考上下文章节 071 第71章 师父也被塞满了",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\071-第71章 师父也被塞满了.md"
+    },
+    {
+      "label": "参考上下文章节 072 第72章 看来他还是喜欢你多一些",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\072-第72章 看来他还是喜欢你多一些.md"
+    },
+    {
+      "label": "参考上下文章节 073 第73章 你拿什么负责",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\073-第73章 你拿什么负责.md"
+    },
+    {
+      "label": "参考上下文章节 074 第74章 你应该馋师父很久了吧",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\074-第74章 你应该馋师父很久了吧.md"
+    },
+    {
+      "label": "参考上下文章节 075 第75章 不是因为他们变态",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\075-第75章 不是因为他们变态.md"
+    },
+    {
+      "label": "参考上下文章节 076 第76章 血肉苦弱机械飞升",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\076-第76章 血肉苦弱机械飞升.md"
+    },
+    {
+      "label": "参考上下文章节 077 第77章 丧钟为谁而鸣",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\077-第77章 丧钟为谁而鸣.md"
+    },
+    {
+      "label": "参考上下文章节 078 第78章 失去的生命",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\078-第78章 失去的生命.md"
+    },
+    {
+      "label": "参考上下文章节 079 第79章 贱人，终于见面了！",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\079-第79章 贱人，终于见面了！.md"
+    },
+    {
+      "label": "参考上下文章节 080 第80章 消失的一百年",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\080-第80章 消失的一百年.md"
+    },
+    {
+      "label": "参考上下文章节 081 第81章 在座的长老都想抽他",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\081-第81章 在座的长老都想抽他.md"
+    },
+    {
+      "label": "参考上下文章节 082 第82章 什么燃眉之急",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\082-第82章 什么燃眉之急.md"
+    },
+    {
+      "label": "参考上下文章节 083 第83章 这位是我的至交",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\083-第83章 这位是我的至交.md"
+    },
+    {
+      "label": "参考上下文章节 084 第84章 一夜百年",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\084-第84章 一夜百年.md"
+    },
+    {
+      "label": "参考上下文章节 085 第85章 你要对她做什么",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\085-第85章 你要对她做什么.md"
+    },
+    {
+      "label": "参考上下文章节 086 第86章 我还没有做好心理准备",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\086-第86章 我还没有做好心理准备.md"
+    },
+    {
+      "label": "参考上下文章节 087 第87章 我们那是正经修炼",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\087-第87章 我们那是正经修炼.md"
+    },
+    {
+      "label": "参考上下文章节 088 第88章 一条龙服务包你满意",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\088-第88章 一条龙服务包你满意.md"
+    },
+    {
+      "label": "参考上下文章节 089 第89章 你们到底进展到哪一步了",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\089-第89章 你们到底进展到哪一步了.md"
+    },
+    {
+      "label": "参考上下文章节 090 第90章 哥哥我怕",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\090-第90章 哥哥我怕.md"
+    }
+  ]
+}

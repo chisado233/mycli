@@ -1,0 +1,30 @@
+﻿{
+  "task_id": "task_20260427_124157_c331fe",
+  "status": "completed",
+  "created_at": "2026-04-27T12:41:57.8066425+08:00",
+  "updated_at": "2026-04-27T12:49:41.9234301+08:00",
+  "publish_mode": "watched",
+  "publisher_agent": "opencode/engineering-leader",
+  "publisher_session": "unknown-session",
+  "current_agent": "opencode/middle-builder",
+  "reports": [
+    {
+      "ts": "2026-04-27T12:49:19.5391492+08:00",
+      "agent": "opencode/middle-builder",
+      "session": "ses_232bf1bdfffeK4K0CPxvnQPUTR",
+      "status": "ready_for_review",
+      "report_path": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_124157_c331fe\\task-link-report-20260427_124919.md"
+    }
+  ],
+  "callbacks": [],
+  "handoffs": [],
+  "continue_note": "已看到项目文件基本产出，但子任务尚未提交 task-link report。请不要重复施工；请检查产物后按要求提交 task-link report，包含完成内容、产物路径、验证结果、未完成项、问题阻塞、建议下一步。",
+  "last_continue_dispatch_output": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_124157_c331fe\\continue-output-20260427_124901.txt",
+  "last_continue_dispatched_at": "2026-04-27T12:49:01.2969016+08:00",
+  "executor_agent": "opencode/middle-builder",
+  "executor_session": "ses_232bf1bdfffeK4K0CPxvnQPUTR",
+  "last_recover_output": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_124157_c331fe\\recover-output-20260427_124925.txt",
+  "completed_by": "opencode/engineering-leader",
+  "completed_at": "2026-04-27T12:49:41.9232926+08:00",
+  "result": "验收通过：builder 已补齐 README、runbook、reports README/template、首期样例报告、scripts/state 说明；报告明确无 token、公开来源限制与失败处理。"
+}

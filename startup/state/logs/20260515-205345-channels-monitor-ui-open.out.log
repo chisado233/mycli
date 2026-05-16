@@ -1,0 +1,3 @@
+Channel monitor UI start requested, but health check failed: The request was canceled due to the configured HttpClient.Timeout of 3 seconds elapsing.
+PID=17596 Logs: D:\agent_workspace\capability-library\mycli\channels\monitor-ui\logs\monitor-ui.out.log ; D:\agent_workspace\capability-library\mycli\channels\monitor-ui\logs\monitor-ui.err.log
+Opened Edge: http://127.0.0.1:45990

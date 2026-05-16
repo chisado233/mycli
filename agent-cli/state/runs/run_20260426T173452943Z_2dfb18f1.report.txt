@@ -1,0 +1,40 @@
+当前结论：已再次恢复核验并完成 task-link 汇报。父任务 `task_20260427_010906_857c20` 的 leader 侧工作已完成；当前重复恢复的主要原因是父任务 publisher 为 `system/lifecycle`，callback 投递失败：`Mapped agent 'system/lifecycle' was not found.`
+
+已完成内容：
+- 重新阅读父任务 Markdown。
+- 检查父任务 task-link 状态。
+- 检查 project-manager 当前状态。
+- 检查 task-hall 全量任务列表。
+- 检查 callback queue。
+- 写入新的恢复报告并通过 task-link report 汇报。
+- 验证 task-link 已记录新报告。
+
+已发布/核验的 watched 子任务：
+- `task_20260427_012215_9f6a87`：世界观与升级体系实跑，`senior-builder`，当前 `listed`
+- `task_20260427_012215_2911de`：章节 brief 与正文草稿实跑，`middle-builder`，当前 `listed`
+- `task_20260427_012216_cc0b60`：审校与返工流程检查，`middle-builder`，当前 `listed`
+- `task_20260427_012216_f3be94`：整体架构 QA 与一致性检查，`qa`，当前 `listed`
+
+project-manager 状态：
+- Lifecycle: `active`
+- Phase: `validation`
+- Activity: `waiting`
+- Health: `green`
+- Delivery: `prototype`
+- Current task: `task-0002`，真实 agent 链路验证
+- Current next action: `next-0002`，等待四个 watched builder/QA task-link 回调
+
+报告产物：
+- 本地报告：`D:\agent_workspace\tmp\xuanhuan-leader-dispatch-20260427\leader-recovery-report-20260427_0136.md`
+- 已提交 task-link report：`D:\agent_workspace\capability-library\mycli\task-hall\state\tasks\task_20260427_010906_857c20\task-link-report-20260427_013529.md`
+
+当前阻塞：
+- 四个 builder/QA 子任务仍未被领取，真实多 agent 链路验证尚未完成。
+- 父任务 callback 回 `system/lifecycle` 失败，可能导致 lifecycle 反复唤起恢复。建议 task-hall/lifecycle 维护侧对 `system/lifecycle` publisher 做特殊闭环处理，或补充 mapping。
+
+下一步：
+- 不重复发布相同子任务。
+- 等待/触发 lifecycle tick，让 builder/QA 池领取四个 listed 子任务。
+- 子任务 report 后由 engineering-leader 逐一验收并 complete / continue / switch-agent。
+
+AGENT_CLI_LIFECYCLE_END

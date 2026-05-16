@@ -1,0 +1,77 @@
+{
+  "target": "outlines/chapter-detail/volume-01/arc-01/03-单章细纲.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\14-单章节细纲-agent.md"
+  },
+  "agent": "14-单章节细纲-agent",
+  "task_type": "阶段14-第一卷第一小篇章单章细纲-03",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 10000,
+  "temperature": 0.25,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\14-第一小篇章单章细纲\\03",
+  "user_prompt": "请只生成【第3章：召唤师最缺的，是钱】的单章节细纲，输出完整 Markdown 正文。必须基于五章纲中该章条目扩展为可直接写正文的场景级细纲。包括：本章任务、起始状态、终点状态、场景列表（每场目标/冲突/过程/情绪变化/信息增量）、爽点、情感点、伏笔、结尾钩子、状态更新预案、AI审核表。\n关键限制：第一章直接呈现苏念与莉莉娅发生关系后的事后状态，但只写氛围和结果，不写露骨过程；第4章只能危机同步不能永久确认；第5章必须清醒、自愿、成年、认可后才成立第一永久契约；林清雪不是召唤物；不得使用旧名和技术化出戏词。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "作品企划",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "label": "力量体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "label": "世界规则",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\苏念.md",
+      "label": "人物资产-苏念",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\莉莉娅.md",
+      "label": "人物资产-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\林清雪.md",
+      "label": "人物资产-林清雪",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\苏念.md",
+      "label": "小篇章人物状态-苏念",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\莉莉娅.md",
+      "label": "小篇章人物状态-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\林清雪.md",
+      "label": "小篇章人物状态-林清雪",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\01-倒序强钩子与魅魔契约.md",
+      "label": "第一小篇章纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-group\\volume-01\\arc-01\\00-五章纲.md",
+      "label": "第一小篇章五章纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\reports\\asset-audit\\20260512-资产对齐审核.md",
+      "label": "资产对齐审核报告",
+      "required": true
+    }
+  ]
+}

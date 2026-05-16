@@ -1,0 +1,106 @@
+{
+  "task_type": "range-311-320 剧情内容拆解 十章单内容拆解-前后五章-绝对路径",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 30000,
+  "temperature": 0.2,
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\agent\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对第311-320章进行十章单内容拆解。\n\n目标范围：311-320。\n上下文范围：306-325（前后各五章原文上下文）。\n当前内容类别：剧情内容拆解。\n本次只输出当前类别，不要扩展到其他类别。\n\n质量侧重点：因果链：逐章覆盖目标十章，写清每章目标、阻碍、行动、结果、新问题。\n\n重要规则：\n1. context_files 只传入当前类别相关模板；不要自行补写无关类别。\n2. 原文上下文虽然包含上文/下文，但只输出目标范围 311-320 的当前类别正式内容；上文与下文只用于理解前后因果、人物状态和伏笔，不得输出为正式拆解或素材来源，除非用于解释目标章节中的内容。\n3. 摘取必须高质量，宁缺毋滥；不要写“主角很强”“关系变好”“很爽”这类空泛判断。\n4. 素材类每条高价值素材必须包含 YAML、source、source_range、tag、status、merge_policy、证据、解析、可复用边界、禁止照搬点。\n5. 若当前类别是剧情内容拆解，必须逐章覆盖目标章节。\n6. 输出必须使用 <<<FILE: 绝对路径>>> 多文件格式，路径放在当前类别输出根目录下。\n7. 最后输出本类别质量自检。\n\n输出精简要求：\n1. 每个 <<<FILE: ...>>> 对应的 md 正文不超过 2000 中文字。\n2. 只摘取最有意义的高价值内容，宁缺毋滥；不要为了凑数量输出普通信息。\n3. 如果某类别素材很少，可以只输出 1-3 条高质量素材 + 质量自检。\n4. 证据使用关键原文短引或详细场景概述，不要大段堆原文。\n5. 解析集中写“为什么有用 / 如何复用 / 禁止照搬点”，避免泛泛复述剧情。\n\n输出文件路径规则：\n1. 所有 <<<FILE: ...>>> 必须使用以下输出根目录内的绝对路径：\nD:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-311-320\\剧情内容拆解\n2. 不得使用相对路径，不得使用 ..，不得写到输出根目录外。\n3. 不得输出 03-输出/... 这种长相对路径，也不得重复嵌套类别目录。\n4. 示例：<<<FILE: D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-311-320\\剧情内容拆解\\\\001+高价值素材标题.md>>>",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "target": "03-输出\\十章单内容拆解\\range-311-320\\剧情内容拆解\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-311-320\\剧情内容拆解",
+  "context_files": [
+    {
+      "label": "12-剧情内容拆解模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\12-剧情内容拆解模板.md"
+    },
+    {
+      "label": "15-质量自检模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\15-质量自检模板.md"
+    },
+    {
+      "label": "上文306",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\306-第306章 群英会（二合一）.md"
+    },
+    {
+      "label": "上文307",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\307-第307章 进入葬龙谷.md"
+    },
+    {
+      "label": "上文308",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\308-第308章 神秘红雾，空间流动.md"
+    },
+    {
+      "label": "上文309",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\309-第309章 神秘门扉.md"
+    },
+    {
+      "label": "上文310",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\310-第310章 龙血炼体.md"
+    },
+    {
+      "label": "目标311",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\311-第311章 再见武灵，顾云的恐怖实力（二合一）.md"
+    },
+    {
+      "label": "目标312",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\312-第312章 羞辱秦翔，躁动起来，我的小天命！（二合一）.md"
+    },
+    {
+      "label": "目标313",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\313-第313章 神秘锈剑（二合一）.md"
+    },
+    {
+      "label": "目标314",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\314-第314章 屠魔之战（二合一）.md"
+    },
+    {
+      "label": "目标315",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\315-第315章 一枪败敌，对叶不凡的安排.md"
+    },
+    {
+      "label": "目标316",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\316-第316章 空间乱流.md"
+    },
+    {
+      "label": "目标317",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\317-第317章 小绿萝的奇妙开关.md"
+    },
+    {
+      "label": "目标318",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\318-第318章 不速之客，思想转变.md"
+    },
+    {
+      "label": "目标319",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\319-第319章 张尘.md"
+    },
+    {
+      "label": "目标320",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\320-第320章 请，卸甲！.md"
+    },
+    {
+      "label": "下文321",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\321-第321章 背黑锅的天命之子，躁动不安的绿萝（二合一）.md"
+    },
+    {
+      "label": "下文322",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\322-第322章 清梦压星河（二合一）.md"
+    },
+    {
+      "label": "下文323",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\323-第323章 争夺净心火莲（二合一）.md"
+    },
+    {
+      "label": "下文324",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\324-第324章 斩杀玄无极，嫁祸天命之子（二合一）.md"
+    },
+    {
+      "label": "下文325",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\325-第325章 天魔.md"
+    }
+  ]
+}

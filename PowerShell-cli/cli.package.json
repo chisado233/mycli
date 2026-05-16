@@ -1,0 +1,98 @@
+{
+  "name": "PowerShell-cli",
+  "summary": "Detached persistent PowerShell runspace sessions for repeated local and plink-based remote operations",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli",
+  "commands": [
+    {
+      "name": "start",
+      "summary": "Start a persistent PowerShell session broker",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options such as --admin, --shell pwsh|powershell, --cwd <path>, --session <id>, --idle-timeout-sec <seconds>, --wait-ready",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["start"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli\\scripts\\PowerShell-cli.ps1"
+    },
+    {
+      "name": "send",
+      "summary": "Queue text for execution in a persistent PowerShell runspace",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Usage: <session-id> --text <command> or <session-id> <command...>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["send"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli\\scripts\\PowerShell-cli.ps1"
+    },
+    {
+      "name": "read",
+      "summary": "Read buffered output events from a session",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Usage: <session-id> [--after <seq>] [--wait-ms <ms>] [--limit <n>] [--raw]",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["read"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli\\scripts\\PowerShell-cli.ps1"
+    },
+    {
+      "name": "status",
+      "summary": "Show session metadata and latest counters",
+      "args": [
+        {
+          "name": "session_id",
+          "required": true,
+          "summary": "Session id to inspect",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": ["status"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli\\scripts\\PowerShell-cli.ps1"
+    },
+    {
+      "name": "sessions",
+      "summary": "List known PowerShell-cli sessions",
+      "args": [],
+      "prefixArgs": ["sessions"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli\\scripts\\PowerShell-cli.ps1"
+    },
+    {
+      "name": "stop",
+      "summary": "Stop a persistent session broker",
+      "args": [
+        {
+          "name": "session_id",
+          "required": true,
+          "summary": "Session id to stop",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": ["stop"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli\\scripts\\PowerShell-cli.ps1"
+    },
+    {
+      "name": "cleanup",
+      "summary": "Stop live sessions and mark stale metadata as stopped",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options: --all to stop running sessions; omit to only mark dead PIDs stale",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["cleanup"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli\\scripts\\PowerShell-cli.ps1"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+Lifecycle tick: dispatch listed tasks
+Dispatched listed tasks: 0
+Lifecycle tick: dispatch callbacks
+Dispatched callback cb_20260427_234718_26648b to opencode/private-assistant
+Processed callbacks: 1
+Lifecycle tick: recover waiting publishers
+Recovered waiting publishers: 0
+Lifecycle tick: dispatch continues
+Dispatched continues: 0
+Lifecycle tick: dispatch switched tasks
+Dispatched switched tasks: 0

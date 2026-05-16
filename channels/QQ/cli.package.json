@@ -1,0 +1,123 @@
+﻿{
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ",
+  "name": "QQ",
+  "commands": [
+    {
+      "name": "start-detached",
+      "summary": "Start QQ channel bridge and NapCat as detached processes",
+      "args": [
+        {
+          "name": "qq",
+          "required": false,
+          "summary": "Bot QQ number, defaults to 3279329186",
+          "type": "string",
+          "default": null
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\start-detached.ps1"
+    },
+    {
+      "name": "stop-detached",
+      "summary": "Stop detached QQ channel bridge, NapCat, and QQ processes",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\stop-detached.ps1"
+    },
+    {
+      "name": "start-task",
+      "summary": "Start QQ channel Task Scheduler tasks",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\start-task.ps1"
+    },
+    {
+      "name": "status-task",
+      "summary": "Show QQ channel Task Scheduler and health status",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\status-task.ps1"
+    },
+    {
+      "name": "status-detached",
+      "summary": "Show detached QQ channel process and health status",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\status-detached.ps1"
+    },
+    {
+      "name": "install-task",
+      "summary": "Install QQ channel Task Scheduler entries",
+      "args": [
+        {
+          "name": "qq",
+          "required": false,
+          "summary": "Bot QQ number, defaults to 3279329186",
+          "type": "string",
+          "default": null
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\install-task.ps1"
+    },
+    {
+      "name": "stop-task",
+      "summary": "Stop QQ channel Task Scheduler tasks and processes",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\stop-task.ps1"
+    },
+    {
+      "name": "avatar",
+      "summary": "Download a QQ avatar from qlogo.cn",
+      "args": [
+        {
+          "name": "qq",
+          "required": true,
+          "summary": "QQ number to download avatar for",
+          "type": "string",
+          "default": null
+        },
+        {
+          "name": "size",
+          "required": false,
+          "summary": "Avatar size, commonly 100 or 640; defaults to 640",
+          "type": "string",
+          "default": null
+        },
+        {
+          "name": "out",
+          "required": false,
+          "summary": "Optional output file or directory; defaults to D:\\agent_workspace\\tmp\\qq-avatar",
+          "type": "path",
+          "default": null
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\avatar.ps1"
+    },
+    {
+      "name": "members",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\members.ps1",
+      "args": [
+        {
+          "name": "group-id",
+          "required": false,
+          "summary": "QQ group id; defaults to bridge.config.json defaultGroup",
+          "type": "string",
+          "default": null
+        },
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options such as --format json|table|md, --out <file>, --raw, --ws <url>, --token <token>",
+          "type": "string[]",
+          "default": null
+        }
+      ],
+      "summary": "List QQ group members via NapCat get_group_member_list",
+      "prefixArgs": []
+    }
+  ],
+  "summary": "QQ NapCat OneBot bridge to OpenCode agents"
+}

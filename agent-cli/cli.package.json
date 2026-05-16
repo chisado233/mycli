@@ -1,0 +1,201 @@
+{
+  "name": "agent-cli",
+  "summary": "Unified local agent CLI that maps Codex and OpenCode agents into one command surface",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli",
+  "commands": [
+    {
+      "name": "agents",
+      "summary": "List mapped agents from all configured sources",
+      "args": [],
+      "prefixArgs": [
+        "agents"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "current",
+      "summary": "Show the current default agent",
+      "args": [],
+      "prefixArgs": [
+        "current"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "sync",
+      "summary": "Synchronize mapped agents from provider sources",
+      "args": [],
+      "prefixArgs": [
+        "sync"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "run",
+      "summary": "Run a mapped agent with unified session parameters",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Unified run options such as --agent, --model, --session_name, --prompt, --cwd, --continue, --session, --fork, --return_mode stream|silent",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "run"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "session",
+      "summary": "Inspect stored agent-cli session run records and event streams",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Session subcommands and options such as events --session <id> --last <n>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "session"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "schedule",
+      "summary": "Schedule a future agent session wake-up through Windows Task Scheduler",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Schedule subcommands: add --in <delay>|--at <datetime> --agent <name> --prompt <text>, list, cancel <id>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "schedule"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "mount",
+      "summary": "Keep an agent session alive with scheduled lifecycle heartbeats",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Mount subcommands: add --agent <name> [--session <id>], list, tick <id>, cancel <id>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "mount"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "llm-call",
+      "summary": "Call configured LLM APIs directly by provider/model for text, vision, and image generation/editing",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Options such as --model <provider/model>, --prompt <text>, --image <path>, --task chat|vision|image-generate|image-edit, --list-models, --show-model",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\llm-call.ps1"
+    },
+    {
+      "name": "native",
+      "summary": "Pass through directly to the underlying provider CLI",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Native provider arguments; optionally choose provider via --agent or --source",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "native"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "codex-auto",
+      "summary": "Manage Codex auto proxy mode through Clash",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Subcommands: status, use <selector> <country> [intervalSec] [timeoutMs] [url], stop",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "codex-auto"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "agent",
+      "summary": "Manage mapped agents: list, show, use, create",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Agent subcommands and options",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "agent"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "source",
+      "summary": "Inspect configured provider sources",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Source subcommands and options",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "source"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "workflow",
+      "summary": "Reserved entry point for future workflow abstractions",
+      "args": [],
+      "prefixArgs": [
+        "workflow"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    },
+    {
+      "name": "recommend",
+      "summary": "Reserved entry point for future agent recommendation logic",
+      "args": [
+        {
+          "name": "task",
+          "required": false,
+          "summary": "Task description to recommend an agent for",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "recommend"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "target": "states\\arc\\volume-01\\characters\\方明远.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\11-小篇章状态表-agent.md"
+  },
+  "agent": "11-小篇章状态表-agent",
+  "task_type": "阶段11-第一卷单人物小篇章状态-方明远",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 12000,
+  "temperature": 0.25,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\11-第一卷单人物小篇章状态\\方明远",
+  "user_prompt": "请只生成【方明远】在第一卷各小篇章的相关人物状态，直接输出完整 Markdown 正文，不要 FILE 分块，不要代码围栏。该人物相关范围：01—07，考务记录。不相关的小篇章可标记为“未登场/仅被提及/无状态变化”，不要硬编戏份。要求简短但抓住主要信息：每个相关小篇章写起点状态、终点状态、实力/力量体系变化、情感/关系变化、掌握信息变化、资源/伤势/污染变化、下一篇章承接。只写人物状态，不写势力状态，不复述完整剧情。必须遵守第一卷设定：第一章直接是苏念和莉莉娅性爱/事后状态；亲密高刺激节点每3—5章一次；第一卷末约二阶；林清雪不是召唤物；不得出现旧名；不要使用“接口”等技术化语言。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\03-配角\\方明远.md",
+      "label": "人物资产-方明远",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\01-第一卷-觉醒与魅魔契约.md",
+      "label": "01-第一卷-觉醒与魅魔契约.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\00-相关人物提取.md",
+      "label": "00-相关人物提取.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\00-卷级状态索引.md",
+      "label": "00-卷级状态索引.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\00-第一卷小篇章总览.md",
+      "label": "00-第一卷小篇章总览.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\01-倒序强钩子与魅魔契约.md",
+      "label": "01-倒序强钩子与魅魔契约.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\02-职业觉醒与低评召唤师.md",
+      "label": "02-职业觉醒与低评召唤师.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\03-莉莉娅适应地球与林清雪吃醋.md",
+      "label": "03-莉莉娅适应地球与林清雪吃醋.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\04-镜湖小秘境前置训练.md",
+      "label": "04-镜湖小秘境前置训练.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\05-高考小秘境初段打脸.md",
+      "label": "05-高考小秘境初段打脸.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\06-秘境异常与黑契会暗线.md",
+      "label": "06-秘境异常与黑契会暗线.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\07-二阶突破与江海重点关注.md",
+      "label": "07-二阶突破与江海重点关注.md",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\08-旧港裂隙与青璃呼唤.md",
+      "label": "08-旧港裂隙与青璃呼唤.md",
+      "required": true
+    }
+  ]
+}

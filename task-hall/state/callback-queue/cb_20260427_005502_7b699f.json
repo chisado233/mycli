@@ -1,0 +1,14 @@
+﻿{
+  "id": "cb_20260427_005502_7b699f",
+  "task_id": "task_20260427_005457_23051f",
+  "reason": "task_link.reported",
+  "created_at": "2026-04-27T00:55:02.4465052+08:00",
+  "payload": {
+    "report": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_005457_23051f\\task-link-report-20260427_005502.md",
+    "agent": "opencode/middle-builder",
+    "session": ""
+  },
+  "status": "failed",
+  "updated_at": "2026-04-27T01:06:31.8481046+08:00",
+  "error": "missing publisher_agent"
+}

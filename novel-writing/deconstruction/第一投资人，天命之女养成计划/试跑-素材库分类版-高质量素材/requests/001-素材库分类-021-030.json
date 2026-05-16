@@ -1,0 +1,187 @@
+{
+  "agent": "拆书-素材库分类agent",
+  "task_type": "021-030章素材库分类拆书",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 70000,
+  "temperature": 0.2,
+  "system_prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\prompts\\拆书\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对《第一投资人，天命之女养成计划》第21-“素材库分类版高质量拆书”。\n\n目标范围：第21-。\n上下文范围：第11-。\n只输出目标范围内的素材和剧情拆解，上下文章节只用于理解前后文。\n\n核心目标：按照 material-library 的正式分类和 README 规范整理拆书结果，输出可复用素材库 + 剧情内容拆解。素材必须高质量、全面、有文学可用性。不要只写简单标签或空泛概括。\n\n必须多文件输出，格式：\n<<<FILE: 相对路径/文件名.md>>>\n# 标题\n正文\n\n输出目录建议：\n- 00-总览/README.md\n- 01-剧情内容拆解/chapter-XXX.md\n- 02-可复用素材库/场景/*.md\n- 02-可复用素材库/爽点/*.md\n- 02-可复用素材库/伏笔/*.md\n- 02-可复用素材库/人物设定/*.md\n- 02-可复用素材库/情感线推进/*.md\n- 02-可复用素材库/力量体系/*.md\n- 02-可复用素材库/世界设定/*.md\n- 02-可复用素材库/完整故事概要/*.md\n- 02-可复用素材库/文学风格收集/*.md\n- 02-可复用素材库/灵活记录/*.md\n- 03-索引/*.md\n- 04-质量自检/素材质量自检.md\n\n每个正式素材文件尽量包含 YAML front matter：name、description、tag。正文必须符合对应素材库 README 的建议结构。\n\n质量要求：\n- 每条素材都要有大段原文摘录或明确证据。\n- 每条素材都要有写法解析和可复用变体。\n- 人物设定必须包含性格具体化、萌点/吸引力、语言风格、社交关系和关系型人格。\n- 力量体系必须包含世界通用体系和个人力量体系。\n- 场景和爽点必须分类清晰。\n- 不要为了数量堆低质量条目；宁可少，但要有复用价值。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "target": "试跑-素材库分类版-高质量素材\\output\\batch-021-030\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\试跑-素材库分类版-高质量素材\\agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\试跑-素材库分类版-高质量素材\\output\\batch-021-030",
+  "context_files": [
+    {
+      "label": "素材库总规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\README.md"
+    },
+    {
+      "label": "素材库Tag指南",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\TAG-GUIDE.md"
+    },
+    {
+      "label": "场景素材规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\场景\\README.md"
+    },
+    {
+      "label": "爽点素材规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\爽点\\README.md"
+    },
+    {
+      "label": "伏笔素材规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\伏笔\\README.md"
+    },
+    {
+      "label": "人物设定素材规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\人物设定\\README.md"
+    },
+    {
+      "label": "情感线推进素材规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\情感线推进\\README.md"
+    },
+    {
+      "label": "力量体系素材规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\力量体系\\README.md"
+    },
+    {
+      "label": "世界设定素材规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\世界设定\\README.md"
+    },
+    {
+      "label": "灵活记录素材规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\灵活记录\\README.md"
+    },
+    {
+      "label": "完整故事概要素材规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\完整故事概要\\README.md"
+    },
+    {
+      "label": "文学风格收集素材规范",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\material-library\\文学风格收集\\README.md"
+    },
+    {
+      "label": "原文章节 011",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\011-第11章 茵茵妹妹什么都好.md"
+    },
+    {
+      "label": "原文章节 012",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\012-第12章 先买个原味.md"
+    },
+    {
+      "label": "原文章节 013",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\013-第13章 桀桀桀，既然你主动送上门来.md"
+    },
+    {
+      "label": "原文章节 014",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\014-第14章 这辈子都不会脱.md"
+    },
+    {
+      "label": "原文章节 015",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\015-第15章 我真的只是把你当妹妹.md"
+    },
+    {
+      "label": "原文章节 016",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\016-第16章 劫雷未能击穿护甲.md"
+    },
+    {
+      "label": "原文章节 017",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\017-第17章 空前绝后，引天地色变.md"
+    },
+    {
+      "label": "原文章节 018",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\018-第18章 她不会以为我是变态吧.md"
+    },
+    {
+      "label": "原文章节 019",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\019-第19章 老夫行事从来不会以势压人.md"
+    },
+    {
+      "label": "原文章节 020",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\020-第20章 惊不惊喜，意不意外.md"
+    },
+    {
+      "label": "原文章节 021",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\021-第21章 你过来啊！.md"
+    },
+    {
+      "label": "原文章节 022",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\022-第22章 他日再见，必取你狗命.md"
+    },
+    {
+      "label": "原文章节 023",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\023-第23章 被狠狠上了一课.md"
+    },
+    {
+      "label": "原文章节 024",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\024-第24章 他们不会是要那个吧.md"
+    },
+    {
+      "label": "原文章节 025",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\025-第25章 隔音阵法不太好.md"
+    },
+    {
+      "label": "原文章节 026",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\026-第26章 世界终将被我踩在脚下.md"
+    },
+    {
+      "label": "原文章节 027",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\027-第27章 我今天没有P键.md"
+    },
+    {
+      "label": "原文章节 028",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\028-第28章 哥哥一定爱惨我了.md"
+    },
+    {
+      "label": "原文章节 029",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\029-第29章 合法萝莉.md"
+    },
+    {
+      "label": "原文章节 030",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\030-第30章 你以为你是杨过啊.md"
+    },
+    {
+      "label": "原文章节 031",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\031-第31章 富婆，绝色，带女儿，未亡人.md"
+    },
+    {
+      "label": "原文章节 032",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\032-第32章 死去的记忆开始攻击我.md"
+    },
+    {
+      "label": "原文章节 033",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\033-第33章 我他吗来了.md"
+    },
+    {
+      "label": "原文章节 034",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\034-第34章 真理！.md"
+    },
+    {
+      "label": "原文章节 035",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\035-第35章 要尊重她老人家.md"
+    },
+    {
+      "label": "原文章节 036",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\036-第36章 师父的本子一直稳居前三.md"
+    },
+    {
+      "label": "原文章节 037",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\037-第37章 病娇师尊爱上我.md"
+    },
+    {
+      "label": "原文章节 038",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\038-第38章 我得和大舅哥拉好关系.md"
+    },
+    {
+      "label": "原文章节 039",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\039-第39章 我只是他们play中的一环.md"
+    },
+    {
+      "label": "原文章节 040",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\040-第40章 吃着碗里的看着锅里的.md"
+    }
+  ]
+}

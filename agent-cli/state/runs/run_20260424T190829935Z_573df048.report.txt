@@ -1,0 +1,10 @@
+当前无可继续推进的明确工作；任务大厅已检查，`mycli task-hall tasks` 返回 `No tasks.`，暂无可领取任务。
+
+状态：
+- 当前 agent：`opencode/private-assistant`
+- 任务大厅：无 `listed` 任务
+- 无需设置新的 heartbeat 定时，因为当前没有等待中的人工反馈、外部结果或稍后复查事项
+
+结论：idle，无后续动作。
+
+AGENT_CLI_LIFECYCLE_END

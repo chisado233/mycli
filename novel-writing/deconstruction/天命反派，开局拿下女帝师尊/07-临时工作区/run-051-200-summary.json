@@ -1,0 +1,366 @@
+[
+  {
+    "request": "range-051-060.plot.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 2,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-223909\\run.json"
+  },
+  {
+    "request": "range-051-060.scenes.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-224125\\run.json"
+  },
+  {
+    "request": "range-051-060.coolpoints.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 8,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-224304\\run.json"
+  },
+  {
+    "request": "range-051-060.foreshadow.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 8,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-224457\\run.json"
+  },
+  {
+    "request": "range-051-060.characters.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 5,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-224638\\run.json"
+  },
+  {
+    "request": "range-051-060.relationships.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-224827\\run.json"
+  },
+  {
+    "request": "range-051-060.power.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-225012\\run.json"
+  },
+  {
+    "request": "range-051-060.world.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-225223\\run.json"
+  },
+  {
+    "request": "range-051-060.style.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 1,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-225351\\run.json"
+  },
+  {
+    "request": "range-051-060.summary-index.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 4,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-225440\\run.json"
+  },
+  {
+    "request": "range-061-070.plot.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 3,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-225616\\run.json"
+  },
+  {
+    "request": "range-061-070.scenes.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 8,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-225825\\run.json"
+  },
+  {
+    "request": "range-061-070.coolpoints.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 1,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-230101\\run.json"
+  },
+  {
+    "request": "range-061-070.foreshadow.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-230215\\run.json"
+  },
+  {
+    "request": "range-061-070.characters.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 7,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-230405\\run.json"
+  },
+  {
+    "request": "range-061-070.relationships.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 1,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-230626\\run.json"
+  },
+  {
+    "request": "range-061-070.power.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 5,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-230732\\run.json"
+  },
+  {
+    "request": "range-061-070.world.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-230852\\run.json"
+  },
+  {
+    "request": "range-061-070.style.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-231035\\run.json"
+  },
+  {
+    "request": "range-061-070.summary-index.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 4,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-231202\\run.json"
+  },
+  {
+    "request": "range-071-080.plot.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 7,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-231326\\run.json"
+  },
+  {
+    "request": "range-071-080.scenes.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 2,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-231718\\run.json"
+  },
+  {
+    "request": "range-071-080.coolpoints.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 7,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-231922\\run.json"
+  },
+  {
+    "request": "range-071-080.foreshadow.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 1,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-232115\\run.json"
+  },
+  {
+    "request": "range-071-080.characters.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 5,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-232204\\run.json"
+  },
+  {
+    "request": "range-071-080.relationships.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-232355\\run.json"
+  },
+  {
+    "request": "range-071-080.power.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 7,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-232538\\run.json"
+  },
+  {
+    "request": "range-071-080.world.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 2,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-232736\\run.json"
+  },
+  {
+    "request": "range-071-080.style.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 5,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-232904\\run.json"
+  },
+  {
+    "request": "range-071-080.summary-index.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 5,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-233055\\run.json"
+  },
+  {
+    "request": "range-081-090.plot.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 1,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-233251\\run.json"
+  },
+  {
+    "request": "range-081-090.scenes.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 7,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-233335\\run.json"
+  },
+  {
+    "request": "range-081-090.coolpoints.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 5,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-233527\\run.json"
+  },
+  {
+    "request": "range-081-090.foreshadow.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 8,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-233655\\run.json"
+  },
+  {
+    "request": "range-081-090.characters.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 9,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-233914\\run.json"
+  },
+  {
+    "request": "range-081-090.relationships.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 7,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-234141\\run.json"
+  },
+  {
+    "request": "range-081-090.power.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 1,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-234325\\run.json"
+  },
+  {
+    "request": "range-081-090.world.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-234455\\run.json"
+  },
+  {
+    "request": "range-081-090.style.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 1,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-234653\\run.json"
+  },
+  {
+    "request": "range-081-090.summary-index.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 4,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-234715\\run.json"
+  },
+  {
+    "request": "range-091-100.plot.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 13,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-234848\\run.json"
+  },
+  {
+    "request": "range-091-100.scenes.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-235235\\run.json"
+  },
+  {
+    "request": "range-091-100.coolpoints.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-235410\\run.json"
+  },
+  {
+    "request": "range-091-100.foreshadow.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 9,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-235545\\run.json"
+  },
+  {
+    "request": "range-091-100.characters.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 9,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260509-235737\\run.json"
+  },
+  {
+    "request": "range-091-100.relationships.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-000022\\run.json"
+  },
+  {
+    "request": "range-091-100.power.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-000212\\run.json"
+  },
+  {
+    "request": "range-091-100.world.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 8,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-000425\\run.json"
+  },
+  {
+    "request": "range-091-100.style.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 6,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-000635\\run.json"
+  },
+  {
+    "request": "range-091-100.summary-index.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 5,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-000819\\run.json"
+  },
+  {
+    "request": "range-101-110.plot.json",
+    "ok": true,
+    "splitOk": true,
+    "blocks": 1,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-000945\\run.json"
+  },
+  {
+    "request": "range-101-110.scenes.json",
+    "ok": true,
+    "splitOk": false,
+    "blocks": 0,
+    "runJson": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-001102\\run.json"
+  }
+]

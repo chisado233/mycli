@@ -1,0 +1,27 @@
+﻿{
+    "session_id":  "2b85ade8-84aa-449a-963a-a0f3ab64d5b7",
+    "session_name":  "",
+    "prompt":  "Reply with OK only.",
+    "cwd":  "",
+    "exit_code":  0,
+    "agent":  "claude/default",
+    "provider_command":  [
+                             "C:\\Users\\38188\\.local\\bin\\claude.exe",
+                             "--print",
+                             "--output-format",
+                             "json",
+                             "Reply with OK only."
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260423T132531010Z_16bbd52a.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260423T132531010Z_16bbd52a.raw.log",
+    "run_id":  "run_20260423T132531010Z_16bbd52a",
+    "source":  "claude",
+    "event_count":  1,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260423T132531010Z_16bbd52a.report.txt",
+    "finished_at_utc":  "2026-04-23T13:25:39.4719239Z",
+    "round":  1,
+    "started_at_utc":  "2026-04-23T13:25:31.0205770Z"
+}

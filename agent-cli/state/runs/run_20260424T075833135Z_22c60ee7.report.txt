@@ -1,0 +1,375 @@
+可以，现在已经能通过 `mycli project-manager` 暴露一部分了，而且设计上就是为了支持这个。
+
+目前每个项目内部已经支持：
+
+```text
+.agent-project/
+  tasks/
+    task-0001.json
+    task-0002.json
+  next-actions/
+    next-0001.json
+    next-0002.json
+```
+
+也就是说：
+
+- `tasks/` 放比较正式的任务；
+- `next-actions/` 放当前推进方向、下一步动作、等待确认事项、运行检查等；
+- `project.json` 的 `current.task_id` 和 `current.next_action_id` 指向当前最重要的任务/推进项。
+
+---
+
+## 现在已经暴露的命令
+
+### 1. 查看任务
+
+```powershell
+mycli project-manager task-list <project-id>
+```
+
+比如：
+
+```powershell
+mycli project-manager task-list project-manager
+```
+
+按状态过滤：
+
+```powershell
+mycli project-manager task-list project-manager --status done
+```
+
+输出 JSON：
+
+```powershell
+mycli project-manager task-list project-manager --json
+```
+
+---
+
+### 2. 添加任务
+
+```powershell
+mycli project-manager task-add <project-id> --title "任务标题"
+```
+
+例如：
+
+```powershell
+mycli project-manager task-add project-manager `
+  --title "Add validate command" `
+  --type implement `
+  --priority high `
+  --phase construction `
+  --tag schema `
+  --acceptance "validate project.json against schema" `
+  --set-current
+```
+
+这会创建：
+
+```text
+.agent-project/tasks/task-0002.json
+```
+
+如果加了：
+
+```powershell
+--set-current
+```
+
+会同步更新：
+
+```json
+current.task_id
+current.summary
+```
+
+---
+
+### 3. 更新任务
+
+```powershell
+mycli project-manager task-update <project-id> <task-id> --status done
+```
+
+例如：
+
+```powershell
+mycli project-manager task-update project-manager task-0002 --status in_progress --set-current
+```
+
+或者完成任务：
+
+```powershell
+mycli project-manager task-update project-manager task-0002 --status done
+```
+
+---
+
+## 推进方向 / 下一步动作
+
+### 4. 查看 next-actions
+
+```powershell
+mycli project-manager next-list <project-id>
+```
+
+例如：
+
+```powershell
+mycli project-manager next-list project-manager
+```
+
+按状态过滤：
+
+```powershell
+mycli project-manager next-list project-manager --status open
+```
+
+输出 JSON：
+
+```powershell
+mycli project-manager next-list project-manager --json
+```
+
+---
+
+### 5. 添加 next-action
+
+```powershell
+mycli project-manager next-add <project-id> --title "下一步动作"
+```
+
+例如：
+
+```powershell
+mycli project-manager next-add project-manager `
+  --title "Decide whether to add handoff-create command" `
+  --type decide `
+  --priority high `
+  --reason "Need to support cross-session continuation" `
+  --set-current
+```
+
+这会创建：
+
+```text
+.agent-project/next-actions/next-0002.json
+```
+
+如果加了：
+
+```powershell
+--set-current
+```
+
+会同步更新：
+
+```json
+current.next_action_id
+current.summary
+```
+
+---
+
+### 6. 更新 next-action
+
+```powershell
+mycli project-manager next-update <project-id> <next-id> --status done
+```
+
+例如：
+
+```powershell
+mycli project-manager next-update project-manager next-0002 --status done
+```
+
+也可以把它设为当前推进项：
+
+```powershell
+mycli project-manager next-update project-manager next-0002 --status active --set-current
+```
+
+---
+
+## 目前支持的 task 字段
+
+`task-add` 目前支持这些参数：
+
+```powershell
+--id
+--title
+--type
+--status
+--priority
+--phase
+--owner
+--depends-on
+--blocks
+--tag
+--acceptance
+--set-current
+```
+
+任务状态建议：
+
+```text
+proposed
+accepted
+ready
+in_progress
+blocked
+review
+done
+cancelled
+deferred
+```
+
+任务类型可以用：
+
+```text
+clarify
+design
+implement
+validate
+review
+docs
+ops
+maintenance
+research
+```
+
+目前 CLI 不强校验所有 type，但 schema 里是这些。
+
+---
+
+## 目前支持的 next-action 字段
+
+`next-add` 支持：
+
+```powershell
+--id
+--title
+--type
+--status
+--priority
+--owner
+--blocks
+--reason
+--due-at
+--set-current
+```
+
+推进项状态建议：
+
+```text
+open
+active
+waiting
+done
+cancelled
+superseded
+```
+
+推进项类型建议：
+
+```text
+clarify
+decide
+design
+implement
+validate
+review
+handoff
+cleanup
+wait
+run_workflow
+run_agent
+maintenance
+operation_check
+```
+
+---
+
+## 当前项目状态如何指向任务/推进项
+
+每个项目的：
+
+```text
+.agent-project/project.json
+```
+
+里面有：
+
+```json
+"current": {
+  "task_id": "task-0001",
+  "next_action_id": "next-0001",
+  "summary": "当前正在推进什么"
+}
+```
+
+可以用这些命令更新：
+
+```powershell
+mycli project-manager task-add project-manager --title "..." --set-current
+mycli project-manager next-add project-manager --title "..." --set-current
+```
+
+或者手动指定：
+
+```powershell
+mycli project-manager update-status project-manager `
+  --current-task task-0001 `
+  --current-next-action next-0001 `
+  --summary "Current focus summary"
+```
+
+---
+
+## 也就是说现在已经支持
+
+```text
+一个项目里有很多任务
+一个项目里有很多推进方向 / next-actions
+可以通过 mycli 添加、查看、更新
+可以把某个任务或推进方向设为当前正在推进项
+可以按 status 过滤
+可以输出 JSON 给 agent 继续处理
+```
+
+---
+
+## 还没做但可以继续补的
+
+目前还没暴露这些命令：
+
+```powershell
+task-get
+task-delete / task-cancel
+next-get
+next-delete / next-cancel
+task-archive
+next-archive
+decision-add / decision-list
+handoff-create
+```
+
+如果你想让它更像完整项目管理器，我建议下一步优先补：
+
+```powershell
+mycli project-manager task-get <project> <task-id>
+mycli project-manager next-get <project> <next-id>
+mycli project-manager current <project>
+mycli project-manager current-set <project> --task <id> --next <id>
+```
+
+尤其是：
+
+```powershell
+mycli project-manager current project-manager
+```
+
+这个很有用，可以直接显示当前任务、当前 next-action 和项目状态。

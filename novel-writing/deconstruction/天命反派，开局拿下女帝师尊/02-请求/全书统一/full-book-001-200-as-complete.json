@@ -1,0 +1,190 @@
+{
+  "task_type": "001-200章完结版最终统一-轻量概要输入",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 60000,
+  "temperature": 0.2,
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\agent\\05-阶段汇总agent.md"
+  },
+  "user_prompt": "请把第001-200章当作本书已经完结，对现有拆书产物进行最终统一汇总。\n\n注意：本次输入只包含批次/十章概要与剧情类材料，避免上下文过载。请基于这些材料做全书级压缩统一，不要要求补充原文。\n\n输出重点：\n1. 001-200 完整剧情概要：主线阶段、关键转折、高潮与阶段结局。\n2. 主要人物与关系网：顾云、核心女主、天命之子、关键势力，写关系变化。\n3. 情感线推进总览：只写主要关系，不写碎片。\n4. 力量体系与世界设定总览：仅提炼影响剧情的规则。\n5. 伏笔总表：按已埋设/发展中/已回收/待强化分组。\n6. 爽点模型：截胡、反派压制、系统奖励、情感攻略、势力碾压等。\n7. 文风总览：节奏、吐槽、对话、章节钩子、可迁移机制、禁止照搬表达。\n8. 入库精选候选目录：只列类别和候选标题，不展开长正文。\n9. 最终质量自检：低置信内容、缺口、后续人工审核重点。\n\n输出精简要求：\n1. 每个 md 不超过 4000 中文字。\n2. 必须多文件输出，但文件数量控制在 8-12 个。\n3. 不要复制所有批次内容，要合并、去重、压缩。\n\n输出文件路径规则：\n1. 所有 <<<FILE: ...>>> 必须使用以下输出根目录内的绝对路径：\nD:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\全书统一\\full-book-001-200-as-complete\n2. 不得使用相对路径，不得使用 ..，不得写到输出根目录外。\n3. 示例：<<<FILE: D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\全书统一\\full-book-001-200-as-complete\\\\00-总览\\\\最终总览.md>>>",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "target": "03-输出\\全书统一\\full-book-001-200-as-complete\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\全书统一\\full-book-001-200-as-complete",
+  "context_files": [
+    {
+      "label": "00-使用者如何拆书.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\00-使用者如何拆书.md"
+    },
+    {
+      "label": "09-完整故事概要模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\09-完整故事概要模板.md"
+    },
+    {
+      "label": "14-最终统一模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\14-最终统一模板.md"
+    },
+    {
+      "label": "15-质量自检模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\15-质量自检模板.md"
+    },
+    {
+      "label": "batch-001-005 总览",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-001-005\\00-总览\\批次总览.md"
+    },
+    {
+      "label": "batch-006-010 总览",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-006-010\\00-总览\\批次总览.md"
+    },
+    {
+      "label": "batch-011-015 总览",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-011-015\\00-总览\\批次总览.md"
+    },
+    {
+      "label": "batch-016-020 总览",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-016-020\\00-总览\\批次总览.md"
+    },
+    {
+      "label": "batch-021-025 总览",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-021-025\\00-总览\\批次总览.md"
+    },
+    {
+      "label": "batch-026-030 总览",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-026-030\\00-总览\\批次总览.md"
+    },
+    {
+      "label": "batch-031-035 总览",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-031-035\\00-总览\\批次总览.md"
+    },
+    {
+      "label": "range-041-050 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-041-050\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-041-050 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-041-050\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-051-060 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-051-060\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-051-060 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-051-060\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-061-070 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-061-070\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-061-070 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-061-070\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-071-080 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-071-080\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-071-080 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-071-080\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-081-090 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-081-090\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-081-090 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-081-090\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-091-100 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-091-100\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-091-100 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-091-100\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-101-110 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-101-110\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-101-110 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-101-110\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-111-120 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-111-120\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-111-120 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-111-120\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-121-130 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-121-130\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-121-130 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-121-130\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-131-140 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-131-140\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-131-140 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-131-140\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-141-150 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-141-150\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-141-150 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-141-150\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-151-160 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-151-160\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-151-160 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-151-160\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-161-170 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-161-170\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-161-170 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-161-170\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-171-180 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-171-180\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-171-180 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-171-180\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-181-190 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-181-190\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-181-190 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-181-190\\完整故事概要与索引质量自检\\_raw.md"
+    },
+    {
+      "label": "range-191-200 剧情内容拆解",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-191-200\\剧情内容拆解\\_raw.md"
+    },
+    {
+      "label": "range-191-200 完整故事概要与索引质量自检",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-191-200\\完整故事概要与索引质量自检\\_raw.md"
+    }
+  ]
+}

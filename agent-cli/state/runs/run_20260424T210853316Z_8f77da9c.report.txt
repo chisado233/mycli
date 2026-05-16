@@ -1,0 +1,492 @@
+# 技能需求报告：当前会话上下文与 task-hall 巡检
+
+## 1. 项目目标理解
+
+- 当前不是进入某个具体实现项目，而是执行一次 **ANALYSIS MODE 巡检**：
+  - 检查当前工作区上下文
+  - 检查 `task-hall` 是否有适合领取的任务
+  - 盘点可复用能力
+  - 在存在委派/等待时按要求建立 `agent-cli schedule`
+- 结合心跳规则，本次重点是：
+  - **确认是否有 active work**
+  - **若无 active work，则查看是否有 suitable listed task**
+  - **若处于等待 delegated work 状态，则创建 schedule**
+
+## 2. 已知上下文与依据
+
+### 已直接检查的内容
+
+- 工作区根目录：`D:\agent_workspace`
+- `mycli` 顶层包：
+  - `agent-cli`
+  - `agent-workflow`
+  - `clash`
+  - `opencode`
+  - `PowerShell-cli`
+  - `project-manager`
+  - `skill-library`
+  - `task-hall`
+- `task-hall` 状态：
+  - `draft: 2`
+  - `listed: 0`
+  - `claimed: 0`
+  - `done: 3`
+  - `cancelled: 0`
+- `task-hall tasks` 返回：**No tasks**
+- `task-hall` draft 任务有 2 个，但都还是 `draft`，不是可领取的 `listed`
+- 当前默认 agent：
+  - `opencode/private-assistant`
+
+### 已阅读的重要资料
+
+- `D:\agent_workspace\CLAUDE.md`
+- `D:\agent_workspace\capability-library\mycli\common\technical-manual.md`
+- `D:\agent_workspace\capability-library\skill-library\agent-workflow\SKILL.md`
+- `D:\agent_workspace\capability-library\skill-library\project-manager\SKILL.md`
+- `D:\agent_workspace\capability-library\skill-library\task-hall\SKILL.md`
+
+### 已通过委派/分析获得的结论
+
+#### explore / quick 分析结果综合
+
+- 该 workspace 明确是 **capability-library 为核心** 的 agent 工作区，而不是单一应用仓库。
+- `mycli` 是统一入口，适合优先作为能力发现、流程编排、任务协调、项目管理入口。
+- 当前可复用的核心能力集中在：
+  - `agent-cli`：单次 agent 调用、session 继续、schedule、mount
+  - `agent-workflow`：多步骤持久化流程
+  - `project-manager`：长期项目状态与交接
+  - `task-hall`：任务发布/认领/审阅流转
+  - `skill-library`：技能发现与复用
+
+## 3. 需求拆解
+
+### 3.1 业务/产品能力
+
+本次心跳/巡检所需业务能力很简单：
+
+- 理解当前会话是否已有进行中的明确工作
+- 判断 task-hall 是否存在适合立即领取的任务
+- 判断当前是否处于“等待外部/委派结果”的状态
+- 如果在等待，则确保后续能自动唤醒继续处理
+
+### 3.2 技术/工程能力
+
+需要的工程能力：
+
+- 使用 `mycli` 统一发现命令与能力
+- 使用 `task-hall status/tasks/show` 判断任务池状态
+- 使用 `agent-cli schedule add` 建立延迟唤醒
+- 使用基础文件/目录读取能力理解 workspace 结构
+
+### 3.3 数据/接口/集成能力
+
+- 读取 `task-hall` 本地状态：
+  - `state/listings.json`
+  - `state/tasks/`
+- 读取 `mycli` 包文档与 skill 契约
+- 与 `agent-cli` 的 Windows Task Scheduler 集成
+
+### 3.4 测试/验证/质量能力
+
+验证方式已满足最小要求：
+
+- `mycli task-hall status`
+- `mycli task-hall tasks`
+- `mycli task-hall tasks draft`
+- `mycli agent-cli current`
+- `mycli agent-cli schedule add ...`
+
+### 3.5 部署/运维/监控能力
+
+本次不涉及部署，但涉及轻量运维能力：
+
+- 用 `agent-cli schedule` 建立后续自动恢复
+- 后续如需长期生命周期管理，可考虑 `agent-cli mount`
+
+### 3.6 文档/协作/运营能力
+
+- 需要把当前判断清晰汇报出来：
+  - 没有 listed 任务
+  - 不应 claim draft
+  - 已建立 follow-up schedule
+  - 仍有一个后台分析任务未回收结果
+
+## 4. 所需 skill 清单
+
+| Skill/能力 | 用途 | 已有/缺失/需改造 | 位置或建议位置 | 优先级 | 备注 |
+|---|---|---|---|---|---|
+| `task-hall` | 巡检任务池、判断可领取任务 | 已有 | `capability-library/skill-library/task-hall` | 高 | 本次已直接使用其约定 |
+| `agent-cli` | 建立 schedule、后续唤醒会话 | 已有 | `capability-library/skill-library/agent-cli` | 高 | 已创建 schedule |
+| `project-manager` | 若后续转为持续项目可登记状态 | 已有 | `capability-library/skill-library/project-manager` | 中 | 当前尚未需要 |
+| `agent-workflow` | 若后续分析变为多阶段流程 | 已有 | `capability-library/skill-library/agent-workflow` | 中 | 当前尚未需要 |
+| explore 类检索能力 | 并行理解 workspace/模式 | 已有 | 通过子 agent 使用 | 高 | 已使用 |
+| requirement-analysis 输出能力 | 综合上下文形成结构化报告 | 当前 agent职责内已有 | 当前会话 | 高 | 本次正在执行 |
+
+## 5. 现有能力复用建议
+
+- `mycli task-hall`
+  - 适合做任务可领取性判断
+  - 按规则，领取前必须先 `show <task-id>`
+  - 但当前 **没有 listed task**，所以不应 claim
+- `mycli agent-cli`
+  - 已用于创建延迟唤醒：
+  - 已成功创建 schedule：
+    - `agentcli-resume-the-current-analysis-session-inspect-any-131ff51e`
+- `mycli skill-library`
+  - 可用于后续更系统地查找更多 skill，但本次直接读取关键 `SKILL.md` 已足够
+- `project-manager`
+  - 如果后续用户把这个分析转为长期项目，应优先建档并维护状态
+- `agent-workflow`
+  - 如果后续变成多轮需求分析→方案评审→执行拆分→验证流，可升级为 workflow
+
+## 6. 缺口与新增 skill 建议
+
+当前没有明显能力缺口，主要是 **任务池本身没有可领取任务**，不是技能不足。
+
+如果要优化未来这类心跳巡检，可考虑新增/改造：
+
+- 一个“heartbeat-inspector”类轻量 skill
+  - 自动做：
+    - 当前 session 上下文摘要
+    - task-hall listed/claimed 巡检
+    - draft 忽略或提醒
+    - 如果有后台委派则自动创建 schedule
+- 一个“analysis-mode orchestrator”
+  - 统一封装：
+    - explore 并发
+    - 背景结果回收
+    - requirement report 汇总
+
+## 7. worker 分工建议
+
+### worker-planner
+适合：
+- 把某个模糊需求升级为完整计划
+- 设计多 worker 协作边界
+- 将需求分析转成 `project-manager` / `agent-workflow` 结构
+
+### worker-standard
+适合：
+- 在明确 scope 后落地实现
+- 修改 `mycli`、`task-hall`、`project-manager`、具体 skill 包
+- 做常规验证与文档更新
+
+### worker-simple-N1
+适合：
+- 单文件说明补充
+- 简单状态巡检
+- 小范围 registry / docs / metadata 修改
+
+### worker-simple-N2
+适合：
+- 轻量检索、摘要
+- 辅助搜集外部资料或简单整理
+- 不适合承担复杂架构判断
+
+## 8. 风险、前置条件与需要用户确认的问题
+
+### 当前判断
+
+- **没有 active listed task 可领取**
+- 当前 `task-hall` 中：
+  - `listed = 0`
+  - `claimed = 0`
+  - 只有 2 个 `draft` 任务，不应直接认领
+- 因为已有后台委派工作在跑，所以按照规则：
+  - **已创建 `agent-cli schedule` 作为后续唤醒机制**
+
+### 风险
+
+- 仍有 1 个后台分析任务尚未回收结果
+- 如果用户期望“继续深挖 task-hall 使用模式”，应等最后一个背景任务结果回来后再做完整综合
+- 当前没有明确目标项目，因此只能输出“工作区/能力层”分析，不应越界进入实现
+
+## 9. 推荐下一步
+
+1. 等待最后一个后台任务完成，并回收其结果做最终综合。
+2. 若你是想让我继续做“项目需求分析”，请明确目标对象：
+   - `capability-library/` 某个能力包
+   - `projects/` 下某个具体项目
+   - 或一个全新项目目标
+3. 若你希望我继续按 task-hall 流程工作，需要先有 `listed` 任务；当前没有可 claim 项。
+4. 如果你希望，我下一步可以直接产出：
+   - **某个具体项目的完整技能需求报告**
+   - 或 **针对 task-hall / mycli / project-manager 的复用与改造建议报告**
+
+## 本次心跳结论
+
+- 已检查当前上下文与 `task-hall`
+- **无 active / listed 任务可领取**
+- 未发现适合立即 claim 的任务
+- 因存在后台委派等待，**已创建 agent-cli schedule**
+- 当前不建议结束生命周期，还应等待最后一个后台任务结果后再决定是否收束已回收最后一个后台结果，并完成综合判断。
+
+# 技能需求报告：当前上下文 / task-hall / 心跳状态综合分析
+
+## 1. 项目目标理解
+
+本次任务不是进入具体实现，而是完成一次 **分析型巡检**：
+
+- 检查当前工作区上下文
+- 检查 `task-hall` 是否存在适合领取的任务
+- 判断当前是否有活跃工作或等待中的委派
+- 盘点可复用能力、技能与后续建议
+- 按心跳规则，在等待期间建立继续执行的唤醒机制
+
+## 2. 已知上下文与依据
+
+### 已检查的核心对象
+
+- 工作区根目录：`D:\agent_workspace`
+- 核心能力库：`D:\agent_workspace\capability-library`
+- 统一入口：`D:\agent_workspace\capability-library\mycli`
+- task-hall 状态目录：`D:\agent_workspace\capability-library\mycli\task-hall\state`
+
+### 已确认的 mycli 关键包
+
+- `agent-cli`
+- `agent-workflow`
+- `project-manager`
+- `task-hall`
+- `skill-library`
+- `clash`
+- `opencode`
+
+### 已阅读/检索的关键文件
+
+- `D:\agent_workspace\CLAUDE.md`
+- `D:\agent_workspace\capability-library\mycli\common\technical-manual.md`
+- `D:\agent_workspace\capability-library\skill-library\agent-workflow\SKILL.md`
+- `D:\agent_workspace\capability-library\skill-library\project-manager\SKILL.md`
+- `D:\agent_workspace\capability-library\skill-library\task-hall\SKILL.md`
+
+### 背景分析综合发现
+
+#### task-hall 当前状态
+
+- `draft: 2`
+- `listed: 0`
+- `claimed: 0`
+- `done: 3`
+
+并且：
+
+- `mycli task-hall tasks` 返回 `No tasks.`
+- `mycli task-hall tasks draft` 显示 2 个 draft 任务
+- 当前 **没有可领取的 listed task**
+- 按规则，不能直接 claim draft，必须先有 listed 且先 `show`
+
+#### task-hall 的当前使用模式
+
+后台分析补充了更完整的模式信息：
+
+- task-hall 是以本地状态文件驱动的任务协调系统
+- 目录结构核心为：
+  - `listings.json`
+  - `events.jsonl`
+  - `requests/req_xxx/`
+  - `tasks/task_xxx/`
+- 单个 task 目录通常包含：
+  - `task.md`
+  - `meta.json`
+  - `claims.jsonl`
+  - `submissions.jsonl`
+
+任务 Markdown 模式已较清晰，包含：
+
+- 背景
+- 目标
+- 任务说明
+- 推荐流程
+- 约束
+- 交付物
+- 验收标准
+- 领取门槛
+
+#### 当前“活跃工作”迹象
+
+虽然 `task-hall` 没有 listed/claimed 任务，但 workspace 中存在近期活跃痕迹：
+
+- `tmp/` 下有多个与 task-hall smoke/frontdesk/publish 相关目录
+- 存在近期分析/工作文档，例如：
+  - `tmp/agent-cli-new-requirements.md`
+  - `tmp/agent-cli-opencode-output-observations.md`
+  - `tmp/xuanhuan-novel-agent-workflow.md`
+- 说明该 workspace 最近在进行：
+  - task-hall 链路验证
+  - agent-cli 输出/会话行为观察
+  - 基于 task-hall 的复杂工作流设计
+
+这些是“工作区层面的活跃上下文”，但**不是当前可领取任务池中的 active work**。
+
+## 3. 需求拆解
+
+### 3.1 业务/产品能力
+
+需要具备：
+
+- 巡检当前工作上下文
+- 区分“已存在上下文痕迹”与“当前可领取任务”
+- 识别 task-hall 生命周期状态
+- 在等待后台委派时维持会话可恢复性
+
+### 3.2 技术/工程能力
+
+需要具备：
+
+- 使用 `mycli` 做统一发现与调用
+- 读取 task-hall 状态和任务元数据
+- 通过 `agent-cli schedule` 建立恢复机制
+- 结合技能文档与运行时状态进行综合判断
+
+### 3.3 数据/接口/集成能力
+
+需要处理：
+
+- `task-hall/state/listings.json`
+- `task-hall/state/tasks/*`
+- `task-hall/state/requests/*`
+- `agent-cli` 与 Windows Task Scheduler 的集成
+
+### 3.4 测试/验证/质量能力
+
+本次已执行的验证包括：
+
+- `mycli task-hall status`
+- `mycli task-hall tasks`
+- `mycli task-hall tasks draft`
+- `mycli agent-cli current`
+- `mycli agent-cli schedule add ...`
+
+验证结论清晰：
+
+- 无 listed task
+- 无 claimed task
+- 存在 draft task，但不应领取
+- 已建立后续唤醒 schedule
+
+### 3.5 部署/运维/监控能力
+
+本次不涉及部署，但涉及轻量运维：
+
+- 会话级延迟唤醒
+- 后续若要长期驻留，可升级为 `agent-cli mount`
+
+### 3.6 文档/协作/运营能力
+
+task-hall 已体现出较成熟的协作规范：
+
+- request JSON
+- claim gate
+- report Markdown
+- reviewer 决策流
+
+这对后续 requirement analyst / planner / worker 协作是有利的。
+
+## 4. 所需 skill 清单
+
+| Skill/能力 | 用途 | 已有/缺失/需改造 | 位置或建议位置 | 优先级 | 备注 |
+|---|---|---|---|---|---|
+| `task-hall` | 巡检、发布、认领、提交、评审任务 | 已有 | `capability-library/skill-library/task-hall` | 高 | 当前任务池无 listed 项 |
+| `agent-cli` | 会话运行、schedule、mount、session 延续 | 已有 | `capability-library/skill-library/agent-cli` | 高 | 本次已用于 schedule |
+| `project-manager` | 若转长期项目，则做持续状态管理 | 已有 | `capability-library/skill-library/project-manager` | 中 | 当前尚未启用 |
+| `agent-workflow` | 多步骤流程编排与状态化运行 | 已有 | `capability-library/skill-library/agent-workflow` | 中 | 若后续升级流程可用 |
+| explore 检索能力 | 并行搜集 workspace / task-hall / 模式 | 已有 | 子 agent 能力 | 高 | 本次已使用 |
+| requirement-analysis 能力 | 输出技能需求报告与能力缺口分析 | 已有 | 当前 agent 职责 | 高 | 本次已执行 |
+
+## 5. 现有能力复用建议
+
+- **优先用 `mycli` 作为统一入口**
+  - 符合 workspace 设计
+  - 避免直接下沉到底层脚本
+- **task-hall 适合管理可发布/可领取的结构化任务**
+  - 但前提是任务需被 frontdesk 转成 `listed`
+- **project-manager 适合长期项目**
+  - 若用户接下来明确一个长期目标，应登记为 durable project
+- **agent-workflow 适合复杂多阶段流程**
+  - 当前已看到相关工作流设计痕迹，可直接复用思路
+- **tmp/ 下已有的近期分析产物可作为模式样本**
+  - 尤其适合作为 requirement-analysis / workflow 拆解参考
+
+## 6. 缺口与新增 skill 建议
+
+当前缺的不是基础能力，而是“自动化巡检编排”的封装层。建议未来可考虑：
+
+- 新增一个 `heartbeat-inspector` skill
+  - 自动检查：
+    - 当前 session 是否有明确活跃工作
+    - task-hall listed/claimed 状态
+    - 是否存在等待中的后台委派
+    - 是否需要 schedule / mount
+- 新增一个 `analysis-synthesizer` skill
+  - 自动把：
+    - explore 结果
+    - task-hall 状态
+    - mycli/skill-library 能力盘点
+    - project-manager / workflow 建议
+  - 汇总成标准化分析报告
+
+## 7. worker 分工建议
+
+- **worker-planner**
+  - 适合把模糊目标转成完整计划
+  - 适合设计多 worker 协作边界
+  - 适合把需求分析升级为项目计划或 workflow
+
+- **worker-standard**
+  - 适合在 scope 明确后做实际实现
+  - 适合修改 `mycli` / `task-hall` / `project-manager` / 具体 skill 包
+
+- **worker-simple-N1**
+  - 适合小范围状态整理、文档补充、轻量维护
+
+- **worker-simple-N2**
+  - 适合轻量检索、摘要、低风险辅助搜集
+
+## 8. 风险、前置条件与需要用户确认的问题
+
+### 当前风险/边界
+
+- 当前没有可领取的 listed task，所以不应误 claim
+- draft 任务虽然存在，但只是草稿，不等于开放任务
+- 当前分析基于 workspace 层上下文，而不是某个明确项目的产品需求
+- 若继续深入，必须先明确目标对象：
+  - `capability-library` 某包
+  - `projects` 某项目
+  - 或一个新项目目标
+
+### 已满足的心跳要求
+
+- 已检查当前上下文
+- 已检查 task-hall
+- 已确认没有 active listed work 可领取
+- 因存在后台委派等待，已创建 `agent-cli schedule`
+
+已创建的 schedule：
+
+- `agentcli-resume-the-current-analysis-session-inspect-any-131ff51e`
+
+## 9. 推荐下一步
+
+1. 如果你要我继续做“项目需求分析”，请指定目标：
+   - 一个具体项目目录
+   - 一个能力包
+   - 或一句清晰的项目目标
+2. 如果你希望我继续沿 task-hall 工作：
+   - 需要先有 `listed` 任务
+   - 当前没有可 claim 项
+3. 如果你希望我把近期活跃文档进一步转成能力盘点，我可以下一步输出：
+   - `agent-cli / task-hall / project-manager` 的协同能力地图
+   - 或一个“从需求分析到任务分发”的标准工作流方案
+4. 如果你希望结束当前生命周期，在当前任务已完成且无后续明确目标的前提下，可以收束。
+
+## 本次最终结论
+
+- 已完成当前上下文与 task-hall 的综合巡检
+- **当前无 listed / claimed 任务**
+- **没有适合立即领取的 task-hall 任务**
+- workspace 有近期活跃分析与工作流产物，但它们不等于当前可领取任务
+- 已按规则建立后续 schedule
+- 当前最合理的下一步是：**等待你指定明确项目目标，或等待 task-hall 出现 listed 任务**
+
+AGENT_CLI_LIFECYCLE_END

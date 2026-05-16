@@ -1,0 +1,23 @@
+﻿{
+  "id": "task_20260424_235438_f482c7",
+  "title": "测试任务大厅前台提交链路",
+  "kind": "custom",
+  "status": "draft",
+  "priority": 5,
+  "tags": [
+    "smoke",
+    "frontdesk"
+  ],
+  "created_at": "2026-04-24T23:54:38.3543520+08:00",
+  "updated_at": "2026-04-24T23:54:38.3543520+08:00",
+  "listed_at": null,
+  "claimed_by": null,
+  "task_md": "task.md",
+  "task_dir": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260424_235438_f482c7",
+  "complexity": "低",
+  "frontdesk_agent": "opencode/task-hall-frontdesk",
+  "min_model_tier": "standard",
+  "frontdesk_response": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\requests\\req_20260424_235412_1983a0\\frontdesk-response.json",
+  "source_request_json": "D:\\agent_workspace\\tmp\\task-hall-frontdesk-test\\request.json",
+  "source_request_id": "req_20260424_235412_1983a0"
+}

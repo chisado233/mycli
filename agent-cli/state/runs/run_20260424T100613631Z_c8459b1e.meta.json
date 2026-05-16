@@ -1,0 +1,33 @@
+﻿{
+    "session_id":  "ses_2412d694dffe9fQ3xAxS0A4FsU",
+    "session_name":  "",
+    "prompt":  "现在有没有F盘，然后你去持续做",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "--session",
+                             "ses_2412d694dffe9fQ3xAxS0A4FsU",
+                             "现在有没有F盘，然后你去持续做",
+                             "--agent",
+                             "private-assistant",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T100613631Z_c8459b1e.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T100613631Z_c8459b1e.raw.log",
+    "run_id":  "run_20260424T100613631Z_c8459b1e",
+    "source":  "opencode",
+    "event_count":  84,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T100613631Z_c8459b1e.report.txt",
+    "finished_at_utc":  "2026-04-24T10:21:21.0726882Z",
+    "round":  4,
+    "started_at_utc":  "2026-04-24T10:06:13.6395871Z"
+}

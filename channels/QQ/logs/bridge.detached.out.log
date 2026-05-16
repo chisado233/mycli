@@ -1,0 +1,28 @@
+[2026-05-16T07:51:30.906Z] Connecting to NapCat ws://127.0.0.1:3001?access_token=***
+[2026-05-16T07:51:31.028Z] NapCat websocket error connect ECONNREFUSED 127.0.0.1:3001
+[2026-05-16T07:51:31.031Z] NapCat websocket closed 1006 
+[2026-05-16T07:51:36.047Z] Connecting to NapCat ws://127.0.0.1:3001?access_token=***
+[2026-05-16T07:51:36.055Z] NapCat websocket error connect ECONNREFUSED 127.0.0.1:3001
+[2026-05-16T07:51:36.111Z] NapCat websocket closed 1006 
+[2026-05-16T07:51:41.164Z] Connecting to NapCat ws://127.0.0.1:3001?access_token=***
+[2026-05-16T07:51:41.245Z] NapCat websocket error connect ECONNREFUSED 127.0.0.1:3001
+[2026-05-16T07:51:41.354Z] NapCat websocket closed 1006 
+[2026-05-16T07:51:46.456Z] Connecting to NapCat ws://127.0.0.1:3001?access_token=***
+[2026-05-16T07:51:46.477Z] NapCat websocket error connect ECONNREFUSED 127.0.0.1:3001
+[2026-05-16T07:51:46.479Z] NapCat websocket closed 1006 
+[2026-05-16T07:51:51.494Z] Connecting to NapCat ws://127.0.0.1:3001?access_token=***
+[2026-05-16T07:51:51.540Z] NapCat websocket error connect ECONNREFUSED 127.0.0.1:3001
+[2026-05-16T07:51:51.569Z] NapCat websocket closed 1006 
+[2026-05-16T07:51:56.675Z] Connecting to NapCat ws://127.0.0.1:3001?access_token=***
+[2026-05-16T07:51:57.022Z] Connected to NapCat WebSocket
+[2026-05-16T07:58:29.191Z] Accepted message {"message_type":"group","user_id":381889153,"group_id":895102465,"prompt":"在吗","contextMessages":5,"promptPreview":"群聊上下文=从上次彩叶唤起后到本次唤起前后，最新5条非彩叶自己消息；回复目标=群聊；群号=895102465；群名=群聊已解散；本次唤起者QQ=381889153；本次唤起者昵称=世界是个巨大的ntr；本次正文=在吗；消息1={来源=群聊；来源ID=895102465；群号=895102465；私聊号=；发送者QQ=381889153；昵称名=世界是个巨大的ntr；QQ昵称=千束╃；群名=群聊已解散；消息ID=237368904；时间=1778918281；内容类型=正文；正文=好久没做ppt了}；消息2={来源=群聊；来源ID=895102465；群号=895102465；私聊号=；发送者QQ=381889153；昵称名=世界是个巨大的ntr；QQ昵称=千束╃；群名=群聊已解散；消息ID=2050694866；时间=1778918284；内容类型=图片；正文=[CQ:image,summary=&#91;动画表情&#93;,file=782AEFFFCDFC85F8AAD3CFA47BE4AADB.jpg,sub_type=1,url=https://multimedia.nt.qq.com.cn/download?appid=1407&amp;fileid=EhTyM3VCJ7LdHIDu5_OmSYGWdDyD-RiTtXQg_wooxciSg6u9lAMyBHByb2RQgL2jAVoQkhQ7x46O7bDeDV8L6yF_pnoCP16CAQJneg&amp;rkey=CAISMAQU1_QmKl16AGpS85UJxvkaYITd3k8BkCpvGaG9mexsYD8B3TTcMkuCcBvzIiei8g,file_size=1907347] [image:summary=[动画表情],url=https://multimedia.nt.qq.com.cn/download?appid=1407&fileid=EhTyM3VCJ7LdHIDu5_OmSYGWdDyD-RiTtXQg_wooxciSg6u9lAMyBHByb2RQgL2jAVoQkhQ7x46O7bDeDV8L6yF_pnoCP16CAQJneg&rkey=CAISMAQU1_QmKl16AGpS85UJxvkaYITd3k8BkCpvGaG9mexsYD8B3TTcMkuCcBvzIiei8g,file=782AEFFFCDFC85F8AAD3CFA47BE4AADB.jpg] 图片=https://multimedia.nt.qq.com.cn/download?appid=1407&fileid=EhTyM3VCJ7LdHIDu5_OmSYGWdDyD-RiTtXQg_wooxciSg6u9lAMyBHByb2RQgL2jAVoQkhQ7x46O7bDeDV8L6yF_pn"}
+[2026-05-16T07:58:29.202Z] Starting agent session=ses_1d943fd4dffejCaqNYRmRKrTF8
+[2026-05-16T07:58:44.576Z] Agent exited {"code":0,"stderr":""}
+[2026-05-16T07:58:44.581Z] No assistant text found in opencode JSON output {"jsonLineCount":1,"controlJsonLineCount":1,"firstLine":"{\"type\":\"step_start\",\"timestamp\":1778918324141,\"sessionID\":\"ses_1d943fd4dffejCaqNYRmRKrTF8\",\"part\":{\"id\":\"prt_e2fcb77a6001IBgBxF0vO5X3kU\",\"messageID\":\"msg_e2fcb5afa00196wcB8oGuFuDHt\",\"sessionID\":\"ses_1d943fd4dffejCaqNYRmRKrTF8\",\"type\":\"step-start\"}}"}
+[2026-05-16T07:58:44.583Z] Agent produced no safe reply text {"stdoutPreview":"{\"type\":\"step_start\",\"timestamp\":1778918324141,\"sessionID\":\"ses_1d943fd4dffejCaqNYRmRKrTF8\",\"part\":{\"id\":\"prt_e2fcb77a6001IBgBxF0vO5X3kU\",\"messageID\":\"msg_e2fcb5afa00196wcB8oGuFuDHt\",\"sessionID\":\"ses_1d943fd4dffejCaqNYRmRKrTF8\",\"type\":\"step-start\"}}","stderrPreview":""}
+[2026-05-16T07:58:44.587Z] Agent error Error: agent produced no reply text
+    at ChildProcess.<anonymous> (D:\agent_workspace\capability-library\mycli\channels\QQ\qq-bridge.js:482:16)
+    at ChildProcess.emit (node:events:508:28)
+    at maybeClose (node:internal/child_process:1100:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+[2026-05-16T07:58:44.589Z] Sending reply {"message_type":"group","user_id":381889153,"group_id":895102465,"preview":"彩叶调用 agent 失败：agent produced no reply text"}

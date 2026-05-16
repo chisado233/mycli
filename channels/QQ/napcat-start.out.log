@@ -1,0 +1,68 @@
+argv[0]:D:\agent_workspace\channel\QQ\napcat\NapCatWinBootMain.exe
+argv[1]:D:\app\QQNT\QQ.exe
+argv[2]:D:\agent_workspace\channel\QQ\napcat\NapCatWinBootHook.dll
+argv[3]:3279329186
+Boot Command:"D:\app\QQNT\QQ.exe" --enable-logging -q 3279329186
+[NapCat Backend] Main Process ID:45856
+Creating pipe: \\.\pipe\NapCat_45856
+[NapCat Backend] Process resumed
+config_current_version:9.9.20-36580
+config_prev_version:
+load from:D:\app\QQNT\versions\9.9.20-36580\QQNT.dll
+NapCat Shell App Loading...
+04-28 18:53:59 [[32minfo[39m] [PacketHandler] 加载成功
+04-28 18:53:59 [[32minfo[39m] [Napi2NativeLoader] 加载成功
+04-28 18:53:59 [[32minfo[39m] [FFmpeg] 检查 Native Addon 可用性...
+04-28 18:53:59 [[32minfo[39m] [FFmpeg] ✓ 使用 Native Addon 适配器
+04-28 18:53:59 [[32minfo[39m] [PacketHandler] 初始化成功
+04-28 18:53:59 [[32minfo[39m] [NapCat] [Core] NapCat.Core Version: 4.18.1
+04-28 18:54:00 [[32minfo[39m] [NapCat] [WebUi] WebUi Token: chisado
+04-28 18:54:00 [[32minfo[39m] [NapCat] [WebUi] WebUi User Panel Url: http://127.0.0.1:6099/webui?token=chisado
+04-28 18:54:00 [[32minfo[39m] [NapCat] [WebUi] WebUi User Panel Url: http://0.0.0.0:6099/webui?token=chisado
+04-28 18:54:00 [[32minfo[39m] 等待网络连接...
+04-28 18:54:00 [[32minfo[39m] 网络已连接
+04-28 18:54:00 [[32minfo[39m] 正在快速登录  3279329186
+04-28 18:54:01 [[32minfo[39m] [NapCat] 已启用数据库辅助支持能力
+04-28 18:54:01 [[34mdebug[39m] 本账号数据/缓存目录： D:\文档\Tencent Files\NapCat\data
+04-28 18:54:01 [[34mdebug[39m] [Core] [Config] 配置文件D:\agent_workspace\channel\QQ\napcat\config\napcat_3279329186.json加载 {"fileLog":false,"consoleLog":true,"fileLogLevel":"debug","consoleLogLevel":"info","packetBackend":"auto","packetServer":"","o3HookMode":1,"bypass":{"hook":false,"window":false,"module":false,"process":false,"container":false,"js":false},"autoTimeSync":true}
+04-28 18:54:01 [[32minfo[39m] [ServerTime] 时间同步完成，偏差 -1425ms
+04-28 18:54:01 [[31merror[39m] [Core] [Packet] PacketBackend 不支持当前QQ版本架构：9.9.20-36580-x64，
+            请参照 https://github.com/NapNeko/NapCatQQ/releases/tag/v4.18.1 配置正确的QQ版本！
+04-28 18:54:01 [[32minfo[39m] [AdapterManager] 开始初始化协议适配器...
+04-28 18:54:01 [[32minfo[39m] [Notice] [OneBot11] [network] 配置加载
+WebSocket服务: 127.0.0.1:3001, : 已启动
+
+04-28 18:54:01 [[32minfo[39m] [Plugins] 插件目录存在，开始加载插件
+04-28 18:54:01 [[32minfo[39m] [PluginManager] Opening plugin manager...
+04-28 18:54:01 [[32minfo[39m] [OneBot] [WebSocket Server] Server Started undefined:undefined
+04-28 18:54:01 [[32minfo[39m] [PluginManager] Scanned 1 plugins
+04-28 18:54:01 [[32minfo[39m] [Plugin: napcat-plugin-builtin] NapCat 内置插件已初始化
+04-28 18:54:01 [[32minfo[39m] [Plugin: napcat-plugin-builtin] WebUI 路由已注册:
+04-28 18:54:01 [[32minfo[39m] [Plugin: napcat-plugin-builtin]   - API 路由(需认证): /api/Plugin/ext/napcat-plugin-builtin/
+04-28 18:54:01 [[32minfo[39m] [Plugin: napcat-plugin-builtin]   - API 路由(无认证): /plugin/napcat-plugin-builtin/api/
+04-28 18:54:01 [[32minfo[39m] [Plugin: napcat-plugin-builtin]   - 扩展页面: /plugin/napcat-plugin-builtin/page/dashboard
+04-28 18:54:01 [[32minfo[39m] [Plugin: napcat-plugin-builtin]   - 静态资源: /plugin/napcat-plugin-builtin/files/static/
+04-28 18:54:01 [[32minfo[39m] [Plugin: napcat-plugin-builtin]   - 内存资源: /plugin/napcat-plugin-builtin/mem/dynamic/
+04-28 18:54:01 [[32minfo[39m] [PluginManager] Initialized plugin: napcat-plugin-builtin v1.0.0
+04-28 18:54:01 [[32minfo[39m] [PluginManager] Loaded 1 plugins
+04-28 18:54:01 [[32minfo[39m] [PluginManager] Plugin manager opened with 1 plugins loaded
+04-28 18:54:01 [[32minfo[39m] [AdapterManager] OneBot11 适配器初始化完成
+04-28 18:54:01 [[32minfo[39m] [AdapterManager] NapCat Protocol 适配器未启用，跳过初始化
+04-28 18:54:01 [[32minfo[39m] [AdapterManager] 协议适配器初始化完成，已加载 2 个适配器
+04-28 18:54:01 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [听说美金涨价了，你帮我看看英金涨没涨(1041365078)] 八千代 jms おとなりのダウナー母娘に探りとられる話
+04-28 18:54:01 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [月见八千代(3646247300)] 🔍 正在搜索: おとなりのダウナー母娘に探りとられる話 (第1页)...
+04-28 18:54:01 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [月见八千代(3646247300)] 🔍 搜索: おとなりのダウナー母娘に探りとられる話 (第1页) ...
+04-28 18:54:01 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [听说美金涨价了，你帮我看看英金涨没涨(1041365078)] 八千代 jmi 1433238
+04-28 18:54:01 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [月见八千代(3646247300)] 📖 正在获取本子 1433238 的详情...
+04-28 18:54:01 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [月见八千代(3646247300)] 📖 关于被隔壁阴沉气质母女榨取精液之事  [Amerins汉化] [俺のささくれ (がもがも)] おとなりのダウナー母娘に搾りとられる话 ...
+04-28 18:54:01 [[32minfo[39m] 酒寄彩叶 | 发送 -> 群聊 [群聊已解散(895102465)] [酒寄彩叶(3279329186)] 这集，拉了
+04-28 18:54:01 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [听说美金涨价了，你帮我看看英金涨没涨(1041365078)] 闹麻了
+GetParentProcessPath 1GetParentProcessPath 2GetParentProcessPath 3GetParentProcessPath 4GetParentProcessPath 5GetParentProcessPath D:\app\QQNT\QQ.exe129 js loaded
+04-28 18:54:42 [[32minfo[39m] 酒寄彩叶 | 发送 -> 群聊 [群聊已解散(895102465)] [酒寄彩叶(3279329186)] [回复消息 [我的有色(1246507997)] [图片]] @我的有色<$><$> (1246507997)  电死你
+04-28 18:54:49 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [听说美金涨价了，你帮我看看英金涨没涨(1041365078)] 八千代 jm 1433238
+04-28 18:54:50 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [月见八千代(3646247300)] ⏳ 开始下载本子 1433238，请稍候...
+04-28 18:55:01 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [听说美金涨价了，你帮我看看英金涨没涨(1041365078)] [回复消息 [我的有色(1246507997)] [图片]] 我看看什么个东西
+04-28 18:55:51 [[32minfo[39m] 酒寄彩叶 | 发送 -> 群聊 [群聊已解散(895102465)] [酒寄彩叶(3279329186)] ？
+04-28 18:55:55 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [月见八千代(3646247300)] [文件 1433238_1777373713#PWyachiyo.pdf]
+04-28 18:57:04 [[32minfo[39m] 酒寄彩叶 | 接收 <- 群聊 [群聊已解散(895102465)] [听说美金涨价了，你帮我看看英金涨没涨(1041365078)] 牛批
+Press any key to continue . . . 

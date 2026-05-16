@@ -1,0 +1,26 @@
+已添加到 `mycli startup` 开机启动里了。
+
+注册的两条命令：
+
+```powershell
+D:\agent_workspace\capability-library\mycli\mycli.ps1 channels chat-soft start-detached
+D:\agent_workspace\capability-library\mycli\mycli.ps1 channels QQ start-detached
+```
+
+对应启动项 ID：
+
+```text
+channels-chat-soft
+channels-qq
+```
+
+验证结果：
+
+```text
+Commands: 2 total, 2 enabled
+Scheduled task: \mycli\startup\RunRegisteredCommands
+Installed: True
+State: Ready
+```
+
+也就是说，当前 Windows 用户登录时会自动触发 `\mycli\startup\RunRegisteredCommands`，然后启动这两个 channel。

@@ -1,0 +1,5 @@
+[31;1mremote-pc-cli.ps1: [0mD:\agent_workspace\capability-library\mycli\common\cli.ps1:901[0m
+[31;1m[0m[36;1mLine |[0m
+[31;1m[0m[36;1m[36;1m 901 | [0m     [36;1m& $command.entry @prefixArgs @RemainingArgs[0m
+[31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mThe variable '$LASTEXITCODE' cannot be retrieved because it has not been set.[0m

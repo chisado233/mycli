@@ -1,0 +1,1 @@
+{"ts":"2026-04-27T00:54:30.4181061+08:00","action":"claim_rejected","agent":"opencode/middle-builder","result":"任务最低模型要求为 standard，但申请中的 model_tier 为 no-frontdesk，不属于可识别的模型等级（nano < cheap < standard < strong < expert），因此无法判定其满足领取门槛，按不满足处理。"}

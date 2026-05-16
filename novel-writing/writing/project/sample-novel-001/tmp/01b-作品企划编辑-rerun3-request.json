@@ -1,0 +1,27 @@
+{
+  "agent": "01b-作品企划编辑-agent",
+  "task_type": "作品企划编辑",
+  "model": "MoreCode/gpt-5.5",
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\01b-作品企划编辑-agent.md"
+  },
+  "user_prompt": "请在上一版《01b-作品企划编辑稿-召唤兽后宫版.md》的基础上继续编辑，不要重开新方向。\n\n千束最新反馈：\n1. 性方面仍然要求隐晦表达，不写露骨过程；但日常挑逗、暧昧互动、修罗场、女主主动撩拨不能少，要明确是后宫文。\n2. 需要规定一个亲密/性关系表达频率：大约每三四章要有一次相关暗示或事后/暧昧/挑逗/亲密氛围节点。注意是隐晦表达和后宫日常节点，不写露骨器官、动作和具体过程。\n3. 萝莉型女主往前放，但必须设定为成年合法外表娇小/萝莉感女主，不写未成年人亲密关系。\n4. 狐狸女主也往前放，尽量前期登场，承担主动挑逗、情报、修罗场、后宫日常和都市适应的戏份。\n5. 书名要有“魅魔”这种更吸流量的关键词，不要只写异界女王。\n6. 保留：一个人类清纯女主 + 一堆成年类人/智慧召唤兽女主；召唤兽女主更开放主动；学院/高考只做前期模块，中后期自由扩展。\n\n请按作品企划模板字段输出新的可入库候选稿。重点修改：作品名、篇幅规划、核心卖点、主角团顺序、文风、雷点、宏观调控。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\01b-作品企划编辑-rerun3",
+  "target": "tmp\\01b-作品企划编辑稿-魅魔吸量后宫版.md",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\01b-作品企划编辑稿-召唤兽后宫版.md",
+      "label": "上一版召唤兽后宫企划编辑稿"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\templates\\写作模板\\01_作品企划\\00-作品企划总表.md",
+      "label": "作品企划模板"
+    }
+  ],
+  "extra": {
+    "阶段": "01b-作品企划编辑-魅魔吸量后宫版",
+    "输出落盘目标": "tmp/01b-作品企划编辑稿-魅魔吸量后宫版.md",
+    "注意": "保留隐晦亲密表达边界；萝莉型必须成年合法、外表娇小/萝莉感；频率定义为暗示/事后/挑逗/亲密氛围节点，不写露骨过程。"
+  }
+}

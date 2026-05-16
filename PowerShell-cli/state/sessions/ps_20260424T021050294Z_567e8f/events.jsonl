@@ -1,0 +1,2 @@
+{"seq":1,"time_utc":"2026-04-24T02:11:02.6505882Z","kind":"input","stream":"broker","text":"=41; +1; Get-Location | Select-Object -ExpandProperty Path"}
+{"seq":2,"time_utc":"2026-04-24T02:11:02.8402078Z","kind":"error","stream":"stderr","text":"The term '=41' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again."}

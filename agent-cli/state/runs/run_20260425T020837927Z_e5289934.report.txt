@@ -1,0 +1,5 @@
+- 已完成：本次 heartbeat 已检查当前是否有未完成工作（无）。
+- 验证情况：执行 `mycli task-hall tasks` 返回 **No tasks**。
+- 需要升级处理的问题：无可领取任务；当前无需继续。
+
+IDLE：等待任务大厅出现可领取事项。AGENT_CLI_LIFECYCLE_END

@@ -1,0 +1,251 @@
+{
+  "name": "project-manager",
+  "summary": "Register, query, and manage durable agent projects",
+  "source": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager",
+  "commands": [
+    {
+      "name": "init",
+      "summary": "Initialize .agent-project in a project root",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments for init, such as <project-root> --id <id> --name <name> --type <type> --mode finite|ongoing",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["init"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "register",
+      "summary": "Register one project into the global registry",
+      "args": [
+        {
+          "name": "project_root",
+          "required": true,
+          "summary": "Project root containing .agent-project/project.json",
+          "type": "path"
+        }
+      ],
+      "prefixArgs": ["register"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "scan",
+      "summary": "Scan roots for .agent-project/project.json files",
+      "args": [
+        {
+          "name": "roots",
+          "required": false,
+          "summary": "Root directories to scan",
+          "type": "path[]"
+        }
+      ],
+      "prefixArgs": ["scan"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "refresh",
+      "summary": "Rebuild the global project registry",
+      "args": [],
+      "prefixArgs": ["refresh"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "list",
+      "summary": "List registered projects",
+      "args": [],
+      "prefixArgs": ["list"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "query",
+      "summary": "Query projects by name, type, lifecycle, phase, status, tags, owner, or attention",
+      "args": [
+        {
+          "name": "filters",
+          "required": false,
+          "summary": "Filters such as --name, --type, --mode, --lifecycle, --phase, --activity, --health, --delivery, --attention, --tag",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["query"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "get",
+      "summary": "Print a project's complete project.json",
+      "args": [
+        {
+          "name": "key",
+          "required": true,
+          "summary": "Project id, name, or alias",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": ["get"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "status",
+      "summary": "Print a project's human-readable status page",
+      "args": [
+        {
+          "name": "key",
+          "required": true,
+          "summary": "Project id, name, or alias",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": ["status"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "update-status",
+      "summary": "Update project lifecycle, phase, activity, health, delivery, attention, or current pointers",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments such as <id> --lifecycle active --phase construction --activity in_progress --summary <text>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["update-status"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "task-list",
+      "summary": "List project tasks",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments such as <id> [--status in_progress] [--json]",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["task-list"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "task-add",
+      "summary": "Add a project task",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments such as <id> --title <title> --type implement --set-current",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["task-add"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "task-update",
+      "summary": "Update a project task",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments such as <id> <task-id> --status done",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["task-update"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "next-list",
+      "summary": "List project next actions",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments such as <id> [--status open] [--json]",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["next-list"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "next-add",
+      "summary": "Add a next action",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments such as <id> --title <title> --type decide --set-current",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["next-add"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "next-update",
+      "summary": "Update a next action",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments such as <id> <next-id> --status done",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["next-update"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "context-add",
+      "summary": "Add dynamic context for a project phase",
+      "args": [{"name": "args", "required": false, "summary": "Arguments such as <id> --title <title> --phase architecture --summary <text>", "type": "string[]"}],
+      "prefixArgs": ["context-add"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "context-list",
+      "summary": "List dynamic project context entries",
+      "args": [{"name": "args", "required": false, "summary": "Arguments such as <id> [--phase architecture] [--json]", "type": "string[]"}],
+      "prefixArgs": ["context-list"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "context-get",
+      "summary": "Read one dynamic project context entry",
+      "args": [{"name": "args", "required": false, "summary": "Arguments such as <id> <context-id> [--json]", "type": "string[]"}],
+      "prefixArgs": ["context-get"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "current",
+      "summary": "Show current project status, task, and next action",
+      "args": [{"name": "args", "required": false, "summary": "Arguments such as <id> [--json]", "type": "string[]"}],
+      "prefixArgs": ["current"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "agent-guide",
+      "summary": "Print project management guide and project context for agent handoff",
+      "args": [{"name": "args", "required": false, "summary": "Arguments such as <id> [--phase validation]", "type": "string[]"}],
+      "prefixArgs": ["agent-guide"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "maintenance-guide",
+      "summary": "Print maintenance and operations guide for a project",
+      "args": [{"name": "args", "required": false, "summary": "Arguments such as <id>", "type": "string[]"}],
+      "prefixArgs": ["maintenance-guide"],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    },
+    {
+      "name": "native",
+      "summary": "Forward all arguments to the project-manager native script",
+      "args": [],
+      "entry": "D:\\agent_workspace\\capability-library\\agent-system-rules\\project-manager\\scripts\\project-manager.ps1"
+    }
+  ]
+}

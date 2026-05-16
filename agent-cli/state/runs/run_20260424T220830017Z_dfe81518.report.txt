@@ -1,0 +1,9 @@
+当前无可继续工作，也无可领取任务。
+
+- 已检查当前 agent：`opencode/private-assistant`
+- 已检查任务大厅：`mycli task-hall tasks`
+- 结果：`No tasks.`
+
+目前不需要设置下一次 heartbeat，因为没有待人工反馈、外部结果或明确复查时间点。
+
+AGENT_CLI_LIFECYCLE_END

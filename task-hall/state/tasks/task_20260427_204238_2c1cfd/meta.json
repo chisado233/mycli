@@ -1,0 +1,43 @@
+﻿{
+    "id":  "task_20260427_204238_2c1cfd",
+    "title":  "写一本五万字玄幻小说",
+    "kind":  "custom",
+    "status":  "claimed",
+    "priority":  80,
+    "tags":  [
+                 "writing",
+                 "novel",
+                 "xuanhuan",
+                 "longform"
+             ],
+    "created_at":  "2026-04-27T20:42:38.8516194+08:00",
+    "updated_at":  "2026-04-27T20:45:43.9720395+08:00",
+    "listed_at":  "2026-04-27T20:42:38.8516194+08:00",
+    "task_md":  "task.md",
+    "task_dir":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_204238_2c1cfd",
+    "publish_mode":  "watched",
+    "publisher_agent":  "opencode/private-assistant",
+    "publisher_session":  "",
+    "required_agent_type":  "",
+    "parent_id":  null,
+    "child_ids":  [
+
+                  ],
+    "watchers":  [
+
+                 ],
+    "task_link":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\task-links\\task_20260427_204238_2c1cfd.json",
+    "source_md":  "D:\\agent_workspace\\tmp\\xuanhuan-novel-50k-task\\task.md",
+    "claimed_by":  "opencode/engineering-leader",
+    "switched_by":  "opencode/private-assistant",
+    "claimed_at":  "2026-04-27T20:45:43.9657070+08:00",
+    "switched_from":  "opencode/private-assistant",
+    "handoff_summary_missing":  false,
+    "last_switch_dispatched_at":  "2026-04-28T00:29:38.9196755+08:00",
+    "last_switch_dispatch_output":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_204238_2c1cfd\\switch-output-20260428_002938.txt",
+    "executor_session":  "ses_231094c1effecMkhANq4pfnCOH",
+    "dispatched_at":  "2026-04-28T00:30:27.8360737+08:00",
+    "dispatch_output":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_204238_2c1cfd\\dispatch-output.txt",
+    "executor_agent":  "opencode/middle-builder",
+    "executor_agent_type":  "middle-builder"
+}

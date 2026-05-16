@@ -1,0 +1,13 @@
+﻿{
+  "wake_id": "wake_20260427_224007_371_task_link.agent_switched",
+  "reason": "task_link.agent_switched",
+  "task_id": "task_20260427_223315_cae52b",
+  "pid": 40368,
+  "started_at": "2026-04-27T22:40:07.4244278+08:00",
+  "listed_limit": 2,
+  "callback_limit": 5,
+  "cwd": "D:\\agent_workspace",
+  "command": "mycli task-hall lifecycle-tick --listed-limit 2 --callback-limit 5 --cwd D:\\agent_workspace",
+  "stdout": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\lifecycle-wake\\wake_20260427_224007_371_task_link.agent_switched.out.txt",
+  "stderr": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\lifecycle-wake\\wake_20260427_224007_371_task_link.agent_switched.err.txt"
+}

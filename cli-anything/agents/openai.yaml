@@ -1,0 +1,4 @@
+interface:
+  display_name: "CLI-Anything Project"
+  short_description: "Work with the local CLI-Anything project."
+  default_prompt: "Use the CLI-Anything project skill to inspect, run, test, or extend D:\\agent_workspace\\projects\\CLI-Anything."

@@ -1,0 +1,6 @@
+- 已检查当前 agent 状态：当前会话无未完成工作（`agent-cli current` 显示正在 `opencode/private-assistant`，未见待完成流程）。
+- 已检查任务大厅：`mycli task-hall tasks` 返回 `No tasks.`
+
+因此目前无可领取/可推进事项。
+
+- 任务：idle（等待新的任务下发 / 或下次 heartbeat 再检查）

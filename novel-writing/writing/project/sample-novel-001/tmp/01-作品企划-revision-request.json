@@ -1,0 +1,31 @@
+{
+  "agent": "01-作品企划-agent",
+  "task_type": "作品企划修订",
+  "model": "MoreCode/gpt-5.5",
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\01-作品企划-agent.md"
+  },
+  "user_prompt": "请根据千束反馈，重做/大幅修订作品企划。不要沿用上一版《午夜召唤事务所》的核心设定。\n\n千束反馈：\n1. 上一版感觉不是很好。\n2. 女主数量应该大概七八个。\n3. 女主要有不同强度梯度：有成长型，也有开局就很强的。\n4. 女主要有不同类型：萝莉、御姐、绿茶等，角色类型差异要鲜明。\n5. 不喜欢上一版“影门事务所/命运债务/官方备案”的设定。\n6. 想要带学院元素。\n7. 方向更像：全球异能觉醒，出现异能高考/学院竞争/排名/资源争夺。\n8. 核心仍然是都市异能 + 主角召唤师 + 后宫多女主 + 召唤魅魔、女吸血鬼、精灵等来战斗。\n9. 整体风格：爽文快节奏 + 后宫。\n10. 主角性格：嘴贫轻松，但很有脑子。\n11. 后宫情感必须明确推进到亲密关系，不能太监。亲密行为不写露骨细节，但要通过侧面隐喻、事后描写、关系变化、日常互动明确表达发生过。\n\n请输出新的作品企划。要求：\n- 先给至少 3 个差异化企划方向，必须围绕“全球异能觉醒 + 异能高考/学院 + 召唤师 + 多女主战斗后宫”。\n- 每个方向都对比传统写法和创新改法。\n- 最终推荐一个整合版方案。\n- 女主初步矩阵给 7-8 位，明确：类型标签（萝莉/御姐/绿茶/清冷/病娇/元气/人妻感/圣女等）、种族或召唤源、强度梯度、战斗定位、成长性、情感推进方式、亲密关系表达方式、个人目标、主线秘密。\n- 主角召唤机制要适合学院考试、擂台、秘境副本、团战、高考排名和后续大学/学院篇。\n- 要保留商业爽点，不要写得太复杂太沉重。\n- 后宫情感要明确不是太监，但表达方式要非露骨。\n- 输出完整填充作品企划模板，并列出需要千束拍板的问题。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\01-作品企划-revision",
+  "target": "tmp\\01-作品企划-修订候选.md",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "上一版作品企划"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\00-通用写作流程规则.md",
+      "label": "通用写作流程规则"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\01-作品企划-agent.md",
+      "label": "通用创新作品企划agent"
+    }
+  ],
+  "extra": {
+    "阶段": "01-作品企划修订",
+    "输出落盘目标": "tmp/01-作品企划-修订候选.md",
+    "注意": "这是候选修订，不直接覆盖正式企划，等待千束确认后再入库。"
+  }
+}

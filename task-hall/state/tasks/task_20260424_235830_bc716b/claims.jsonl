@@ -1,0 +1,2 @@
+{"ts":"2026-04-25T00:02:21.1662796+08:00","action":"claim_approved","agent":"opencode/private-assistant","result":"该任务最低模型要求为 cheap，申请 agent 模型等级为 expert，满足领取门槛。"}
+{"ts":"2026-04-25T00:02:21.2287161+08:00","action":"claimed","agent":"opencode/private-assistant","result":""}

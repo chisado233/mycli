@@ -1,0 +1,27 @@
+﻿{
+  "return_mode": "silent",
+  "prompt": "echo hello again",
+  "run_id": "run_20260422T090728831Z_144cc114",
+  "session_name": "",
+  "event_log_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T090728831Z_144cc114.events.jsonl",
+  "report_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T090728831Z_144cc114.report.txt",
+  "started_at_utc": "2026-04-22T09:07:28.8407137Z",
+  "round": 1,
+  "event_count": 0,
+  "agent": "opencode/private-assistant",
+  "session_id": null,
+  "provider_command": [
+    "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+    "run",
+    "echo hello again",
+    "--agent",
+    "private-assistant"
+  ],
+  "finished_at_utc": "2026-04-22T09:08:03.6041320Z",
+  "raw_output_path": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T090728831Z_144cc114.raw.log",
+  "exit_code": 0,
+  "status": "success",
+  "cwd": "",
+  "json_parse_error_count": 0,
+  "source": "opencode"
+}

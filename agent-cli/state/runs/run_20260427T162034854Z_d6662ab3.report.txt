@@ -1,0 +1,3 @@
+已处理该 watched task 回调：报告未满足父任务验收标准，已调用 `task-link continue` 要求 `opencode/engineering-leader` 继续统筹下游子任务并在最终交付物完成后再提交父任务最终报告。
+
+结果：`Task-link continued: task_20260427_204238_2c1cfd`。

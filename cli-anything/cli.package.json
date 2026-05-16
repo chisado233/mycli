@@ -1,0 +1,153 @@
+{
+  "name": "cli-anything",
+  "summary": "Embedded CLI-Anything cli-hub wrapper for discovering and launching agent-native CLI harnesses",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\cli-anything\\source",
+  "commands": [
+    {
+      "name": "native",
+      "summary": "Forward all remaining arguments to embedded CLI-Anything cli-hub",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Native cli-hub arguments",
+          "type": "string[]"
+        }
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cli-anything\\scripts\\cli-anything-wrapper.ps1"
+    },
+    {
+      "name": "version",
+      "summary": "Show embedded cli-hub version",
+      "args": [],
+      "prefixArgs": [
+        "--version"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cli-anything\\scripts\\cli-anything-wrapper.ps1"
+    },
+    {
+      "name": "hub-list",
+      "summary": "Forward to cli-hub list; named hub-list because mycli reserves package list",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Optional cli-hub list arguments, such as --json, --category, --source",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "list"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cli-anything\\scripts\\cli-anything-wrapper.ps1"
+    },
+    {
+      "name": "search",
+      "summary": "Search CLI-Anything harness and public CLI registry",
+      "args": [
+        {
+          "name": "query",
+          "required": true,
+          "summary": "Search query",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Optional cli-hub search arguments such as --json",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "search"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cli-anything\\scripts\\cli-anything-wrapper.ps1"
+    },
+    {
+      "name": "info",
+      "summary": "Show registry details for a CLI-Anything harness or public CLI",
+      "args": [
+        {
+          "name": "name",
+          "required": true,
+          "summary": "CLI registry name",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "info"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cli-anything\\scripts\\cli-anything-wrapper.ps1"
+    },
+    {
+      "name": "launch",
+      "summary": "Launch an installed CLI-Anything CLI and pass through remaining arguments",
+      "args": [
+        {
+          "name": "name",
+          "required": true,
+          "summary": "CLI registry name",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments passed to the installed CLI entry point",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "launch"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cli-anything\\scripts\\cli-anything-wrapper.ps1"
+    },
+    {
+      "name": "install",
+      "summary": "Install a CLI-Anything harness or public CLI from the embedded registry",
+      "args": [
+        {
+          "name": "name",
+          "required": true,
+          "summary": "CLI registry name to install",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "install"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cli-anything\\scripts\\cli-anything-wrapper.ps1"
+    },
+    {
+      "name": "update",
+      "summary": "Update an installed CLI-Anything harness or public CLI",
+      "args": [
+        {
+          "name": "name",
+          "required": true,
+          "summary": "CLI registry name to update",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "update"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cli-anything\\scripts\\cli-anything-wrapper.ps1"
+    },
+    {
+      "name": "uninstall",
+      "summary": "Uninstall an installed CLI-Anything harness or public CLI",
+      "args": [
+        {
+          "name": "name",
+          "required": true,
+          "summary": "CLI registry name to uninstall",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "uninstall"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\cli-anything\\scripts\\cli-anything-wrapper.ps1"
+    }
+  ]
+}

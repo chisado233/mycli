@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\11-调度与拆解\\requests\\005-章节粗拆-021-040.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\11-调度与拆解\\agent-runs\\20260508-234407\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\11-调度与拆解\\agent-runs\\20260508-234407\\输出.md",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "[llm-call] HTTP 502 from http://www.1314mc.net:3333/v1/chat/completions: {\"error\":{\"message\":\"Failed to obtain JWT from upstream\",\"type\":\"invalid_request_error\",\"param\":\"\",\"code\":502}}\n"
+}

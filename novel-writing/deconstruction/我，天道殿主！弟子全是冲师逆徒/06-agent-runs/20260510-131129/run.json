@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\02-请求\\批次素材拆解\\range-001-010.characters.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\06-agent-runs\\20260510-131129\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\我，天道殿主！弟子全是冲师逆徒\\06-agent-runs\\20260510-131129\\输出.md",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "[llm-call] Request failed for https://tob.1314mc.net/v1/chat/completions: Remote end closed connection without response\n"
+}

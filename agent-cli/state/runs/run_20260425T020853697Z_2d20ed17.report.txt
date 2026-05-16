@@ -1,0 +1,248 @@
+# 技能需求报告：当前上下文与任务大厅巡检
+
+## 1. 项目目标理解
+
+- 当前不是进入某个具体项目实现阶段，而是执行一次 **analysis-mode 的上下文盘点**。
+- 目标是：
+  - 检查工作区当前可复用能力；
+  - 检查 `task-hall` 是否存在可领取任务；
+  - 判断当前是否有活跃工作需要继续；
+  - 为后续项目需求分析提供基础上下文。
+
+## 2. 已知上下文与依据
+
+### 已检查的本地内容
+- 工作区根目录：`D:\agent_workspace`
+- `mycli` 顶层包列表：通过  
+  `D:\agent_workspace\capability-library\mycli\mycli.ps1 list`
+- `task-hall` 帮助与协议说明：通过  
+  `mycli task-hall --help`
+- `task-hall` 当前状态：通过  
+  `mycli task-hall status` / `tasks` / `tasks claimed`
+- `mycli` 主说明：
+  - `D:\agent_workspace\capability-library\mycli\README.md`
+- `mycli` 技术手册：
+  - `D:\agent_workspace\capability-library\mycli\common\technical-manual.md`
+
+### 并行分析结果
+已完成 2 个并行子分析：
+
+1. **workspace capabilities 概览**
+   - 确认 `mycli` 是统一入口；
+   - 确认 `agent-cli / agent-workflow / project-manager / skill-library / task-hall` 是关键包；
+   - 明确目录即包树、`cli.package.json` 为注册中心、`README.md` 为 help 来源。
+
+2. **skill-library 概览**
+   - 已识别代表性技能包：
+     - `elite-longterm-memory-1.2.3`
+     - `openclaw-github-assistant-2.0.1`
+     - `opencode-capability-skill`
+     - `indextts`
+     - `whisper-local-stt`
+   - 确认 `SKILL.md` 是多数 skill 的主契约；
+   - 确认需避开 `.venv/`、`node_modules/`、`dist/` 等高噪声目录。
+
+### 当前 task-hall 状态
+- `listed`: **0**
+- `claimed`: **0**
+- `done`: 3
+- `draft`: 2
+
+结论：
+- **当前没有可领取任务**
+- **当前没有已领取但待继续的任务**
+- 因此本轮 heartbeat 不需要执行 `show -> claim`
+
+## 3. 需求拆解
+
+### 3.1 业务/产品能力
+当前仅涉及工作区治理与任务调度层面的能力，不涉及具体业务域实现。
+
+所需业务能力主要是：
+- 工作区能力盘点
+- 任务大厅状态判断
+- 后续项目分析前的上下文建立
+
+### 3.2 技术/工程能力
+已确认当前工作区依赖以下工程能力：
+
+- **统一 CLI 编排能力**
+  - 通过 `mycli` 统一访问能力包
+- **agent 调用能力**
+  - `mycli agent-cli run`
+- **流程编排能力**
+  - `mycli agent-workflow`
+- **能力索引/注册能力**
+  - `mycli skill-library`
+- **任务大厅生命周期能力**
+  - `mycli task-hall`
+
+### 3.3 数据/接口/集成能力
+当前巡检中未发现必须立即接入的外部平台或 API。
+
+但从现有能力看，工作区具备后续扩展：
+- GitHub 集成
+- OpenCode/Codex 等 agent provider 集成
+- 本地 PowerShell / Python / Node 混合封装能力
+
+### 3.4 测试/验证/质量能力
+本轮已执行的验证方式：
+- 命令级验证：`mycli list`、`task-hall status/tasks`
+- 文档级验证：`README.md`、`technical-manual.md`
+- 子 agent 交叉验证：2 个并行分析任务
+
+需要注意：
+- `glob` 工具底层依赖异常（报 `rg` 不在 PATH），说明后续大范围文件匹配应优先改用：
+  - `read`
+  - `grep`
+  - 子 agent 搜索
+  - 必要时 `bash` + PowerShell 原生命令辅助
+
+### 3.5 部署/运维/监控能力
+当前不涉及部署。
+与运行态相关的能力主要是：
+- `task-hall` 状态管理
+- `agent-workflow` 流程状态
+- `project-manager` 持久项目状态
+- `agent-cli` 调度与 session 管理
+
+### 3.6 文档/协作/运营能力
+当前工作区已有较好的文档基础：
+- `CLAUDE.md`
+- `mycli/README.md`
+- `mycli/common/technical-manual.md`
+- `task-hall` 协议说明
+
+适合继续沿用“文档先行、注册清晰、help 可发现”的协作模式。
+
+## 4. 所需 skill 清单
+
+| Skill/能力 | 用途 | 已有/缺失/需改造 | 位置或建议位置 | 优先级 | 备注 |
+|---|---|---|---|---|---|
+| 工作区结构分析 | 识别主对象、包树、边界 | 已有 | `capability-library/` + `CLAUDE.md` | 高 | 当前已可用 |
+| mycli 命令发现 | 列出包、子包、help、命令 | 已有 | `capability-library/mycli` | 高 | 后续分析默认优先用 |
+| task-hall 巡检 | 查看可领取/已领取任务 | 已有 | `mycli task-hall` | 高 | 当前无可领取任务 |
+| skill-library 检索 | 查找可复用 skill | 已有 | `mycli skill-library` | 高 | 后续新项目分析会频繁使用 |
+| agent 能力调度 | 单次 agent 调用 | 已有 | `mycli agent-cli` | 高 | 后续委派 worker 必需 |
+| 多步骤流程编排 | 复杂流程管理 | 已有 | `mycli agent-workflow` | 中高 | 复杂项目时优先 |
+| 项目级状态管理 | 跨会话项目跟踪 | 已有 | `mycli project-manager` | 中高 | 持续性项目需要 |
+| 噪声目录规避搜索 | 避开 `.venv/node_modules/dist` | 已有经验规则 | 工作区约定 | 高 | 搜索卫生很关键 |
+| 更稳健文件发现能力 | 替代失效 glob/rg 场景 | 需改造/补位 | 可考虑补充到 mycli 或 skill | 中 | 本轮已暴露短板 |
+
+## 5. 现有能力复用建议
+
+### mycli 包
+- **`agent-cli`**
+  - 用于单次 agent 调用与后续 worker 派工
+- **`agent-workflow`**
+  - 适合复杂项目的多步骤编排、状态追踪、审核
+- **`project-manager`**
+  - 适合长期项目建档与阶段推进
+- **`task-hall`**
+  - 适合任务上架、领取、审核闭环
+- **`skill-library`**
+  - 适合分析前的能力盘点与可复用 skill 检索
+
+### skill-library skill
+可优先关注：
+- `opencode-capability-skill`
+- `openclaw-github-assistant-2.0.1`
+- `elite-longterm-memory-1.2.3`
+- `whisper-local-stt`
+- `indextts`
+
+### agent/workflow
+- 若后续只是“短平快分析”，优先 `agent-cli`
+- 若后续形成多阶段分析/实现/验收链路，优先 `agent-workflow`
+- 若任务要进入长期持续推进，配合 `project-manager`
+
+## 6. 缺口与新增 skill 建议
+
+当前最明确的缺口不是业务 skill，而是**分析基础设施上的补强点**：
+
+1. **文件发现链路稳健性**
+   - 本轮 `glob` 调用因 `rg` 缺失失败
+   - 建议补一个稳定的 workspace search skill / mycli 包装命令
+   - 目标：统一支持文件发现、排除目录、结果摘要
+
+2. **分析 agent 的标准化模板**
+   - 当前已有人类规则，但可以沉淀成标准 skill：
+     - 上下文收集
+     - 现有能力盘点
+     - skill 缺口识别
+     - worker 分工输出
+   - 建议位置：
+     - `capability-library/skill-library/project-requirement-analysis/`
+
+3. **task-hall heartbeat 自动化**
+   - 可考虑加一个轻量命令，统一做：
+     - 查状态
+     - 查 listed/claimed
+     - 无任务时给出待机建议
+   - 适合作为 `mycli task-hall heartbeat` 的候选能力
+
+## 7. worker 分工建议
+
+### worker-planner
+适合：
+- 后续如果用户给出明确项目目标，需要做完整实施路线图、里程碑、风险拆解、验收标准设计
+
+### worker-standard
+适合：
+- 在需求已明确后，对某个具体仓库或子项目做常规实现、配置修改、文档补充、集成改造
+
+### worker-simple-N1
+适合：
+- 单文件小修、小范围信息补录、简单配置变更、轻量检查
+
+### worker-simple-N2
+适合：
+- 低成本检索、简单摘要、资料整理、说明文档初稿
+
+## 8. 风险、前置条件与需要用户确认的问题
+
+### 风险
+- 当前没有具体项目范围，若贸然进入实现容易越界。
+- 工作区是多项目/多能力混合结构，不能假定统一构建方式。
+- 搜索工具链存在局部不稳定点（`glob/rg`）。
+
+### 前置条件
+若要继续产出“真正的项目技能需求报告”，需要至少明确以下之一：
+- 具体项目路径
+- 具体任务目标
+- 预期交付物
+- 是否仅做分析，还是分析后继续派工/实现
+
+### 需要用户确认
+1. 你接下来要分析的对象是：
+   - `capability-library/` 本身
+   - `projects/` 下某个项目
+   - 还是一个全新的待启动项目？
+2. 你希望交付的是：
+   - 纯分析报告
+   - skill 缺口报告
+   - worker 分工方案
+   - 还是分析后直接进入任务拆解/发布到 task-hall？
+
+## 9. 推荐下一步
+
+1. 请指定一个明确目标对象，例如：
+   - `D:\agent_workspace\capability-library\mycli`
+   - `D:\agent_workspace\projects\某项目`
+   - 或一句项目目标描述
+2. 我将基于该对象继续产出正式的、面向实施前的 **技能需求报告**。
+3. 若你希望，我下一步可以直接做其中之一：
+   - **A. 分析 `mycli` 的能力缺口与演进建议**
+   - **B. 分析 `task-hall` 的产品/工程能力需求**
+   - **C. 分析某个具体项目的实施所需 skill / worker / 验收标准**
+
+## Heartbeat 结论
+
+- 已检查当前上下文
+- 已检查 `task-hall`
+- **无 active work**
+- **无 suitable listed task**
+- 因此本轮 **未执行 claim**
+- 当前可安全结束本轮生命周期
+
+**AGENT_CLI_LIFECYCLE_END**

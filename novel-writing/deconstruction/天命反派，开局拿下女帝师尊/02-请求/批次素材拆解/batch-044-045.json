@@ -1,0 +1,130 @@
+{
+  "task_type": "044-045章素材库分类拆书-拆小返工",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 50000,
+  "temperature": 0.2,
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\agent\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对第044-045章进行素材库分类版高质量拆书。\n\n目标范围：044-045。\n上下文范围：039-050。\n\n重要规则：\n1. 这是因为 041-045 五章批次模型超时而拆小后的返工批次；请降低冗余，但保证目标章节完整覆盖。\n2. 只输出目标范围 044-045 的正式拆解和素材；上下文章节只作为上下文参考，不得输出为正式章节拆解。\n3. 必须按 material-library 分类输出多文件。\n4. 每章必须有剧情内容拆解，严禁漏章。\n5. 每条高价值素材必须包含 YAML、source、source_range、tag、status、merge_policy、证据、写法解析、可复用变体、禁止照搬点。\n6. 人物设定、情感线、力量体系、世界设定如果只是阶段信息，要标记为“阶段素材 / 最终统一”。\n7. 伏笔必须标记状态，并评估是否巧妙。\n8. 最后必须输出质量自检。\n9. 输出必须使用 <<<FILE: 相对路径/文件名.md>>> 多文件格式。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "target": "03-输出\\批次拆解\\batch-044-045\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-044-045",
+  "context_files": [
+    {
+      "label": "调度规则",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\00-使用者如何拆书.md"
+    },
+    {
+      "label": "素材库总规则",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\01-素材库总规则.md"
+    },
+    {
+      "label": "场景素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\02-场景素材模板.md"
+    },
+    {
+      "label": "爽点素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\03-爽点素材模板.md"
+    },
+    {
+      "label": "伏笔素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\04-伏笔素材模板.md"
+    },
+    {
+      "label": "人物设定素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\05-人物设定素材模板.md"
+    },
+    {
+      "label": "情感线推进模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\06-情感线推进模板.md"
+    },
+    {
+      "label": "力量体系素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\07-力量体系素材模板.md"
+    },
+    {
+      "label": "世界设定素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\08-世界设定素材模板.md"
+    },
+    {
+      "label": "完整故事概要模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\09-完整故事概要模板.md"
+    },
+    {
+      "label": "文学风格收集模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\10-文学风格收集模板.md"
+    },
+    {
+      "label": "灵活记录模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\11-灵活记录模板.md"
+    },
+    {
+      "label": "剧情内容拆解模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\12-剧情内容拆解模板.md"
+    },
+    {
+      "label": "质量自检模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\15-质量自检模板.md"
+    },
+    {
+      "label": "上一成功批次batch-036-040 03-索引\\素材分类索引.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-036-040\\03-索引\\素材分类索引.md"
+    },
+    {
+      "label": "上一成功批次batch-036-040 04-质量自检\\质量自检.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-036-040\\04-质量自检\\质量自检.md"
+    },
+    {
+      "label": "上文039",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\039-第39章 唐山之死，首杀奖励.md"
+    },
+    {
+      "label": "上文040",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\040-第40章 无尽火山开启.md"
+    },
+    {
+      "label": "上文041",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\041-第41章 天命之子姗姗来迟.md"
+    },
+    {
+      "label": "上文042",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\042-第42章 林萧吃瘪.md"
+    },
+    {
+      "label": "上文043",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\043-第43章 蛇族女王炎姬.md"
+    },
+    {
+      "label": "目标044",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\044-第44章 高贵的女王大人.md"
+    },
+    {
+      "label": "目标045",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\045-第45章 安慰女王受伤的心灵.md"
+    },
+    {
+      "label": "下文046",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\046-第46章 女王大人归心.md"
+    },
+    {
+      "label": "下文047",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\047-第47章 林萧回到林家，大罗道塔第一层开启，天地熔炉.md"
+    },
+    {
+      "label": "下文048",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\048-第48章 燃血秘法，林萧接受传承.md"
+    },
+    {
+      "label": "下文049",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\049-第49章 死全家了，赤炎反水.md"
+    },
+    {
+      "label": "下文050",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\050-第50章 林紫衣返乡，误会产生.md"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+<system-reminder>
+**Task "Explore project structure and patterns" (bg_c7d82887) is complete.**
+Use `background_output(task_id="bg_c7d82887")` to see the results.
+</system-reminder>
+
+call:default_api:background_output{task_id:bg_c7d82887}

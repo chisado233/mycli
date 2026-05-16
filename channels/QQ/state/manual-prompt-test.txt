@@ -1,0 +1,3 @@
+QQ message metadata: message_type=group; user_id=381889153; group_id=895102465; message_id=test.
+User message:
+在吗

@@ -1,0 +1,15 @@
+{
+  "request_type": "custom",
+  "title": "测试任务大厅前台提交链路",
+  "requester": "opencode/private-assistant",
+  "description": "验证 task-hall submit-request 会调用 task-hall-frontdesk agent，并在审核通过后生成带领取门槛的 task.md。",
+  "context": "这是一次一次性 smoke test，只用于验证新接入的 frontdesk-v0.2 链路。",
+  "expected_output": "一个上架或草稿任务，task.md 中包含任务目标、交付物、验收标准和领取门槛。",
+  "constraints": [
+    "不要修改业务代码",
+    "不要执行外部发布或远程写入",
+    "只用于本地 task-hall 链路验证"
+  ],
+  "priority": 5,
+  "tags": ["smoke", "frontdesk"]
+}

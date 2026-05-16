@@ -1,0 +1,13 @@
+{
+  "bridgePid": 24532,
+  "root": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ",
+  "napcatStarterPid": 24848,
+  "startedAt": "2026-05-16T15:51:18.3531666+08:00",
+  "qq": "3279329186",
+  "logs": {
+    "napcatOut": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\logs\\napcat.detached.out.log",
+    "bridgeErr": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\logs\\bridge.detached.err.log",
+    "napcatErr": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\logs\\napcat.detached.err.log",
+    "bridgeOut": "D:\\agent_workspace\\capability-library\\mycli\\channels\\QQ\\logs\\bridge.detached.out.log"
+  }
+}

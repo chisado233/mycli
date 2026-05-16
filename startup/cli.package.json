@@ -1,0 +1,152 @@
+{
+  "name": "startup",
+  "summary": "Manage mycli commands that run at Windows sign-in",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\startup",
+  "commands": [
+    {
+      "name": "commands",
+      "summary": "List registered startup commands",
+      "args": [
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Return JSON instead of a table",
+          "type": "switch"
+        }
+      ],
+      "prefixArgs": ["list"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\scripts\\startup.ps1"
+    },
+    {
+      "name": "add",
+      "summary": "Register a command to run at Windows sign-in",
+      "args": [
+        {
+          "name": "id",
+          "required": true,
+          "summary": "Stable startup command id",
+          "type": "string"
+        },
+        {
+          "name": "command",
+          "required": true,
+          "summary": "Command line to run at startup",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["add"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\scripts\\startup.ps1"
+    },
+    {
+      "name": "remove",
+      "summary": "Unregister a startup command",
+      "args": [
+        {
+          "name": "id",
+          "required": true,
+          "summary": "Startup command id to remove",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": ["remove"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\scripts\\startup.ps1"
+    },
+    {
+      "name": "enable",
+      "summary": "Enable one registered startup command",
+      "args": [
+        {
+          "name": "id",
+          "required": true,
+          "summary": "Startup command id to enable",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": ["enable"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\scripts\\startup.ps1"
+    },
+    {
+      "name": "disable",
+      "summary": "Disable one registered startup command without deleting it",
+      "args": [
+        {
+          "name": "id",
+          "required": true,
+          "summary": "Startup command id to disable",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": ["disable"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\scripts\\startup.ps1"
+    },
+    {
+      "name": "install",
+      "summary": "Install or update the Windows startup scheduled task",
+      "args": [],
+      "prefixArgs": ["install"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\scripts\\startup.ps1"
+    },
+    {
+      "name": "uninstall",
+      "summary": "Remove the Windows startup scheduled task",
+      "args": [],
+      "prefixArgs": ["uninstall"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\scripts\\startup.ps1"
+    },
+    {
+      "name": "run",
+      "summary": "Run all enabled startup commands now",
+      "args": [],
+      "prefixArgs": ["run"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\scripts\\startup.ps1"
+    },
+    {
+      "name": "status",
+      "summary": "Show registry and scheduled task status",
+      "args": [
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Return JSON instead of text",
+          "type": "switch"
+        }
+      ],
+      "prefixArgs": ["status"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\scripts\\startup.ps1"
+    },
+    {
+      "name": "ui",
+      "summary": "Start startup commands UI in detached mode",
+      "args": [{"name":"port","required":false,"summary":"Local HTTP port, defaults to 46020","type":"string"}],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\ui\\start.ps1"
+    },
+    {
+      "name": "ui-stop",
+      "summary": "Stop detached startup commands UI",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\ui\\stop.ps1"
+    },
+    {
+      "name": "ui-open",
+      "summary": "Start startup commands UI and open it in Edge",
+      "args": [{"name":"port","required":false,"summary":"Local HTTP port, defaults to 46020","type":"string"}],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\ui\\start-open.ps1"
+    },
+    {
+      "name": "ui-status",
+      "summary": "Show startup commands UI detached process and health status",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\ui\\status.ps1"
+    },
+    {
+      "name": "native",
+      "summary": "Forward all remaining arguments to startup native script",
+      "args": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\startup\\scripts\\startup.ps1"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+抱歉，刚刚只是列出来了，没真正打包发文件。
+
+我已经把 2026 春概率论所有答案 PDF 打包好了，文件在这里：
+
+```text
+D:\agent_workspace\tmp\2026春_概率论_习题答案_corrige.zip
+```
+
+里面包含：
+
+```text
+Probabilites - TD01 - corrige.pdf
+Probabilites - TD02 - corrige.pdf
+Probabilites - TD03 - corrige(1).pdf
+Probabilites - TD04 - corrige.pdf
+Probabilites - TD05 - corrige(2).pdf
+Probabilites - TD06 - corrige.pdf
+```
+
+你可以直接去这个路径拿 zip。

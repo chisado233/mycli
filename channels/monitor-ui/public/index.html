@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Channels Monitor</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="profile">
+          <div class="avatar">千</div>
+          <div>
+            <div class="profile-title">Channels</div>
+            <div class="profile-subtitle">本机通信监控台</div>
+          </div>
+        </div>
+        <div class="search-box">⌕ 搜索通道 / 会话</div>
+        <section class="channel-status" id="channelStatus"></section>
+        <section class="conversation-list" id="conversationList"></section>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="chat-header">
+          <div>
+            <h1 id="chatTitle">全部消息</h1>
+            <p id="chatSubtitle">QQ / Chat Soft 收发消息与连通状态</p>
+          </div>
+          <div class="header-actions">
+            <button id="refreshButton">刷新</button>
+            <span id="updatedAt" class="updated-at">--</span>
+          </div>
+        </header>
+        <div id="messageList" class="message-list"></div>
+      </main>
+
+      <aside class="inspector">
+        <section class="inspector-section status-section">
+          <h2>连通监控</h2>
+          <div id="inspectorStatus" class="inspector-status"></div>
+        </section>
+        <section class="inspector-section control-section">
+          <h2>频道控制</h2>
+          <div id="controlPanel" class="control-panel"></div>
+        </section>
+        <section class="inspector-section event-section">
+          <h2>最近事件</h2>
+          <div id="eventList" class="event-list"></div>
+        </section>
+      </aside>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

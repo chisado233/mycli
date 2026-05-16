@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\试跑-1-20章-故事逻辑素材版\\requests\\001-章节粗拆-001-020-试跑.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\试跑-1-20章-故事逻辑素材版\\agent-runs\\20260509-091918\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\试跑-1-20章-故事逻辑素材版\\agent-runs\\20260509-091918\\输出.md",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "[llm-call] Request failed for http://www.1314mc.net:3333/v1/chat/completions: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>\n"
+}

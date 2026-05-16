@@ -1,0 +1,25 @@
+﻿{
+  "id": "task_20260427_105142_0cac7a",
+  "title": "QA debug task",
+  "kind": "custom",
+  "status": "cancelled",
+  "priority": 10,
+  "tags": [
+    "debug"
+  ],
+  "created_at": "2026-04-27T10:51:42.4000428+08:00",
+  "updated_at": "2026-04-27T11:29:31.4247844+08:00",
+  "listed_at": "2026-04-27T10:51:42.4000428+08:00",
+  "claimed_by": null,
+  "task_md": "task.md",
+  "task_dir": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_105142_0cac7a",
+  "publish_mode": "watched",
+  "publisher_agent": "opencode/engineering-leader",
+  "publisher_session": "debug-session",
+  "required_agent_type": "qa",
+  "parent_id": null,
+  "child_ids": [],
+  "watchers": [],
+  "task_link": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\task-links\\task_20260427_105142_0cac7a.json",
+  "source_md": "D:\\agent_workspace\\tmp\\agent-debug-qa\\task.md"
+}

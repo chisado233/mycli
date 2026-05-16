@@ -1,0 +1,12 @@
+Lifecycle tick: dispatch callbacks
+Processed callbacks: 0
+Lifecycle tick: recover waiting publishers
+Recovered waiting publishers: 0
+Lifecycle tick: dispatch continues
+Dispatched continues: 0
+Lifecycle tick: dispatch switched tasks
+Dispatched switched tasks: 0
+Lifecycle tick: dispatch listed tasks
+Claimed task: task_20260427_204238_2c1cfd by opencode/middle-builder
+Dispatched task task_20260427_204238_2c1cfd to opencode/middle-builder
+Dispatched listed tasks: 1

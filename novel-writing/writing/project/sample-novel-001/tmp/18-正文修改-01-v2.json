@@ -1,0 +1,52 @@
+{
+  "target": "drafts/volume-01/arc-01/versions/01-v2.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\18-正文修改-agent.md"
+  },
+  "agent": "18-正文修改-agent",
+  "task_type": "阶段18-第1章正文修改-v2",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 14000,
+  "temperature": 0.45,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\18-正文修改\\01-v2",
+  "user_prompt": "请把第1章正文从 v1 修订为 v2，并保留为新版本。作者要求：\n1. 第一章开头应该稍微描写一下苏念和莉莉娅的亲密过程，但必须隐晦，不写露骨器官和具体动作。\n2. 重点写言语刺激和攻守感：魅魔莉莉娅先上位、掌控气氛、主动挑逗；男主苏念被激得气不过，翻身反压一局，形成“被魅魔挑衅后反杀”的爽点。可以用契约印记、灵能潮汐、帷幔、深渊香气、呼吸、称呼变化、风暴压过尾音等方式点到即止。\n3. 亲密节点后迅速进入回忆/倒序，不要和莉莉娅交流太冗余。\n4. 压缩原稿中过长的契约解释和莉莉娅对话，只保留必要信息：第一永久契约已成立、莉莉娅不是普通召唤物、苏念灵能透支、章末倒回低评现场。\n5. 保持所有角色成年、自愿、清醒确认的后续解释空间；第1章不要把第4—5章前因全讲完。\n6. 输出完整修订版 Markdown，标题仍为第1章。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "作品企划",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\苏念.md",
+      "label": "人物资产-苏念",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\莉莉娅.md",
+      "label": "人物资产-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\林清雪.md",
+      "label": "人物资产-林清雪",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-group\\volume-01\\arc-01\\00-五章纲.md",
+      "label": "第一小篇章五章纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-detail\\volume-01\\arc-01\\01-单章细纲.md",
+      "label": "第1章单章细纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\versions\\01-v1.md",
+      "label": "第1章正文v1",
+      "required": true
+    }
+  ]
+}

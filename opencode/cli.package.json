@@ -1,0 +1,271 @@
+{
+  "summary": "Forwarding package for the existing opencode CLI",
+  "commands": [
+    {
+      "summary": "Forward all remaining arguments to opencode",
+      "name": "native",
+      "args": [],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Start the default opencode TUI or open a project path",
+      "name": "start",
+      "args": [
+        {
+          "name": "project",
+          "required": false,
+          "summary": "Optional project path to open",
+          "type": "path"
+        }
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Run opencode with a message",
+      "name": "run",
+      "args": [
+        {
+          "name": "message",
+          "required": false,
+          "summary": "Message to send to opencode",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "run"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Manage agents",
+      "name": "agent",
+      "args": [],
+      "prefixArgs": [
+        "agent"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Manage AI providers and credentials",
+      "name": "providers",
+      "args": [],
+      "prefixArgs": [
+        "providers"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "List available models",
+      "name": "models",
+      "args": [
+        {
+          "name": "provider",
+          "required": false,
+          "summary": "Optional provider name",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "models"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Manage sessions",
+      "name": "session",
+      "args": [],
+      "prefixArgs": [
+        "session"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Export session data as JSON",
+      "name": "export",
+      "args": [
+        {
+          "name": "sessionID",
+          "required": false,
+          "summary": "Optional session ID to export",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "export"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Import session data from a JSON file or URL",
+      "name": "import",
+      "args": [
+        {
+          "name": "file",
+          "required": true,
+          "summary": "JSON file path or URL",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "import"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Start a headless opencode server",
+      "name": "serve",
+      "args": [],
+      "prefixArgs": [
+        "serve"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Start opencode server and open the web interface",
+      "name": "web",
+      "args": [],
+      "prefixArgs": [
+        "web"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Generate shell completion script",
+      "name": "completion",
+      "args": [],
+      "prefixArgs": [
+        "completion"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Start the ACP server",
+      "name": "acp",
+      "args": [],
+      "prefixArgs": [
+        "acp"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Manage MCP servers",
+      "name": "mcp",
+      "args": [],
+      "prefixArgs": [
+        "mcp"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Attach to a running opencode server",
+      "name": "attach",
+      "args": [
+        {
+          "name": "url",
+          "required": true,
+          "summary": "Server URL to attach to",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "attach"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Debugging and troubleshooting tools",
+      "name": "debug",
+      "args": [],
+      "prefixArgs": [
+        "debug"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Upgrade opencode",
+      "name": "upgrade",
+      "args": [
+        {
+          "name": "target",
+          "required": false,
+          "summary": "Optional target version",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "upgrade"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Uninstall opencode and remove related files",
+      "name": "uninstall",
+      "args": [],
+      "prefixArgs": [
+        "uninstall"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Show token usage and cost statistics",
+      "name": "stats",
+      "args": [],
+      "prefixArgs": [
+        "stats"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Manage GitHub agent actions",
+      "name": "github",
+      "args": [],
+      "prefixArgs": [
+        "github"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Fetch and checkout a GitHub PR branch, then run opencode",
+      "name": "pr",
+      "args": [
+        {
+          "name": "number",
+          "required": true,
+          "summary": "Pull request number",
+          "type": "number"
+        }
+      ],
+      "prefixArgs": [
+        "pr"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Install a plugin and update config",
+      "name": "plugin",
+      "args": [
+        {
+          "name": "module",
+          "required": true,
+          "summary": "Plugin module to install",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "plugin"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    },
+    {
+      "summary": "Database tools",
+      "name": "db",
+      "args": [],
+      "prefixArgs": [
+        "db"
+      ],
+      "entry": "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1"
+    }
+  ],
+  "name": "opencode",
+  "source": "D:\\agent_workspace\\projects\\opencode"
+}

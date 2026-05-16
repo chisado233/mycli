@@ -1,0 +1,3 @@
+已处理该 task-link 回调：报告未满足原任务验收标准，已调用 `continue` 要求 `opencode/engineering-leader` 继续推进。
+
+原因：当前报告明确说明最终交付物 `novel.md` 与 `README.md` 仍缺失，最终整合子任务 `task_20260427_223315_cae52b` 仍在等待 middle-builder 整合施工报告，因此不能 `complete`。

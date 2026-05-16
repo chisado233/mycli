@@ -1,0 +1,457 @@
+{
+  "target": "reports/asset-audit/20260512-资产对齐审核.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\17-资产对齐审核-agent.md"
+  },
+  "agent": "17-资产对齐审核-agent",
+  "task_type": "阶段17-资产对齐审核-正文生成前",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 16000,
+  "temperature": 0.2,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\17-资产对齐审核",
+  "user_prompt": "请对 sample-novel-001 当前正式资产库进行一轮“正文生成前资产对齐审核”。重点检查：\n1. 命名统一：苏念、克露露、唐绯雨等，不得残留林烬、唐三娘、艾瑟琳等旧名。\n2. 禁用命名：不得使用界约羁绊/界约召唤/羁绊联动；正式口径为召唤师契约、契约同步、界域行走。\n3. 禁用技术化表达：正式资产和后续正文应避免“接口”等出戏词。\n4. 林清雪必须是地球现实侧人类女主，不是召唤物/契约对象。\n5. 男主真实隐藏职业为“界域行者 + 召唤师”。\n6. 主角团实力节奏：第一卷末约二阶，第二卷进入三阶，第三卷四阶，第四卷五阶，第五卷六阶，第六卷七阶至八阶，第七卷九阶；检查状态表是否还有旧阶位残留。\n7. 第一卷第一小篇章正文生成风险：第一章直接呈现苏念与莉莉娅性爱/事后状态，但正文阶段要控制露骨程度；第4—5章倒序解释成年、清醒、自愿、契约确认；亲密高刺激节点每3—5章一次。\n8. 第一卷相关人物状态是否齐全，是否与小篇章纲一致。\n请输出可执行修订清单。如果有不对齐，请明确指出需要修改的文件和修正口径。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "作品企划",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\00-世界观总览.md",
+      "label": "世界观-00-世界观总览",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\01-世界类型.md",
+      "label": "世界观-01-世界类型",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\02-世界地图.md",
+      "label": "世界观-02-世界地图",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "label": "世界观-03-世界规则",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "label": "世界观-04-力量体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\05-器物层级.md",
+      "label": "世界观-05-器物层级",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\06-资源体系.md",
+      "label": "世界观-06-资源体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\07-世界故事背景.md",
+      "label": "世界观-07-世界故事背景",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\01-势力基础信息层模板.md",
+      "label": "势力资产-01-势力基础信息层模板",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\02-势力剧情功能层模板.md",
+      "label": "势力资产-02-势力剧情功能层模板",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\03-势力动态追踪层模板.md",
+      "label": "势力资产-03-势力动态追踪层模板",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T0-神明世界-神庭秩序.md",
+      "label": "势力资产-T0-神明世界-神庭秩序",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T1-修仙世界-昆墟宗门联盟.md",
+      "label": "势力资产-T1-修仙世界-昆墟宗门联盟",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T1-地球-华夏大秘境镇守体系.md",
+      "label": "势力资产-T1-地球-华夏大秘境镇守体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T1-巨龙世界-龙渊古龙诸巢.md",
+      "label": "势力资产-T1-巨龙世界-龙渊古龙诸巢",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T1-机甲世界-钢穹机甲联合体.md",
+      "label": "势力资产-T1-机甲世界-钢穹机甲联合体",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T1-深渊世界-魔巢诸侯.md",
+      "label": "势力资产-T1-深渊世界-魔巢诸侯",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T2-地球-江海市前期势力.md",
+      "label": "势力资产-T2-地球-江海市前期势力",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T2-女主原世界关联势力.md",
+      "label": "势力资产-T2-女主原世界关联势力",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\势力总览.md",
+      "label": "势力资产-势力总览",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\势力模板.md",
+      "label": "势力资产-势力模板",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\主角团成员模板.md",
+      "label": "主角团人物-主角团成员模板",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\主角模板.md",
+      "label": "主角团人物-主角模板",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\伊芙琳.md",
+      "label": "主角团人物-伊芙琳",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\克露露.md",
+      "label": "主角团人物-克露露",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\希尔薇.md",
+      "label": "主角团人物-希尔薇",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\影弥.md",
+      "label": "主角团人物-影弥",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\林清雪.md",
+      "label": "主角团人物-林清雪",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\白九璃.md",
+      "label": "主角团人物-白九璃",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\苏念.md",
+      "label": "主角团人物-苏念",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\莉莉娅.md",
+      "label": "主角团人物-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\诺雅.md",
+      "label": "主角团人物-诺雅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\青璃.md",
+      "label": "主角团人物-青璃",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\03-配角\\方明远.md",
+      "label": "第一卷配角-方明远",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\03-配角\\周远山.md",
+      "label": "第一卷配角-周远山",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\03-配角\\唐绯雨.md",
+      "label": "第一卷配角-唐绯雨",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\02-反派\\秦牧野.md",
+      "label": "第一卷反派-秦牧野",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\rough\\00-故事粗纲.md",
+      "label": "故事粗纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\emotion\\00-情感线粗纲.md",
+      "label": "情感线粗纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\00-总卷纲.md",
+      "label": "卷纲-00-总卷纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\01-第一卷-觉醒与魅魔契约.md",
+      "label": "卷纲-01-第一卷-觉醒与魅魔契约",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\02-第二卷-星海学院与剑冢试炼.md",
+      "label": "卷纲-02-第二卷-星海学院与剑冢试炼",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\03-第三卷-深渊夜庭与血月王庭.md",
+      "label": "卷纲-03-第三卷-深渊夜庭与血月王庭",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\04-第四卷-昆墟天门与万狐幻局.md",
+      "label": "卷纲-04-第四卷-昆墟天门与万狐幻局",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\05-第五卷-钢穹裂港与机娘回收战.md",
+      "label": "卷纲-05-第五卷-钢穹裂港与机娘回收战",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\06-第六卷-多界战场与神庭圣痕.md",
+      "label": "卷纲-06-第六卷-多界战场与神庭圣痕",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\volume\\07-第七卷-神门降临与诸界反神.md",
+      "label": "卷纲-07-第七卷-神门降临与诸界反神",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\伊芙琳.md",
+      "label": "人物卷级状态-伊芙琳",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\克露露.md",
+      "label": "人物卷级状态-克露露",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\希尔薇.md",
+      "label": "人物卷级状态-希尔薇",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\影弥.md",
+      "label": "人物卷级状态-影弥",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\林清雪.md",
+      "label": "人物卷级状态-林清雪",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\白九璃.md",
+      "label": "人物卷级状态-白九璃",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\苏念.md",
+      "label": "人物卷级状态-苏念",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\莉莉娅.md",
+      "label": "人物卷级状态-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\诺雅.md",
+      "label": "人物卷级状态-诺雅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\characters\\青璃.md",
+      "label": "人物卷级状态-青璃",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\修仙世界-昆墟宗门联盟.md",
+      "label": "势力卷级状态-修仙世界-昆墟宗门联盟",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\地球-华夏大秘境镇守体系.md",
+      "label": "势力卷级状态-地球-华夏大秘境镇守体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\地球-江海市前期势力.md",
+      "label": "势力卷级状态-地球-江海市前期势力",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\女主原世界关联势力.md",
+      "label": "势力卷级状态-女主原世界关联势力",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\巨龙世界-龙渊古龙诸巢.md",
+      "label": "势力卷级状态-巨龙世界-龙渊古龙诸巢",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\机甲世界-钢穹机甲联合体.md",
+      "label": "势力卷级状态-机甲世界-钢穹机甲联合体",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\深渊世界-魔巢诸侯.md",
+      "label": "势力卷级状态-深渊世界-魔巢诸侯",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\volume\\factions\\神明世界-神庭秩序.md",
+      "label": "势力卷级状态-神明世界-神庭秩序",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\00-第一卷小篇章总览.md",
+      "label": "第一卷小篇章纲-00-第一卷小篇章总览",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\01-倒序强钩子与魅魔契约.md",
+      "label": "第一卷小篇章纲-01-倒序强钩子与魅魔契约",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\02-职业觉醒与低评召唤师.md",
+      "label": "第一卷小篇章纲-02-职业觉醒与低评召唤师",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\03-莉莉娅适应地球与林清雪吃醋.md",
+      "label": "第一卷小篇章纲-03-莉莉娅适应地球与林清雪吃醋",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\04-镜湖小秘境前置训练.md",
+      "label": "第一卷小篇章纲-04-镜湖小秘境前置训练",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\05-高考小秘境初段打脸.md",
+      "label": "第一卷小篇章纲-05-高考小秘境初段打脸",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\06-秘境异常与黑契会暗线.md",
+      "label": "第一卷小篇章纲-06-秘境异常与黑契会暗线",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\07-二阶突破与江海重点关注.md",
+      "label": "第一卷小篇章纲-07-二阶突破与江海重点关注",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\08-旧港裂隙与青璃呼唤.md",
+      "label": "第一卷小篇章纲-08-旧港裂隙与青璃呼唤",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\00-相关人物提取.md",
+      "label": "第一卷相关人物提取",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\00-小篇章人物状态索引.md",
+      "label": "第一卷小篇章人物状态-00-小篇章人物状态索引",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\周远山.md",
+      "label": "第一卷小篇章人物状态-周远山",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\唐绯雨.md",
+      "label": "第一卷小篇章人物状态-唐绯雨",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\方明远.md",
+      "label": "第一卷小篇章人物状态-方明远",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\星海学院召唤系导师.md",
+      "label": "第一卷小篇章人物状态-星海学院召唤系导师",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\林清雪.md",
+      "label": "第一卷小篇章人物状态-林清雪",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\林清雪同学竞争者.md",
+      "label": "第一卷小篇章人物状态-林清雪同学竞争者",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\江海镇守使.md",
+      "label": "第一卷小篇章人物状态-江海镇守使",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\秦牧野.md",
+      "label": "第一卷小篇章人物状态-秦牧野",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\苏念.md",
+      "label": "第一卷小篇章人物状态-苏念",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\莉莉娅.md",
+      "label": "第一卷小篇章人物状态-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\states\\arc\\volume-01\\characters\\青璃.md",
+      "label": "第一卷小篇章人物状态-青璃",
+      "required": true
+    }
+  ]
+}

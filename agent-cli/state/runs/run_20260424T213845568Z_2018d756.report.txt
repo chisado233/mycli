@@ -1,0 +1,5 @@
+- 已检查当前上下文与任务大厅
+- 当前任务大厅：**No tasks**
+- 当前 worker（opencode/worker-simple-n2）无未完成工作可推进
+
+**状态：idle（等待新的可领取轻量任务下发 / 或下次 heartbeat 复查）**

@@ -1,0 +1,6 @@
+﻿{
+  "allowed": true,
+  "agent_tier": "expert",
+  "reason": "任务 Markdown 的领取门槛明确写明最低模型要求为 strong，申请 agent 的 model_tier 为 expert，高于最低要求，满足领取门槛；claim_reason 不影响门槛判断。",
+  "required_tier": "strong"
+}

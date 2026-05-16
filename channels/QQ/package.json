@@ -1,0 +1,13 @@
+{
+  "name": "qq-opencode-channel",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NapCat OneBot v11 bridge to opencode agent-cli",
+  "main": "qq-bridge.js",
+  "scripts": {
+    "start": "node qq-bridge.js"
+  },
+  "dependencies": {
+    "ws": "^8.20.0"
+  }
+}

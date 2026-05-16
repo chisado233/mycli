@@ -1,0 +1,4 @@
+- 已检查当前会话状态：当前无未完成工作可继续（无待处理产物/阻塞）。
+- 已查看任务大厅：`mycli task-hall tasks` 返回 **No tasks**。
+
+**当前状态：idle**，等待下一次 heartbeat。

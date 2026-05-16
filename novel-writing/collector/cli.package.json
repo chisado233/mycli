@@ -1,0 +1,249 @@
+{
+  "name": "collector",
+  "summary": "Novel platform collection and ingestion module",
+  "source": "D:\\agent_workspace\\capability-library\\skill-library\\novel-writing\\modules\\collector.md",
+  "commands": [
+    {
+      "name": "open",
+      "summary": "Print the collector module discussion file path",
+      "args": [],
+      "prefixArgs": ["collector", "open"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\module.ps1"
+    },
+    {
+      "name": "show",
+      "summary": "Display the collector module discussion notes",
+      "args": [],
+      "prefixArgs": ["collector", "show"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\module.ps1"
+    },
+    {
+      "name": "inspect",
+      "summary": "Inspect a local user-provided novel text export and preview detected chapters",
+      "args": [
+        {
+          "name": "--input",
+          "required": true,
+          "summary": "Path to the local txt/md novel export",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\collector-inspect.ps1"
+    },
+    {
+      "name": "import-text",
+      "summary": "Import a local user-provided novel text export into a structured novel project",
+      "args": [
+        {
+          "name": "--input",
+          "required": true,
+          "summary": "Path to the local txt/md novel export",
+          "type": "string"
+        },
+        {
+          "name": "--out",
+          "required": true,
+          "summary": "Output novel project directory",
+          "type": "string"
+        },
+        {
+          "name": "--title",
+          "required": false,
+          "summary": "Novel title override",
+          "type": "string"
+        },
+        {
+          "name": "--author",
+          "required": false,
+          "summary": "Novel author override",
+          "type": "string"
+        },
+        {
+          "name": "--platform",
+          "required": false,
+          "summary": "Source platform name, default: fanqie",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\collector-import-text.ps1"
+    },
+    {
+      "name": "tomato-start",
+      "summary": "Start Tomato Novel Downloader Web UI and configure the default raw save path",
+      "args": [
+        {
+          "name": "--addr",
+          "required": false,
+          "summary": "Listen address, default: 127.0.0.1:18423",
+          "type": "string"
+        },
+        {
+          "name": "--save-path",
+          "required": false,
+          "summary": "Raw txt/cache save path, default: collector\\books\\.tomato-raw",
+          "type": "string"
+        },
+        {
+          "name": "--restart",
+          "required": false,
+          "summary": "Restart the recorded Tomato server process before starting",
+          "type": "switch"
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\tomato-start.ps1"
+    },
+    {
+      "name": "tomato-download",
+      "summary": "Download a Tomato novel by book_id and export chapters as Markdown files",
+      "args": [
+        {
+          "name": "book_id",
+          "required": true,
+          "summary": "Tomato novel book_id or share URL containing the book_id",
+          "type": "string"
+        },
+        {
+          "name": "--range-start",
+          "required": false,
+          "summary": "Optional first chapter number to download",
+          "type": "int"
+        },
+        {
+          "name": "--range-end",
+          "required": false,
+          "summary": "Optional last chapter number to download",
+          "type": "int"
+        },
+        {
+          "name": "--out",
+          "required": false,
+          "summary": "Books output root, default: D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books",
+          "type": "string"
+        },
+        {
+          "name": "--no-export",
+          "required": false,
+          "summary": "Only download raw txt; skip Markdown chapter export",
+          "type": "switch"
+        }
+      ],
+      "prefixArgs": ["tomato-download"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\tomato-download.ps1"
+    },
+    {
+      "name": "tomato-export-md",
+      "summary": "Split a Tomato downloader txt file into novel-name/chapter Markdown files",
+      "args": [
+        {
+          "name": "input",
+          "required": true,
+          "summary": "Raw txt file downloaded by Tomato Novel Downloader",
+          "type": "string"
+        },
+        {
+          "name": "--out",
+          "required": false,
+          "summary": "Books output root, default: collector\\books",
+          "type": "string"
+        },
+        {
+          "name": "--title",
+          "required": false,
+          "summary": "Novel title override for the output folder name",
+          "type": "string"
+        },
+        {
+          "name": "--overwrite",
+          "required": false,
+          "summary": "Overwrite existing chapter Markdown files for this novel",
+          "type": "switch"
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\tomato-export-md.ps1"
+    },
+    {
+      "name": "tomato-rank",
+      "summary": "Screen Tomato novels by rough popularity/heat metrics from search results",
+      "args": [
+        {
+          "name": "--keywords",
+          "required": false,
+          "summary": "Comma-separated search keywords, default covers common genres/tropes",
+          "type": "string"
+        },
+        {
+          "name": "--limit",
+          "required": false,
+          "summary": "Maximum ranked results to keep, default: 30",
+          "type": "int"
+        },
+        {
+          "name": "--out",
+          "required": false,
+          "summary": "Ranking report output directory, default: collector\\books\\_rankings",
+          "type": "string"
+        },
+        {
+          "name": "--all",
+          "required": false,
+          "summary": "Return all matched results instead of truncating to --limit",
+          "type": "switch"
+        },
+        {
+          "name": "--min-rating/--max-rating",
+          "required": false,
+          "summary": "Rating range filter, e.g. --min-rating 8.5 --max-rating 9.8",
+          "type": "number"
+        },
+        {
+          "name": "--min-shelf/--max-shelf",
+          "required": false,
+          "summary": "Historical shelf count range filter",
+          "type": "number"
+        },
+        {
+          "name": "--min-current-read/--max-current-read",
+          "required": false,
+          "summary": "Current/in-reading count range filter",
+          "type": "number"
+        },
+        {
+          "name": "--min-total-read/--max-total-read",
+          "required": false,
+          "summary": "Total read count range filter",
+          "type": "number"
+        },
+        {
+          "name": "--min-words/--max-words",
+          "required": false,
+          "summary": "Word count range filter",
+          "type": "number"
+        },
+        {
+          "name": "--min-chapters/--max-chapters",
+          "required": false,
+          "summary": "Chapter count range filter",
+          "type": "number"
+        },
+        {
+          "name": "--status",
+          "required": false,
+          "summary": "Status filter: completed, serializing, or raw status codes; comma-separated",
+          "type": "string"
+        },
+        {
+          "name": "--include/--exclude",
+          "required": false,
+          "summary": "Text include/exclude filters across title, author, category, tags, abstract",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": ["tomato-rank"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\tomato-rank.ps1"
+    }
+  ]
+}

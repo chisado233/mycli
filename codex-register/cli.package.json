@@ -1,0 +1,105 @@
+{
+  "name": "codex-register",
+  "summary": "Manage codex-register startup, CPA upload configuration, and auth quota checks",
+  "source": "D:\\agent_workspace\\projects\\codex-register-main",
+  "commands": [
+    {
+      "name": "status",
+      "summary": "Show Node/npm/config/CPA status for codex-register",
+      "args": [],
+      "prefixArgs": ["status"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "init-config",
+      "summary": "Create config.json from example and copy CLIProxyAPI management key when available",
+      "args": [],
+      "prefixArgs": ["init-config"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "enable-cpa-upload",
+      "summary": "Enable auth auto-upload to CLIProxyAPI in config.json",
+      "args": [],
+      "prefixArgs": ["enable-cpa-upload"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "test-proxy",
+      "summary": "Test config.json defaultProxyUrl against auth.openai.com",
+      "args": [],
+      "prefixArgs": ["test-proxy"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "test-cpa",
+      "summary": "Test whether CLIProxyAPI base URL is reachable",
+      "args": [],
+      "prefixArgs": ["test-cpa"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "install",
+      "summary": "Install project dependencies with npm install",
+      "args": [],
+      "prefixArgs": ["install"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "build",
+      "summary": "Build codex-register bundle",
+      "args": [],
+      "prefixArgs": ["build"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "dev",
+      "summary": "Run codex-register source via npm run dev",
+      "args": [{"name":"args","required":false,"summary":"Arguments after --, e.g. --n 1 or --email user@example.com --auth","type":"string[]"}],
+      "prefixArgs": ["dev"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "start",
+      "summary": "Run built codex-register bundle via npm run start",
+      "args": [{"name":"args","required":false,"summary":"Arguments after --, e.g. --n 1 or --email user@example.com","type":"string[]"}],
+      "prefixArgs": ["start"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "run-once",
+      "summary": "Run one built registration round: npm run start -- --n 1",
+      "args": [],
+      "prefixArgs": ["run-once"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "check",
+      "summary": "Check local auth quota files",
+      "args": [{"name":"args","required":false,"summary":"check-auth-quota arguments such as --limit, --refresh, --table, -c","type":"string[]"}],
+      "prefixArgs": ["check"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "check-cpa",
+      "summary": "Check and maintain auth quotas through CLIProxyAPI management API",
+      "args": [{"name":"args","required":false,"summary":"CPA check arguments such as --refresh --limit 20 -c 8 --table","type":"string[]"}],
+      "prefixArgs": ["check-cpa"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "batch",
+      "summary": "Run project batch-register bundle command",
+      "args": [{"name":"args","required":false,"summary":"batch-register arguments","type":"string[]"}],
+      "prefixArgs": ["batch"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    },
+    {
+      "name": "native",
+      "summary": "Pass through directly to npm in the codex-register project root",
+      "args": [{"name":"args","required":false,"summary":"Raw npm arguments, e.g. run dev -- --n 1","type":"string[]"}],
+      "prefixArgs": ["native"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\codex-register\\scripts\\codex-register.ps1"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "commands": [
+    {
+      "name": "skills",
+      "summary": "List registered skills with summary",
+      "args": [],
+      "prefixArgs": [
+        "skills"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\skill-library\\scripts\\skill-library.ps1"
+    },
+    {
+      "name": "search",
+      "summary": "Search skills by name and return similar matches",
+      "args": [
+        {
+          "name": "keyword",
+          "required": true,
+          "summary": "Skill keyword to search",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [
+        "search"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\skill-library\\scripts\\skill-library.ps1"
+    },
+    {
+      "name": "register",
+      "summary": "Register SKILL.md files from default or custom path",
+      "args": [
+        {
+          "name": "path",
+          "required": false,
+          "summary": "Optional path; default source is used when omitted",
+          "type": "path"
+        }
+      ],
+      "prefixArgs": [
+        "register"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\skill-library\\scripts\\skill-library.ps1"
+    }
+  ],
+  "name": "skill-library",
+  "summary": "Search and manage skills",
+  "source": "D:\\agent_workspace\\capability-library\\skill-library"
+}

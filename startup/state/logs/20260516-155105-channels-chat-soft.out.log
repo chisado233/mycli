@@ -1,0 +1,6 @@
+Started Chat Soft local agent launcher PID=26928
+== Chat Soft detached start result ==
+Cloud server health: {"ok":true}
+Local agent health: FAILED: 由于目标计算机积极拒绝，无法连接。 (127.0.0.1:45888)
+PID file: D:\agent_workspace\capability-library\mycli\channels\chat-soft\state\chat-soft-pids.json
+Logs: D:\agent_workspace\capability-library\mycli\channels\chat-soft\logs\local-agent.detached.out.log ; D:\agent_workspace\capability-library\mycli\channels\chat-soft\logs\local-agent.detached.err.log

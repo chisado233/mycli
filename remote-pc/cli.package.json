@@ -1,0 +1,205 @@
+{
+  "name": "remote-pc",
+  "summary": "WireGuard-based remote PC bridge control commands",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc",
+  "commands": [
+    {
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "args": [],
+      "name": "native",
+      "summary": "Forward to the remote-pc native wrapper"
+    },
+    {
+      "prefixArgs": [
+        "status"
+      ],
+      "args": [
+        {
+          "required": true,
+          "type": "string",
+          "name": "target",
+          "summary": "Target device name, e.g. B"
+        }
+      ],
+      "name": "status",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Check target device reachability and mapped drives"
+    },
+    {
+      "prefixArgs": [
+        "connect"
+      ],
+      "args": [
+        {
+          "required": true,
+          "type": "string",
+          "name": "target",
+          "summary": "Target device name, e.g. B"
+        }
+      ],
+      "name": "connect",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Map target device drives to local drive letters"
+    },
+    {
+      "prefixArgs": [
+        "disconnect"
+      ],
+      "args": [
+        {
+          "required": true,
+          "type": "string",
+          "name": "target",
+          "summary": "Target device name, e.g. B"
+        }
+      ],
+      "name": "disconnect",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Remove mapped drives for a target device"
+    },
+    {
+      "prefixArgs": [
+        "repair"
+      ],
+      "args": [
+        {
+          "required": true,
+          "type": "string",
+          "name": "target",
+          "summary": "Target device name, e.g. B"
+        }
+      ],
+      "name": "repair",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Reconnect and verify target drive mappings"
+    },
+    {
+      "prefixArgs": [
+        "run"
+      ],
+      "args": [
+        {
+          "required": true,
+          "type": "string",
+          "name": "target",
+          "summary": "Target device name"
+        },
+        {
+          "required": true,
+          "type": "string",
+          "name": "command",
+          "summary": "PowerShell command to run"
+        }
+      ],
+      "name": "run",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Run a PowerShell command on target device over SSH"
+    },
+    {
+      "prefixArgs": [
+        "wg-status"
+      ],
+      "args": [],
+      "name": "wg-status",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Show local and server WireGuard status"
+    },
+    {
+      "prefixArgs": [
+        "wg-start"
+      ],
+      "args": [],
+      "name": "wg-start",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Start or install the A WireGuard tunnel service"
+    },
+    {
+      "prefixArgs": [
+        "wg-stop"
+      ],
+      "args": [],
+      "name": "wg-stop",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Stop and uninstall the A WireGuard tunnel service"
+    },
+    {
+      "prefixArgs": [
+        "wg-restart"
+      ],
+      "args": [],
+      "name": "wg-restart",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Restart the A WireGuard tunnel service"
+    },
+    {
+      "prefixArgs": [
+        "test-relay-file"
+      ],
+      "args": [],
+      "name": "test-relay-file",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Verify the server can fetch a file from A over WireGuard"
+    },
+    {
+      "prefixArgs": [
+        "paths"
+      ],
+      "args": [],
+      "name": "paths",
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1",
+      "summary": "Show package config and runtime paths"
+    },
+    {
+      "name": "command-server-start",
+      "summary": "Start A command execution endpoint on WireGuard IP",
+      "args": [],
+      "prefixArgs": [
+        "command-server-start"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1"
+    },
+    {
+      "name": "command-server-stop",
+      "summary": "Stop A command execution endpoint",
+      "args": [],
+      "prefixArgs": [
+        "command-server-stop"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1"
+    },
+    {
+      "name": "command-server-status",
+      "summary": "Show A command execution endpoint status",
+      "args": [],
+      "prefixArgs": [
+        "command-server-status"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1"
+    },
+    {
+      "name": "relay-health",
+      "summary": "Check A command endpoint through Tencent relay",
+      "args": [],
+      "prefixArgs": [
+        "relay-health"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1"
+    },
+    {
+      "name": "relay-run",
+      "summary": "Run a PowerShell command on A through Tencent relay",
+      "args": [
+        {
+          "name": "command",
+          "type": "string",
+          "required": true,
+          "summary": "PowerShell command to run on A"
+        }
+      ],
+      "prefixArgs": [
+        "relay-run"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\remote-pc\\scripts\\remote-pc-cli.ps1"
+    }
+  ]
+}

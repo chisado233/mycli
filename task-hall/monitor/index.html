@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>工程部生命周期维护监控</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0f172a; --panel:#111827; --muted:#94a3b8; --text:#e5e7eb; --green:#22c55e; --yellow:#eab308; --red:#ef4444; --blue:#38bdf8; --border:#263244; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: radial-gradient(circle at top left, #172554, var(--bg) 38%); color: var(--text); }
+    header { padding: 24px 28px 10px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    .sub { color: var(--muted); font-size: 14px; }
+    main { padding: 18px 28px 40px; display: grid; gap: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+    .card, section { background: rgba(17, 24, 39, 0.88); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 18px 48px rgba(0,0,0,.25); }
+    .card { padding: 16px; }
+    .k { color: var(--muted); font-size: 13px; }
+    .v { font-size: 30px; font-weight: 800; margin-top: 4px; }
+    section { padding: 18px; overflow: hidden; }
+    h2 { margin: 0 0 14px; font-size: 18px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 10px 8px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+    th { color: #cbd5e1; font-weight: 700; background: rgba(15,23,42,.65); }
+    tr:hover td { background: rgba(56,189,248,.06); }
+    .pill { display: inline-flex; align-items:center; gap:6px; padding: 3px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+    .idle { background: rgba(34,197,94,.16); color: #86efac; }
+    .busy { background: rgba(234,179,8,.16); color: #fde68a; }
+    .pending { background: rgba(56,189,248,.16); color: #7dd3fc; }
+    .failed { background: rgba(239,68,68,.16); color: #fca5a5; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; word-break: break-all; }
+    .toolbar { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom: 12px; }
+    button { cursor:pointer; border:1px solid #334155; background:#172033; color:var(--text); padding:8px 12px; border-radius:10px; }
+    button:hover { border-color: var(--blue); }
+    input { background:#0b1220; color:var(--text); border:1px solid #334155; border-radius:10px; padding:8px 10px; min-width: 280px; }
+    .err { color:#fca5a5; white-space:pre-wrap; }
+    .small { color:var(--muted); font-size:12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>工程部生命周期维护监控</h1>
+    <div class="sub">读取 <span class="mono">lifecycle-state.json</span>，展示 task-hall 生命周期维护系统下的 agent、任务、task-link 与 callback 状态。</div>
+  </header>
+  <main>
+    <section>
+      <div class="toolbar">
+        <button id="reload">刷新</button>
+        <label class="small">JSON 路径 <input id="jsonPath" value="lifecycle-state.json" /></label>
+        <span id="updated" class="small"></span>
+      </div>
+      <div id="error" class="err"></div>
+    </section>
+
+    <div class="grid" id="counts"></div>
+
+    <section>
+      <h2>Agent Slots</h2>
+      <div id="agents"></div>
+    </section>
+
+    <section>
+      <h2>Active / Recent Tasks</h2>
+      <div id="tasks"></div>
+    </section>
+
+    <section>
+      <h2>Task Links</h2>
+      <div id="links"></div>
+    </section>
+
+    <section>
+      <h2>Callback Queue</h2>
+      <div id="callbacks"></div>
+    </section>
+  </main>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    function pill(text) {
+      const cls = /idle|done|completed/.test(text) ? 'idle' : /pending|listed|open|active/.test(text) ? 'pending' : /fail|error|blocked/.test(text) ? 'failed' : 'busy';
+      return `<span class="pill ${cls}">${esc(text)}</span>`;
+    }
+    function table(rows, cols) {
+      if (!rows || !rows.length) return '<div class="small">无记录</div>';
+      return `<table><thead><tr>${cols.map(c=>`<th>${esc(c.label)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${cols.map(c=>`<td>${c.html ? c.html(r) : esc(r[c.key])}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+    }
+    function render(data) {
+      $('updated').textContent = `generated_at: ${data.generated_at || 'unknown'}`;
+      const counts = data.counts || {};
+      $('counts').innerHTML = Object.entries(counts).map(([k,v]) => `<div class="card"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join('');
+      $('agents').innerHTML = table(data.agents || [], [
+        {key:'status', label:'状态', html:r=>pill(r.status)},
+        {key:'type', label:'类型'}, {key:'agent', label:'Agent', html:r=>`<span class="mono">${esc(r.agent)}</span>`},
+        {key:'model', label:'模型'}, {key:'task_id', label:'任务', html:r=>`<span class="mono">${esc(r.task_id || '')}</span><div>${esc(r.task_title || '')}</div>`},
+        {key:'last_activity', label:'最近活动'}
+      ]);
+      const tasks = (data.tasks || []).filter(t => ['listed','claimed','done'].includes(t.status)).slice(0, 80);
+      $('tasks').innerHTML = table(tasks, [
+        {key:'status', label:'状态', html:r=>pill(r.status)}, {key:'priority', label:'优先级'},
+        {key:'id', label:'ID', html:r=>`<span class="mono">${esc(r.id)}</span>`}, {key:'title', label:'标题'},
+        {key:'required_agent_type', label:'需要类型'}, {key:'claimed_by', label:'领取者', html:r=>`<span class="mono">${esc(r.claimed_by || '')}</span>`},
+        {key:'publish_mode', label:'模式'}
+      ]);
+      $('links').innerHTML = table(data.task_links || [], [
+        {key:'status', label:'状态', html:r=>pill(r.status)}, {key:'task_id', label:'Task', html:r=>`<span class="mono">${esc(r.task_id)}</span>`},
+        {key:'publisher_agent', label:'发布者', html:r=>`<span class="mono">${esc(r.publisher_agent || '')}</span>`},
+        {key:'current_agent', label:'执行者', html:r=>`<span class="mono">${esc(r.current_agent || r.executor_agent || '')}</span>`},
+        {key:'updated_at', label:'更新时间'}
+      ]);
+      $('callbacks').innerHTML = table(data.callbacks || [], [
+        {key:'status', label:'状态', html:r=>pill(r.status)}, {key:'id', label:'ID', html:r=>`<span class="mono">${esc(r.id)}</span>`},
+        {key:'task_id', label:'Task', html:r=>`<span class="mono">${esc(r.task_id)}</span>`}, {key:'reason', label:'原因'},
+        {key:'created_at', label:'创建'}, {key:'updated_at', label:'更新'}
+      ]);
+    }
+    async function load() {
+      $('error').textContent = '';
+      try {
+        const res = await fetch($('jsonPath').value + '?t=' + Date.now());
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        render(await res.json());
+      } catch (e) {
+        $('error').textContent = '无法读取监控 JSON。请先运行：mycli task-hall monitor-export\n' + e.stack;
+      }
+    }
+    $('reload').addEventListener('click', load);
+    load();
+    setInterval(load, 30000);
+  </script>
+</body>
+</html>

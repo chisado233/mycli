@@ -1,0 +1,22 @@
+已处理该 task-link 回调：本次报告未满足父任务最终验收标准，已调用 `continue` 要求执行 agent 继续推进。
+
+结论：不能 complete。原因是报告明确说明：
+
+- 尚未产出正文草稿 `drafts\part-01.md`
+- 尚未产出后续草稿
+- 尚未产出最终 `novel.md`
+- 尚未产出 `README.md`
+- 正文第一批子任务仍为 listed/open 且无报告
+- 未满足约五万字完整小说交付与最终自检要求
+
+已执行命令并返回：
+
+```text
+Task-link continued: task_20260427_204238_2c1cfd
+```
+
+同时触发了 lifecycle wake：
+
+```text
+Lifecycle wake started: wake_20260427_212100_162_task_link.continued
+```

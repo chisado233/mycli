@@ -1,0 +1,32 @@
+已处理该 watched task-link 回调。
+
+结论：**不通过最终完成验收，已执行 `continue`**。
+
+原因摘要：
+
+- 最新报告明确父任务仍未完成，只是完成了规划阶段。
+- 交付目录目前仅确认有：
+  - `planning.md`
+  - `report.md`
+- 原任务核心交付物仍缺失：
+  - `drafts\part-01.md`
+  - 后续正文草稿
+  - 最终 `novel.md`
+  - `README.md`
+- 尚未达到“约五万字完整原创玄幻小说”的验收标准。
+- 正文第一批子任务 `task_20260427_211250_df7a5e` 仍处于 `listed`，未被领取、未产出报告。
+
+已调用：
+
+```powershell
+mycli task-hall task-link continue task_20260427_204238_2c1cfd ...
+```
+
+验证结果显示 task-link 已恢复为：
+
+- `status`: `active`
+- `current_agent`: `opencode/engineering-leader`
+- 已写入新的 `continue_note`
+- 已产生 `last_continue_dispatch_output`
+
+下一步应由 `engineering-leader` 继续统筹正文第一批写作子任务、后续分批写作与最终整合。

@@ -1,0 +1,103 @@
+{
+  "name": "material-library",
+  "summary": "Novel writing material library module",
+  "source": "D:\\agent_workspace\\capability-library\\skill-library\\novel-writing\\modules\\material-library.md",
+  "commands": [
+    {
+      "name": "open",
+      "summary": "Print the material library module discussion file path",
+      "args": [],
+      "prefixArgs": ["material-library", "open"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\module.ps1"
+    },
+    {
+      "name": "show",
+      "summary": "Display the material library module discussion notes",
+      "args": [],
+      "prefixArgs": ["material-library", "show"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\module.ps1"
+    },
+    {
+      "name": "search",
+      "summary": "Search materials by rough text plus exact tag, source, and category filters",
+      "args": [
+        {
+          "name": "text",
+          "required": false,
+          "summary": "Rough text to search in material name, description, source, path, category, and body",
+          "type": "string"
+        },
+        {
+          "name": "--text <text>",
+          "required": false,
+          "summary": "Explicit rough text search. Can be repeated.",
+          "type": "string"
+        },
+        {
+          "name": "--tag <tag>",
+          "required": false,
+          "summary": "Require an exact tag after normalization. Can be repeated.",
+          "type": "string"
+        },
+        {
+          "name": "--source <source>",
+          "required": false,
+          "summary": "Require an exact YAML source after normalization. Can be repeated.",
+          "type": "string"
+        },
+        {
+          "name": "--work <work>",
+          "required": false,
+          "summary": "Search source/work field by containment. Alias of --source-contains.",
+          "type": "string"
+        },
+        {
+          "name": "--category <category>",
+          "required": false,
+          "summary": "Require an exact top-level material category folder after normalization.",
+          "type": "string"
+        },
+        {
+          "name": "--limit <n>",
+          "required": false,
+          "summary": "Maximum number of results. Defaults to 20. Use 0 for all.",
+          "type": "number"
+        },
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Output matching records as JSON.",
+          "type": "boolean"
+        }
+      ],
+      "prefixArgs": ["search"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\material-library.ps1"
+    },
+    {
+      "name": "info",
+      "summary": "List existing material library categories, sources, and tags for precise search",
+      "args": [
+        {
+          "name": "--section <name>",
+          "required": false,
+          "summary": "Limit output to categories, sources, tags, tags-by-category, or sources-by-category.",
+          "type": "string"
+        },
+        {
+          "name": "--category <category>",
+          "required": false,
+          "summary": "Limit info to one exact category folder.",
+          "type": "string"
+        },
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Output structured JSON.",
+          "type": "boolean"
+        }
+      ],
+      "prefixArgs": ["info"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\material-library.ps1"
+    }
+  ]
+}

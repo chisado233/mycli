@@ -1,0 +1,51 @@
+{
+  "name": "workspace-ui",
+  "summary": "Agent workspace unified UI launcher and control center",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\workspace-ui",
+  "commands": [
+    {
+      "name": "start",
+      "summary": "Start workspace UI in detached mode",
+      "args": [
+        {
+          "name": "port",
+          "required": false,
+          "summary": "Local HTTP port, defaults to 46000",
+          "type": "string",
+          "default": null
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace-ui\\start.ps1"
+    },
+    {
+      "name": "stop",
+      "summary": "Stop detached workspace UI",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace-ui\\stop.ps1"
+    },
+    {
+      "name": "open",
+      "summary": "Start detached workspace UI and open it in Edge",
+      "args": [
+        {
+          "name": "port",
+          "required": false,
+          "summary": "Local HTTP port, defaults to 46000",
+          "type": "string",
+          "default": null
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace-ui\\start-open.ps1"
+    },
+    {
+      "name": "status",
+      "summary": "Show workspace UI detached process and health status",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace-ui\\status.ps1"
+    }
+  ]
+}

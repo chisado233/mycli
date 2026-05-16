@@ -1,0 +1,33 @@
+﻿{
+    "session_id":  "ses_241d9f7b3ffeMqi0Lc2w61CcA3",
+    "session_name":  "",
+    "prompt":  "偶对，每个项目现在内部是不是可以设置很多需要做的任务，推进方向之类的，能不能通过mycli projectmanger命令的方式暴露出来",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "--session",
+                             "ses_241d9f7b3ffeMqi0Lc2w61CcA3",
+                             "偶对，每个项目现在内部是不是可以设置很多需要做的任务，推进方向之类的，能不能通过mycli projectmanger命令的方式暴露出来",
+                             "--agent",
+                             "private-assistant",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T075833135Z_22c60ee7.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T075833135Z_22c60ee7.raw.log",
+    "run_id":  "run_20260424T075833135Z_22c60ee7",
+    "source":  "opencode",
+    "event_count":  3,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T075833135Z_22c60ee7.report.txt",
+    "finished_at_utc":  "2026-04-24T07:59:13.3264363Z",
+    "round":  8,
+    "started_at_utc":  "2026-04-24T07:58:33.1433294Z"
+}

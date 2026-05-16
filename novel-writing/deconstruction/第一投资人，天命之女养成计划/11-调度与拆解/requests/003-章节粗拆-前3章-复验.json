@@ -1,0 +1,41 @@
+{
+  "agent": "拆书-章节粗拆agent",
+  "task_type": "章节粗拆-复验",
+  "model": "MoreCode/gpt-5.4",
+  "max_tokens": 12000,
+  "temperature": 0.2,
+  "system_prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\prompts\\拆书\\03-章节粗拆agent.md"
+  },
+  "user_prompt": "请使用已经精修后的章节粗拆提示词，对《第一投资人，天命之女养成计划》的第1-3章重跑一版复验拆解。重点验证：1）减少剧情复述，表层事件只保留必要事件链；2）关键判断标记事实/推测/待验证；3）关键结论有证据锚点；4）伏笔状态只使用规定枚举；5）高光素材用概述+最短短摘+解析+复用风险；6）可借鉴技法必须写成技法名称、本章体现、解决的问题、适用场景、迁移风险；7）批次汇总中必须输出待验证问题总表和原文复制风险自检。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "target": "07-章节拆解\\chapters\\batch-001-003-v2.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\11-调度与拆解\\agent-runs",
+  "context_files": [
+    {
+      "path": "00-拆解总览\\拆解说明.md",
+      "label": "拆解说明"
+    },
+    {
+      "path": "08-审核与评估\\拆解完整性检查.md",
+      "label": "上一轮审核报告"
+    },
+    {
+      "path": "12-长篇上下文管理\\章节索引.md",
+      "label": "章节索引"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\001-第1章 要不给她打一针.md",
+      "label": "第1章原文"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\002-第2章 天降之物.md",
+      "label": "第2章原文"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\003-第3章 比在梦里还要惨一百倍.md",
+      "label": "第3章原文"
+    }
+  ]
+}

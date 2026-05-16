@@ -1,0 +1,92 @@
+{
+  "target": "marketing/简介/作品简介候选-v1.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\19-作品简介-agent.md"
+  },
+  "agent": "19-作品简介-agent",
+  "task_type": "阶段19-作品简介生成-v1",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 8000,
+  "temperature": 0.55,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\19-作品简介\\v1",
+  "user_prompt": "请给这部作品写吸引人的简介。作者特别要求：最好突出魅魔、萝莉感剑灵、雌小鬼吸血鬼公主，以及“小孩子才做选择，我全都要”的后宫爽文感觉。\n要求：\n1. 不要低俗露骨，但要吸量、有网感、有冲动点击欲。\n2. 强调全球游戏入侵、多界并轨、男主苏念明面召唤师、隐藏界域行者，能响应异世界女主呼唤并缔结召唤师契约。\n3. 女主属性要鲜明：魅魔御姐、剑灵萝莉感、吸血鬼公主雌小鬼、狐娘、机娘、圣女、精灵、影魔刺客等。\n4. 可以使用“小孩子才做选择，我全都要”这类宣言。\n5. 输出多个版本：强吸量版、剧情爽文版、后宫属性版、短简介/书城卡片版、一句话卖点、标签。\n6. 不要出现旧名和技术化出戏词。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "作品企划",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "label": "世界规则",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "label": "力量体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\苏念.md",
+      "label": "人物资产-苏念",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\莉莉娅.md",
+      "label": "人物资产-莉莉娅",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\林清雪.md",
+      "label": "人物资产-林清雪",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\克露露.md",
+      "label": "人物资产-克露露",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\青璃.md",
+      "label": "人物资产-青璃",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\诺雅.md",
+      "label": "人物资产-诺雅",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\白九璃.md",
+      "label": "人物资产-白九璃",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\希尔薇.md",
+      "label": "人物资产-希尔薇",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\伊芙琳.md",
+      "label": "人物资产-伊芙琳",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\影弥.md",
+      "label": "人物资产-影弥",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\rough\\00-故事粗纲.md",
+      "label": "故事粗纲",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\emotion\\00-情感线粗纲.md",
+      "label": "情感线粗纲",
+      "required": false
+    }
+  ]
+}

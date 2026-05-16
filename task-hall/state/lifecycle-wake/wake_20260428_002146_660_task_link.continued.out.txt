@@ -1,0 +1,15 @@
+Lifecycle tick: dispatch listed tasks
+Waiting capacity for task task_20260427_235537_62c2f5
+Dispatched listed tasks: 0
+Lifecycle tick: dispatch callbacks
+Dispatched callback cb_20260428_000236_cb15a2 to opencode/private-assistant
+Dispatched callback cb_20260428_001601_adf99c to opencode/engineering-leader
+Processed callbacks: 2
+Lifecycle tick: recover waiting publishers
+Recovered waiting publisher for task task_20260427_235537_9244cb to opencode/engineering-leader
+Recovered waiting publishers: 1
+Lifecycle tick: dispatch continues
+Dispatched continue for task task_20260427_204238_2c1cfd to opencode/engineering-leader
+Dispatched continues: 1
+Lifecycle tick: dispatch switched tasks
+Dispatched switched tasks: 0

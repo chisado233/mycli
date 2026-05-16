@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\02-请求\\十章单内容拆解\\range-191-200.coolpoints.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-025909\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs\\20260510-025909\\输出.md",
+  "returncode": 0,
+  "stdout": "<<<FILE: D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-191-200\\爽点\\001+准帝压制反转与岳父虚影破防.md>>>\n---\nname: 准帝压制反转与岳父虚影破防\ndescription: 记录顾云先用修为压制苏昊，再逼出洛河大帝虚影、当场打掉对方护短底牌的爽点链。\nsource: 《天命反派，开局拿下女帝师尊》\nsource_range: 第191章-第192章\ntag:\n  - 爽点\n  - 打脸反杀\n  - 身份压制\n  - 见证者震惊\nstatus: 成品候选\nmerge_policy: 可直接入库\n---\n\n# 准帝压制反转与岳父虚影破防\n\n## 爽点类型\n先抑后扬 + 身份/修为双压制 + 护短底牌被当场击穿。\n\n## 前置压抑\n苏昊仗着天命之子身份、纯阳圣体和师门站台，以为自己还能嘴硬到底；洛寒烟也以为自己准帝八重天足够兜底。\n\n## 爆发方式\n顾云先以“四极境却爆出道身中期威能”碾压苏昊，再故意逼出洛河大帝虚影；顾瑶紫正面斩碎大帝虚影，让“家长牌”直接失效。\n\n## 见证者反应\n苏昊从“我不会死”迅速变成“心如死灰”；洛寒烟第一次被现实击穿；洛河大帝最后传音都带着歉意，说明他也意识到局面失控。\n\n## 结果与收益\n苏昊再失一道护身符，天命值大跌；洛寒烟彻底意识到顾云不是能靠身份压住的小辈，而是能反过来操盘局势的人。\n\n## 证据\n- “小婿见过岳父大人。”\n- “动他者，死！”\n- “何人敢动我洛河的女儿！！”\n\n## 解析\n这类爽点好用在“对方以为搬出长辈就能翻盘”的场景里。顾云没有直接杀穿，而是先让对方看见希望，再用更高层级力量把希望连根拔起，爽感更强。\n\n## 可复用边界\n适合宗门、家族、圣地、神朝等权势结构；核心是“底牌升级后仍被更高底牌压制”。\n\n## 禁止照搬点\n不要照搬“岳父/女儿”式具体关系台词；不要直接复用洛家、顾家、帝子设定，改成同类权势结构即可。\n",
+  "stderr": "",
+  "target": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-191-200\\爽点\\_raw.md",
+  "split_output_files": {
+    "ok": true,
+    "base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-191-200\\爽点",
+    "block_style": "angle",
+    "blocks": 1,
+    "written": [
+      "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\十章单内容拆解\\range-191-200\\爽点\\001+准帝压制反转与岳父虚影破防.md"
+    ],
+    "errors": []
+  }
+}

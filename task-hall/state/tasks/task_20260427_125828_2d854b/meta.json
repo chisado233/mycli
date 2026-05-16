@@ -1,0 +1,32 @@
+﻿{
+  "id": "task_20260427_125828_2d854b",
+  "title": "github-hot-repos-report 首份真实热点报告",
+  "kind": "custom",
+  "status": "done",
+  "priority": 90,
+  "tags": [
+    "github trending report"
+  ],
+  "created_at": "2026-04-27T12:58:28.1543228+08:00",
+  "updated_at": "2026-04-27T13:08:25.8034151+08:00",
+  "listed_at": "2026-04-27T12:58:28.1543228+08:00",
+  "task_md": "task.md",
+  "task_dir": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_125828_2d854b",
+  "publish_mode": "watched",
+  "publisher_agent": "opencode/engineering-leader",
+  "publisher_session": "unknown-session",
+  "required_agent_type": "middle-builder",
+  "child_ids": [],
+  "watchers": [],
+  "task_link": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\task-links\\task_20260427_125828_2d854b.json",
+  "source_md": "D:\\agent_workspace\\tmp\\github-hot-repos-report-real-report-task.md",
+  "parent_id": "task_20260427_125725_840a21",
+  "claimed_by": "opencode/middle-builder",
+  "claimed_at": "2026-04-27T12:58:43.5054369+08:00",
+  "executor_session": "ses_232b010e5ffe35kPCur3pwTfYQ",
+  "last_recovered_at": "2026-04-27T13:06:51.1970161+08:00",
+  "last_recover_output": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_125828_2d854b\\recover-output-20260427_130651.txt",
+  "done_by": "opencode/engineering-leader",
+  "result": "验收通过：已产出 reports/2026-04-27-real-github-hot-repos.md，包含 13 个真实仓库、来源/采集时间/方式/限制及可见热度指标，符合无 token 边界。",
+  "done_at": "2026-04-27T13:08:25.7999433+08:00"
+}

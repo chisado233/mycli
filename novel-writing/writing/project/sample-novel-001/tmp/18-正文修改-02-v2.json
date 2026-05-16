@@ -1,0 +1,62 @@
+{
+  "target": "drafts/volume-01/arc-01/versions/02-v2.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\18-正文修改-agent.md"
+  },
+  "agent": "18-正文修改-agent",
+  "task_type": "阶段18-第2章正文修改-v2",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 14000,
+  "temperature": 0.45,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\18-正文修改\\02-v2",
+  "user_prompt": "请把第2章正文从 v1 修订为 v2，并保留为新版本。作者要求：\n1. 第二章开头要用更直接的自我介绍切入：“我是苏念，怎么怎么样”，让读者快速知道主角是谁、身份处境、职业觉醒背景。\n2. 保持倒序承接第1章：从第1章的强钩子回到几小时前职业觉醒中心。\n3. 开头节奏更快，不要慢吞吞铺设；先用苏念第一人称式/近似第一人称式自我介绍抓人，然后自然转回第三人称叙事也可以。\n4. 重点写低评打压、召唤师烧资源、苏念无资源困境、林清雪克制关心、方明远按流程记录。\n5. 不要提前暴露界域行者和莉莉娅。\n6. 输出完整修订版 Markdown，标题仍为第2章。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "作品企划",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\苏念.md",
+      "label": "人物资产-苏念",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\莉莉娅.md",
+      "label": "人物资产-莉莉娅",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\林清雪.md",
+      "label": "人物资产-林清雪",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-group\\volume-01\\arc-01\\00-五章纲.md",
+      "label": "第一小篇章五章纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-detail\\volume-01\\arc-01\\02-单章细纲.md",
+      "label": "第2章单章细纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\versions\\02-v1.md",
+      "label": "第2章正文v1",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\03-配角\\方明远.md",
+      "label": "人物资产-方明远",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\versions\\01-v2.md",
+      "label": "前文第1章v2",
+      "required": false
+    }
+  ]
+}

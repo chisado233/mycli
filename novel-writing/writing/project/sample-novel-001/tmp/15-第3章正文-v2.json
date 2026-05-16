@@ -1,0 +1,72 @@
+{
+  "target": "drafts/volume-01/arc-01/versions/03-v2.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\15-章节写作-agent.md"
+  },
+  "agent": "15-章节写作-agent",
+  "task_type": "阶段15-第3章正文生成-v2",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 14000,
+  "temperature": 0.45,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\15-第3章正文-v2",
+  "user_prompt": "请生成【第3章：召唤师最缺的，是钱】正文新版 v2，输出完整 Markdown。承接最新版本：第1章使用 01-v5，第2章使用 02-v4。\n最新设定硬约束：职业觉醒后默认一阶一段；取消职业潜能、潜力评级、职业稳定性、不稳定召唤系等旧口径；苏念明面职业为召唤师，一阶一段，问题是普通召唤对象无回应、召唤位空置、资源门槛过高；林清雪职业是冰霜舞者。职业名要有特色。\n第1章没有进入回忆，第2章从“我是苏念”切入并完成职业觉醒低起点打压。第3章开始要自然承接第2章。\n重点写苏念回住处后计算召唤师成本，普通召唤路线走不通，尝试普通临时召唤失败，隐藏职业界域行者第一次触发，听见莉莉娅来自深渊的呼唤，章末被牵引进入深渊房间。\n要求：网文男频快节奏，正文约3500-5000字；不要旧名；不要技术化出戏词；不要露骨；输出包含正文、本章完成任务检查、状态变更日志草案、AI审核表。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "作品企划",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "label": "世界规则",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "label": "力量体系",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\苏念.md",
+      "label": "人物资产-苏念",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\莉莉娅.md",
+      "label": "人物资产-莉莉娅",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\林清雪.md",
+      "label": "人物资产-林清雪",
+      "required": false
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\arc\\volume-01\\01-倒序强钩子与魅魔契约.md",
+      "label": "第一小篇章纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-group\\volume-01\\arc-01\\00-五章纲.md",
+      "label": "五章纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\chapter-detail\\volume-01\\arc-01\\03-单章细纲.md",
+      "label": "第3章单章细纲",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\versions\\01-v5.md",
+      "label": "前文第1章v5",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\versions\\02-v4.md",
+      "label": "前文第2章v4",
+      "required": true
+    }
+  ]
+}

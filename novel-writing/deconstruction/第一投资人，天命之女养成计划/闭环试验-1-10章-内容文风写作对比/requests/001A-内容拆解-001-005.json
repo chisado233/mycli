@@ -1,0 +1,87 @@
+{
+  "agent": "拆书-内容拆解agent-还原闭环",
+  "task_type": "001-005章内容拆解-还原写作输入",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 45000,
+  "temperature": 0.2,
+  "system_prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\prompts\\拆书\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对第1-“还原写作输入版内容拆解”。上下文传入第1-，但只输出第1-。\n\n要求：\n- 多文件输出，使用 <<<FILE: 相对路径/文件名.md>>>。\n- 每章一个内容拆解文件。\n- 必须强化“写作还原输入包”：场景顺序、人物即时目标、信息释放、爽点触发链、对话功能、转场方式、结尾落点。\n- 同时保留大段原文摘录，供文风和对比使用。\n- 输出索引和故事逻辑链。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划",
+  "target": "闭环试验-1-10章-内容文风写作对比\\output\\01-内容拆解\\batch-001-005\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\第一投资人，天命之女养成计划\\闭环试验-1-10章-内容文风写作对比\\output\\01-内容拆解\\batch-001-005",
+  "context_files": [
+    {
+      "label": "拆解说明",
+      "path": "00-拆解总览\\拆解说明.md"
+    },
+    {
+      "label": "章节索引",
+      "path": "12-长篇上下文管理\\章节索引.md"
+    },
+    {
+      "label": "原文章节 001",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\001-第1章 要不给她打一针.md"
+    },
+    {
+      "label": "原文章节 002",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\002-第2章 天降之物.md"
+    },
+    {
+      "label": "原文章节 003",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\003-第3章 比在梦里还要惨一百倍.md"
+    },
+    {
+      "label": "原文章节 004",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\004-第4章 刚满18岁.md"
+    },
+    {
+      "label": "原文章节 005",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\005-第5章 韶华白首,不过转瞬.md"
+    },
+    {
+      "label": "原文章节 006",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\006-第6章 师姐你死的好惨啊.md"
+    },
+    {
+      "label": "原文章节 007",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\007-第7章 师父你快长点心吧.md"
+    },
+    {
+      "label": "原文章节 008",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\008-第8章 要绿的是你啊.md"
+    },
+    {
+      "label": "原文章节 009",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\009-第9章 祖孙四人抱头痛哭.md"
+    },
+    {
+      "label": "原文章节 010",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\010-第10章 终于换到正式地图了.md"
+    },
+    {
+      "label": "原文章节 011",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\011-第11章 茵茵妹妹什么都好.md"
+    },
+    {
+      "label": "原文章节 012",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\012-第12章 先买个原味.md"
+    },
+    {
+      "label": "原文章节 013",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\013-第13章 桀桀桀，既然你主动送上门来.md"
+    },
+    {
+      "label": "原文章节 014",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\014-第14章 这辈子都不会脱.md"
+    },
+    {
+      "label": "原文章节 015",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\第一投资人，天命之女养成计划\\章节\\015-第15章 我真的只是把你当妹妹.md"
+    }
+  ]
+}

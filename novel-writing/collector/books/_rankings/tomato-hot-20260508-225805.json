@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-05-08T22:58:05.8907486+08:00",
+  "keywords": [
+    "修仙",
+    "神豪"
+  ],
+  "limit": 3,
+  "returned_all_matches": false,
+  "total_candidates": 38,
+  "filtered_count": 0,
+  "filters": {
+    "min_rating": 9.5,
+    "max_rating": null,
+    "min_shelf": 10000000.0,
+    "max_shelf": null,
+    "min_current_read": null,
+    "max_current_read": null,
+    "min_total_read": null,
+    "max_total_read": null,
+    "min_words": null,
+    "max_words": null,
+    "min_chapters": null,
+    "max_chapters": null,
+    "min_hot_score": null,
+    "max_hot_score": null,
+    "status": [],
+    "include": [],
+    "exclude": []
+  },
+  "scoring": "hot_score = total reads + shelf history + current readers + rating + word count + status/update bonuses; for rough screening only",
+  "items": null
+}

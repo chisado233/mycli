@@ -1,0 +1,61 @@
+已立项完成。
+
+项目档案：
+
+- 项目 ID：`github-hot-skill-factory`
+- 项目名：`GitHub热门项目技能化工厂`
+- 项目目录：`D:\agent_workspace\projects\github-hot-skill-factory`
+- 项目类型：`capability`
+- 项目模式：`ongoing`
+- 当前状态：`active / requirements / in_progress`
+- 健康状态：`green`
+- 交付阶段：`concept`
+
+项目目标已记录为：
+
+> 持续抓取 GitHub 热门项目，筛选适合扩展 agent 系统能力的项目，整理评估、本地部署验证，并沉淀为可复用 skill。
+
+已登记的核心任务：
+
+1. 设计 GitHub 热门项目抓取与候选筛选标准
+2. 建立候选项目整理模板：项目用途、安装方式、依赖、agent 能力价值、风险与维护成本
+3. 跑通首批热门项目本地部署验证并记录可复现步骤
+4. 将验证通过的项目封装为 `capability-library/skill-library` 下的 skill
+
+当前下一步行动：
+
+1. `next-0001`：确定首版抓取来源：GitHub Trending、Search API、awesome 列表或第三方榜单
+2. `next-0002`：定义本地部署沙箱目录、日志目录和项目归档命名规则
+
+之后可用这些命令查看或继续推进：
+
+```powershell
+mycli project-manager status github-hot-skill-factory
+mycli project-manager agent-guide github-hot-skill-factory
+mycli project-manager task-list github-hot-skill-factory
+mycli project-manager next-list github-hot-skill-factory
+```
+
+建议下一步先确定首版抓取来源。我建议首版用组合策略：
+
+- GitHub Trending：发现短期热度
+- GitHub Search API：按 stars、recently updated、topic 定向抓取
+- awesome 列表：补充长期稳定高价值项目
+
+本地部署建议统一放在：
+
+```text
+D:\agent_workspace\projects\github-hot-skill-factory\sandboxes\
+```
+
+候选项目与评估材料放在：
+
+```text
+D:\agent_workspace\projects\github-hot-skill-factory\candidates\
+```
+
+最终沉淀 skill 时再进入：
+
+```text
+D:\agent_workspace\capability-library\skill-library\
+```

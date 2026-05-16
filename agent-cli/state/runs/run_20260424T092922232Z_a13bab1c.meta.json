@@ -1,0 +1,31 @@
+﻿{
+    "session_id":  "ses_2412d694dffe9fQ3xAxS0A4FsU",
+    "session_name":  "",
+    "prompt":  "立项，这是个持续性的agent系统能力扩展项目，github热门项目抓取，整理，并本地部署然后管理形成skill",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "立项，这是个持续性的agent系统能力扩展项目，github热门项目抓取，整理，并本地部署然后管理形成skill",
+                             "--agent",
+                             "private-assistant",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T092922232Z_a13bab1c.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T092922232Z_a13bab1c.raw.log",
+    "run_id":  "run_20260424T092922232Z_a13bab1c",
+    "source":  "opencode",
+    "event_count":  36,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T092922232Z_a13bab1c.report.txt",
+    "finished_at_utc":  "2026-04-24T09:32:45.7614104Z",
+    "round":  1,
+    "started_at_utc":  "2026-04-24T09:29:22.2403260Z"
+}

@@ -1,0 +1,557 @@
+{
+  "name": "github",
+  "summary": "Wrapper for the official GitHub CLI (gh) with workspace proxy defaults",
+  "source": "C:\\Program Files\\GitHub CLI\\gh.exe | https://cli.github.com/",
+  "commands": [
+    {
+      "name": "native",
+      "summary": "Forward all remaining arguments to the official GitHub CLI",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Native gh arguments, for example --help, repo list, issue list, pr checks, or api user",
+          "type": "string[]"
+        }
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "version",
+      "summary": "Show GitHub CLI version",
+      "args": [],
+      "prefixArgs": [
+        "--version"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "auth",
+      "summary": "Forward to gh auth for login, status, refresh, setup-git, or token management",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Auth subcommand and options, for example status, login, refresh, or setup-git",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "auth"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "browse",
+      "summary": "Forward to gh browse to open repositories, issues, pull requests, and other GitHub pages in the browser",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Browse target and options, for example owner/repo, --branch, --commit, or --no-browser",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "browse"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "codespace",
+      "summary": "Forward to gh codespace to connect to and manage GitHub Codespaces",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Codespace subcommand and options, for example list, create, ssh, stop, delete, or code",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "codespace"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "gist",
+      "summary": "Forward to gh gist to list, view, create, edit, clone, or delete gists",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Gist subcommand and options, for example list, view <id>, create <file>, edit, or delete",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "gist"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "repo",
+      "summary": "Forward to gh repo for repository list, view, clone, create, fork, sync, or edit operations",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Repository subcommand and options, for example list, view owner/repo, clone owner/repo, or create",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "repo"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "issue",
+      "summary": "Forward to gh issue for listing, viewing, creating, editing, commenting, or closing issues",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Issue subcommand and options, for example list --repo owner/repo, view <number>, or create",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "issue"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "pr",
+      "summary": "Forward to gh pr for pull request list, view, checks, diff, create, review, merge, or checkout operations",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Pull request subcommand and options, for example list --repo owner/repo, checks <number>, or create",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "pr"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "org",
+      "summary": "Forward to gh org to manage or inspect GitHub organizations",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Organization subcommand and options, for example list or other gh org operations",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "org"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "project",
+      "summary": "Forward to gh project to work with GitHub Projects",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Project subcommand and options, for example list, view, item-list, create, or edit",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "project"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "release",
+      "summary": "Forward to gh release to list, view, create, upload, download, edit, or delete releases",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Release subcommand and options, for example list, view <tag>, create <tag>, upload, or delete",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "release"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "run",
+      "summary": "Forward to gh run for GitHub Actions workflow run list, view, logs, rerun, watch, or cancel operations",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Run subcommand and options, for example list --repo owner/repo, view <run-id>, or view <run-id> --log-failed",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "run"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "workflow",
+      "summary": "Forward to gh workflow for GitHub Actions workflow list, view, run, enable, or disable operations",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Workflow subcommand and options, for example list --repo owner/repo or run <workflow>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "workflow"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "cache",
+      "summary": "Forward to gh cache to manage GitHub Actions caches",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Cache subcommand and options, for example list, delete, or --repo owner/repo",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "cache"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "co",
+      "summary": "Forward to gh co, alias for gh pr checkout",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Pull request number, branch, or URL and checkout options",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "co"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "agent-task",
+      "summary": "Forward to gh agent-task to work with GitHub agent tasks (preview)",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Agent task subcommand and options",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "agent-task"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "alias",
+      "summary": "Forward to gh alias to create, list, delete, or import command shortcuts",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Alias subcommand and options, for example list, set, delete, or import",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "alias"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "api",
+      "summary": "Forward to gh api for direct GitHub REST or GraphQL API requests",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "API path and options, for example user, repos/owner/repo, graphql, --jq <filter>, or --paginate",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "api"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "attestation",
+      "summary": "Forward to gh attestation to verify or work with artifact attestations",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Attestation subcommand and options, for example verify or trusted-root",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "attestation"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "completion",
+      "summary": "Forward to gh completion to generate shell completion scripts",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Target shell, for example powershell, bash, zsh, or fish",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "completion"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "config",
+      "summary": "Forward to gh config to get, set, list, or clear GitHub CLI configuration",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Config subcommand and options, for example list, get <key>, set <key> <value>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "config"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "copilot",
+      "summary": "Forward to gh copilot to use the GitHub Copilot CLI (preview)",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Copilot subcommand and options, for example suggest or explain",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "copilot"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "extension",
+      "summary": "Forward to gh extension to browse, install, list, upgrade, remove, or run gh extensions",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Extension subcommand and options, for example list, install owner/gh-ext, upgrade, or remove",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "extension"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "gpg-key",
+      "summary": "Forward to gh gpg-key to list, add, or delete GitHub GPG keys",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "GPG key subcommand and options, for example list, add <key-file>, or delete <key-id>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "gpg-key"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "label",
+      "summary": "Forward to gh label to list, create, edit, clone, or delete repository labels",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Label subcommand and options, for example list --repo owner/repo, create, edit, or delete",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "label"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "licenses",
+      "summary": "Forward to gh licenses to view third-party license information",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "License subcommand or options",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "licenses"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "preview",
+      "summary": "Forward to gh preview to execute previews for gh features",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Preview subcommand and options",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "preview"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "ruleset",
+      "summary": "Forward to gh ruleset to view information about repository rulesets",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Ruleset subcommand and options, for example list or view with --repo owner/repo",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "ruleset"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "search",
+      "summary": "Forward to gh search for repository, issue, PR, commit, or code search",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Search subcommand and options, for example repos <query>, issues <query>, prs <query>, or code <query>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "search"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "secret",
+      "summary": "Forward to gh secret to list, set, or delete GitHub Actions, Codespaces, Dependabot, environment, repo, org, or user secrets",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Secret subcommand and options, for example list, set <name>, delete <name>, --repo owner/repo, or --org <org>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "secret"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "ssh-key",
+      "summary": "Forward to gh ssh-key to list, add, or delete GitHub SSH keys",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "SSH key subcommand and options, for example list, add <key-file>, or delete <key-id>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "ssh-key"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "status",
+      "summary": "Forward to gh status to print information about relevant issues, pull requests, and notifications across repositories",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Status options, for example --org <org> or --exclude <repo>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "status"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "variable",
+      "summary": "Forward to gh variable to list, set, get, or delete GitHub Actions variables",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Variable subcommand and options, for example list, set <name>, get <name>, delete <name>, --repo owner/repo, or --org <org>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "variable"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    },
+    {
+      "name": "skill",
+      "summary": "Forward to gh skill to install and manage GitHub CLI agent skills (preview)",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Skill subcommand and options, for example list, install, or remove",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "skill"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\github\\scripts\\gh-wrapper.ps1"
+    }
+  ]
+}

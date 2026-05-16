@@ -1,0 +1,203 @@
+千束，已经做到能正常使用了。
+
+## 已完成
+
+我把 `project-manager` 完整注册成了 `mycli` 包，并补齐了后续新建项目、查询、状态维护、task 和 next-action 管理的指令。
+
+现在可以直接用：
+
+```powershell
+mycli project-manager ...
+```
+
+---
+
+# 现在可用的命令
+
+## 项目创建 / 注册 / 查询
+
+```powershell
+mycli project-manager init <project-root> --id <id> --name <name> --type <type> --mode finite|ongoing
+mycli project-manager register <project-root>
+mycli project-manager scan [roots...]
+mycli project-manager refresh [roots...]
+mycli project-manager list
+mycli project-manager query [filters]
+mycli project-manager get <id-or-name>
+mycli project-manager status <id-or-name>
+```
+
+## 状态维护
+
+```powershell
+mycli project-manager update-status <id-or-name> `
+  --lifecycle active `
+  --phase construction `
+  --activity in_progress `
+  --health green `
+  --delivery draft `
+  --summary "..."
+```
+
+也支持：
+
+```powershell
+--attention needs_maintenance
+--current-task task-0001
+--current-next-action next-0001
+```
+
+## task 管理
+
+```powershell
+mycli project-manager task-list <id-or-name>
+mycli project-manager task-add <id-or-name> --title "..." --type implement --priority high --set-current
+mycli project-manager task-update <id-or-name> task-0001 --status done
+```
+
+## next-action 管理
+
+```powershell
+mycli project-manager next-list <id-or-name>
+mycli project-manager next-add <id-or-name> --title "..." --type validate --priority high --set-current
+mycli project-manager next-update <id-or-name> next-0001 --status done
+```
+
+---
+
+# 已做的优化
+
+## 1. 默认 registry 路径优化
+
+现在默认 registry 写到：
+
+```text
+D:\agent_workspace\capability-library\mycli\project-manager\registry.json
+```
+
+这比之前写到源目录更合理，因为用户通过 `mycli project-manager query` 时，查询的是 mycli 包自己的注册表。
+
+---
+
+## 2. project-manager 自身已作为项目注册
+
+项目路径：
+
+```text
+D:\agent_workspace\capability-library\agent-system-rules\project-manager
+```
+
+项目 ID：
+
+```text
+project-manager
+```
+
+当前状态已经更新为：
+
+```text
+lifecycle: active
+phase: delivery
+activity: stable
+health: green
+delivery: published
+```
+
+状态摘要：
+
+```text
+Project-manager is registered as a mycli package and supports project init/register/query/status/task/next-action workflows.
+```
+
+---
+
+## 3. 端到端验证通过
+
+我新建了一个测试项目：
+
+```text
+D:\agent_workspace\tmp\pm-e2e-project
+```
+
+执行了完整流程：
+
+```powershell
+mycli project-manager init ... --register
+mycli project-manager task-add ... --set-current
+mycli project-manager next-add ... --set-current
+mycli project-manager update-status ...
+mycli project-manager task-list ...
+mycli project-manager next-list ...
+mycli project-manager query --id pm-e2e-project
+mycli project-manager status pm-e2e-project
+```
+
+全部通过。
+
+---
+
+# 示例：以后新建项目这样用
+
+## 有限项目
+
+```powershell
+mycli project-manager init D:\agent_workspace\projects\my-tool `
+  --id my-tool `
+  --name "My Tool" `
+  --type coding `
+  --mode finite `
+  --description "A small coding project" `
+  --register
+```
+
+## 持续项目，比如每日热点
+
+```powershell
+mycli project-manager init D:\agent_workspace\projects\daily-hot-news `
+  --id daily-hot-news `
+  --name "每日新闻热点收集" `
+  --type research `
+  --mode ongoing `
+  --description "每天自动收集和整理热点新闻主题" `
+  --tag daily `
+  --tag news `
+  --tag automation `
+  --register
+```
+
+## 查询所有持续项目
+
+```powershell
+mycli project-manager query --mode ongoing
+```
+
+## 查询需要维护的项目
+
+```powershell
+mycli project-manager query --attention needs_maintenance
+```
+
+## 查询 active + operations 的项目
+
+```powershell
+mycli project-manager query --lifecycle active --phase operations
+```
+
+---
+
+# 当前已经能正常使用
+
+核心链路已经通了：
+
+```text
+新建项目 -> 生成 .agent-project -> 注册到 registry -> 查询 -> 查看状态 -> 添加 task -> 添加 next-action -> 更新状态
+```
+
+后面如果继续增强，我建议下一版做：
+
+1. `operations-update`：专门更新持续项目运行状态；
+2. `handoff-create`：生成交接摘要；
+3. `validate`：校验 project.json 是否符合 schema；
+4. `selector` 查询：支持类似 Kubernetes label selector。
+
+但现在作为 v0.1，已经可用了。

@@ -1,0 +1,28 @@
+﻿{
+    "session_id":  "b8bed0ac-e2b8-4759-85a8-f235001abeb9",
+    "session_name":  "",
+    "prompt":  "Say SECOND only",
+    "cwd":  "",
+    "exit_code":  0,
+    "agent":  "claude/default",
+    "provider_command":  [
+                             "C:\\Users\\38188\\.local\\bin\\claude.exe",
+                             "--print",
+                             "--output-format",
+                             "json",
+                             "--continue",
+                             "Say SECOND only"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T143931822Z_b5d1a331.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T143931822Z_b5d1a331.raw.log",
+    "run_id":  "run_20260422T143931822Z_b5d1a331",
+    "source":  "claude",
+    "event_count":  1,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T143931822Z_b5d1a331.report.txt",
+    "finished_at_utc":  "2026-04-22T14:39:45.4084533Z",
+    "round":  1,
+    "started_at_utc":  "2026-04-22T14:39:31.8222671Z"
+}

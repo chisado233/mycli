@@ -1,0 +1,45 @@
+{
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\05-故事粗纲",
+  "agent": "05-故事粗纲-agent",
+  "temperature": 0.35,
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "context_files": [
+    {
+      "label": "千束剧情大纲",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\剧情大纲.md",
+      "required": true
+    },
+    {
+      "label": "正式作品企划",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "required": true
+    },
+    {
+      "label": "世界观总览",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\00-世界观总览.md",
+      "required": true
+    },
+    {
+      "label": "世界规则",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "required": true
+    },
+    {
+      "label": "力量体系",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "required": true
+    },
+    {
+      "label": "势力总览",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\势力总览.md",
+      "required": true
+    }
+  ],
+  "task_type": "阶段05-故事线粗纲",
+  "target": "outlines\\rough\\00-故事粗纲.md",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "user_prompt": "请根据正式企划、世界观、势力设定，以及千束提供的 `tmp/剧情大纲.md`，生成全书级“故事线粗纲”。\n\n必须吸收用户输入的大方向：\n- 黄金前三章要强钩子：第一章先出现苏念与魅魔莉莉娅发生关系后的结果/氛围，再倒序讲职业觉醒与跨界召唤。\n- 18岁觉醒职业，苏念表面是召唤师，真实是“界域行者 + 召唤师”。用户草稿里“失足少女拯救者”只作为吐槽式灵感，不要正式写进设定名；可转化为苏念对隐藏职业的内心吐槽。\n- 召唤师吃资源；契约分临时契约和永久契约；刚觉醒有一个永久契约位，之后约十级一个永久契约位；临时契约像临时工。\n- 第一位女主是魅魔莉莉娅；要保留“魅魔吸量”和强烈暧昧，但正文规划仍遵守正式企划的合规边界：成年、自愿、隐晦表达，不写露骨过程。\n- 高考小秘境、学院篇、前中期收女、变强、小篇章、人魔战争、各世界混战、元气大伤后讲和、神明世界降临各世界入口、最终多界反神明。\n\n输出要求：\n1. 这是故事线粗纲，不是章节正文。\n2. 必须包含全书一句话主线、开局状态、终局状态、全书阶段划分表、每阶段事件链、人物/势力/资源/信息变化、伏笔与回收。\n3. 情感线只标注与主线绑定的位置，不展开成完整情感线；完整情感线由下一步情感线粗纲生成。\n4. 不要出现“林烬”，男主统一为苏念。\n5. 不要用“接口”这种技术化措辞。",
+  "max_tokens": 22000,
+  "agent_md": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\05-故事粗纲-agent.md",
+  "model": "MoreCode/gpt-5.5"
+}

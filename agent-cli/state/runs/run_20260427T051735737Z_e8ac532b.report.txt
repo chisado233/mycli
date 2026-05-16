@@ -1,0 +1,7 @@
+已检查到该任务已有有效 report 记录，且 `task-link show` 显示：
+- 已存在 `report.md`
+- 已存在 `task-link-report-20260427_131714.md`
+- reports 中已有 `ready_for_review` 报告
+- 当前状态属于等待发布者处理，不应重复施工或重复提交
+
+因此本次恢复无需继续修改或补报。AGENT_CLI_LIFECYCLE_END

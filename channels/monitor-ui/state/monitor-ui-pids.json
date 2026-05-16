@@ -1,0 +1,11 @@
+{
+  "pid": 26960,
+  "port": "45990",
+  "url": "http://127.0.0.1:45990",
+  "logs": {
+    "stderr": "D:\\agent_workspace\\capability-library\\mycli\\channels\\monitor-ui\\logs\\monitor-ui.err.log",
+    "stdout": "D:\\agent_workspace\\capability-library\\mycli\\channels\\monitor-ui\\logs\\monitor-ui.out.log"
+  },
+  "startedAt": "2026-05-16T15:51:32.1921466+08:00",
+  "root": "D:\\agent_workspace\\capability-library\\mycli\\channels\\monitor-ui"
+}

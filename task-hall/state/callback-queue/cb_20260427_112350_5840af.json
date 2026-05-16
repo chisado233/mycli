@@ -1,0 +1,16 @@
+﻿{
+  "id": "cb_20260427_112350_5840af",
+  "task_id": "task_20260427_012215_2911de",
+  "reason": "task_link.reported",
+  "created_at": "2026-04-27T11:23:50.8269214+08:00",
+  "payload": {
+    "report": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_012215_2911de\\task-link-report-20260427_112350.md",
+    "agent": "opencode/middle-builder",
+    "session": "unknown-session"
+  },
+  "status": "dispatched",
+  "updated_at": "2026-04-27T11:28:18.2922710+08:00",
+  "dispatched_to": "opencode/engineering-leader",
+  "publisher_session": "",
+  "output_path": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\callback-queue\\cb_20260427_112350_5840af.output.txt"
+}

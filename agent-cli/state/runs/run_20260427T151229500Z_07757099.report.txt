@@ -1,0 +1,17 @@
+已处理该 watched task 回调。
+
+验收结论：**未完成，需要继续**。
+
+原因：执行者报告中明确说明父任务仍缺少最终交付物：
+
+- `novel.md` 尚未生成
+- `README.md` 尚未生成
+- 最终整合子任务 `task_20260427_223315_cae52b` 仍在等待 `opencode/middle-builder` 完成整合施工报告
+
+我已调用：
+
+```powershell
+mycli task-hall task-link continue task_20260427_204238_2c1cfd opencode/private-assistant "..."
+```
+
+并写明继续要求：等待/触发最终整合子任务回调，确认最终小说与 README 实际存在、正文约 45k-55k 中文字符、章节完整、主线闭环、草稿备注清理后，再提交新的最终结构化报告。

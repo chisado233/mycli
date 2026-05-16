@@ -1,0 +1,21 @@
+{
+  "name": "@chat-soft/codex-mirror-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/server/codex-mirror/src/index.js",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@chat-soft/codex-mirror-protocol": "workspace:*",
+    "@fastify/cors": "^11.1.0",
+    "@fastify/websocket": "^11.2.0",
+    "fastify": "^5.6.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.6"
+  }
+}

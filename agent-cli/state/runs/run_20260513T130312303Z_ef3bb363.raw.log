@@ -1,0 +1,2 @@
+{"type":"step_start","timestamp":1778677403452,"sessionID":"ses_1de90d1cfffe7SxGFUsdS33P6j","part":{"id":"prt_e216f4f3a001IAhMgmQwPgySan","messageID":"msg_e216f2f42001A3MF8IMyz9O4Xk","sessionID":"ses_1de90d1cfffe7SxGFUsdS33P6j","type":"step-start"}}
+{"type":"text","timestamp":1778677403918,"sessionID":"ses_1de90d1cfffe7SxGFUsdS33P6j","part":{"id":"prt_e216f4f71001oqKcXm7aP51pi7","messageID":"msg_e216f2f42001A3MF8IMyz9O4Xk","sessionID":"ses_1de90d1cfffe7SxGFUsdS33P6j","type":"text","text":"mycli agent 调用测试成功。","time":{"start":1778677403505,"end":1778677403917}}}

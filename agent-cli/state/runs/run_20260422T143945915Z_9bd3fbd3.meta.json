@@ -1,0 +1,29 @@
+﻿{
+    "session_id":  "d546c24d-fdf9-4866-81d0-6760c0bd860f",
+    "session_name":  "",
+    "prompt":  "Say FORKED only",
+    "cwd":  "",
+    "exit_code":  0,
+    "agent":  "claude/default",
+    "provider_command":  [
+                             "C:\\Users\\38188\\.local\\bin\\claude.exe",
+                             "--print",
+                             "--output-format",
+                             "json",
+                             "--fork-session",
+                             "--continue",
+                             "Say FORKED only"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T143945915Z_9bd3fbd3.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T143945915Z_9bd3fbd3.raw.log",
+    "run_id":  "run_20260422T143945915Z_9bd3fbd3",
+    "source":  "claude",
+    "event_count":  1,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260422T143945915Z_9bd3fbd3.report.txt",
+    "finished_at_utc":  "2026-04-22T14:39:58.7815859Z",
+    "round":  1,
+    "started_at_utc":  "2026-04-22T14:39:45.9314650Z"
+}

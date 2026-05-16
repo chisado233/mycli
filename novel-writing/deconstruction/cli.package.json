@@ -1,0 +1,34 @@
+{
+  "name": "deconstruction",
+  "summary": "Novel deconstruction and book breakdown module",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction",
+  "commands": [
+    {
+      "name": "open",
+      "summary": "Print the deconstruction module discussion file path",
+      "args": [],
+      "prefixArgs": ["open"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\deconstruction.ps1"
+    },
+    {
+      "name": "show",
+      "summary": "Display the deconstruction module discussion notes",
+      "args": [],
+      "prefixArgs": ["show"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\deconstruction.ps1"
+    },
+    {
+      "name": "init",
+      "summary": "Create a complete deconstruction workspace for a book",
+      "args": [
+        { "name": "book", "required": true, "summary": "Path to collector book directory containing catalog.json and 章节/", "type": "path" },
+        { "name": "--out", "required": false, "summary": "Output workspace directory; defaults to novel-writing/deconstruction/<book-title>", "type": "path" },
+        { "name": "--name", "required": false, "summary": "Override workspace/book display name", "type": "string" },
+        { "name": "--copy-chapters", "required": false, "summary": "Copy original chapter files into workspace 01-原文/章节 instead of referencing collector path", "type": "boolean" },
+        { "name": "--force", "required": false, "summary": "Allow adding missing files/directories to an existing workspace directory", "type": "boolean" }
+      ],
+      "prefixArgs": ["init"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\deconstruction.ps1"
+    }
+  ]
+}

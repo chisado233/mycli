@@ -1,0 +1,19 @@
+{
+  "name": "full-demo",
+  "description": "Novel writing dynamic asset library",
+  "createdAt": "2026-05-11T15:48:38",
+  "updatedAt": "2026-05-11T15:48:38",
+  "version": 2,
+  "layout": "writing-dynamic-assets-v2",
+  "includes": [
+    "planning",
+    "worldview",
+    "characters",
+    "factions",
+    "outlines",
+    "states",
+    "snapshots",
+    "logs",
+    "inbox"
+  ]
+}

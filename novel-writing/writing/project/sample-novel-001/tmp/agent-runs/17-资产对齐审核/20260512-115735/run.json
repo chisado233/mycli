@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "request": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\17-资产对齐审核-request.json",
+  "prompt": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\17-资产对齐审核\\20260512-115735\\提示词.md",
+  "output": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\17-资产对齐审核\\20260512-115735\\输出.md",
+  "returncode": 0,
+  "stdout": "{\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"message\": {\n        \"role\": \"assistant\"\n      }\n    }\n  ],\n  \"created\": 1778558265,\n  \"id\": \"resp_0c3c2bfb5f7890af016a02a53744248199a3d2762e0202f8fb\",\n  \"model\": \"gpt-5.5\",\n  \"object\": \"chat.completion\",\n  \"usage\": {\n    \"prompt_tokens\": 1009147,\n    \"completion_tokens\": 0,\n    \"total_tokens\": 1009147,\n    \"prompt_tokens_details\": {\n      \"cached_tokens\": 0,\n      \"text_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"image_tokens\": 0\n    },\n    \"completion_tokens_details\": {\n      \"text_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"reasoning_tokens\": 0\n    },\n    \"input_tokens\": 0,\n    \"output_tokens\": 0,\n    \"input_tokens_details\": null,\n    \"claude_cache_creation_5_m_tokens\": 0,\n    \"claude_cache_creation_1_h_tokens\": 0\n  }\n}\n",
+  "stderr": "",
+  "target": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\reports\\asset-audit\\20260512-资产对齐审核.md"
+}

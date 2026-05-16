@@ -1,0 +1,43 @@
+{
+  "name": "novel-writing",
+  "summary": "Novel writing skill workspace and discussion notes",
+  "source": "D:\\agent_workspace\\capability-library\\skill-library\\novel-writing",
+  "commands": [
+    {
+      "name": "open",
+      "summary": "Print the novel-writing skill workspace paths",
+      "args": [],
+      "prefixArgs": [
+        "open"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\novel-writing.ps1"
+    },
+    {
+      "name": "skill",
+      "summary": "Print the SKILL.md file path",
+      "args": [],
+      "prefixArgs": [
+        "skill"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\novel-writing.ps1"
+    },
+    {
+      "name": "discussion",
+      "summary": "Print the DISCUSSION.md file path",
+      "args": [],
+      "prefixArgs": [
+        "discussion"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\novel-writing.ps1"
+    },
+    {
+      "name": "show",
+      "summary": "Display the current discussion notes",
+      "args": [],
+      "prefixArgs": [
+        "show"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\scripts\\novel-writing.ps1"
+    }
+  ]
+}

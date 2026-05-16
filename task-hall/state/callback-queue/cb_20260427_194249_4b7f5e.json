@@ -1,0 +1,14 @@
+﻿{
+    "id":  "cb_20260427_194249_4b7f5e",
+    "task_id":  "task_20260427_194219_4e97e6",
+    "reason":  "task_link.reported",
+    "created_at":  "2026-04-27T19:42:49.8698290+08:00",
+    "payload":  {
+                    "agent":  "opencode/engineering-leader",
+                    "report":  "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_194219_4e97e6\\task-link-report-20260427_194249.md",
+                    "session":  "unknown-session"
+                },
+    "status":  "skipped",
+    "updated_at":  "2026-04-27T19:42:50.3116316+08:00",
+    "skip_reason":  "system publisher has no resumable agent session"
+}

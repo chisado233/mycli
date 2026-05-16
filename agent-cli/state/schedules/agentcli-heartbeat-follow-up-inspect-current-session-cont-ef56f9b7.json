@@ -1,0 +1,31 @@
+﻿{
+  "task_name": "agentcli-heartbeat-follow-up-inspect-current-session-cont-ef56f9b7",
+  "continue": false,
+  "schedule_id": "agentcli-heartbeat-follow-up-inspect-current-session-cont-ef56f9b7",
+  "command": [
+    "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\agent-cli.ps1",
+    "run",
+    "--agent",
+    "opencode/private-assistant",
+    "--model",
+    "MoreCode/gpt-5.4-pro",
+    "--prompt",
+    "Heartbeat follow-up: inspect current session context, check task-hall, and continue only if there is active pending work; otherwise stay idle and report status. If lifecycle should end, include AGENT_CLI_LIFECYCLE_END.",
+    "--cwd",
+    "D:\\agent_workspace",
+    "--return_mode",
+    "silent"
+  ],
+  "agent": "opencode/private-assistant",
+  "cwd": "D:\\agent_workspace",
+  "session_name": "",
+  "prompt": "Heartbeat follow-up: inspect current session context, check task-hall, and continue only if there is active pending work; otherwise stay idle and report status. If lifecycle should end, include AGENT_CLI_LIFECYCLE_END.",
+  "status": "registered",
+  "fork": false,
+  "return_mode": "silent",
+  "model": "MoreCode/gpt-5.4-pro",
+  "start_time_local": "2026-04-25T09:09:49.1384140+08:00",
+  "created_at_utc": "2026-04-25T00:39:49.4459188Z",
+  "task_path": "\\agent-cli\\",
+  "session": ""
+}

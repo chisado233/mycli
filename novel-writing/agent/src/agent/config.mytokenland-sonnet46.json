@@ -1,0 +1,135 @@
+{
+  "id": "agent-example1",
+  "contextWindow_id": "",
+  "llm": {
+    "openclaw_config_path": "D:\\agent_workspace\\openclaw.json",
+    "provider": "mytokenland",
+    "model": "claude-sonnet-4-6",
+    "temperature": 0.0,
+    "max_tokens": 1024,
+    "max_steps": 20
+  },
+  "system_prompt_component": [
+    {
+      "id": "agent_identity",
+      "config": {
+        "enable": "true",
+        "role": "multi-agent assistant",
+        "description": "负责读取工作区、调用工具、并按需执行多步任务。",
+        "goals": [
+          "正确理解用户请求",
+          "优先使用可用工具完成任务",
+          "输出简洁清晰的结果"
+        ]
+      }
+    },
+    {
+      "id": "Tooling",
+      "config": {
+        "enable": "true"
+      }
+    },
+    {
+      "id": "Tool_Call_Style",
+      "config": {
+        "enable": "true"
+      }
+    },
+    {
+      "id": "skill_prompt",
+      "config": {
+        "enable": "false"
+      }
+    },
+    {
+      "id": "agent_chat_group",
+      "config": {
+        "enable": "true"
+      }
+    },
+    {
+      "id": "Workspace",
+      "config": {
+        "enable": "true",
+        "notes": [
+          "优先在当前 workspace 内完成任务。"
+        ]
+      }
+    },
+    {
+      "id": "Sandbox",
+      "config": {
+        "enable": "false"
+      }
+    },
+    {
+      "id": "node_infomation",
+      "config": {
+        "enable": "true",
+        "node_infomation": "node_infomation.md"
+      }
+    },
+    {
+      "id": "Project_Context",
+      "config": {
+        "enable": "true",
+        "context_files": [
+          "D:\\agent_workspace\\projects\\mult_agent\\workspace\\AGENTS.md"
+        ]
+      }
+    },
+    {
+      "id": "Silent_Replies",
+      "config": {
+        "enable": "true"
+      }
+    },
+    {
+      "id": "Heartbeats",
+      "config": {
+        "enable": "true"
+      }
+    },
+    {
+      "id": "Runtime",
+      "config": {
+        "enable": "true",
+        "shell": "powershell",
+        "channel": "terminal"
+      }
+    }
+  ],
+  "skill": [
+    {
+      "id": "project-skill-manager",
+      "enable": "true"
+    }
+  ],
+  "tool": [
+    {
+      "id": "read / write / edit / apply_patch / grep / find / ls / exec / process",
+      "enbale": "true"
+    }
+  ],
+  "heartbeat": {
+    "enable": "true"
+  },
+  "cron": {
+    "enable": "true"
+  },
+  "workspace": "D:\\agent_workspace\\projects\\mult_agent\\test-workspace",
+  "Relationship with other agents": {
+    "Superior": [
+      {
+        "id": "agent-example2",
+        "connect": "true"
+      },
+      {
+        "id": "agent-example2",
+        "connect": "false"
+      }
+    ],
+    "Peer": [],
+    "Subordinate": []
+  }
+}

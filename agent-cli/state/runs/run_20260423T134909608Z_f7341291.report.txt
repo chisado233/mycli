@@ -1,0 +1,1 @@
+{"status":"ok","primary_output_file":"D:\\agent_workspace\\projects\\agent-workflow-test\\workflows\\planner_workflow\\var\\artifacts\\planner_workflow\\run_planner_workflow_20260423_214908\\reply_with_agent\\1_1\\outputs\\result.json","summary":"已根据运行时 inputs 中的 user_text 生成结构化 JSON 回复，并写入 reply_with_agent 的主输出文件。"}

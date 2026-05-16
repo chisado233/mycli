@@ -1,0 +1,33 @@
+﻿{
+    "session_id":  "ses_1eca52b09ffeuVhAIMzMl44cQF",
+    "session_name":  "",
+    "prompt":  "检查 MBTI benchmark watchdog 状态：读取 D:\\agent_workspace\\projects\\mbti\\agent\\benchmark_runs\\multi-turn-20260511\\watchdog-status.json 和 watchdog.log；如果 80 轮原始测试已完成则汇总 full-20260510；如果 watchdog 已启动 20/40/60/80 fallback，则检查各 turns-* 输出并汇报进度。",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "检查 MBTI benchmark watchdog 状态：读取 D:\\agent_workspace\\projects\\mbti\\agent\\benchmark_runs\\multi-turn-20260511\\watchdog-status.json 和 watchdog.log；如果 80 轮原始测试已完成则汇总 full-20260510；如果 watchdog 已启动 20/40/60/80 fallback，则检查各 turns-* 输出并汇报进度。",
+                             "--agent",
+                             "private-assistant",
+                             "--model",
+                             "MoreCode/gpt-5.5",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260510T192617314Z_72cb204b.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260510T192617314Z_72cb204b.raw.log",
+    "run_id":  "run_20260510T192617314Z_72cb204b",
+    "source":  "opencode",
+    "event_count":  36,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260510T192617314Z_72cb204b.report.txt",
+    "finished_at_utc":  "2026-05-10T19:27:46.2135510Z",
+    "round":  1,
+    "started_at_utc":  "2026-05-10T19:26:17.3149171Z"
+}

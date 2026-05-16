@@ -1,0 +1,13 @@
+Starting Chat Soft private-assistant agent via agent-cli...
+SERVER=http://39.106.125.149:3000
+AGENT_CLI=D:\agent_workspace\capability-library\mycli\mycli.ps1
+AGENT=opencode/private-assistant
+CWD=D:\agent_workspace
+
+
+> @chat-soft/desktop@0.1.0 agent:start D:\agent_workspace\capability-library\mycli\channels\chat-soft\source\apps\desktop
+> node dist-electron/agent.js
+
+D:\agent_workspace\capability-library\mycli\channels\chat-soft\source\apps\desktop:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @chat-soft/desktop@0.1.0 agent:start: `node dist-electron/agent.js`
+Exit status 1

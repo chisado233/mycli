@@ -1,0 +1,33 @@
+﻿{
+    "session_id":  "ses_241d9f7b3ffeMqi0Lc2w61CcA3",
+    "session_name":  "",
+    "prompt":  "在吗",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "--session",
+                             "ses_241d9f7b3ffeMqi0Lc2w61CcA3",
+                             "在吗",
+                             "--agent",
+                             "private-assistant",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260508T054035349Z_4e698270.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260508T054035349Z_4e698270.raw.log",
+    "run_id":  "run_20260508T054035349Z_4e698270",
+    "source":  "opencode",
+    "event_count":  3,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260508T054035349Z_4e698270.report.txt",
+    "finished_at_utc":  "2026-05-08T05:40:46.9653395Z",
+    "round":  14,
+    "started_at_utc":  "2026-05-08T05:40:35.3651065Z"
+}

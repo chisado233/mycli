@@ -1,0 +1,37 @@
+{
+  "target": "drafts/volume-01/arc-01/style-fanpai/02.md",
+  "agent_md": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\18-正文修改-agent.md"
+  },
+  "agent": "18-正文修改-agent",
+  "task_type": "阶段18-文风改写-天命反派-第2章-重跑",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 12000,
+  "temperature": 0.45,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\18-文风改写\\fanpai\\02-rerun",
+  "user_prompt": "请把第2章基准稿按“天命反派文风控制”重写成独立文风版本。只学习短段落、高爽度、信息差、高位者心态、系统反馈、现代吐槽，不复制样本设定和原句。必须保留当前设定：苏念是正向主角；明面职业召唤师；觉醒后一阶一段；召唤对象无回应、召唤位空置、资源门槛高；林清雪职业是冰霜舞者。禁止出现职业潜能、潜力评级、职业稳定性、不稳定召唤系、低潜力等旧口径。输出完整Markdown正文、修订说明、状态变更日志、AI审核表。",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\collector\\books\\天命反派，开局拿下女帝师尊\\文风控制.md",
+      "label": "文风控制-天命反派",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\drafts\\volume-01\\arc-01\\versions\\02-v4.md",
+      "label": "第2章基准稿",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "label": "世界规则",
+      "required": true
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md",
+      "label": "力量体系",
+      "required": true
+    }
+  ]
+}

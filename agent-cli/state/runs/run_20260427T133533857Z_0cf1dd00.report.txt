@@ -1,0 +1,17 @@
+已处理该 watched task 回调，并调用：
+
+```powershell
+mycli task-hall task-link continue task_20260427_204238_2c1cfd ...
+```
+
+验收结论：**不通过，需要继续**。
+
+原因：当前报告明确说明只完成了规划验收和正文第一批子任务发布/链接；正文第一批仍未产出 `drafts\part-01.md`，最终 `novel.md` 与 `README.md` 也尚未产出，因此未达到“五万字完整玄幻小说”的父任务验收标准。
+
+命令已返回：
+
+```text
+Task-link continued: task_20260427_204238_2c1cfd
+```
+
+同时触发了 lifecycle wake。

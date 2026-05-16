@@ -1,0 +1,21 @@
+{
+  "name": "asset-library",
+  "summary": "Manage local asset library resources",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\asset-library",
+  "commands": [
+    {
+      "name": "meme",
+      "summary": "List, resolve, and send local meme/sticker assets",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "meme subcommand and options",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\asset-library\\scripts\\meme.ps1"
+    }
+  ]
+}

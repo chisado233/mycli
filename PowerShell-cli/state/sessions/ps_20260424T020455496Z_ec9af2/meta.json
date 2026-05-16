@@ -1,0 +1,22 @@
+﻿{
+  "session_id": "ps_20260424T020455496Z_ec9af2",
+  "status": "stopped",
+  "requested_admin": false,
+  "broker_is_admin": false,
+  "shell_preference": "pwsh",
+  "shell_path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+  "cwd": "D:\\agent_workspace",
+  "created_at_utc": "2026-04-24T02:04:55.5369579Z",
+  "updated_at_utc": "2026-04-24T02:16:40.4003323Z",
+  "broker_pid": 17000,
+  "child_pid": 22712,
+  "last_seq": 0,
+  "last_command_id": null,
+  "last_exit_code": null,
+  "idle_timeout_sec": 10,
+  "last_activity_utc": "2026-04-24T02:04:55.5369751Z",
+  "transport": "stdin-stdout-broker",
+  "broker_log_path": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli\\state\\sessions\\ps_20260424T020455496Z_ec9af2\\broker.runtime.log",
+  "broker_launch_log_path": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli\\state\\sessions\\ps_20260424T020455496Z_ec9af2\\broker.launch.log",
+  "broker_launch_error_log_path": "D:\\agent_workspace\\capability-library\\mycli\\PowerShell-cli\\state\\sessions\\ps_20260424T020455496Z_ec9af2\\broker.launch.stderr.log"
+}

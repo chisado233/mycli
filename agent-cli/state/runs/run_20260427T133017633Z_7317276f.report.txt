@@ -1,0 +1,7 @@
+已处理该 watched task 回调：报告未达到最终验收标准，因此已调用 `task-link continue` 要求 `opencode/engineering-leader` 继续推进。
+
+结论：当前仅完成规划与正文第一批子任务发布，尚未产出正文草稿、最终 `novel.md` 和 `README.md`，不能 complete。命令已成功返回：
+
+- `Task-link continued: task_20260427_204238_2c1cfd`
+
+生命周期唤醒也已触发。

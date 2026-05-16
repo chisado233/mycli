@@ -1,0 +1,6 @@
+﻿{
+  "command_id": "cmd_20260424T012950879Z_7e2c62",
+  "session_id": "ps_20260424T005050207Z_158da8",
+  "text": "Write-Output 'hello from session'",
+  "created_at_utc": "2026-04-24T01:29:50.8827369Z"
+}

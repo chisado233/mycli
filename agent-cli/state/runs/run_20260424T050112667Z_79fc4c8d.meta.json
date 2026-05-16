@@ -1,0 +1,33 @@
+﻿{
+    "session_id":  "ses_24259126dffeTdrtnwWatL0lCR",
+    "session_name":  "",
+    "prompt":  "就是网页的会画没有输入框我都输入不了",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "--session",
+                             "ses_24259126dffeTdrtnwWatL0lCR",
+                             "就是网页的会画没有输入框我都输入不了",
+                             "--agent",
+                             "private-assistant",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T050112667Z_79fc4c8d.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T050112667Z_79fc4c8d.raw.log",
+    "run_id":  "run_20260424T050112667Z_79fc4c8d",
+    "source":  "opencode",
+    "event_count":  30,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T050112667Z_79fc4c8d.report.txt",
+    "finished_at_utc":  "2026-04-24T05:03:01.5704732Z",
+    "round":  7,
+    "started_at_utc":  "2026-04-24T05:01:12.6751010Z"
+}

@@ -1,0 +1,174 @@
+{
+  "task_type": "021-025章素材库分类拆书",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 70000,
+  "temperature": 0.2,
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\agent\\03A-章节批量粗拆agent.md"
+  },
+  "user_prompt": "请对第021-025章进行素材库分类版高质量拆书。\n\n目标范围：021-025。\n上下文范围：011-035。\n\n重要规则：\n1. 只输出目标范围 021-025 的正式拆解和素材；上下文章节只作为上下文参考，不得输出为正式章节拆解。\n2. 必须按 material-library 分类输出多文件。\n3. 每章必须有剧情内容拆解，严禁漏章。\n4. 每条高价值素材必须包含 YAML、source、source_range、tag、status、merge_policy。\n5. 高价值素材必须有大段原文证据或详细场景证据、写法解析、可复用变体、禁止照搬点。\n6. 人物设定、情感线、力量体系、世界设定如果只是阶段信息，要标记为“阶段素材 / 最终统一”。\n7. 伏笔必须标记状态，并评估是否巧妙。\n8. 最后必须输出质量自检。\n9. 输出必须使用 <<<FILE: 相对路径/文件名.md>>> 多文件格式。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊",
+  "target": "03-输出\\批次拆解\\batch-021-025\\_raw.md",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\06-agent-runs",
+  "split_output_files": true,
+  "split_output_base": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\03-输出\\批次拆解\\batch-021-025",
+  "context_files": [
+    {
+      "label": "调度规则",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\00-使用者如何拆书.md"
+    },
+    {
+      "label": "素材库总规则",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\01-素材库总规则.md"
+    },
+    {
+      "label": "场景素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\02-场景素材模板.md"
+    },
+    {
+      "label": "爽点素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\03-爽点素材模板.md"
+    },
+    {
+      "label": "伏笔素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\04-伏笔素材模板.md"
+    },
+    {
+      "label": "人物设定素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\05-人物设定素材模板.md"
+    },
+    {
+      "label": "情感线推进模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\06-情感线推进模板.md"
+    },
+    {
+      "label": "力量体系素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\07-力量体系素材模板.md"
+    },
+    {
+      "label": "世界设定素材模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\08-世界设定素材模板.md"
+    },
+    {
+      "label": "完整故事概要模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\09-完整故事概要模板.md"
+    },
+    {
+      "label": "文学风格收集模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\10-文学风格收集模板.md"
+    },
+    {
+      "label": "灵活记录模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\11-灵活记录模板.md"
+    },
+    {
+      "label": "剧情内容拆解模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\12-剧情内容拆解模板.md"
+    },
+    {
+      "label": "质量自检模板",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\prompts\\拆书\\模板\\15-质量自检模板.md"
+    },
+    {
+      "label": "上文011",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\011-第11章 女主逆推，却之不恭.md"
+    },
+    {
+      "label": "上文012",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\012-第12章 收服风云韵.md"
+    },
+    {
+      "label": "上文013",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\013-第13章 林萧毁了紫云矿脉？.md"
+    },
+    {
+      "label": "上文014",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\014-第14章 天使投资人，带不动的天命之子.md"
+    },
+    {
+      "label": "上文015",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\015-第15章 好戏落幕，演员们，该退场了.md"
+    },
+    {
+      "label": "上文016",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\016-第16章 顾云展现实力，客卿长老是妻管严？.md"
+    },
+    {
+      "label": "上文017",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\017-第17章 老宗主来了，老宗主跪了.md"
+    },
+    {
+      "label": "上文018",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\018-第18章 天命之子？瓮中之鳖！.md"
+    },
+    {
+      "label": "上文019",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\019-第19章 影儿收心.md"
+    },
+    {
+      "label": "上文020",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\020-第20章 天命动向.md"
+    },
+    {
+      "label": "目标021",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\021-第21章 唐山.md"
+    },
+    {
+      "label": "目标022",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\022-第22章 经典桥段，天命之子被打脸.md"
+    },
+    {
+      "label": "目标023",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\023-第23章 原形毕露卡显威，掳走气运之女.md"
+    },
+    {
+      "label": "目标024",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\024-第24章 金惜狂之死.md"
+    },
+    {
+      "label": "目标025",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\025-第25章 唐山背大锅.md"
+    },
+    {
+      "label": "下文026",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\026-第26章 龙城林家.md"
+    },
+    {
+      "label": "下文027",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\027-第27章 仙人抚我顶，结发授长生.md"
+    },
+    {
+      "label": "下文028",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\028-第28章 灭杀赤发鬼.md"
+    },
+    {
+      "label": "下文029",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\029-第29章 战斗开始.md"
+    },
+    {
+      "label": "下文030",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\030-第30章 天命显威，首战告捷.md"
+    },
+    {
+      "label": "下文031",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\031-第31章 身份暴露.md"
+    },
+    {
+      "label": "下文032",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\032-第32章 唐浩.md"
+    },
+    {
+      "label": "下文033",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\033-第33章 猖狂唐浩，被噶腰子，狼狈逃跑.md"
+    },
+    {
+      "label": "下文034",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\034-第34章 覆灭赤霄剑阁.md"
+    },
+    {
+      "label": "下文035",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\deconstruction\\天命反派，开局拿下女帝师尊\\01-原文\\章节\\035-第35章 再见唐山.md"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "name": "opencli",
+  "summary": "Embedded OpenCLI wrapper for website, browser, Electron, and external CLI automation",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\opencli\\source",
+  "commands": [
+    {
+      "name": "native",
+      "summary": "Forward all remaining arguments to embedded OpenCLI",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Native OpenCLI arguments",
+          "type": "string[]"
+        }
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\opencli\\scripts\\opencli-wrapper.ps1"
+    },
+    {
+      "name": "version",
+      "summary": "Show embedded OpenCLI version",
+      "args": [],
+      "prefixArgs": [
+        "--version"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\opencli\\scripts\\opencli-wrapper.ps1"
+    },
+    {
+      "name": "doctor",
+      "summary": "Run OpenCLI environment diagnostics",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Optional native doctor arguments",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "doctor"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\opencli\\scripts\\opencli-wrapper.ps1"
+    },
+    {
+      "name": "opencli-list",
+      "summary": "Forward to OpenCLI's native list command; named opencli-list because mycli reserves package list",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Optional native list arguments such as --json or filters",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "list"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\opencli\\scripts\\opencli-wrapper.ps1"
+    },
+    {
+      "name": "browser",
+      "summary": "Forward to OpenCLI browser primitives",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Browser subcommand and arguments, for example snapshot, open <url>, click <target>",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "browser"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\opencli\\scripts\\opencli-wrapper.ps1"
+    },
+    {
+      "name": "site",
+      "summary": "Forward to an OpenCLI site command: mycli opencli site <site> <command> [args...]",
+      "args": [
+        {
+          "name": "site",
+          "required": true,
+          "summary": "OpenCLI site name, for example youtube, bilibili, hackernews",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Site command and native arguments",
+          "type": "string[]"
+        }
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\opencli\\scripts\\opencli-wrapper.ps1"
+    }
+  ]
+}

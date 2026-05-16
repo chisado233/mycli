@@ -1,0 +1,5 @@
+{"seq":1,"time_utc":"2026-04-24T02:15:29.9069496Z","kind":"input","stream":"broker","text":"$x=41; $x+1; Get-Location | Select-Object -ExpandProperty Path"}
+{"seq":2,"time_utc":"2026-04-24T02:15:29.9301566Z","kind":"output","stream":"stdout","text":"42"}
+{"seq":3,"time_utc":"2026-04-24T02:15:29.9326586Z","kind":"output","stream":"stdout","text":"D:\\agent_workspace"}
+{"seq":4,"time_utc":"2026-04-24T02:15:41.9206168Z","kind":"input","stream":"broker","text":"$x+1"}
+{"seq":5,"time_utc":"2026-04-24T02:15:41.9265883Z","kind":"output","stream":"stdout","text":"42"}

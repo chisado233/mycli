@@ -1,0 +1,4 @@
+{"seq":1,"time_utc":"2026-04-24T02:17:02.8605121Z","kind":"input","stream":"broker","text":"$a=100; $a"}
+{"seq":2,"time_utc":"2026-04-24T02:17:02.8717205Z","kind":"output","stream":"stdout","text":"100"}
+{"seq":3,"time_utc":"2026-04-24T02:17:03.3527296Z","kind":"input","stream":"broker","text":"$a+23"}
+{"seq":4,"time_utc":"2026-04-24T02:17:03.3565753Z","kind":"output","stream":"stdout","text":"123"}

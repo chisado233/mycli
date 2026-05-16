@@ -1,0 +1,40 @@
+{
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\06-情感线粗纲",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "agent": "06-情感线粗纲-agent",
+  "user_prompt": "请根据正式企划、故事线粗纲、势力设定和千束提供的剧情大纲，生成全书级“情感线粗纲”。\n\n必须遵守：\n1. 男主统一为苏念，不得出现旧名。\n2. 后宫多女主，所有亲密关系必须成年、自愿、类人/智慧对象。\n3. 正文规划只允许隐晦表达，不写露骨过程；可用事后氛围、称呼变化、契约同步率、旁人调侃、房间细节等表达。\n4. 用户想要开篇强钩子：第一章先出现苏念与魅魔莉莉娅发生关系后的结果/氛围，再倒序职业觉醒与跨界召唤；情感线需要把这个设计变成“成年、自愿、契约成立后的暧昧/事后氛围钩子”，不要写露骨细节。\n5. 挑逗/修罗场常驻；事后/暗示节点约三章一次，长战斗或连续副本可顺延。\n6. 林清雪是现实侧人类女主，不是召唤物；推进慢一些，负责清纯现实侧情感和吃醋拉扯。\n7. 莉莉娅是第一召唤女主，负责魅魔吸量和后宫基调；艾瑟琳雌小鬼；青璃成年合法萝莉感剑灵；诺雅机娘；白九璃拱火绿茶。\n8. 情感线必须嵌入主线事件，不要脱离剧情单独发糖。\n\n输出要求：\n- 情感线总目标\n- 情感对象总览\n- 每个核心角色的情感线\n- 关系阶段表\n- 情感节点与主线事件绑定表\n- 情感风险/雷点\n- AI审核表",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\剧情大纲.md",
+      "required": true,
+      "label": "千束剧情大纲"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "required": true,
+      "label": "正式作品企划"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\rough\\00-故事粗纲.md",
+      "required": true,
+      "label": "故事线粗纲"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\势力总览.md",
+      "required": true,
+      "label": "势力总览"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md",
+      "required": true,
+      "label": "世界规则"
+    }
+  ],
+  "temperature": 0.35,
+  "task_type": "阶段06-情感线粗纲",
+  "max_tokens": 22000,
+  "model": "MoreCode/gpt-5.5",
+  "target": "outlines\\emotion\\00-情感线粗纲.md",
+  "agent_md": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\06-情感线粗纲-agent.md"
+}

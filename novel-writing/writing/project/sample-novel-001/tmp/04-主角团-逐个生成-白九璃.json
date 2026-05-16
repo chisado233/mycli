@@ -1,0 +1,26 @@
+{
+  "target": "assets\\characters\\01-主角团\\白九璃.md",
+  "agent_md": { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\04-人物-agent.md" },
+  "agent": "04-人物-agent",
+  "task_type": "阶段04-主角团逐个生成-白九璃",
+  "model": "MoreCode/gpt-5.5",
+  "max_tokens": 12000,
+  "temperature": 0.35,
+  "base_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\04-主角团逐个生成\\白九璃",
+  "user_prompt": "请只生成主角团成员【白九璃】的人物卡，并直接输出完整 Markdown 正文，不要 FILE 分块，不要代码围栏。必须严格按照《主角团成员模板》的一级/二级结构填写，所有模板栏目都要保留且写详细。你必须综合整本小说的正式企划、世界观、势力、故事粗纲、情感线粗纲和现有人物总览来写，不得只根据模板发挥。白九璃是成年狐娘女主、万狐岭/修仙妖族线入口、幻术情报与修罗场拱火角色；可以有外表娇小或狡黠萌感，但必须明确成年合法。要求明确成年、自愿、类人智慧对象；亲密只写合规边界和氛围；不要出现旧名；不要使用“接口”等技术化措辞。内容要适合后续卷纲和章节写作直接引用。",
+  "context_files": [
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\01-主角团\\主角团成员模板.md", "label": "主角团成员模板", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md", "label": "正式作品企划", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\00-世界观总览.md", "label": "世界观总览", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\03-世界规则.md", "label": "世界规则", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\worldview\\04-力量体系.md", "label": "力量体系", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\势力总览.md", "label": "势力总览", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T1-修仙世界-昆墟宗门联盟.md", "label": "相关势力-修仙", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\factions\\T2-女主原世界关联势力.md", "label": "相关势力-女主原世界", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\rough\\00-故事粗纲.md", "label": "故事线粗纲", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\outlines\\emotion\\00-情感线粗纲.md", "label": "情感线粗纲", "required": true },
+    { "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\characters\\00-人物总览.md", "label": "现有人物总览", "required": true }
+  ]
+}

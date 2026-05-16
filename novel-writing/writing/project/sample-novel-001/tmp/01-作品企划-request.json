@@ -1,0 +1,27 @@
+{
+  "agent": "01-作品企划-agent",
+  "task_type": "作品企划",
+  "model": "MoreCode/gpt-5.5",
+  "prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\01-作品企划-agent.md"
+  },
+  "user_prompt": "请基于用户初始想法，生成一份高创新性、可落地到后续世界观/势力/人物/大纲/章节写作的作品企划。\n\n用户初始想法：\n- 题材：都市异能。\n- 主角：召唤师。\n- 核心卖点：后宫多女主，主角召唤类似魅魔、女吸血鬼、精灵等异界女性角色参与战斗。\n- 方向偏好：战斗爽感 + 多女主情感推进 + 都市异能隐秘秩序。\n- 特别要求：要有创新性，不要只是常见召唤后宫套路。召唤对象要有角色尊严、战斗功能、个人目标和情感线；召唤关系不能像奴隶关系。\n\n请先给出至少 3 个差异化企划方向，并对比传统写法与创新改法；然后给出你最推荐的整合版方案，填充作品企划模板。输出必须包含：作品名候选、一句话故事、篇幅节奏、目标读者、核心卖点、主角团初步方向、故事主线、文风、雷点、宏观调控、创新点清单、召唤机制草案、女主/召唤对象初步矩阵、开篇三章钩子、首卷承诺与卷末爆点、雷点规避策略、AI审核表。",
+  "project": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001",
+  "output_dir": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\tmp\\agent-runs\\01-作品企划",
+  "target": "assets\\planning\\00-作品企划.md",
+  "context_files": [
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\sample-novel-001\\assets\\planning\\00-作品企划.md",
+      "label": "作品企划模板"
+    },
+    {
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\agents\\00-通用写作流程规则.md",
+      "label": "通用写作流程规则"
+    }
+  ],
+  "extra": {
+    "阶段": "01-作品企划",
+    "输出落盘目标": "assets/planning/00-作品企划.md",
+    "要求": "先生成可供千束修改的人审前初稿，不要假定最终通过。"
+  }
+}

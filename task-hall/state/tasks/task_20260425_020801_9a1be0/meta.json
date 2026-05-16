@@ -1,0 +1,30 @@
+﻿{
+  "id": "task_20260425_020801_9a1be0",
+  "title": "设计无感闲聊式 MBTI 测验对话智能体",
+  "kind": "custom",
+  "status": "done",
+  "priority": 65,
+  "tags": [
+    "mbti",
+    "conversation-agent",
+    "prompt-design",
+    "psychology",
+    "ux"
+  ],
+  "created_at": "2026-04-25T02:08:01.8568415+08:00",
+  "updated_at": "2026-04-25T03:09:07.3885630+08:00",
+  "listed_at": "2026-04-25T02:08:01.8568415+08:00",
+  "task_md": "task.md",
+  "task_dir": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260425_020801_9a1be0",
+  "frontdesk_agent": "opencode/task-hall-frontdesk",
+  "complexity": "中高",
+  "source_request_json": "D:\\agent_workspace\\tmp\\task-hall-publish-20260425\\mbti-casual-chat-agent-request.json",
+  "frontdesk_response": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\requests\\req_20260425_020721_37594f\\frontdesk-response.json",
+  "min_model_tier": "strong",
+  "source_request_id": "req_20260425_020721_37594f",
+  "claimed_at": "2026-04-25T03:02:30.7209484+08:00",
+  "claimed_by": "opencode/private-assistant",
+  "reviewed_at": "2026-04-25T03:09:07.3836650+08:00",
+  "review_result": "complete",
+  "review_path": "D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260425_020801_9a1be0\\submission-review-20260425_030907.json"
+}

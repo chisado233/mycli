@@ -1,0 +1,231 @@
+{
+  "library": "tmp-verify",
+  "generatedAt": "2026-05-11T16:55:09",
+  "count": 28,
+  "records": [
+    {
+      "kind": "other",
+      "stage": "",
+      "title": "资产总表模板",
+      "relativePath": "01-资产总表.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\01-资产总表.md",
+      "updatedAt": "2026-05-11T15:18:19"
+    },
+    {
+      "kind": "other",
+      "stage": "",
+      "title": "状态细化规则",
+      "relativePath": "状态细化规则.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\状态细化规则.md",
+      "updatedAt": "2026-05-11T15:18:19"
+    },
+    {
+      "kind": "character",
+      "stage": "",
+      "title": "人物总览",
+      "relativePath": "assets/characters/00-人物总览.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\characters\\00-人物总览.md",
+      "updatedAt": "2026-05-11T14:45:43"
+    },
+    {
+      "kind": "character",
+      "stage": "",
+      "title": "人物基础信息层模板",
+      "relativePath": "assets/characters/01-人物基础信息层模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\characters\\01-人物基础信息层模板.md",
+      "updatedAt": "2026-05-11T14:45:43"
+    },
+    {
+      "kind": "character",
+      "stage": "",
+      "title": "主角模板",
+      "relativePath": "assets/characters/01-主角团/主角模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\characters\\01-主角团\\主角模板.md",
+      "updatedAt": "2026-05-11T14:45:43"
+    },
+    {
+      "kind": "character",
+      "stage": "",
+      "title": "主角团成员模板",
+      "relativePath": "assets/characters/01-主角团/主角团成员模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\characters\\01-主角团\\主角团成员模板.md",
+      "updatedAt": "2026-05-11T14:45:43"
+    },
+    {
+      "kind": "character",
+      "stage": "",
+      "title": "反派模板",
+      "relativePath": "assets/characters/02-反派/反派模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\characters\\02-反派\\反派模板.md",
+      "updatedAt": "2026-05-11T14:45:43"
+    },
+    {
+      "kind": "character",
+      "stage": "",
+      "title": "人物剧情功能层模板",
+      "relativePath": "assets/characters/02-人物剧情功能层模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\characters\\02-人物剧情功能层模板.md",
+      "updatedAt": "2026-05-11T14:45:43"
+    },
+    {
+      "kind": "character",
+      "stage": "",
+      "title": "配角模板",
+      "relativePath": "assets/characters/03-配角/配角模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\characters\\03-配角\\配角模板.md",
+      "updatedAt": "2026-05-11T14:45:43"
+    },
+    {
+      "kind": "character",
+      "stage": "",
+      "title": "人物动态追踪层模板",
+      "relativePath": "assets/characters/03-人物动态追踪层模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\characters\\03-人物动态追踪层模板.md",
+      "updatedAt": "2026-05-11T14:45:43"
+    },
+    {
+      "kind": "faction",
+      "stage": "",
+      "title": "势力基础信息层模板",
+      "relativePath": "assets/factions/01-势力基础信息层模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\factions\\01-势力基础信息层模板.md",
+      "updatedAt": "2026-05-11T14:29:13"
+    },
+    {
+      "kind": "faction",
+      "stage": "",
+      "title": "势力剧情功能层模板",
+      "relativePath": "assets/factions/02-势力剧情功能层模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\factions\\02-势力剧情功能层模板.md",
+      "updatedAt": "2026-05-11T14:29:13"
+    },
+    {
+      "kind": "faction",
+      "stage": "",
+      "title": "势力动态追踪层模板",
+      "relativePath": "assets/factions/03-势力动态追踪层模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\factions\\03-势力动态追踪层模板.md",
+      "updatedAt": "2026-05-11T14:29:13"
+    },
+    {
+      "kind": "faction",
+      "stage": "",
+      "title": "势力",
+      "relativePath": "assets/factions/势力模板.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\factions\\势力模板.md",
+      "updatedAt": "2026-05-11T14:14:45"
+    },
+    {
+      "kind": "faction",
+      "stage": "",
+      "title": "势力总览",
+      "relativePath": "assets/factions/势力总览.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\factions\\势力总览.md",
+      "updatedAt": "2026-05-11T14:11:18"
+    },
+    {
+      "kind": "planning",
+      "stage": "planning",
+      "title": "作品企划",
+      "relativePath": "assets/planning/00-作品企划.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\planning\\00-作品企划.md",
+      "updatedAt": "2026-05-11T14:06:01"
+    },
+    {
+      "kind": "worldview",
+      "stage": "worldview",
+      "title": "世界观总览",
+      "relativePath": "assets/worldview/00-世界观总览.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\worldview\\00-世界观总览.md",
+      "updatedAt": "2026-05-09T23:25:01"
+    },
+    {
+      "kind": "worldview",
+      "stage": "worldview",
+      "title": "世界类型",
+      "relativePath": "assets/worldview/01-世界类型.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\worldview\\01-世界类型.md",
+      "updatedAt": "2026-05-08T22:35:11"
+    },
+    {
+      "kind": "worldview",
+      "stage": "worldview",
+      "title": "世界地图",
+      "relativePath": "assets/worldview/02-世界地图.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\worldview\\02-世界地图.md",
+      "updatedAt": "2026-05-09T23:17:50"
+    },
+    {
+      "kind": "worldview",
+      "stage": "worldview",
+      "title": "世界规则",
+      "relativePath": "assets/worldview/03-世界规则.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\worldview\\03-世界规则.md",
+      "updatedAt": "2026-05-08T22:35:11"
+    },
+    {
+      "kind": "worldview",
+      "stage": "worldview",
+      "title": "力量体系",
+      "relativePath": "assets/worldview/04-力量体系.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\worldview\\04-力量体系.md",
+      "updatedAt": "2026-05-08T22:35:11"
+    },
+    {
+      "kind": "worldview",
+      "stage": "worldview",
+      "title": "器物层级",
+      "relativePath": "assets/worldview/05-器物层级.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\worldview\\05-器物层级.md",
+      "updatedAt": "2026-05-09T23:23:26"
+    },
+    {
+      "kind": "worldview",
+      "stage": "worldview",
+      "title": "资源体系",
+      "relativePath": "assets/worldview/06-资源体系.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\worldview\\06-资源体系.md",
+      "updatedAt": "2026-05-09T23:23:15"
+    },
+    {
+      "kind": "worldview",
+      "stage": "worldview",
+      "title": [],
+      "relativePath": "assets/worldview/07-世界故事背景.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\assets\\worldview\\07-世界故事背景.md",
+      "updatedAt": "2026-05-09T23:16:37"
+    },
+    {
+      "kind": "inbox",
+      "stage": "",
+      "title": "新增对象收件箱模板",
+      "relativePath": "inbox/新增对象收件箱.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\inbox\\新增对象收件箱.md",
+      "updatedAt": "2026-05-11T15:18:19"
+    },
+    {
+      "kind": "log",
+      "stage": "",
+      "title": "状态变更日志模板",
+      "relativePath": "logs/状态变更日志.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\logs\\状态变更日志.md",
+      "updatedAt": "2026-05-11T15:18:19"
+    },
+    {
+      "kind": "other",
+      "stage": "",
+      "title": "动态资产库说明",
+      "relativePath": "README.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\README.md",
+      "updatedAt": "2026-05-11T15:18:18"
+    },
+    {
+      "kind": "snapshot",
+      "stage": "",
+      "title": "当前状态快照模板",
+      "relativePath": "snapshots/当前状态快照.md",
+      "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\writing\\project\\tmp-verify\\snapshots\\当前状态快照.md",
+      "updatedAt": "2026-05-11T15:18:19"
+    }
+  ]
+}

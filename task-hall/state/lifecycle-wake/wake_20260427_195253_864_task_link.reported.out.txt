@@ -1,0 +1,12 @@
+Lifecycle tick: dispatch callbacks
+Skipped callback cb_20260427_195253_a27d3f: system publisher
+Processed callbacks: 1
+Lifecycle tick: recover waiting publishers
+Recovered waiting publishers: 0
+Lifecycle tick: dispatch continues
+Dispatched continues: 0
+Lifecycle tick: dispatch switched tasks
+Dispatched switched tasks: 0
+Lifecycle tick: dispatch listed tasks
+Waiting capacity for task task_20260427_195224_c0c088
+Dispatched listed tasks: 0

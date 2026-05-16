@@ -1,0 +1,33 @@
+﻿{
+    "session_id":  "ses_1f9d02ae6ffe9NVxndZlz2RacV",
+    "session_name":  "",
+    "prompt":  "你去把mycli channal 里面的chatsoft和qq启动命令添加到开机启动",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "--session",
+                             "ses_1f9d02ae6ffe9NVxndZlz2RacV",
+                             "你去把mycli channal 里面的chatsoft和qq启动命令添加到开机启动",
+                             "--agent",
+                             "private-assistant",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260508T060927662Z_adcf1da5.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260508T060927662Z_adcf1da5.raw.log",
+    "run_id":  "run_20260508T060927662Z_adcf1da5",
+    "source":  "opencode",
+    "event_count":  33,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260508T060927662Z_adcf1da5.report.txt",
+    "finished_at_utc":  "2026-05-08T06:10:39.0013341Z",
+    "round":  2,
+    "started_at_utc":  "2026-05-08T06:09:27.6744066Z"
+}

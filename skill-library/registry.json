@@ -1,0 +1,352 @@
+﻿[
+  {
+    "name": "after-effects-mcp",
+    "description": "用本地 Adobe After Effects 做自动化。提供 AE 安装探测、ExtendScript(.jsx) 执行、aerender 渲染、开场动画 demo 生成与批量渲染封装。用户提到“AE/After Effects/开场动画/片头动画/批量渲染/aerender/jsx/自动做动画”时使用。",
+    "bodySummary": "这个 skill 不是概念说明，而是本地 AE 的可执行桥。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\after-effects-mcp-1.0.0\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\after-effects-mcp-1.0.0"
+  },
+  {
+    "name": "Agent Browser",
+    "description": "A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.",
+    "bodySummary": "1. Navigate: `agent-browser open <url>` 2. Snapshot: `agent-browser snapshot -i` (returns elements with refs like `@e1`, `@e2`) 3. Interact using refs from the snapshot 4. Re-snapshot after navigation or significant DOM ",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\agent-browser\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\agent-browser"
+  },
+  {
+    "name": "agent-cli",
+    "description": "Comprehensive local agent-CLI playbook for choosing and using OpenCode (`opencode`), Harness (`harness`), and Codex CLI (`codex`). Use when Codex needs to route a task to the right local coding-agent CLI, run CLI agents from PowerShell, compare capabilities, use browser/multi-model workflows, manage sessions, review code, attach skill/rule files, create OpenCode native agents, inspect model/provider state, configure safety modes, or explain reliable agent-CLI command patterns.",
+    "bodySummary": "Use this skill as the unified operating guide for the three local coding-agent CLIs available on this machine:",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\agent-cli\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\agent-cli"
+  },
+  {
+    "name": "agent-workflow",
+    "description": "Agent workflow framework for building and operating long-lived, step-based workflows on top of `mycli agent-cli`. Use when the task involves `workflow.json`, step scaffolding, listener/webhook waiting, review gates, run status inspection, event injection, or controlled multi-step agent orchestration under D:\\\\agent_workspace\\\\capability-library\\\\agent-system-rules\\\\agent-workflow.",
+    "bodySummary": "Use this capability when the task should be modeled as a workflow rather than a single agent invocation.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\agent-workflow\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\agent-workflow"
+  },
+  {
+    "name": "bilibili-all-in-one",
+    "description": "A comprehensive Bilibili toolkit that integrates hot trending monitoring, video downloading, video watching/playback, subtitle downloading, and video publishing capabilities into a single unified skill. Supports Bilibili session cookie authentication for publishing and high-quality downloads. Requests go to official Bilibili API endpoints and YouTube oEmbed API (for YouTube stats) over HTTPS.",
+    "bodySummary": "A comprehensive Bilibili toolkit that integrates hot trending monitoring, video downloading, video watching/playback, subtitle downloading, and video publishing capabilities into a single unified skill.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\bilibili-all-in-one-1.0.12\\skill.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\bilibili-all-in-one-1.0.12"
+  },
+  {
+    "name": "cinematic-storyboard-generator",
+    "description": "Generate professional, cinema-grade storyboard prompts for AI image/video generation platforms (LibTV/LibLib, 即梦, Seedance, Kling, etc.). Use when creating shot-by-shot visual prompts for short dramas, films, promotional videos, or any cinematic content. Triggers on: 写分镜, 生成分镜, 分镜提示词, storyboard, shot list, 镜头设计, 影视级提示词, 短剧分镜, AI生图提示词, AI视频提示词. Includes: seven essential elements framework, four iron rules (asset anchoring, light logic, material consistency, spatial coherence), quality checklist, scene-type-specific guidance (ancient/fantasy, modern, overseas formats), shot type reference, and transition words. Built from professional film cinematography standards — not generic prompt templates, but cinema-level methodology.",
+    "bodySummary": "Generate professional, cinema-grade image prompts for AI generation platforms (LibTV/LibLib, 即梦, Seedance, etc.).",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\cinematic-storyboard-generator\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\cinematic-storyboard-generator"
+  },
+  {
+    "name": "clawhub",
+    "description": "Use when searching, inspecting, downloading, installing, updating, or publishing OpenClaw/ClawHub skills through the local mycli clawhub wrapper. Covers safe temporary installs, permanent installs into capability-library/skill-library, local registration, and auth/publish boundaries.",
+    "bodySummary": "Use this skill when working with ClawHub skills and OpenClaw packages from this workspace.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\clawhub\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\clawhub"
+  },
+  {
+    "name": "cli-anything-project",
+    "description": "Work with the local CLI-Anything project at D:\\agent_workspace\\projects\\CLI-Anything. Use when Codex needs to inspect, run, test, fix, extend, or explain CLI-Anything, including cli-hub, registry.json, public_registry.json, Python agent-harness packages, SKILL.md files, Claude/Codex/OpenClaw/OpenCode integrations, or harness generation methodology.",
+    "bodySummary": "Use `D:\\agent_workspace\\projects\\CLI-Anything` as the project root.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\cli-anything-project\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\cli-anything-project"
+  },
+  {
+    "name": "cliproxyapi",
+    "description": "Use when deploying, starting, stopping, configuring, testing, or operating the local CLIProxyAPI Go server at D:\\\\agent_workspace\\\\projects\\\\CLIProxyAPI, including local API keys, Management API secret-key, auth files, CPA integration, logs, Go build/test, and mycli cliproxyapi commands.",
+    "bodySummary": "Use this skill for the local CLIProxyAPI project:",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\cliproxyapi\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\cliproxyapi"
+  },
+  {
+    "name": "codex-cli",
+    "description": "Use the local Codex CLI (`codex`) from Codex or PowerShell. Use when Codex needs to run interactive or non-interactive Codex sessions, review code with Codex, resume/fork sessions, manage login, MCP servers, marketplaces, shell completions, feature flags, sandbox commands, or explain Codex CLI usage and command syntax.",
+    "bodySummary": "Show version and help:",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\codex-cli\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\codex-cli"
+  },
+  {
+    "name": "codex-register-cpa",
+    "description": "Use when deploying or operating the local codex-register Node.js project, configuring CLIProxyAPI/CPA auto-upload, starting one-shot or continuous OpenAI/Codex registration runs, checking auth quotas, or using the mycli codex-register wrapper.",
+    "bodySummary": "Use this skill for the local Node.js project:",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\codex-register-cpa\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\codex-register-cpa"
+  },
+  {
+    "name": "director-beat-split",
+    "description": "你是一位大师级 AI 短剧导演。每一秒都掌握在手中——节奏、情绪、张力、信息密度，全部由你把控。",
+    "bodySummary": "你是一位大师级 AI 短剧导演。每一秒都掌握在手中——节奏、情绪、张力、信息密度，全部由你把控。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\director-beat-split\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\director-beat-split"
+  },
+  {
+    "name": "doubao-jingxiang",
+    "description": "Encapsulated Doubao mirror runtime for isolated Edge + CDP automation. Use when Codex needs to operate the project at D:/agent_workspace/projects/doubao-mirror-agent-20260412 to boot the runtime, inspect status, send multi-turn text chat, continue a local session by sessionId, generate images, and download watermark-free originals through the exposed Doubao Jingxiang API or CLI.",
+    "bodySummary": "Use the project at `D:/agent_workspace/projects/doubao-mirror-agent-20260412` as the primary entrypoint for Doubao mirror automation.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\doubao-mirror-agent\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\doubao-mirror-agent"
+  },
+  {
+    "name": "duckmail-api",
+    "description": "Use when creating or managing DuckMail temporary email accounts, authenticating with DuckMail, reading inbox messages, fetching message details or raw sources, deleting messages/accounts, or integrating the DuckMail HTTP API at https://api.duckmail.sbs.",
+    "bodySummary": "Use this skill when a task needs temporary email capabilities through DuckMail, including:",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\duckmail-api\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\duckmail-api"
+  },
+  {
+    "name": "elite-longterm-memory",
+    "description": "Ultimate AI agent memory system for Cursor, Claude, ChatGPT & Copilot. WAL protocol + vector search + git-notes + cloud backup. Never lose context again. Vibe-coding ready.",
+    "bodySummary": "**The ultimate memory system for AI agents.** Combines 6 proven approaches into one bulletproof architecture.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\elite-longterm-memory-1.2.3\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\elite-longterm-memory-1.2.3"
+  },
+  {
+    "name": "github",
+    "description": "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.",
+    "bodySummary": "Use the `gh` CLI to interact with GitHub. Always specify `--repo owner/repo` when not in a git directory, or use URLs directly.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\github\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\github"
+  },
+  {
+    "name": "github",
+    "description": "Query and manage GitHub repositories - list repos, check CI status, create issues, search repos, and view recent activity.",
+    "bodySummary": "Query and manage GitHub repositories directly from your AI assistant.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\openclaw-github-assistant-2.0.1\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\openclaw-github-assistant-2.0.1"
+  },
+  {
+    "name": "gptsovits-voice-suite",
+    "description": "GPT-SoVITS 本地语音推理与模型对比工具包。用于单模型合成、批量模型横评、按模型自带 reference_audios 自动选参考音、导出串烧预览。用户提到“GPT-SoVITS/SoVITS/语音模型/参考音频/推理脚本/批量测试/音色对比”时使用。",
+    "bodySummary": "按下面顺序执行，避免“听起来都一样”的问题。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\gptsovits-voice-suite\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\gptsovits-voice-suite"
+  },
+  {
+    "name": "harness-cli",
+    "description": "Use the local Harness coding-agent CLI (`harness.exe`) from Codex or PowerShell. Use when Codex needs to run Harness prompts, choose models/providers, use Harness REPL slash commands, manage Harness sessions, inspect model/config commands, or explain Harness CLI usage and command syntax.",
+    "bodySummary": "Run a one-shot coding-agent prompt:",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\harness-cli\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\harness-cli"
+  },
+  {
+    "name": "karpathy-guidelines",
+    "description": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.",
+    "bodySummary": "Behavioral guidelines to reduce common LLM coding mistakes, derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\andrej-karpathy-skills\\skills\\karpathy-guidelines\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\andrej-karpathy-skills\\skills\\karpathy-guidelines"
+  },
+  {
+    "name": "mxai",
+    "description": "mxai 创作助手，聚合多种 AI 图片和视频生成模型。关键词：AI绘画、图片生成、视频生成、AI创作、mxai",
+    "bodySummary": "本 Skill 通过 HTTP REST API 调用 mxai 服务（不是 MCP 协议）。所有交互都是标准的 HTTP 请求（GET/POST），返回 JSON 响应。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\mxai\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\mxai"
+  },
+  {
+    "name": "nano-pdf",
+    "description": "Edit PDFs with natural-language instructions using the nano-pdf CLI.",
+    "bodySummary": "Use `nano-pdf` to apply edits to a specific page in a PDF using a natural-language instruction.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\nano-pdf-1.0.0\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\nano-pdf-1.0.0"
+  },
+  {
+    "name": "novel-writing",
+    "description": "Use this skill when helping 千束 design, plan, draft, revise, or manage fiction/novel writing, including premise development, worldbuilding, character arcs, plot structure, scene writing, prose style, continuity, chapter outlines, and long-form narrative iteration.",
+    "bodySummary": "This skill is a workspace for building a reusable novel-writing workflow with 千束.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\novel-writing\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\novel-writing"
+  },
+  {
+    "name": "opencli-project",
+    "description": "Work with the local OpenCLI project at D:\\agent_workspace\\projects\\OpenCLI. Use when Codex needs to inspect, run, test, fix, extend, or explain OpenCLI, including its TypeScript/Node CLI runtime, adapter registry, browser bridge, plugins, command manifest, OpenCLI skills, or Windows setup/test issues.",
+    "bodySummary": "Use `D:\\agent_workspace\\projects\\OpenCLI` as the project root.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\opencli-project\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\opencli-project"
+  },
+  {
+    "name": "opencode-capability-skill",
+    "description": "OpenCode capability playbook for turning OpenCode into a reusable engineering workflow. Use when operating OpenCode via CLI, designing agents, attaching rule files as pseudo-skills, choosing models, debugging capability gaps, or building scripted coding/review/architecture workflows around OpenCode.",
+    "bodySummary": "This skill is a practical operating guide for using OpenCode as a scriptable engineering runtime rather than a one-off chat tool.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\opencode-capability-skill\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\opencode-capability-skill"
+  },
+  {
+    "name": "openmaic",
+    "description": "Guided SOP for setting up and using OpenMAIC from OpenClaw. Use when the user wants to clone the OpenMAIC repo, choose a startup mode, configure recommended API keys, start the service, or generate a classroom from requirements or a PDF. Run one phase at a time and ask for confirmation before each state-changing step.",
+    "bodySummary": "Use this as a guided, confirmation-heavy SOP. Do not compress the whole setup into one reply and do not perform state-changing actions without explicit user confirmation.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\openmaic-0.3.1\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\openmaic-0.3.1"
+  },
+  {
+    "name": "pptx-generator",
+    "description": "Generate, edit, and read PowerPoint presentations. Create from scratch with PptxGenJS (cover, TOC, content, section divider, summary slides), edit existing PPTX via XML workflows, or extract text with markitdown. Triggers: PPT, PPTX, PowerPoint, presentation, slide, deck, slides.",
+    "bodySummary": "This skill handles all PowerPoint tasks: reading/analyzing existing presentations, editing template-based decks via XML manipulation, and creating presentations from scratch using PptxGenJS. It includes a complete design",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\yilian-ppt-generator\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\yilian-ppt-generator"
+  },
+  {
+    "name": "project-manager",
+    "description": "Project manager rule package for durable agent-managed projects. Use when registering projects, querying projects by name/type/status/lifecycle/phase/health/tags, managing current project status, tracking next actions, or modeling ongoing projects such as asset libraries and daily collection jobs under D:\\\\agent_workspace.",
+    "bodySummary": "Use this capability when work should be managed as a durable project instead of a one-off chat task.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\project-manager\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\project-manager"
+  },
+  {
+    "name": "project-skill-manager",
+    "description": "projects和skills管理，每次做一件事情前必看，最高优先级技能，重要性max，D:\\openclaw\\workspace\\skills\\project-skill-manager\\SKILL.md",
+    "bodySummary": "本技能架构及其注意四个状态更新，必须关注项目状态",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\project-skill-manager\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\project-skill-manager"
+  },
+  {
+    "name": "psm-test-skill",
+    "description": "Self-created skill for validating get_skill_info.py discovery",
+    "bodySummary": "用于验证 project-skill-manager 的 get_skill_info.py 能读取到自建技能。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\psm-test-skill\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\psm-test-skill"
+  },
+  {
+    "name": "qq-napcat-channel",
+    "description": "Use this skill when you need to send messages or files through the local QQ channel powered by NapCat OneBot v11.",
+    "bodySummary": "Use this skill when you need to send messages or files through the local QQ channel powered by NapCat OneBot v11.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\qq-napcat-channel\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\qq-napcat-channel"
+  },
+  {
+    "name": "remotion-video-toolkit",
+    "description": "Complete toolkit for programmatic video creation with Remotion + React. Covers animations, timing, rendering (CLI/Node.js/Lambda/Cloud Run), captions, 3D, charts, text effects, transitions, and media handling. Use when writing Remotion code, building video generation pipelines, or creating data-driven video templates.",
+    "bodySummary": "Write React components, get real MP4 videos. This skill teaches your AI agent how to build with Remotion — from a first animation to a production rendering pipeline.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\remotion-video-toolkit-1.4.0\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\remotion-video-toolkit-1.4.0"
+  },
+  {
+    "name": "remotion-video-toolkit",
+    "description": "Complete toolkit for programmatic video creation with Remotion + React. Covers animations, timing, rendering (CLI/Node.js/Lambda/Cloud Run), captions, 3D, charts, text effects, transitions, and media handling. Use when writing Remotion code, building video generation pipelines, or creating data-driven video templates.",
+    "bodySummary": "Write React components, get real MP4 videos. This skill teaches your AI agent how to build with Remotion — from a first animation to a production rendering pipeline.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\remotion-video-toolkit-1.4.0\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\remotion-video-toolkit-1.4.0"
+  },
+  {
+    "name": "script-to-storyboard",
+    "description": "将电影/视频剧本转换为分镜脚本表格。适用于：(1) 将剧本文本解析为结构化分镜，(2) 根据场景描述生成拍摄计划，(3) 提取视觉元素并输出标准分镜表格（镜号、景别/拍摄角度、画面内容、出场人物、场景、音效）。当用户提到分镜、storyboard、镜头脚本、剧本转换时触发。",
+    "bodySummary": "将剧本转换为标准分镜脚本表格。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\script-to-storyboard\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\script-to-storyboard"
+  },
+  {
+    "name": "self-improvement",
+    "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.",
+    "bodySummary": "Log learnings and errors to markdown files for continuous improvement. Coding agents can later process these into fixes, and important learnings get promoted to project memory.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\self-improving-agent-3.0.5\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\self-improving-agent-3.0.5"
+  },
+  {
+    "name": "short-video-script-builder",
+    "description": "Chinese short-video script workflow for benchmark-led script creation. Use when Codex needs to turn one to five benchmark videos plus product/topic context into a structured script pack with hook analysis, formula extraction, script and storyboard generation, pacing, CTA, and compliance checks. Trigger when the user asks for a Douyin short-video script, benchmark breakdown, ad creative script, seeding script, or wants to turn winning short videos into a reusable scripting framework.",
+    "bodySummary": "把短视频脚本创作，从“模仿一个爆款”，升级成“拆结构、提公式、再生成”。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\cell-short-video-script-builder\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\cell-short-video-script-builder"
+  },
+  {
+    "name": "skill-creator",
+    "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
+    "bodySummary": "This skill provides guidance for creating effective skills.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\skill-creator\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\skill-creator"
+  },
+  {
+    "name": "skill-vetter",
+    "description": "Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.",
+    "bodySummary": "Security-first vetting protocol for AI agent skills. **Never install a skill without vetting it first.**",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\skill-vetter-1.0.0\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\skill-vetter-1.0.0"
+  },
+  {
+    "name": "spoken-script-polish",
+    "description": "Spoken-script polishing for Chinese videos, tutorials, and talking-head content. Use when Codex needs to turn a readable draft into something that can actually be spoken smoothly: remove written-language stiffness, shorten breath units, mark pauses or emphasis where useful, and preserve meaning while making the script sound natural aloud.",
+    "bodySummary": "这个 Skill 处理的不是“写什么”，而是“怎么说出来更顺”。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\cell-spoken-script-polish\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\cell-spoken-script-polish"
+  },
+  {
+    "name": "summarize",
+    "description": "Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).",
+    "bodySummary": "Fast CLI to summarize URLs, local files, and YouTube links.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\summarize-1.0.0\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\summarize-1.0.0"
+  },
+  {
+    "name": "task-hall",
+    "description": "Use when an agent needs to publish, inspect, claim, report, or review tasks through the local mycli task-hall. Covers frontdesk-v0.2 JSON task requests, Markdown task specs, model-tier claim gates, reviewer-v0.1 task reports, and safe task lifecycle conventions.",
+    "bodySummary": "Use this skill when working with the local agent task hall:",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\task-hall\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\task-hall"
+  },
+  {
+    "name": "tavily-search",
+    "description": "Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata.",
+    "bodySummary": "Search the web and get relevant results optimized for LLM consumption.",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\liang-tavily-search-1.0.1\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\liang-tavily-search-1.0.1"
+  },
+  {
+    "name": "tencent-cloud-server-operation",
+    "description": "腾讯云 CVM 服务器远程操作指南。Use when connecting to, inspecting, or operating the Tencent Cloud server at 49.232.183.40 from this workspace, especially via PuTTY plink password-based SSH and WireGuard bridge work.",
+    "bodySummary": "本 skill 记录当前工作区可直接操作的腾讯云服务器连接信息、推荐命令、服务器目录概况和操作边界。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\aliyun-server-operation\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\aliyun-server-operation"
+  },
+  {
+    "name": "tieba-claw",
+    "description": "百度贴吧 skill，用于在贴吧社区进行逛吧、发帖、评论、点赞等互动操作。当用户需要操作贴吧、配置贴吧心跳任务、或处理贴吧消息时使用此技能。",
+    "bodySummary": "百度贴吧 skill 是一个专为 Agent 设计的中文交流社区。在这里，Agent 可以逛吧、发帖、评论、点赞，与其他吧友（Agent）愉快地进行互动和交流。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\tieba-claw\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\tieba-claw"
+  },
+  {
+    "name": "video-production-workflow",
+    "description": "Workflow-style video production skill bundle for Chinese/English knowledge videos, short-video scripts, storyboard planning, spoken-script polishing, cinematic prompt design, and Remotion MP4 rendering. Use when the user asks to plan or create a video from an idea/topic/brief/article, especially when they need a process such as benchmark analysis, hook strategy, script pack, oral narration, storyboard table, AI-video prompts, or final Remotion video output. This skill intentionally bundles several source skills without deeply integrating them yet.",
+    "bodySummary": "This is a **wrapper / bundle skill**. It collects a set of specialized video-production skills under `vendor-skills/` and gives a lightweight routing workflow. It does **not** merge or rewrite the child skills yet; use t",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow"
+  },
+  {
+    "name": "video-script-generator",
+    "description": "生成短视频脚本和分镜。输入产品/主题描述、目标受众、时长，输出完整脚本+分镜结构（JSON/YAML）。支持多种模板：痛点-解决、反转剧情、before-after。触发词：视频脚本、短视频文案、分镜、storyboard、video script。",
+    "bodySummary": "1. 收集输入信息 2. 选择模板风格 3. 生成脚本+分镜结构 4. 输出结构化数据供下游消费",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\video-script-generator\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\video-script-generator"
+  },
+  {
+    "name": "video-script-writer",
+    "description": "短视频脚本生成专家，面向抖音、B站、YouTube、小红书、视频号内容创作者，快速生成爆款脚本和文案。触发场景：用户提到\"写脚本\"、\"短视频脚本\"、\"抖音文案\"、\"B站脚本\"、\"视频选题\"、\"直播话术\"、\"爆款标题\"、\"小红书笔记\"、\"视频号脚本\"、\"YouTube脚本\"、\"口播稿\"、\"分镜脚本\"、\"带货话术\"、\"内容创作\"、\"帮我写一个视频\"、\"开场白\"、\"钩子\"、\"封面文案\"、\"话题标签\"等关键词时激活。支持知识科普、情感故事、产品测评、带货直播等多种内容类型。",
+    "bodySummary": "1. **爆款选题生成**：根据关键词、行业、目标受众生成高互动潜力选题 2. **完整视频脚本**：开场钩子 → 内容展开 → 结尾CTA 完整结构 3. **口播稿**：自然口语化，含停顿标注、语气词、节奏控制 4. **分镜脚本**：含画面描述、字幕文案、BGM建议、转场方式 5. **标题和封面**：多版本爆款标题 + 封面文案 + 话题标签 6. **多平台适配**：自动调整风格、时长、格式匹配目标平台",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\cn-video-script-writer\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\video-production-workflow\\vendor-skills\\cn-video-script-writer"
+  },
+  {
+    "name": "whisper-local-stt",
+    "description": "使用本地 Whisper（faster-whisper）将音频/视频转文字，支持中英文、时间戳输出、JSON/TXT/SRT 导出；并可基于转写文本生成多长度摘要（short/medium/long）。用户提到“语音转文字/视频转写/字幕生成/whisper/asr/stt/transcribe/转写后总结”时使用。适用于离线优先、避免依赖外部转写 API 的场景。",
+    "bodySummary": "本 skill **自包含可运行**，不依赖其他项目目录。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\whisper-local-stt\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\whisper-local-stt"
+  },
+  {
+    "name": "windows-shortcut-registration-skill",
+    "description": "Windows 快捷键/快捷启动注册技能。用于在本机创建、修改、排查和持久化 AutoHotkey、Windows Terminal、PowerShell、VS Code 等快捷键方案；适用于“给某个目录或命令绑定热键”“开机自启快捷键脚本”“修复热键冲突或命令启动失败”“把终端/编辑器/CLI 打包成一键打开工作流”等任务。",
+    "bodySummary": "本技能用于把“快捷打开某个工具 / 进入某个目录 / 执行某个命令 / 持久化热键方案”整理成稳定、可复用、可排查的本机自动化流程。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\windows-shortcut-registration-skill\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\windows-shortcut-registration-skill"
+  },
+  {
+    "name": "workflow_engine",
+    "description": "OpenClaw 可读取的工作流引擎说明文档，定义 workflow.json、节点结构、参数传播、项目生成、运行、断点续跑，以及在项目 action 函数中通过 scripts.llm 调用大模型的方式。",
+    "bodySummary": "`workflow_engine` 是一个基于 `workflow.json` 驱动的轻量工作流引擎。",
+    "skillMdPath": "D:\\agent_workspace\\capability-library\\skill-library\\workflow_engine\\SKILL.md",
+    "skillRootPath": "D:\\agent_workspace\\capability-library\\skill-library\\workflow_engine"
+  }
+]

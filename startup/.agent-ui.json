@@ -1,0 +1,13 @@
+{
+  "id": "mycli.startup.ui",
+  "name": "Startup Commands UI",
+  "description": "Monitor and control mycli commands registered to run at Windows sign-in.",
+  "type": "mycli-ui",
+  "url": "http://127.0.0.1:46020",
+  "health": { "url": "http://127.0.0.1:46020/api/snapshot", "timeoutMs": 3000 },
+  "commands": {
+    "start": ["startup", "ui"],
+    "stop": ["startup", "ui-stop"],
+    "open": ["startup", "ui-open"]
+  }
+}

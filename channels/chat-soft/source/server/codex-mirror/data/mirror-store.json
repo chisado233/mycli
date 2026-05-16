@@ -1,0 +1,16 @@
+{
+  "aliases": {
+    "019d9b5d-364a-7632-b28f-284028e36cc8": "测试镜像会话"
+  },
+  "hiddenSessionIds": [],
+  "defaultModelId": "gpt-5.4",
+  "status": {
+    "connectionState": "disconnected",
+    "reason": "Codex integration is not wired yet.",
+    "defaultModelId": "gpt-5.4"
+  },
+  "sessions": [],
+  "messages": {},
+  "currentSessionId": "019d9b5d-364a-7632-b28f-284028e36cc8",
+  "lastSyncedAt": "2026-04-17T12:14:38.436Z"
+}

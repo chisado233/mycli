@@ -1,0 +1,2667 @@
+千束，我建议 `project-manager` 的结构要分成两层：
+
+1. **项目内结构**：每个项目自己的 `.agent-project/`，负责长期事实来源。
+2. **全局注册/索引结构**：project-manager 自己维护一个 registry/index，负责跨项目查询。
+
+也就是说，不要只靠扫描每个项目的 README；也不要只靠全局 registry。  
+应该是：
+
+```text
+项目内 .agent-project/ = 单项目真相来源
+全局 registry/index   = 查询加速与统一入口
+```
+
+这样才能支持你说的：
+
+- 按状态查
+- 按名称查
+- 按生命周期查
+- 按项目类型查
+- 按持续/有限项目查
+- 按当前阶段查
+- 按健康度查
+- 按是否需要用户处理查
+- 按更新时间/陈旧状态查
+- 按标签/领域/owner 查
+
+---
+
+# 1. 设计参考
+
+我刚查了本地和外部模式，几个结论很明确。
+
+## 1.1 本地已有旧模式：`project-skill-manager`
+
+旧的 `project-skill-manager` 是通过扫描：
+
+```text
+D:\agent_workspace\projects\*/README.md
+```
+
+读取 README YAML frontmatter：
+
+```yaml
+---
+name: 项目名称
+description: 一句话描述项目
+status: todo/done/sustained
+---
+```
+
+脚本返回：
+
+```json
+{
+  "name": "项目名称",
+  "status": "状态",
+  "description": "描述",
+  "path": "项目路径"
+}
+```
+
+这个模式的优点：
+
+- 简单
+- 人类可编辑
+- 可以按 status 过滤
+- 适合早期
+
+缺点也明显：
+
+- status 太粗
+- 查询字段太少
+- 无生命周期、阶段、健康度、持续运行信息
+- README 既做人类文档又做机器事实来源，容易混乱
+- 不适合复杂查询和持续项目
+
+所以新设计应该继承它的“可扫描、可注册、可查询”思想，但升级为结构化 `.agent-project/project.json`。
+
+---
+
+## 1.2 本地 `skill-library` registry 模式
+
+`mycli skill-library` 当前有：
+
+```text
+capability-library/mycli/skill-library/registry.json
+```
+
+它通过扫描 `SKILL.md` frontmatter 生成 registry，registry 用于快速查询。
+
+这个模式对 project-manager 很有价值：
+
+```text
+source of truth: 每个 skill 的 SKILL.md
+query index: mycli/skill-library/registry.json
+```
+
+迁移到项目管理就是：
+
+```text
+source of truth: 每个项目的 .agent-project/project.json
+query index: project-manager/registry.json 或 index.json
+```
+
+---
+
+## 1.3 agent-workflow 的项目结构
+
+`agent-workflow` 已经有一个很成熟的工程结构：
+
+```text
+my-workflow/
+  workflow.json
+  README.md
+  .generated/
+    manifest.json
+    graph.json
+    scaffold.lock.json
+  context/
+  steps/
+  shared/
+  runtime/
+  var/
+```
+
+这说明我们在 project-manager 里也应该区分：
+
+```text
+人工维护的事实来源
+自动生成的索引/视图
+运行期产物
+```
+
+所以 `.agent-project/` 里也建议有：
+
+```text
+.generated/
+var/
+```
+
+但第一版可以简化。
+
+---
+
+## 1.4 外部模式：Backstage / Kubernetes / Nx
+
+几个外部系统对查询很有启发。
+
+### Backstage
+
+Backstage 的 `catalog-info.yaml` 结构是：
+
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: artist-web
+  description: ...
+  labels:
+    example.com/custom: value
+  annotations:
+    example.com/service-discovery: artistweb
+  tags:
+    - java
+spec:
+  type: website
+  lifecycle: production
+  owner: team
+  system: public-websites
+```
+
+核心启发：
+
+```text
+metadata = 名称、描述、标签、链接、注解
+spec     = 类型、生命周期、owner、system
+```
+
+非常适合我们借鉴。
+
+### Kubernetes
+
+Kubernetes 最强的是 labels/selectors：
+
+```yaml
+labels:
+  app.kubernetes.io/name: wordpress
+  app.kubernetes.io/instance: wordpress-abcxyz
+  app.kubernetes.io/component: server
+  app.kubernetes.io/part-of: wordpress
+  app.kubernetes.io/managed-by: Helm
+```
+
+核心启发：
+
+- label 用于查询和分组
+- annotation 用于外部系统/说明性元数据
+- selector 支持多个条件 AND 查询
+
+### Nx
+
+Nx `project.json` 支持：
+
+```json
+{
+  "name": "mylib",
+  "root": "libs/mylib",
+  "projectType": "library",
+  "tags": ["scope:myteam"],
+  "metadata": {},
+  "targets": {}
+}
+```
+
+核心启发：
+
+- 每个项目有 `root`
+- 项目有 `projectType`
+- tags 用于图和查询
+- target 表示可执行动作
+
+对我们来说，`targets` 可以演化成“项目可执行动作/常用命令”，但 MVP 先不必重。
+
+---
+
+# 2. 总体结构
+
+我建议 project-manager 的数据结构分三层：
+
+```text
+Project Record       单项目事实来源
+Project Registry     已注册项目清单
+Project Index        查询优化索引/派生视图
+```
+
+对应文件：
+
+```text
+每个项目/
+  .agent-project/
+    project.json        # 单项目事实来源
+    status.md           # 人类可读当前状态
+    tasks/
+    next-actions/
+    decisions/
+    context/
+    operations/
+    artifacts/
+    runs/
+    handoffs/
+    reviews/
+    .generated/
+
+project-manager自身/
+  registry.json         # 全局注册表
+  index.json            # 查询索引
+```
+
+---
+
+# 3. 单项目目录结构
+
+建议每个被管理项目内放：
+
+```text
+{project-root}/
+  .agent-project/
+    project.json
+    status.md
+
+    tasks/
+      task-0001.json
+      task-0002.json
+
+    next-actions/
+      next-0001.json
+      next-0002.json
+
+    decisions/
+      ADR-0001-something.md
+      index.json
+
+    context/
+      index.json
+      pinned-files.md
+      glossary.md
+      architecture.md
+
+    operations/
+      runbook.md
+      schedule.json
+      last-run.json
+      history.jsonl
+
+    artifacts/
+      index.json
+
+    runs/
+      agent-runs.json
+      workflow-runs.json
+
+    handoffs/
+      2026-04-24.md
+
+    reviews/
+      review-0001.md
+
+    .generated/
+      summary.json
+      search-doc.json
+      last-indexed.json
+```
+
+## 3.1 MVP 版本
+
+第一版不要太重，MVP 可以是：
+
+```text
+.agent-project/
+  project.json
+  status.md
+  tasks/
+  next-actions.json
+  decisions/
+  context/
+    index.json
+  operations/
+    runbook.md
+  runs/
+  handoffs/
+  .generated/
+```
+
+---
+
+# 4. `project.json` 结构设计
+
+我建议采用类似 Backstage 的 envelope：
+
+```json
+{
+  "apiVersion": "agent-project/v1",
+  "kind": "Project",
+  "metadata": {},
+  "spec": {},
+  "status": {},
+  "current": {},
+  "operations": {},
+  "relations": {},
+  "timestamps": {}
+}
+```
+
+为什么这样分？
+
+| 字段 | 作用 |
+|---|---|
+| `apiVersion` | schema 版本，方便以后迁移 |
+| `kind` | 未来可能有 ProjectGroup / Program |
+| `metadata` | 用于发现、展示、查询 |
+| `spec` | 项目本质定义，不频繁变化 |
+| `status` | 当前状态，经常变化 |
+| `current` | 当前推进项 |
+| `operations` | 持续运行项目运行状态 |
+| `relations` | 和 workflow、skill、repo、项目之间的关系 |
+| `timestamps` | 创建、更新、索引时间 |
+
+---
+
+# 5. 推荐 `project.json` 示例
+
+```json
+{
+  "apiVersion": "agent-project/v1",
+  "kind": "Project",
+  "metadata": {
+    "id": "daily-hot-news",
+    "name": "每日新闻热点收集",
+    "aliases": ["热点收集", "daily-news"],
+    "description": "每天自动收集和整理热点新闻主题。",
+    "root": "D:\\agent_workspace\\projects\\daily-hot-news",
+    "owner": "千束",
+    "domain": "content-ops",
+    "tags": ["daily", "news", "hot-topics", "automation"],
+    "labels": {
+      "agent.project/type": "research",
+      "agent.project/mode": "ongoing",
+      "agent.project/domain": "content-ops",
+      "agent.project/managed-by": "project-manager"
+    },
+    "annotations": {
+      "notes": "持续运行型内容运营项目"
+    }
+  },
+  "spec": {
+    "project_type": "research",
+    "project_mode": "ongoing",
+    "priority": "high",
+    "visibility": "private",
+    "source": {
+      "kind": "local",
+      "path": "D:\\agent_workspace\\projects\\daily-hot-news"
+    },
+    "goals": [
+      {
+        "id": "goal-0001",
+        "title": "持续收集每日热点并生成摘要",
+        "status": "active"
+      }
+    ],
+    "scope": {
+      "in": [
+        "热点采集",
+        "摘要生成",
+        "每日归档"
+      ],
+      "out": [
+        "自动发布到外部平台"
+      ]
+    }
+  },
+  "status": {
+    "registration": "indexed",
+    "lifecycle": "active",
+    "phase": "operations",
+    "activity": "stable",
+    "health": "green",
+    "delivery": "published",
+    "attention": [],
+    "summary": "每日热点收集稳定运行。",
+    "updated_at": "2026-04-24T08:10:00+08:00",
+    "updated_by": "scheduler"
+  },
+  "current": {
+    "goal_id": "goal-0001",
+    "milestone_id": null,
+    "task_id": null,
+    "next_action_id": "next-ops-check",
+    "summary": "等待下一次定时运行。"
+  },
+  "operations": {
+    "enabled": true,
+    "cadence": "daily",
+    "trigger": "schedule",
+    "schedule_expr": "0 8 * * *",
+    "last_run_at": "2026-04-24T08:00:00+08:00",
+    "last_run_status": "success",
+    "last_success_at": "2026-04-24T08:00:00+08:00",
+    "next_run_at": "2026-04-25T08:00:00+08:00",
+    "consecutive_failures": 0,
+    "run_count_7d": 7,
+    "success_count_7d": 7,
+    "output_summary": "Collected 32 hot topics and generated daily digest.",
+    "runbook": ".agent-project/operations/runbook.md"
+  },
+  "relations": {
+    "depends_on_projects": [],
+    "related_projects": [],
+    "workflows": [],
+    "skills": [],
+    "repos": [],
+    "artifacts": []
+  },
+  "timestamps": {
+    "created_at": "2026-04-24T00:00:00+08:00",
+    "updated_at": "2026-04-24T08:10:00+08:00",
+    "last_activity_at": "2026-04-24T08:10:00+08:00",
+    "last_indexed_at": "2026-04-24T08:11:00+08:00"
+  }
+}
+```
+
+---
+
+# 6. 为什么要有 `metadata.labels`
+
+`tags` 是人类友好的：
+
+```json
+"tags": ["daily", "news", "automation"]
+```
+
+`labels` 是机器查询友好的：
+
+```json
+"labels": {
+  "agent.project/type": "research",
+  "agent.project/mode": "ongoing",
+  "agent.project/domain": "content-ops"
+}
+```
+
+这样未来可以支持类似 Kubernetes 的 selector：
+
+```powershell
+mycli project-manager query --selector "agent.project/mode=ongoing,agent.project/domain=content-ops"
+```
+
+第一版可以不实现完整 selector，但结构先留好。
+
+---
+
+# 7. 全局 Registry 结构
+
+项目查询不能每次都全盘扫描所有 `.agent-project/project.json`。  
+所以需要全局 registry。
+
+建议放在：
+
+```text
+D:\agent_workspace\capability-library\agent-system-rules\project-manager\registry.json
+```
+
+或注册到 mycli 后：
+
+```text
+D:\agent_workspace\capability-library\mycli\project-manager\registry.json
+```
+
+我建议：
+
+- 源规则能力目录有模板和脚本
+- mycli 包里有实际 registry
+
+结构：
+
+```json
+{
+  "schema_version": "agent-project-registry/v1",
+  "updated_at": "2026-04-24T08:11:00+08:00",
+  "source_roots": [
+    "D:\\agent_workspace\\projects",
+    "D:\\agent_workspace\\capability-library"
+  ],
+  "projects": [
+    {
+      "id": "daily-hot-news",
+      "name": "每日新闻热点收集",
+      "aliases": ["热点收集", "daily-news"],
+      "description": "每天自动收集和整理热点新闻主题。",
+      "root": "D:\\agent_workspace\\projects\\daily-hot-news",
+      "project_file": "D:\\agent_workspace\\projects\\daily-hot-news\\.agent-project\\project.json",
+      "status_file": "D:\\agent_workspace\\projects\\daily-hot-news\\.agent-project\\status.md",
+      "project_type": "research",
+      "project_mode": "ongoing",
+      "owner": "千束",
+      "domain": "content-ops",
+      "tags": ["daily", "news", "hot-topics", "automation"],
+      "labels": {
+        "agent.project/type": "research",
+        "agent.project/mode": "ongoing"
+      },
+      "lifecycle": "active",
+      "phase": "operations",
+      "activity": "stable",
+      "health": "green",
+      "delivery": "published",
+      "attention": [],
+      "current_task_id": null,
+      "current_next_action_id": "next-ops-check",
+      "summary": "每日热点收集稳定运行。",
+      "last_activity_at": "2026-04-24T08:10:00+08:00",
+      "updated_at": "2026-04-24T08:10:00+08:00",
+      "last_indexed_at": "2026-04-24T08:11:00+08:00",
+      "is_missing": false,
+      "is_stale": false
+    }
+  ]
+}
+```
+
+## 7.1 Registry 是摘要，不是真相来源
+
+必须明确：
+
+```text
+project.json 是 truth
+registry.json 是 index/cache
+```
+
+所以 registry 可以随时重建。
+
+---
+
+# 8. 进一步的 Index 结构
+
+Registry 是项目列表。  
+如果项目多了，可以再生成查询索引。
+
+```text
+index/
+  by-id.json
+  by-name.json
+  by-type.json
+  by-mode.json
+  by-lifecycle.json
+  by-phase.json
+  by-activity.json
+  by-health.json
+  by-delivery.json
+  by-attention.json
+  by-owner.json
+  by-tag.json
+  stale.json
+```
+
+但 MVP 不需要真的拆这么多文件。  
+第一版一个 `registry.json` 就够，查询时在内存里过滤。
+
+等项目很多了再生成：
+
+```json
+{
+  "by_lifecycle": {
+    "active": ["daily-hot-news", "project-manager"],
+    "paused": []
+  },
+  "by_phase": {
+    "operations": ["daily-hot-news"],
+    "construction": ["project-manager"]
+  },
+  "by_tag": {
+    "automation": ["daily-hot-news"]
+  }
+}
+```
+
+---
+
+# 9. 查询模式设计
+
+你提到“基于状态，基于名称，基于生命周期什么的查询”，我建议 query 命令支持两层。
+
+## 9.1 简单参数查询
+
+```powershell
+mycli project-manager query
+mycli project-manager query --name news
+mycli project-manager query --id daily-hot-news
+mycli project-manager query --type research
+mycli project-manager query --mode ongoing
+mycli project-manager query --lifecycle active
+mycli project-manager query --phase operations
+mycli project-manager query --activity stable
+mycli project-manager query --health yellow
+mycli project-manager query --delivery published
+mycli project-manager query --attention needs_maintenance
+mycli project-manager query --owner 千束
+mycli project-manager query --tag automation
+mycli project-manager query --domain content-ops
+mycli project-manager query --stale
+```
+
+支持组合：
+
+```powershell
+mycli project-manager query --mode ongoing --health yellow
+mycli project-manager query --type capability --lifecycle active
+mycli project-manager query --phase maintenance --attention needs_unblock
+```
+
+默认 AND 语义。
+
+---
+
+## 9.2 Selector 查询
+
+未来支持：
+
+```powershell
+mycli project-manager query --selector "agent.project/mode=ongoing,agent.project/domain=content-ops"
+```
+
+或者：
+
+```powershell
+mycli project-manager query --where "status.lifecycle=active,status.health!=green"
+```
+
+但第一版不建议上复杂表达式。
+
+---
+
+# 10. 查询输出格式
+
+默认 table：
+
+```text
+id              name              type      mode     lifecycle  phase       activity  health  delivery   updated
+daily-hot-news  每日热点新闻收集  research  ongoing  active     operations  stable    green   published  2026-04-24
+project-manager Project Manager   capability finite   planned    requirements waiting  green   concept    2026-04-24
+```
+
+JSON：
+
+```powershell
+mycli project-manager query --json
+```
+
+输出 registry entries。
+
+详细查看：
+
+```powershell
+mycli project-manager get daily-hot-news
+```
+
+返回完整 `project.json`。
+
+---
+
+# 11. 推荐的查询字段清单
+
+## 11.1 基础查询字段
+
+```text
+id
+name
+aliases
+description
+root
+owner
+domain
+tags
+labels
+```
+
+## 11.2 类型查询字段
+
+```text
+project_type
+project_mode
+visibility
+priority
+```
+
+## 11.3 状态查询字段
+
+```text
+registration
+lifecycle
+phase
+activity
+health
+delivery
+attention
+```
+
+## 11.4 当前推进查询字段
+
+```text
+current_task_id
+current_next_action_id
+current_goal_id
+```
+
+## 11.5 运行查询字段
+
+```text
+operations.enabled
+operations.cadence
+operations.trigger
+operations.last_run_status
+operations.consecutive_failures
+operations.next_run_at
+```
+
+## 11.6 时间查询字段
+
+```text
+created_at
+updated_at
+last_activity_at
+last_indexed_at
+is_stale
+```
+
+---
+
+# 12. `status.md` 结构
+
+`status.md` 是给人和 agent 快速看的，不是主事实来源。
+
+```md
+# Project Status: 每日新闻热点收集
+
+## Summary
+
+每日热点收集稳定运行。
+
+## Current State
+
+- Type: research
+- Mode: ongoing
+- Lifecycle: active
+- Phase: operations
+- Activity: stable
+- Health: green
+- Delivery: published
+- Attention: none
+
+## Current Focus
+
+等待下一次定时运行。
+
+## Operations
+
+- Cadence: daily
+- Last Run: 2026-04-24 08:00
+- Last Run Status: success
+- Next Run: 2026-04-25 08:00
+- Consecutive Failures: 0
+
+## Next Actions
+
+- next-ops-check: Monitor next scheduled run.
+
+## Risks / Blockers
+
+None.
+
+## Recent Updates
+
+- 2026-04-24: Collected 32 hot topics and generated daily digest.
+```
+
+原则：
+
+```text
+project.json = 机器读
+status.md    = 人类/agent 快速读
+```
+
+---
+
+# 13. 任务与推进项结构
+
+项目结构必须支持“推进项”。
+
+我建议：
+
+```text
+tasks/
+  task-0001.json
+next-actions/
+  next-0001.json
+```
+
+如果第一版想简单：
+
+```text
+tasks.json
+next-actions.json
+```
+
+但长期看，还是“一个任务一个文件”更好，类似 taskmd 和 ADR。
+
+## 13.1 task 示例
+
+```json
+{
+  "id": "task-0001",
+  "title": "设计 project-manager 项目结构",
+  "type": "design",
+  "status": "in_progress",
+  "priority": "high",
+  "phase": "architecture",
+  "owner": "assistant",
+  "depends_on": [],
+  "acceptance_criteria": [
+    "支持项目注册",
+    "支持按状态查询",
+    "支持按生命周期查询",
+    "支持持续项目结构"
+  ],
+  "created_at": "2026-04-24T00:00:00+08:00",
+  "updated_at": "2026-04-24T00:00:00+08:00"
+}
+```
+
+## 13.2 next-action 示例
+
+```json
+{
+  "id": "next-0001",
+  "title": "确认项目结构 v0.1",
+  "type": "decide",
+  "status": "open",
+  "priority": "high",
+  "owner": "千束",
+  "blocks": ["task-0002"],
+  "reason": "项目结构决定 registry、query、schema 的基础。",
+  "created_at": "2026-04-24T00:00:00+08:00"
+}
+```
+
+---
+
+# 14. 项目注册流程
+
+## 14.1 init
+
+```powershell
+mycli project-manager init <project-root> --id <id> --name <name> --type <type> --mode finite|ongoing
+```
+
+生成：
+
+```text
+.agent-project/
+  project.json
+  status.md
+  tasks/
+  next-actions/
+  decisions/
+  context/
+  operations/
+  runs/
+  handoffs/
+  .generated/
+```
+
+## 14.2 register
+
+```powershell
+mycli project-manager register <project-root>
+```
+
+逻辑：
+
+1. 检查 `.agent-project/project.json`
+2. 读取 metadata/spec/status
+3. 写入/更新全局 `registry.json`
+4. 生成摘要字段
+5. 标记 `last_indexed_at`
+
+## 14.3 scan
+
+```powershell
+mycli project-manager scan D:\agent_workspace\projects
+```
+
+扫描：
+
+```text
+**/.agent-project/project.json
+```
+
+可兼容旧模式：
+
+```text
+README.md YAML frontmatter
+```
+
+如果发现旧格式：
+
+```yaml
+status: sustained
+```
+
+映射为：
+
+```json
+"project_mode": "ongoing",
+"lifecycle": "active",
+"phase": "operations"
+```
+
+---
+
+# 15. 旧状态迁移映射
+
+旧 `project-skill-manager` 状态：
+
+```text
+todo
+done
+sustained
+skill_dependent
+```
+
+映射建议：
+
+## `todo`
+
+```json
+{
+  "project_mode": "finite",
+  "lifecycle": "active",
+  "phase": "construction",
+  "activity": "in_progress"
+}
+```
+
+如果只是刚创建，也可以：
+
+```json
+"lifecycle": "planned"
+```
+
+## `done`
+
+```json
+{
+  "project_mode": "finite",
+  "lifecycle": "completed",
+  "phase": "closure",
+  "activity": "stable"
+}
+```
+
+## `sustained`
+
+```json
+{
+  "project_mode": "ongoing",
+  "lifecycle": "active",
+  "phase": "operations",
+  "activity": "stable"
+}
+```
+
+## `skill_dependent`
+
+不要作为主状态，而作为 protection/label：
+
+```json
+"labels": {
+  "agent.project/protection": "skill-dependent"
+}
+```
+
+或：
+
+```json
+"protection": ["skill_dependent", "do_not_delete"]
+```
+
+---
+
+# 16. 项目关系结构
+
+为了支持后面查“哪些项目依赖某技能/哪个 workflow 属于哪个项目”，要有 relations。
+
+```json
+"relations": {
+  "depends_on_projects": [
+    "asset-library"
+  ],
+  "related_projects": [
+    "news-publisher"
+  ],
+  "workflows": [
+    {
+      "id": "daily_news_flow",
+      "path": "D:\\agent_workspace\\projects\\daily-hot-news\\workflow.json"
+    }
+  ],
+  "skills": [
+    {
+      "name": "news-collector",
+      "path": "D:\\agent_workspace\\capability-library\\skill-library\\news-collector"
+    }
+  ],
+  "repos": [
+    {
+      "type": "git",
+      "path": "D:\\agent_workspace\\projects\\daily-hot-news",
+      "remote": null
+    }
+  ],
+  "artifacts": []
+}
+```
+
+这样可以支持：
+
+```powershell
+mycli project-manager query --depends-on asset-library
+mycli project-manager query --skill news-collector
+mycli project-manager query --workflow daily_news_flow
+```
+
+---
+
+# 17. 查询系统的推荐实现逻辑
+
+## 17.1 查询优先读 registry
+
+```text
+query -> registry.json -> filter -> output
+```
+
+## 17.2 get 读 project.json
+
+```text
+get <id> -> registry 找 project_file -> 读完整 project.json
+```
+
+## 17.3 refresh 重建 registry
+
+```text
+refresh/scan -> 扫描 source_roots -> 重建 registry
+```
+
+## 17.4 stale 计算
+
+不要把 stale 完全写死，可以查询时计算：
+
+```text
+is_stale = now - status.updated_at > stale_after_days
+```
+
+项目也可以配置：
+
+```json
+"spec": {
+  "stale_after_days": 14
+}
+```
+
+ongoing 项目可以更严格：
+
+```json
+"operations": {
+  "stale_after_hours": 36
+}
+```
+
+---
+
+# 18. 查询命令面建议
+
+```powershell
+# 列出全部
+mycli project-manager list
+
+# 查询
+mycli project-manager query --name project
+mycli project-manager query --type capability
+mycli project-manager query --mode ongoing
+mycli project-manager query --lifecycle active
+mycli project-manager query --phase operations
+mycli project-manager query --activity degraded
+mycli project-manager query --health red
+mycli project-manager query --delivery published
+mycli project-manager query --attention needs_maintenance
+mycli project-manager query --tag automation
+mycli project-manager query --owner 千束
+mycli project-manager query --domain content-ops
+
+# 组合查询
+mycli project-manager query --mode ongoing --health yellow
+mycli project-manager query --lifecycle active --attention needs_user_decision
+
+# 获取完整项目
+mycli project-manager get daily-hot-news
+
+# 状态摘要
+mycli project-manager status daily-hot-news
+
+# 重建索引
+mycli project-manager refresh
+mycli project-manager scan D:\agent_workspace\projects
+```
+
+---
+
+# 19. 我建议的最终目录落点
+
+## 19.1 project-manager 能力目录
+
+```text
+D:\agent_workspace\capability-library\agent-system-rules\project-manager\
+  README.md
+  SKILL.md
+  USER_MANUAL.md
+  REGISTRATION.md
+
+  schemas/
+    project.schema.json
+    registry.schema.json
+    task.schema.json
+    next-action.schema.json
+    operation.schema.json
+
+  templates/
+    project.json
+    status.md
+    task.json
+    next-action.json
+    decision.md
+    runbook.md
+
+  scripts/
+    project-manager.ps1
+    register-to-mycli.ps1
+
+  src/
+    project_manager.py
+
+  examples/
+    finite_capability_project/
+    ongoing_asset_library/
+    ongoing_daily_news/
+
+  tests/
+```
+
+## 19.2 每个项目目录
+
+```text
+{project-root}/
+  .agent-project/
+    project.json
+    status.md
+    tasks/
+    next-actions/
+    decisions/
+    context/
+    operations/
+    artifacts/
+    runs/
+    handoffs/
+    reviews/
+    .generated/
+```
+
+---
+
+# 20. 我建议拍板的核心设计
+
+我建议 project 结构定成：
+
+```text
+.agent-project/project.json 是单项目事实来源
+project-manager/registry.json 是全局查询索引
+status.md 是人类可读摘要
+tasks/ next-actions/ decisions/ 分文件存储
+operations/ 专门支持持续项目
+relations 支持项目/skill/workflow/repo 关联
+labels/tags 支持灵活查询
+```
+
+核心 `project.json` 采用：
+
+```json
+{
+  "apiVersion": "agent-project/v1",
+  "kind": "Project",
+  "metadata": {},
+  "spec": {},
+  "status": {},
+  "current": {},
+  "operations": {},
+  "relations": {},
+  "timestamps": {}
+}
+```
+
+核心查询字段压平到 registry：
+
+```text
+id
+name
+aliases
+root
+project_type
+project_mode
+owner
+domain
+tags
+labels
+lifecycle
+phase
+activity
+health
+delivery
+attention
+current_task_id
+current_next_action_id
+last_activity_at
+updated_at
+is_stale
+is_missing
+```
+
+这样查询会很舒服：
+
+```powershell
+mycli project-manager query --mode ongoing --phase operations --health yellow
+mycli project-manager query --type capability --delivery published
+mycli project-manager query --attention needs_user_decision
+mycli project-manager query --name 素材库
+```
+
+这套结构既兼容旧的 `todo/done/sustained` 思路，也能支持持续性项目和未来复杂查询。千束，librarian 的调研也回来了。它进一步验证了：**project-manager 的项目结构最好采用“分布式项目事实源 + 中央 registry/index”的模式**，并且字段设计应该借鉴 Backstage / Kubernetes / Nx 这类“可查询目录系统”。
+
+我把之前方案再收敛成一个更明确的 **Project Structure v0.4**。
+
+---
+
+# Project Structure v0.4
+
+## 0. 总体判断
+
+我建议采用：
+
+```text
+每个项目内：
+  .agent-project/project.json 作为项目事实来源
+
+project-manager 全局：
+  registry.json 作为项目注册表
+  index.json / 派生索引作为查询加速
+```
+
+核心模式：
+
+```text
+distributed source of truth + central query registry
+```
+
+对应：
+
+| 系统 | 模式 |
+|---|---|
+| Backstage | 每个 repo 有 `catalog-info.yaml`，统一进 Catalog |
+| Nx | 每个项目有 `project.json`，workspace 统一发现/查询 |
+| Cargo | workspace root 管 `members`，每个 crate 也有自己的 `Cargo.toml` |
+| Kubernetes | 对象自带 metadata/labels，API server 支持 selector 查询 |
+| project-manager | 每个项目有 `.agent-project/project.json`，全局 registry 支持查询 |
+
+---
+
+# 1. 目录结构总览
+
+## 1.1 project-manager 能力自身目录
+
+也就是规则能力包：
+
+```text
+D:\agent_workspace\capability-library\agent-system-rules\project-manager\
+  README.md
+  SKILL.md
+  USER_MANUAL.md
+  REGISTRATION.md
+
+  schemas/
+    project.schema.json
+    registry.schema.json
+    task.schema.json
+    next-action.schema.json
+    decision.schema.json
+    operation.schema.json
+
+  templates/
+    project.json
+    status.md
+    task.json
+    next-action.json
+    decision.md
+    runbook.md
+
+  scripts/
+    project-manager.ps1
+    register-to-mycli.ps1
+
+  src/
+    project_manager.py
+
+  examples/
+    finite_capability_project/
+    ongoing_asset_library/
+    ongoing_daily_news/
+
+  tests/
+```
+
+后续同步到：
+
+```text
+D:\agent_workspace\capability-library\mycli\project-manager\
+```
+
+其中 mycli 侧可以有：
+
+```text
+mycli/project-manager/
+  cli.package.json
+  README.md
+  registry.json
+  index.json
+  scripts/
+```
+
+---
+
+## 1.2 每个被管理项目内的结构
+
+推荐：
+
+```text
+{project-root}/
+  .agent-project/
+    project.json
+    status.md
+
+    tasks/
+      task-0001.json
+      task-0002.json
+
+    next-actions/
+      next-0001.json
+      next-0002.json
+
+    decisions/
+      ADR-0001-title.md
+      index.json
+
+    context/
+      index.json
+      pinned-files.md
+      architecture.md
+      glossary.md
+
+    operations/
+      runbook.md
+      schedule.json
+      last-run.json
+      history.jsonl
+
+    artifacts/
+      index.json
+
+    runs/
+      agent-runs.json
+      workflow-runs.json
+
+    handoffs/
+      2026-04-24.md
+
+    reviews/
+      review-0001.md
+
+    .generated/
+      summary.json
+      search-doc.json
+      last-indexed.json
+```
+
+## 1.3 MVP 结构
+
+第一版可以简化成：
+
+```text
+.agent-project/
+  project.json
+  status.md
+  tasks/
+  next-actions/
+  decisions/
+  context/
+    index.json
+  operations/
+    runbook.md
+  runs/
+  handoffs/
+  .generated/
+```
+
+如果更极简：
+
+```text
+.agent-project/
+  project.json
+  status.md
+  tasks/
+  next-actions/
+```
+
+但我建议 `operations/` 一开始就保留，因为你明确提到持续运行型项目。
+
+---
+
+# 2. `project.json` 顶层结构
+
+我建议借鉴 Backstage 的 envelope 模型：
+
+```json
+{
+  "apiVersion": "agent-project/v1",
+  "kind": "Project",
+  "metadata": {},
+  "spec": {},
+  "status": {},
+  "current": {},
+  "operations": {},
+  "relations": {},
+  "timestamps": {}
+}
+```
+
+## 为什么这样分？
+
+| 区块 | 职责 | 更新频率 |
+|---|---|---|
+| `apiVersion` | schema 版本 | 很少 |
+| `kind` | 对象类型，未来可扩展 ProjectGroup | 很少 |
+| `metadata` | 名称、描述、标签、owner、查询元数据 | 中低 |
+| `spec` | 项目本质定义，目标、范围、模式 | 中低 |
+| `status` | 当前状态 | 高频 |
+| `current` | 当前推进项 | 高频 |
+| `operations` | 持续运行信息 | 高频/自动 |
+| `relations` | 和项目、workflow、skill、repo 的关系 | 中 |
+| `timestamps` | 时间戳 | 高频 |
+
+这个结构的好处是：
+
+- 机器好解析；
+- 人也容易理解；
+- 查询字段可以从 `metadata/spec/status/current/operations` 中压平到 registry；
+- 后续 schema 迁移容易。
+
+---
+
+# 3. `metadata` 设计
+
+`metadata` 主要服务于 **发现、展示、查询、归类**。
+
+```json
+"metadata": {
+  "id": "daily-hot-news",
+  "name": "每日新闻热点收集",
+  "aliases": ["热点收集", "daily-news"],
+  "description": "每天自动收集和整理热点新闻主题。",
+  "root": "D:\\agent_workspace\\projects\\daily-hot-news",
+  "owner": "千束",
+  "domain": "content-ops",
+  "tags": ["daily", "news", "hot-topics", "automation"],
+  "labels": {
+    "agent.project/type": "research",
+    "agent.project/mode": "ongoing",
+    "agent.project/domain": "content-ops",
+    "agent.project/managed-by": "project-manager"
+  },
+  "annotations": {
+    "notes": "持续运行型内容运营项目"
+  },
+  "links": [
+    {
+      "title": "Project README",
+      "url": "README.md",
+      "type": "docs"
+    }
+  ]
+}
+```
+
+## 3.1 `id`
+
+必须稳定。
+
+建议规则：
+
+```text
+小写 kebab-case
+不要用中文作为 id
+不要频繁改
+```
+
+示例：
+
+```text
+project-manager
+daily-hot-news
+asset-library
+agent-workflow
+```
+
+## 3.2 `name`
+
+人类可读，可以中文：
+
+```json
+"name": "每日新闻热点收集"
+```
+
+## 3.3 `aliases`
+
+用于名称查询。
+
+比如用户说：
+
+```text
+热点项目
+每日新闻
+daily-news
+```
+
+都可以匹配到同一项目。
+
+## 3.4 `tags` vs `labels` vs `annotations`
+
+这三者要区分清楚。
+
+| 字段 | 类型 | 用途 |
+|---|---|---|
+| `tags` | string[] | 人类友好的松散标签 |
+| `labels` | key/value | 机器查询、selector、分类 |
+| `annotations` | key/value | 外部系统引用、备注、非筛选主字段 |
+
+借鉴 Kubernetes / Backstage：
+
+```json
+"tags": ["automation", "news"]
+```
+
+用于简单查询：
+
+```powershell
+query --tag automation
+```
+
+```json
+"labels": {
+  "agent.project/mode": "ongoing"
+}
+```
+
+用于结构化查询：
+
+```powershell
+query --selector "agent.project/mode=ongoing"
+```
+
+```json
+"annotations": {
+  "github.com/project-slug": "owner/repo"
+}
+```
+
+用于外部系统引用，不一定参与核心筛选。
+
+---
+
+# 4. `spec` 设计
+
+`spec` 代表项目的相对稳定定义。
+
+```json
+"spec": {
+  "project_type": "research",
+  "project_mode": "ongoing",
+  "priority": "high",
+  "visibility": "private",
+  "stale_after_days": 14,
+  "source": {
+    "kind": "local",
+    "path": "D:\\agent_workspace\\projects\\daily-hot-news"
+  },
+  "goals": [
+    {
+      "id": "goal-0001",
+      "title": "持续收集每日热点并生成摘要",
+      "status": "active"
+    }
+  ],
+  "scope": {
+    "in": [
+      "热点采集",
+      "摘要生成",
+      "每日归档"
+    ],
+    "out": [
+      "自动发布到外部平台"
+    ]
+  }
+}
+```
+
+## 4.1 `project_type`
+
+建议：
+
+```text
+capability
+workflow
+coding
+research
+documentation
+ops
+experiment
+external_repo
+meta
+```
+
+## 4.2 `project_mode`
+
+```text
+finite
+ongoing
+```
+
+这是最重要字段之一。
+
+- `finite`：有限交付型；
+- `ongoing`：持续运行/持续维护型。
+
+## 4.3 `priority`
+
+```text
+low
+medium
+high
+critical
+```
+
+## 4.4 `source.kind`
+
+```text
+local
+git
+external
+virtual
+```
+
+---
+
+# 5. `status` 设计
+
+沿用我们刚定的 v0.3 状态模型。
+
+```json
+"status": {
+  "registration": "indexed",
+  "lifecycle": "active",
+  "phase": "operations",
+  "activity": "stable",
+  "health": "green",
+  "delivery": "published",
+  "attention": [],
+  "summary": "每日热点收集稳定运行。",
+  "updated_at": "2026-04-24T08:10:00+08:00",
+  "updated_by": "scheduler"
+}
+```
+
+## 5.1 枚举
+
+```text
+registration:
+  discovered | registered | indexed | stale | missing | retired
+
+lifecycle:
+  proposed | planned | active | paused | completed | retired | archived
+
+phase:
+  intake | requirements | feasibility | architecture | planning |
+  construction | validation | launch | operations | maintenance |
+  retirement | closure
+
+activity:
+  queued | in_progress | scheduled | stable | running |
+  waiting | blocked | degraded | paused | needs_attention
+
+health:
+  green | yellow | red | gray
+
+delivery:
+  none | concept | draft | prototype | usable |
+  delivered | verified | published | deprecated
+```
+
+## 5.2 attention
+
+```text
+needs_user_decision
+needs_user_input
+needs_scope_confirmation
+needs_review
+needs_validation
+needs_unblock
+needs_cleanup
+needs_handoff
+needs_maintenance
+needs_operation_check
+needs_schedule_setup
+needs_runbook
+needs_retirement_decision
+```
+
+---
+
+# 6. `current` 设计
+
+`current` 是项目首页最有用的部分，回答：
+
+```text
+现在正在推进什么？
+下一步是什么？
+卡在哪里？
+```
+
+```json
+"current": {
+  "goal_id": "goal-0001",
+  "milestone_id": null,
+  "task_id": "task-0001",
+  "next_action_id": "next-0001",
+  "summary": "确认项目结构 v0.4，并准备 project.json schema。",
+  "owner": "assistant",
+  "since": "2026-04-24T09:00:00+08:00"
+}
+```
+
+原则：
+
+1. 一个项目最多一个 `current.task_id`。
+2. 可以有多个 next-actions，但 `current.next_action_id` 指向当前最重要的。
+3. 如果没有当前推进项，`activity` 应该是 `stable` / `queued` / `waiting`，而不是假装 `in_progress`。
+4. `current` 只存引用和摘要，不存完整任务正文。
+
+---
+
+# 7. `operations` 设计
+
+对 `project_mode = ongoing` 的项目非常重要。
+
+```json
+"operations": {
+  "enabled": true,
+  "cadence": "daily",
+  "trigger": "schedule",
+  "schedule_expr": "0 8 * * *",
+  "last_run_at": "2026-04-24T08:00:00+08:00",
+  "last_run_status": "success",
+  "last_success_at": "2026-04-24T08:00:00+08:00",
+  "next_run_at": "2026-04-25T08:00:00+08:00",
+  "consecutive_failures": 0,
+  "run_count_7d": 7,
+  "success_count_7d": 7,
+  "output_summary": "Collected 32 hot topics and generated daily digest.",
+  "runbook": ".agent-project/operations/runbook.md"
+}
+```
+
+## 7.1 `cadence`
+
+```text
+on_demand
+hourly
+daily
+weekly
+monthly
+event_driven
+daemon
+manual
+```
+
+## 7.2 `trigger`
+
+```text
+manual
+schedule
+event
+watcher
+daemon
+agent
+workflow
+```
+
+## 7.3 `last_run_status`
+
+```text
+success
+partial
+failed
+skipped
+unknown
+```
+
+对于 `finite` 项目：
+
+```json
+"operations": null
+```
+
+或者：
+
+```json
+"operations": {
+  "enabled": false
+}
+```
+
+我更建议第一版用：
+
+```json
+"operations": null
+```
+
+简单。
+
+---
+
+# 8. `relations` 设计
+
+项目结构要支持跨项目查询，所以 relations 必须有。
+
+```json
+"relations": {
+  "depends_on_projects": [],
+  "related_projects": [],
+  "parent_project": null,
+  "child_projects": [],
+  "workflows": [
+    {
+      "id": "daily_news_flow",
+      "path": "D:\\agent_workspace\\projects\\daily-hot-news\\workflow.json"
+    }
+  ],
+  "skills": [
+    {
+      "name": "news-collector",
+      "path": "D:\\agent_workspace\\capability-library\\skill-library\\news-collector"
+    }
+  ],
+  "repos": [
+    {
+      "type": "git",
+      "path": "D:\\agent_workspace\\projects\\daily-hot-news",
+      "remote": null
+    }
+  ],
+  "artifacts": []
+}
+```
+
+可支持：
+
+```powershell
+query --depends-on asset-library
+query --related daily-hot-news
+query --workflow daily_news_flow
+query --skill news-collector
+```
+
+---
+
+# 9. `timestamps` 设计
+
+```json
+"timestamps": {
+  "created_at": "2026-04-24T00:00:00+08:00",
+  "updated_at": "2026-04-24T08:10:00+08:00",
+  "last_activity_at": "2026-04-24T08:10:00+08:00",
+  "last_indexed_at": "2026-04-24T08:11:00+08:00"
+}
+```
+
+查询陈旧项目要靠它。
+
+---
+
+# 10. 完整 `project.json` 示例
+
+```json
+{
+  "apiVersion": "agent-project/v1",
+  "kind": "Project",
+  "metadata": {
+    "id": "daily-hot-news",
+    "name": "每日新闻热点收集",
+    "aliases": ["热点收集", "daily-news"],
+    "description": "每天自动收集和整理热点新闻主题。",
+    "root": "D:\\agent_workspace\\projects\\daily-hot-news",
+    "owner": "千束",
+    "domain": "content-ops",
+    "tags": ["daily", "news", "hot-topics", "automation"],
+    "labels": {
+      "agent.project/type": "research",
+      "agent.project/mode": "ongoing",
+      "agent.project/domain": "content-ops",
+      "agent.project/managed-by": "project-manager"
+    },
+    "annotations": {
+      "notes": "持续运行型内容运营项目"
+    },
+    "links": [
+      {
+        "title": "Project README",
+        "url": "README.md",
+        "type": "docs"
+      }
+    ]
+  },
+  "spec": {
+    "project_type": "research",
+    "project_mode": "ongoing",
+    "priority": "high",
+    "visibility": "private",
+    "stale_after_days": 14,
+    "source": {
+      "kind": "local",
+      "path": "D:\\agent_workspace\\projects\\daily-hot-news"
+    },
+    "goals": [
+      {
+        "id": "goal-0001",
+        "title": "持续收集每日热点并生成摘要",
+        "status": "active"
+      }
+    ],
+    "scope": {
+      "in": ["热点采集", "摘要生成", "每日归档"],
+      "out": ["自动发布到外部平台"]
+    }
+  },
+  "status": {
+    "registration": "indexed",
+    "lifecycle": "active",
+    "phase": "operations",
+    "activity": "stable",
+    "health": "green",
+    "delivery": "published",
+    "attention": [],
+    "summary": "每日热点收集稳定运行。",
+    "updated_at": "2026-04-24T08:10:00+08:00",
+    "updated_by": "scheduler"
+  },
+  "current": {
+    "goal_id": "goal-0001",
+    "milestone_id": null,
+    "task_id": null,
+    "next_action_id": "next-ops-check",
+    "summary": "等待下一次定时运行。",
+    "owner": "scheduler",
+    "since": "2026-04-24T08:10:00+08:00"
+  },
+  "operations": {
+    "enabled": true,
+    "cadence": "daily",
+    "trigger": "schedule",
+    "schedule_expr": "0 8 * * *",
+    "last_run_at": "2026-04-24T08:00:00+08:00",
+    "last_run_status": "success",
+    "last_success_at": "2026-04-24T08:00:00+08:00",
+    "next_run_at": "2026-04-25T08:00:00+08:00",
+    "consecutive_failures": 0,
+    "run_count_7d": 7,
+    "success_count_7d": 7,
+    "output_summary": "Collected 32 hot topics and generated daily digest.",
+    "runbook": ".agent-project/operations/runbook.md"
+  },
+  "relations": {
+    "depends_on_projects": [],
+    "related_projects": [],
+    "parent_project": null,
+    "child_projects": [],
+    "workflows": [],
+    "skills": [],
+    "repos": [],
+    "artifacts": []
+  },
+  "timestamps": {
+    "created_at": "2026-04-24T00:00:00+08:00",
+    "updated_at": "2026-04-24T08:10:00+08:00",
+    "last_activity_at": "2026-04-24T08:10:00+08:00",
+    "last_indexed_at": "2026-04-24T08:11:00+08:00"
+  }
+}
+```
+
+---
+
+# 11. 全局 registry 结构
+
+全局 registry 是查询入口。
+
+```json
+{
+  "schema_version": "agent-project-registry/v1",
+  "updated_at": "2026-04-24T08:11:00+08:00",
+  "source_roots": [
+    "D:\\agent_workspace\\projects",
+    "D:\\agent_workspace\\capability-library"
+  ],
+  "projects": [
+    {
+      "id": "daily-hot-news",
+      "name": "每日新闻热点收集",
+      "aliases": ["热点收集", "daily-news"],
+      "description": "每天自动收集和整理热点新闻主题。",
+      "root": "D:\\agent_workspace\\projects\\daily-hot-news",
+      "project_file": "D:\\agent_workspace\\projects\\daily-hot-news\\.agent-project\\project.json",
+      "status_file": "D:\\agent_workspace\\projects\\daily-hot-news\\.agent-project\\status.md",
+
+      "project_type": "research",
+      "project_mode": "ongoing",
+      "owner": "千束",
+      "domain": "content-ops",
+      "priority": "high",
+      "tags": ["daily", "news", "hot-topics", "automation"],
+      "labels": {
+        "agent.project/type": "research",
+        "agent.project/mode": "ongoing"
+      },
+
+      "registration": "indexed",
+      "lifecycle": "active",
+      "phase": "operations",
+      "activity": "stable",
+      "health": "green",
+      "delivery": "published",
+      "attention": [],
+
+      "current_goal_id": "goal-0001",
+      "current_task_id": null,
+      "current_next_action_id": "next-ops-check",
+      "summary": "每日热点收集稳定运行。",
+
+      "operations_enabled": true,
+      "operations_cadence": "daily",
+      "operations_trigger": "schedule",
+      "last_run_status": "success",
+      "next_run_at": "2026-04-25T08:00:00+08:00",
+      "consecutive_failures": 0,
+
+      "last_activity_at": "2026-04-24T08:10:00+08:00",
+      "updated_at": "2026-04-24T08:10:00+08:00",
+      "last_indexed_at": "2026-04-24T08:11:00+08:00",
+      "is_missing": false,
+      "is_stale": false
+    }
+  ]
+}
+```
+
+## 核心原则
+
+```text
+project.json = truth
+registry.json = query cache
+```
+
+registry 可以删掉重建，不应该人工维护为主。
+
+---
+
+# 12. 查询模式设计
+
+## 12.1 基础查询
+
+```powershell
+mycli project-manager query
+mycli project-manager query --id daily-hot-news
+mycli project-manager query --name news
+mycli project-manager query --name 热点
+```
+
+`--name` 应匹配：
+
+```text
+id
+name
+aliases
+description
+```
+
+也可以分开：
+
+```powershell
+--id
+--name
+--alias
+--text
+```
+
+但第一版 `--name` 做模糊匹配即可。
+
+---
+
+## 12.2 类型查询
+
+```powershell
+mycli project-manager query --type research
+mycli project-manager query --mode ongoing
+mycli project-manager query --owner 千束
+mycli project-manager query --domain content-ops
+mycli project-manager query --priority high
+mycli project-manager query --tag automation
+```
+
+---
+
+## 12.3 状态查询
+
+```powershell
+mycli project-manager query --registration indexed
+mycli project-manager query --lifecycle active
+mycli project-manager query --phase operations
+mycli project-manager query --activity stable
+mycli project-manager query --health yellow
+mycli project-manager query --delivery published
+mycli project-manager query --attention needs_maintenance
+```
+
+组合查询默认 AND：
+
+```powershell
+mycli project-manager query --mode ongoing --health yellow
+mycli project-manager query --lifecycle active --attention needs_user_decision
+mycli project-manager query --phase maintenance --activity blocked
+```
+
+---
+
+## 12.4 持续运行查询
+
+```powershell
+mycli project-manager query --operations-enabled
+mycli project-manager query --cadence daily
+mycli project-manager query --last-run-status failed
+mycli project-manager query --consecutive-failures 3
+mycli project-manager query --next-run-before 2026-04-25T00:00:00+08:00
+```
+
+第一版可以先支持：
+
+```powershell
+--mode ongoing
+--last-run-status failed
+--health red
+--attention needs_operation_check
+```
+
+不急着做复杂时间比较。
+
+---
+
+## 12.5 时间/陈旧查询
+
+```powershell
+mycli project-manager query --stale
+mycli project-manager query --updated-before 2026-04-01
+mycli project-manager query --inactive-days 14
+```
+
+陈旧判断：
+
+```text
+is_stale = now - status.updated_at > spec.stale_after_days
+```
+
+持续项目可以额外判断：
+
+```text
+now > operations.next_run_at + tolerance
+last_run_status failed
+consecutive_failures > 0
+```
+
+---
+
+## 12.6 selector 查询
+
+未来支持 Kubernetes 风格：
+
+```powershell
+mycli project-manager query --selector "agent.project/mode=ongoing,agent.project/domain=content-ops"
+```
+
+再高级一点：
+
+```powershell
+mycli project-manager query --selector "agent.project/type in (research,documentation),agent.project/mode=ongoing"
+```
+
+但 MVP 不要先做复杂 parser，先保留 `labels` 结构即可。
+
+---
+
+# 13. 查询输出
+
+## 13.1 默认 table
+
+```text
+id              name              type      mode     lifecycle  phase       activity  health  delivery   updated
+daily-hot-news  每日热点新闻收集  research  ongoing  active     operations  stable    green   published  2026-04-24
+project-manager Project Manager   capability finite   planned    requirements waiting  green   concept    2026-04-24
+```
+
+## 13.2 JSON
+
+```powershell
+mycli project-manager query --json
+```
+
+返回 registry entries。
+
+## 13.3 详情
+
+```powershell
+mycli project-manager get daily-hot-news
+```
+
+读完整：
+
+```text
+.agent-project/project.json
+```
+
+## 13.4 状态页
+
+```powershell
+mycli project-manager status daily-hot-news
+```
+
+读：
+
+```text
+.agent-project/status.md
+```
+
+或根据 `project.json` 生成摘要。
+
+---
+
+# 14. `status.md`
+
+`status.md` 是给人/agent 快速看的。
+
+```md
+# Project Status: 每日新闻热点收集
+
+## Summary
+
+每日热点收集稳定运行。
+
+## Current State
+
+- Type: research
+- Mode: ongoing
+- Lifecycle: active
+- Phase: operations
+- Activity: stable
+- Health: green
+- Delivery: published
+- Attention: none
+
+## Current Focus
+
+等待下一次定时运行。
+
+## Operations
+
+- Cadence: daily
+- Last Run: 2026-04-24 08:00
+- Last Run Status: success
+- Next Run: 2026-04-25 08:00
+- Consecutive Failures: 0
+
+## Next Actions
+
+- next-ops-check: Monitor next scheduled run.
+
+## Risks / Blockers
+
+None.
+
+## Recent Updates
+
+- 2026-04-24: Collected 32 hot topics and generated daily digest.
+```
+
+原则：
+
+```text
+project.json 是结构化事实来源
+status.md 是快速阅读摘要
+```
+
+---
+
+# 15. task / next-action / decision 结构
+
+## 15.1 task
+
+建议一个任务一个文件：
+
+```text
+.agent-project/tasks/task-0001.json
+```
+
+```json
+{
+  "id": "task-0001",
+  "title": "设计 project-manager 项目结构",
+  "type": "design",
+  "status": "in_progress",
+  "priority": "high",
+  "phase": "architecture",
+  "owner": "assistant",
+  "depends_on": [],
+  "blocks": [],
+  "tags": ["schema", "registry", "query"],
+  "acceptance_criteria": [
+    "支持项目注册",
+    "支持按状态查询",
+    "支持按生命周期查询",
+    "支持持续项目结构"
+  ],
+  "created_at": "2026-04-24T00:00:00+08:00",
+  "updated_at": "2026-04-24T00:00:00+08:00"
+}
+```
+
+## 15.2 next-action
+
+```text
+.agent-project/next-actions/next-0001.json
+```
+
+```json
+{
+  "id": "next-0001",
+  "title": "确认项目结构 v0.4",
+  "type": "decide",
+  "status": "open",
+  "priority": "high",
+  "owner": "千束",
+  "blocks": ["task-0002"],
+  "reason": "项目结构决定 registry、query、schema 的基础。",
+  "created_at": "2026-04-24T00:00:00+08:00"
+}
+```
+
+## 15.3 decision
+
+```text
+.agent-project/decisions/ADR-0001-project-structure.md
+```
+
+```md
+# ADR-0001: Use distributed project.json plus central registry
+
+## Status
+
+Proposed
+
+## Context
+
+Projects need to support query by status, lifecycle, name, type, tags, owner, and ongoing operation state.
+
+## Decision
+
+Each project owns `.agent-project/project.json` as the source of truth.
+Project Manager maintains a generated global `registry.json` for query.
+
+## Consequences
+
+- Project metadata stays near the project.
+- Registry can be rebuilt.
+- Query is fast and centralized.
+```
+
+---
+
+# 16. 注册流程
+
+## 16.1 init
+
+```powershell
+mycli project-manager init <project-root> --id <id> --name <name> --type <type> --mode finite|ongoing
+```
+
+生成 `.agent-project/`。
+
+## 16.2 register
+
+```powershell
+mycli project-manager register <project-root>
+```
+
+将项目写入 registry。
+
+## 16.3 scan
+
+```powershell
+mycli project-manager scan D:\agent_workspace\projects
+```
+
+扫描：
+
+```text
+**/.agent-project/project.json
+```
+
+## 16.4 refresh
+
+```powershell
+mycli project-manager refresh
+```
+
+重建全局 registry。
+
+---
+
+# 17. 旧 project-skill-manager 兼容
+
+旧格式：
+
+```yaml
+---
+name: 项目名称
+description: 一句话描述项目
+status: todo/done/sustained/skill_dependent
+---
+```
+
+映射：
+
+| 旧状态 | 新结构 |
+|---|---|
+| `todo` | `project_mode=finite`, `lifecycle=active/planned`, `phase=construction`, `activity=in_progress` |
+| `done` | `project_mode=finite`, `lifecycle=completed`, `phase=closure`, `activity=stable` |
+| `sustained` | `project_mode=ongoing`, `lifecycle=active`, `phase=operations`, `activity=stable` |
+| `skill_dependent` | 不作为主状态，转成 `labels/protection` |
+
+例如：
+
+```json
+"labels": {
+  "agent.project/protection": "skill-dependent"
+}
+```
+
+或：
+
+```json
+"protection": ["skill_dependent", "do_not_delete"]
+```
+
+---
+
+# 18. 最终推荐查询字段
+
+registry 中建议压平这些字段：
+
+```text
+id
+name
+aliases
+description
+root
+project_file
+status_file
+
+project_type
+project_mode
+owner
+domain
+priority
+tags
+labels
+
+registration
+lifecycle
+phase
+activity
+health
+delivery
+attention
+
+current_goal_id
+current_task_id
+current_next_action_id
+summary
+
+operations_enabled
+operations_cadence
+operations_trigger
+last_run_status
+next_run_at
+consecutive_failures
+
+last_activity_at
+updated_at
+last_indexed_at
+is_missing
+is_stale
+```
+
+这样绝大多数查询都可以只查 registry。
+
+---
+
+# 19. 我建议 v0.4 拍板内容
+
+我建议锁定以下结构作为 project-manager v0.1 的基础：
+
+```text
+项目内：
+  .agent-project/project.json
+  .agent-project/status.md
+  .agent-project/tasks/
+  .agent-project/next-actions/
+  .agent-project/decisions/
+  .agent-project/context/
+  .agent-project/operations/
+  .agent-project/runs/
+  .agent-project/handoffs/
+
+全局：
+  project-manager/registry.json
+```
+
+`project.json` 顶层：
+
+```json
+{
+  "apiVersion": "agent-project/v1",
+  "kind": "Project",
+  "metadata": {},
+  "spec": {},
+  "status": {},
+  "current": {},
+  "operations": {},
+  "relations": {},
+  "timestamps": {}
+}
+```
+
+查询优先支持：
+
+```text
+id/name
+type/mode
+owner/domain/tag
+lifecycle/phase/activity/health/delivery/attention
+stale/missing
+last-run-status for ongoing
+```
+
+命令优先支持：
+
+```powershell
+init
+register
+scan
+refresh
+list
+query
+get
+status
+```
+
+这套结构能覆盖：
+
+- 普通一次性项目；
+- 持续运行项目；
+- 素材库这种持续积累项目；
+- 每日新闻热点这种定时运行项目；
+- capability-library 能力建设项目；
+- 后续维护；
+- 多条件项目查询。

@@ -1,0 +1,33 @@
+﻿{
+    "session_id":  "ses_24259126dffeTdrtnwWatL0lCR",
+    "session_name":  "",
+    "prompt":  "现在有个问题，网页端最好设一个用户密码 chisado 和 chisado233  然后单个绘画还没发输入，你去完全同步",
+    "cwd":  "D:\\agent_workspace",
+    "exit_code":  0,
+    "agent":  "opencode/private-assistant",
+    "provider_command":  [
+                             "C:\\Users\\38188\\AppData\\Roaming\\npm\\opencode.ps1",
+                             "run",
+                             "--session",
+                             "ses_24259126dffeTdrtnwWatL0lCR",
+                             "现在有个问题，网页端最好设一个用户密码 chisado 和 chisado233  然后单个绘画还没发输入，你去完全同步",
+                             "--agent",
+                             "private-assistant",
+                             "--dir",
+                             "D:\\agent_workspace",
+                             "--format",
+                             "json"
+                         ],
+    "status":  "success",
+    "return_mode":  "silent",
+    "json_parse_error_count":  0,
+    "event_log_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T045300506Z_3cd30cb1.events.jsonl",
+    "raw_output_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T045300506Z_3cd30cb1.raw.log",
+    "run_id":  "run_20260424T045300506Z_3cd30cb1",
+    "source":  "opencode",
+    "event_count":  71,
+    "report_path":  "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\state\\runs\\run_20260424T045300506Z_3cd30cb1.report.txt",
+    "finished_at_utc":  "2026-04-24T04:57:30.7374147Z",
+    "round":  6,
+    "started_at_utc":  "2026-04-24T04:53:00.5145142Z"
+}

@@ -1,0 +1,25 @@
+{
+  "agent": "关联判断agent",
+  "task_type": "关联判断",
+  "model": "MoreCode/gpt-5.4",
+  "max_tokens": 4096,
+  "temperature": 0.2,
+  "auto_apply_relations": true,
+  "system_prompt": {
+    "path": "D:\\agent_workspace\\capability-library\\mycli\\novel-writing\\agent\\prompts\\关联判断agent.md"
+  },
+  "user_prompt": "请判断目标章节细纲需要写入哪些关联 YAML，并输出严格 JSON。",
+  "project": "D:\\agent_workspace\\projects\\novels\\示例小说",
+  "target": "05-大纲/01-第一卷/章节细纲/第001章.md",
+  "context_files": [
+    {
+      "path": "01-作品企划/写作核心.md",
+      "label": "写作核心"
+    },
+    {
+      "path": "05-大纲/01-第一卷/章节细纲/第001章.md",
+      "label": "目标章节细纲",
+      "relate": true
+    }
+  ]
+}

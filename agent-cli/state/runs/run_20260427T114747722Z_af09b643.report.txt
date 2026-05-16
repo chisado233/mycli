@@ -1,0 +1,14 @@
+已检查任务 `task_20260427_194636_c8782f`：
+
+- 任务目录已存在报告文件：
+  - `D:\agent_workspace\capability-library\mycli\task-hall\state\tasks\task_20260427_194636_c8782f\report.md`
+  - `D:\agent_workspace\capability-library\mycli\task-hall\state\tasks\task_20260427_194636_c8782f\task-link-report-20260427_194752.md`
+- `task-link show` 显示已提交过正式报告：
+  - status: `waiting_publisher`
+  - agent: `opencode/engineering-leader`
+  - session: `unknown-session`
+  - report_path: `...\task-link-report-20260427_194752.md`
+
+当前任务已交回发布者等待确认，无需重复施工或重复发布子任务。
+
+AGENT_CLI_LIFECYCLE_END

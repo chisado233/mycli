@@ -1,0 +1,61 @@
+搜到了。结论先说：GitHub 上“codex 注册机”基本不是传统破解注册机，而是 **OpenAI/ChatGPT/Codex 账号批量自动注册 + OAuth token 获取 + 额度检查/管理** 这一类工具，普遍带临时邮箱、代理池、验证码轮询、浏览器自动化、OAuth token 换取等能力。这个方向很容易涉及服务条款规避/批量滥用，我可以帮你做高层情报整理，但不提供具体操作、部署或绕风控方法。
+
+## 主要结果
+
+| 仓库 | 链接 | 大致内容 | 风险判断 |
+|---|---|---|---|
+| `klsf/codex-register` | https://github.com/klsf/codex-register | 批量注册 OpenAI 账号、生成授权文件、检查 auth 额度 | 高风险/疑似滥用 |
+| `hkxiaoyao/codex-register-v3` | https://github.com/hkxiaoyao/codex-register-v3 | 无头浏览器批量注册，Playwright/Camoufox，多邮箱服务，代理池，SQLite，Codex OAuth token | 高风险/疑似滥用 |
+| `dou-jiang/codex-console` | https://github.com/dou-jiang/codex-console | Web UI 管理注册任务、账号数据、日志、打包运行，基于 codex-manager 增强 | 高风险/疑似滥用 |
+| `kschen202115/codex_register` | https://github.com/kschen202115/codex_register | Python HTTP 自动化注册/登录，MailAPI 轮询验证码，保存 token | 高风险/疑似滥用 |
+| `a2447813206/codex-register` | https://github.com/a2447813206/codex-register | ChatGPT/OpenAI Codex 批量账号注册与管理，纯协议/Playwright 混合 | 高风险/疑似滥用 |
+| `cnlimiter/codex-manager` / `codex-register` | https://github.com/cnlimiter/codex-manager | OpenAI 自动注册系统/账号管理 Web UI，Docker/GHCR 部署 | 高风险/疑似滥用 |
+| `cnlimiter/codex-manager-v3` | https://github.com/cnlimiter/codex-manager-v3 | codex-register-v3，上述系统新版/变体 | 高风险/疑似滥用 |
+| `Ethan-W20/openai-auto-register` | https://github.com/Ethan-W20/openai-auto-register | OpenAI Codex 自动注册与 Token 提取，Go/Python/浏览器版本 | 高风险/疑似滥用 |
+| `adminlove520/AI-Account-Toolkit` | https://github.com/adminlove520/AI-Account-Toolkit | AI 账号工具合集，含 Codex/Cursor/Grok/Claude/Gemini 等相关模块 | 高风险/综合滥用工具箱 |
+| `Msg-Lbo/codeX-register` | https://github.com/Msg-Lbo/codeX-register | Codex register 相关项目 | 高风险/疑似滥用 |
+
+## 合法/正常相关项目
+
+| 仓库/文档 | 链接 | 内容 |
+|---|---|---|
+| `openai/codex` | https://github.com/openai/codex | 官方 Codex CLI |
+| `openai/codex-action` | https://github.com/openai/codex-action | 官方/相关 GitHub Action 集成 |
+| `feiskyer/codex-settings` | https://github.com/feiskyer/codex-settings | Codex 设置、配置、skills、prompts |
+| Codex 官方 Quickstart | https://developers.openai.com/codex/quickstart/ | 官方快速开始 |
+| Codex 本地配置 | https://developers.openai.com/codex/local-config | 官方本地配置 |
+| Codex 配置参考 | https://developers.openai.com/codex/config-reference | 官方配置参考 |
+| Codex CLI Reference | https://developers.openai.com/codex/cli/reference/ | 官方 CLI 参考 |
+
+## 这些“注册机”的共同模式
+
+高层看，它们通常包括：
+
+- 批量账号注册
+- 临时邮箱/接码邮箱接入
+- 邮箱验证码轮询
+- 代理池/节点轮换
+- Playwright、Camoufox 或无头浏览器自动化
+- OAuth/PKCE token 换取
+- token/auth 文件导出
+- 额度检查
+- Web UI 管理任务和账号库
+- Docker/二进制打包部署
+
+这些特征基本指向 **批量薅免费额度/规避账号限制**，不太适合作为我们“无限算力计划”的可持续核心方案。
+
+## 搜索词
+
+用了这些方向：
+
+- `codex 注册机`
+- `codex keygen`
+- `codex 激活`
+- `codex 注册`
+- `codex auto register`
+- `codex account generator`
+- `site:github.com codex 注册机 OR keygen OR 激活 OR 注册`
+- `Codex OAuth Token`
+- `codex-register`
+
+如果你愿意，我建议下一步把这个项目转成 **合规的免费/低成本算力聚合方案**：比如 OpenRouter 免费模型、GitHub Models、Gemini free tier、Cloudflare Workers AI、Kaggle/Colab、HuggingFace Spaces、Together/Fireworks trial、学校/开源 credits、以及本地小模型调度。这样更稳，不容易被封。

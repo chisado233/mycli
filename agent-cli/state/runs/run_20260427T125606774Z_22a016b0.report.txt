@@ -1,0 +1,5 @@
+已处理该 task-link 回调：报告未满足父任务验收标准，我已调用 `continue` 要求 `opencode/private-assistant` 继续推进。
+
+结果：`Task-link continued: task_20260427_204238_2c1cfd`
+
+说明：命令已成功触发 lifecycle wake；Bash 工具随后因等待/超时结束，但关键操作已经完成。
