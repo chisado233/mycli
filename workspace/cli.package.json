@@ -1,0 +1,166 @@
+{
+  "name": "workspace",
+  "summary": "Manage agent workspace runtime/data paths and namespace directories",
+  "source": "D:\\agent_workspace",
+  "commands": [
+    {
+      "name": "root",
+      "summary": "Print the workspace root path",
+      "args": [],
+      "prefixArgs": ["root"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
+    },
+    {
+      "name": "paths",
+      "summary": "List standard workspace roots such as tmp, var, logs, cache, config, data, downloads, and backups",
+      "args": [
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Emit JSON output",
+          "type": "flag"
+        }
+      ],
+      "prefixArgs": ["paths"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
+    },
+    {
+      "name": "path",
+      "summary": "Resolve a standard path for a root/domain/name tuple",
+      "args": [
+        {
+          "name": "root",
+          "required": true,
+          "summary": "One of tmp, var, logs, cache, config, data, downloads, backups, tools, models",
+          "type": "string"
+        },
+        {
+          "name": "domain",
+          "required": true,
+          "summary": "One of mycli, projects, skills, agents, shared",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "required": true,
+          "summary": "Package path, project id, skill name, agent name, or shared namespace",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["path"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
+    },
+    {
+      "name": "inspect",
+      "summary": "Show all scoped runtime/data paths for a domain/name tuple",
+      "args": [
+        {
+          "name": "domain",
+          "required": true,
+          "summary": "One of mycli, projects, skills, agents, shared",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "required": true,
+          "summary": "Package path, project id, skill name, agent name, or shared namespace",
+          "type": "string[]"
+        },
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Emit JSON output",
+          "type": "flag"
+        }
+      ],
+      "prefixArgs": ["inspect"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
+    },
+    {
+      "name": "ensure",
+      "summary": "Create standard workspace roots and namespace directories, or scoped directories for a domain/name tuple",
+      "args": [
+        {
+          "name": "domain",
+          "required": false,
+          "summary": "Optional domain: mycli, projects, skills, agents, shared",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "required": false,
+          "summary": "Optional package path, project id, skill name, agent name, or shared namespace",
+          "type": "string[]"
+        },
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Emit JSON output",
+          "type": "flag"
+        }
+      ],
+      "prefixArgs": ["ensure"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
+    },
+    {
+      "name": "ensure-package",
+      "summary": "Create standard runtime/data directories for a mycli package path",
+      "args": [
+        {
+          "name": "packagePath",
+          "required": true,
+          "summary": "mycli package path, for example github or channels/QQ",
+          "type": "string[]"
+        },
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Emit JSON output",
+          "type": "flag"
+        }
+      ],
+      "prefixArgs": ["ensure-package"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
+    },
+    {
+      "name": "ensure-project",
+      "summary": "Create standard runtime/data directories for a project id or project path",
+      "args": [
+        {
+          "name": "project",
+          "required": true,
+          "summary": "Project id or path under D:\\agent_workspace\\projects",
+          "type": "string[]"
+        },
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Emit JSON output",
+          "type": "flag"
+        }
+      ],
+      "prefixArgs": ["ensure-project"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
+    },
+    {
+      "name": "ensure-skill",
+      "summary": "Create standard runtime/data directories for a skill name, skill directory, or SKILL.md path",
+      "args": [
+        {
+          "name": "skill",
+          "required": true,
+          "summary": "Skill name, skill directory, or SKILL.md path",
+          "type": "string[]"
+        },
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Emit JSON output",
+          "type": "flag"
+        }
+      ],
+      "prefixArgs": ["ensure-skill"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
+    }
+  ]
+}

@@ -41,6 +41,7 @@ D:\agent_workspace\capability-library\mycli\mycli.ps1 list
 | 注册和管理一次性/持久定时命令或脚本 | `mycli cron ...` |
 | GitHub 仓库、issue、PR、Actions 与 API 操作 | `mycli github ...` |
 | 管理长期项目状态、任务和 next actions | `mycli project-manager ...` |
+| 查询/创建 workspace 标准 runtime/data/config/cache/logs 路径 | `mycli workspace ...` |
 | 控制 Clash 代理、测速、切换节点 | `mycli clash ...` |
 | 远程电脑 / WireGuard / 中转命令 | `mycli remote-pc ...` |
 | 外部消息通道与 bridge | `mycli channels ...` |
@@ -79,6 +80,8 @@ mycli list
 - `skill-library` — 本地 skill 索引、搜索、注册。
 - `startup` — 当前 Windows 用户登录时自动运行的 mycli commands。
 - `task-hall` — agent 任务大厅：发布、展示、领取、审核、关闭和生命周期唤醒。
+- `workspace` — 管理 `D:\agent_workspace` 标准 runtime/data/config/cache/logs 路径与命名空间目录。
+- `workspace-ui` — agent-workspace 统一 UI 总控台 / launcher。
 
 ## 常用流程
 
