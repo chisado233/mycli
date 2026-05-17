@@ -3,10 +3,22 @@ param(
     [string]$Password = "",
     [Alias("save-path", "out")]
     [string]$SavePath = "D:\agent_workspace\capability-library\mycli\novel-writing\collector\books\.tomato-raw",
-    [switch]$Restart
+    [switch]$Restart,
+    [Alias("h")]
+    [switch]$Help
 )
 
 $ErrorActionPreference = "Stop"
+
+if ($Help -or $args -contains '--help' -or $args -contains '-h' -or $args -contains 'help' -or $Addr -in @('--help', '-h', 'help')) {
+    @'
+mycli novel-writing/collector tomato-start [--addr <host:port>] [--password <password>] [--save-path <path>] [--restart]
+
+Start the bundled Tomato Novel Downloader HTTP server and configure its save path.
+Default addr: 127.0.0.1:18423
+'@
+    exit 0
+}
 
 $ProjectRoot = "D:\agent_workspace\capability-library\mycli\novel-writing\collector\Tomato-Novel-Downloader-main"
 $ExePath = Join-Path $ProjectRoot "TomatoNovelDownloader-Win64-v2.4.9.exe"

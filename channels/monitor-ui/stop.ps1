@@ -1,7 +1,10 @@
 $ErrorActionPreference = "Continue"
 
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$StateDir = Join-Path $Root "state"
+$WorkspaceConfigModule = Join-Path (Split-Path -Parent (Split-Path -Parent $Root)) "common\workspace-config.ps1"
+. $WorkspaceConfigModule
+$WorkspaceConfig = Get-MyCliWorkspaceConfig -PackagePath 'channels/monitor-ui'
+$StateDir = [string]$WorkspaceConfig.paths.var
 $PidFile = Join-Path $StateDir "monitor-ui-pids.json"
 
 if (Test-Path -LiteralPath $PidFile) {

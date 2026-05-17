@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent CLI Terminal</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Agent CLI</h1>
+        <p>Remote terminal</p>
+      </div>
+
+      <section class="card">
+        <div class="card-title">Agent</div>
+        <button id="agentPicker" class="picker" type="button">remote-opencode/private-assistant</button>
+        <div id="agentMenu" class="menu hidden"></div>
+      </section>
+
+      <section class="card">
+        <div class="card-title">Model</div>
+        <button id="modelPicker" class="picker muted" type="button">默认模型</button>
+        <div id="modelMenu" class="menu hidden"></div>
+      </section>
+
+      <section class="card">
+        <div class="card-title">Session</div>
+        <button id="sessionPicker" class="picker muted" type="button">新会话</button>
+        <div id="sessionMenu" class="menu hidden"></div>
+        <input id="session" class="field" placeholder="或手动输入 ses_xxx" />
+        <input id="sessionName" class="field" placeholder="Session name" />
+        <label class="check"><input id="continueSession" type="checkbox" /> continue latest</label>
+        <label class="check"><input id="fork" type="checkbox" /> fork session</label>
+      </section>
+
+      <section class="card">
+        <div class="card-title">Workspace</div>
+        <input id="cwd" class="field" value="D:\agent_workspace" />
+      </section>
+
+      <section class="actions">
+        <button id="refresh" type="button">刷新选项</button>
+        <button id="clear" type="button">清空消息</button>
+      </section>
+    </aside>
+
+    <section class="mainpane">
+      <header class="chatbar">
+        <div>
+          <div id="activeAgent" class="active-agent">remote-opencode/private-assistant</div>
+          <div id="activeMeta" class="active-meta">D:\agent_workspace</div>
+        </div>
+        <div id="status" class="status">ready</div>
+      </header>
+
+      <section id="messages" class="messages"></section>
+
+      <section class="composer">
+        <textarea id="prompt" placeholder="输入任务，Ctrl+Enter 发送"></textarea>
+        <button id="run" type="button">发送</button>
+      </section>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

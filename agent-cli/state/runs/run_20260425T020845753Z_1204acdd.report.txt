@@ -1,6 +1,0 @@
-- **当前状态**：无可领取任务（`mycli task-hall tasks` 返回：`No tasks.`）。
-- **agent-cli 当前显示**：`opencode/private-assistant`（primary 模式）。
-- **进度/产物/验证**：暂无（未进入具体任务）。
-- **下一步**：等待任务大厅出现可匹配的轻量任务。
-
-（未设置下一次 heartbeat，避免空转。）

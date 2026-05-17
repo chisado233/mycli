@@ -6,9 +6,12 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $PackageRoot = Split-Path -Parent (Split-Path -Parent $PSCommandPath)
-$StateRoot = Join-Path $PackageRoot 'state'
-$LogRoot = Join-Path $StateRoot 'logs'
-$RegistryPath = Join-Path $StateRoot 'startup-commands.json'
+$WorkspaceConfigModule = Join-Path (Split-Path -Parent $PackageRoot) 'common\workspace-config.ps1'
+. $WorkspaceConfigModule
+$WorkspaceConfig = Get-MyCliWorkspaceConfig -PackagePath 'startup'
+$StateRoot = [string]$WorkspaceConfig.paths.var
+$LogRoot = [string]$WorkspaceConfig.paths.logs
+$RegistryPath = Join-Path ([string]$WorkspaceConfig.paths.config) 'startup-commands.json'
 $RunnerPath = Join-Path (Join-Path $PackageRoot 'scripts') 'startup.ps1'
 $TaskPath = '\mycli\startup\'
 $TaskName = 'RunRegisteredCommands'

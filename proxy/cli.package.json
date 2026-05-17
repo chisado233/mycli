@@ -1,0 +1,359 @@
+{
+  "name": "proxy",
+  "summary": "Unified local proxy CLI over mihomo and Clash backends",
+  "source": "D:\\agent_workspace\\capability-library\\mycli\\proxy",
+  "commands": [
+    {
+      "name": "backend",
+      "summary": "Unified proxy command: backend",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "backend"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "status",
+      "summary": "Unified proxy command: status",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "status"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "version",
+      "summary": "Unified proxy command: version",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "version"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "config",
+      "summary": "Unified proxy command: config",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "config"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "start",
+      "summary": "Unified proxy command: start",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "start"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "stop",
+      "summary": "Unified proxy command: stop",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "stop"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "restart",
+      "summary": "Unified proxy command: restart",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "restart"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "mode",
+      "summary": "Unified proxy command: mode",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "mode"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "mode-set",
+      "summary": "Unified proxy command: mode-set",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "mode-set"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "selectors",
+      "summary": "Unified proxy command: selectors",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "selectors"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "selector",
+      "summary": "Unified proxy command: selector",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "selector"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "use",
+      "summary": "Unified proxy command: use",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "use"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "proxies",
+      "summary": "Unified proxy command: proxies",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "proxies"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "countries",
+      "summary": "Unified proxy command: countries",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "countries"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "country",
+      "summary": "Unified proxy command: country",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "country"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "country-use",
+      "summary": "Unified proxy command: country-use",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "country-use"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "test",
+      "summary": "Unified proxy command: test",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "test"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "providers",
+      "summary": "Unified proxy command: providers",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "providers"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "rules",
+      "summary": "Unified proxy command: rules",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "rules"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "check-config",
+      "summary": "Unified proxy command: check-config",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "check-config"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "core-version",
+      "summary": "Unified proxy command: core-version",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "core-version"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    },
+    {
+      "name": "native",
+      "summary": "Unified proxy command: native",
+      "args": [
+        {
+          "name": "args",
+          "required": false,
+          "summary": "Arguments forwarded to active backend; optional --backend mihomo|clash",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": [
+        "native"
+      ],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\proxy\\scripts\\proxy.ps1"
+    }
+  ]
+}

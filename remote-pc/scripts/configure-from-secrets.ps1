@@ -8,6 +8,10 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
+$WorkspaceConfigModule = Join-Path (Split-Path -Parent $ProjectRoot) 'common\workspace-config.ps1'
+. $WorkspaceConfigModule
+$WorkspaceConfig = Get-MyCliWorkspaceConfig -PackagePath 'remote-pc'
+$ConfigRoot = [string]$WorkspaceConfig.paths.config
 
 function Resolve-ProjectPath {
     param([Parameter(Mandatory)][string]$Path)
@@ -44,7 +48,7 @@ function Get-PropertyValue {
 }
 
 if ([string]::IsNullOrWhiteSpace($SecretsPath)) {
-    $SecretsPath = Join-Path $ProjectRoot 'config\secrets.local.json'
+    $SecretsPath = Join-Path $ConfigRoot 'secrets.local.json'
 }
 $SecretsPath = Resolve-ProjectPath -Path $SecretsPath
 if (-not (Test-Path -LiteralPath $SecretsPath)) {
@@ -85,6 +89,7 @@ foreach ($name in @('A', 'B')) {
         os = $device.os
         wireguardIp = $device.wireguardIp
         smbUser = $device.smbUser
+        smbPassword = $device.smbPassword
         sshUser = $device.sshUser
         sshKeyPath = $device.sshKeyPath
         remoteShell = $device.remoteShell
@@ -96,8 +101,10 @@ foreach ($mapProperty in $secrets.driveMaps.PSObject.Properties) {
     $mapsObject.maps[$mapProperty.Name] = @($mapProperty.Value)
 }
 
-Write-PrivateFile -Path (Join-Path $ProjectRoot 'config\devices.local.json') -Content (ConvertTo-PrettyJson -Value $devicesConfig)
-Write-PrivateFile -Path (Join-Path $ProjectRoot 'config\drive-maps.local.json') -Content (ConvertTo-PrettyJson -Value $mapsObject)
+$DevicesConfigPath = Join-Path $ConfigRoot 'devices.local.json'
+$DriveMapsConfigPath = Join-Path $ConfigRoot 'drive-maps.local.json'
+Write-PrivateFile -Path $DevicesConfigPath -Content (ConvertTo-PrettyJson -Value $devicesConfig)
+Write-PrivateFile -Path $DriveMapsConfigPath -Content (ConvertTo-PrettyJson -Value $mapsObject)
 
 $serverPublicKey = Get-PropertyValue -Object $server -Name 'publicKey'
 if ([string]::IsNullOrWhiteSpace($serverPublicKey) -or $serverPublicKey -like '<*') {
@@ -123,7 +130,8 @@ AllowedIPs = $($secrets.network.cidr)
 PersistentKeepalive = 25
 "@
 $clientConfigName = ('client-{0}.local.conf' -f $LocalDevice.ToLowerInvariant())
-Write-PrivateFile -Path (Join-Path $ProjectRoot "wireguard\$clientConfigName") -Content $wgConfig.TrimEnd()
+$WireGuardConfigPath = Join-Path $ConfigRoot "wireguard\$clientConfigName"
+Write-PrivateFile -Path $WireGuardConfigPath -Content $wgConfig.TrimEnd()
 
 foreach ($name in @('A', 'B')) {
     $device = $devices.$name
@@ -162,14 +170,15 @@ $envLines = @(
     "REMOTE_PC_COMMAND_TIMEOUT=$($secrets.commandServer.timeoutSeconds)",
     "REMOTE_PC_COMMAND_TOKEN=$($secrets.commandServer.token)"
 )
-Write-PrivateFile -Path (Join-Path $ProjectRoot 'config\relay.env.local') -Content ($envLines -join [Environment]::NewLine)
+$RelayEnvPath = Join-Path $ConfigRoot 'relay.env.local'
+Write-PrivateFile -Path $RelayEnvPath -Content ($envLines -join [Environment]::NewLine)
 
 Write-Host ''
 Write-Host 'Generated local runtime config from secrets JSON.'
 [pscustomobject]@{
     LocalDevice = $LocalDevice
-    DevicesConfig = Join-Path $ProjectRoot 'config\devices.local.json'
-    DriveMapsConfig = Join-Path $ProjectRoot 'config\drive-maps.local.json'
-    WireGuardConfig = Join-Path $ProjectRoot "wireguard\$clientConfigName"
-    RelayEnv = Join-Path $ProjectRoot 'config\relay.env.local'
+    DevicesConfig = $DevicesConfigPath
+    DriveMapsConfig = $DriveMapsConfigPath
+    WireGuardConfig = $WireGuardConfigPath
+    RelayEnv = $RelayEnvPath
 } | Format-List

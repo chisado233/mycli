@@ -4,10 +4,15 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = __dirname;
-const STATE_DIR = path.join(ROOT, 'state');
-const LOG_DIR = path.join(ROOT, 'logs');
+const WORKSPACE_CONFIG_FILE = path.join('D:\\agent_workspace', 'config', 'mycli', 'channels', 'QQ', 'workspace-config.json');
+const workspaceConfig = fs.existsSync(WORKSPACE_CONFIG_FILE)
+  ? JSON.parse(fs.readFileSync(WORKSPACE_CONFIG_FILE, 'utf8'))
+  : { paths: {} };
+const STATE_DIR = workspaceConfig.paths?.var || path.join(ROOT, 'state');
+const LOG_DIR = workspaceConfig.paths?.logs || path.join(ROOT, 'logs');
 const LOG_FILE = path.join(LOG_DIR, 'qq-bridge.log');
-const CONFIG_FILE = path.join(ROOT, 'bridge.config.json');
+const CONFIG_DIR = workspaceConfig.paths?.config || ROOT;
+const CONFIG_FILE = path.join(CONFIG_DIR, 'bridge.config.json');
 
 const DEFAULT_CONFIG = {
   napcatWsUrl: 'ws://127.0.0.1:3001',
@@ -35,6 +40,7 @@ const DEFAULT_CONFIG = {
 
 fs.mkdirSync(STATE_DIR, { recursive: true });
 fs.mkdirSync(LOG_DIR, { recursive: true });
+fs.mkdirSync(CONFIG_DIR, { recursive: true });
 if (!fs.existsSync(CONFIG_FILE)) {
   fs.writeFileSync(CONFIG_FILE, JSON.stringify(DEFAULT_CONFIG, null, 2), 'utf8');
 }

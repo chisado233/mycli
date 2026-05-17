@@ -1,9 +1,0 @@
-已检查当前上下文与任务大厅：
-
-- 当前未发现明确可继续推进的未完成工作
-- `task-hall` 当前无可领取任务（返回 `No tasks.`）
-- 当前 agent 上下文为：`opencode/private-assistant`
-
-由于现在没有可继续、可领取、也不需要等待复查的事项，本次进入 idle 状态；未设置新的 heartbeat 定时任务，避免无意义空转。
-
-AGENT_CLI_LIFECYCLE_END

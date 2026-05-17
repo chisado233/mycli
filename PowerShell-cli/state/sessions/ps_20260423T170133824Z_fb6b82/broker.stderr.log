@@ -1,1 +1,0 @@
-[31;1mbroker.ps1: [31;1mException calling "AppendAllText" with "3" argument(s): "The process cannot access the file 'D:\agent_workspace\capability-library\mycli\PowerShell-cli\state\sessions\ps_20260423T170133824Z_fb6b82\broker.log' because it is being used by another process."[0m

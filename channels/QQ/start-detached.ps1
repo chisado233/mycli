@@ -1,7 +1,10 @@
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$LogDir = Join-Path $Root "logs"
-$StateDir = Join-Path $Root "state"
+$WorkspaceConfigModule = Join-Path (Split-Path -Parent (Split-Path -Parent $Root)) "common\workspace-config.ps1"
+. $WorkspaceConfigModule
+$WorkspaceConfig = Get-MyCliWorkspaceConfig -PackagePath 'channels/QQ'
+$LogDir = [string]$WorkspaceConfig.paths.logs
+$StateDir = [string]$WorkspaceConfig.paths.var
 New-Item -ItemType Directory -Force $LogDir, $StateDir | Out-Null
 
 $PidFile = Join-Path $StateDir "qq-channel-pids.json"

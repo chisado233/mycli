@@ -11,7 +11,10 @@ $ErrorActionPreference = "Stop"
 $OutputEncoding = [Console]::OutputEncoding
 
 $script:PackageRoot = Split-Path -Parent $PSScriptRoot
-$script:RegistryPath = Join-Path $script:PackageRoot "registry.json"
+$script:WorkspaceConfigModule = Join-Path (Split-Path -Parent $script:PackageRoot) "common\workspace-config.ps1"
+. $script:WorkspaceConfigModule
+$script:WorkspaceConfig = Get-MyCliWorkspaceConfig -PackagePath 'skill-library'
+$script:RegistryPath = Join-Path ([string]$script:WorkspaceConfig.paths.config) "registry.json"
 $script:ConfigPath = Join-Path $script:PackageRoot "cli.package.json"
 $script:Utf8NoBom = [System.Text.UTF8Encoding]::new($false)
 $script:Utf8WithBom = [System.Text.UTF8Encoding]::new($true)

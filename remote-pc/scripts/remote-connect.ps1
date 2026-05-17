@@ -31,6 +31,21 @@ Write-Host ("SSH 22: {0}" -f ($(if ($sshOk) { 'OK' } else { 'FAIL/disabled' })))
 $persistent = if ($NoPersistent) { '/persistent:no' } else { '/persistent:yes' }
 $mapped = @()
 
+function Clear-RemotePcSmbSessions {
+    param([Parameter(Mandatory)][string]$HostAddress)
+    $targets = @("\\$HostAddress", "\\$HostAddress\IPC$")
+    foreach ($map in $maps) {
+        $targets += (Get-RemotePcUncPath -Device $device -Map $map)
+        $driveName = Get-RemotePcDriveName -Map $map
+        & net use $driveName /delete /y 2>$null | Out-Null
+    }
+    foreach ($target in ($targets | Select-Object -Unique)) {
+        & net use $target /delete /y 2>$null | Out-Null
+    }
+}
+
+Clear-RemotePcSmbSessions -HostAddress $device.wireguardIp
+
 foreach ($map in $maps) {
     $drive = Get-RemotePcDriveName -Map $map
     $unc = Get-RemotePcUncPath -Device $device -Map $map
@@ -50,11 +65,17 @@ foreach ($map in $maps) {
     Write-Host "Mapping $drive -> $unc"
     $userArgs = @()
     if (-not [string]::IsNullOrWhiteSpace($device.smbUser)) {
-        $userArgs = @("/user:$($device.smbUser)", '*')
+        $password = if ($device.PSObject.Properties['smbPassword'] -and -not [string]::IsNullOrWhiteSpace([string]$device.smbPassword)) { [string]$device.smbPassword } else { '*' }
+        $userArgs = @("/user:$($device.smbUser)", $password)
     }
 
     & net use $drive $unc @userArgs $persistent
     if ($LASTEXITCODE -ne 0) {
+        if ($LASTEXITCODE -eq 2) {
+            Write-Warning "Skipped $drive -> $unc. The remote share may not exist or is unavailable. net use exit code: $LASTEXITCODE"
+            $mapped += [pscustomobject]@{ Drive = $drive; UNC = $unc; Status = 'skipped' }
+            continue
+        }
         throw "Failed to map $drive -> $unc. net use exit code: $LASTEXITCODE"
     }
 

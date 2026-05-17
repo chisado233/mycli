@@ -1,2 +1,0 @@
-已完成交付并提交 `task-link report`。  
-AGENT_CLI_LIFECYCLE_END

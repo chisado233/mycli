@@ -109,6 +109,48 @@
       "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\scripts\\llm-call.ps1"
     },
     {
+      "name": "ui",
+      "summary": "Start local agent terminal UI in detached mode",
+      "args": [
+        {
+          "name": "port",
+          "required": false,
+          "summary": "Local HTTP port, defaults to 46030",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\ui\\start.ps1"
+    },
+    {
+      "name": "ui-stop",
+      "summary": "Stop detached agent terminal UI",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\ui\\stop.ps1"
+    },
+    {
+      "name": "ui-open",
+      "summary": "Start agent terminal UI and open it in Edge",
+      "args": [
+        {
+          "name": "port",
+          "required": false,
+          "summary": "Local HTTP port, defaults to 46030",
+          "type": "string"
+        }
+      ],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\ui\\start-open.ps1"
+    },
+    {
+      "name": "ui-status",
+      "summary": "Show agent terminal UI detached process and health status",
+      "args": [],
+      "prefixArgs": [],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\agent-cli\\ui\\status.ps1"
+    },
+    {
       "name": "native",
       "summary": "Pass through directly to the underlying provider CLI",
       "args": [

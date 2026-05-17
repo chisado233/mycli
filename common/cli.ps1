@@ -894,6 +894,26 @@ function Invoke-RegisteredCommand {
         Write-CliError "Command entry '$($command.entry)' does not exist."
     }
 
+    if ($RemainingArgs -contains '--help' -or $RemainingArgs -contains '-h' -or $RemainingArgs -contains 'help') {
+        Write-Output ("mycli {0} {1}" -f ($PackageSegments -join ' '), $CommandName)
+        if (-not [string]::IsNullOrWhiteSpace([string]$command.summary)) {
+            Write-Output ""
+            Write-Output ([string]$command.summary)
+        }
+        $args = @($command.args)
+        if ($args.Count -gt 0) {
+            Write-Output ""
+            Write-Output "Arguments:"
+            foreach ($arg in $args) {
+                $required = if ($arg.required) { "required" } else { "optional" }
+                $type = if ($arg.type) { [string]$arg.type } else { "string" }
+                $summary = if ($arg.summary) { [string]$arg.summary } else { "" }
+                Write-Output ("  {0} ({1}, {2}) {3}" -f [string]$arg.name, $type, $required, $summary)
+            }
+        }
+        return
+    }
+
     $prefixArgs = @()
     if ($null -ne $command.prefixArgs) {
         $prefixArgs = @($command.prefixArgs)

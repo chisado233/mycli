@@ -1,9 +1,0 @@
-当前无可推进事项。
-
-- 当前 session 中没有明确的未完成工作需要继续。
-- 已检查任务大厅：`mycli task-hall tasks`
-- 结果：当前没有可领取任务（`No tasks.`）
-- 因为没有等待中的外部结果、已发布任务或需稍后复查的事项，本次未创建 heartbeat 定时唤起。
-
-状态：idle  
-AGENT_CLI_LIFECYCLE_END

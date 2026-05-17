@@ -60,17 +60,6 @@ function Get-ConfigRecords {
       continue
     }
 
-    if (-not (Test-JsonPropertyExists -Object $json -Name 'description')) {
-      [void]$errors.Add("Missing top-level description field: $($file.FullName)")
-      continue
-    }
-
-    $description = [string]$json.description
-    if ([string]::IsNullOrWhiteSpace($description)) {
-      [void]$errors.Add("Empty top-level description field: $($file.FullName)")
-      continue
-    }
-
     try {
       $relativePath = [System.IO.Path]::GetRelativePath($ConfigRoot, $file.FullName)
     } catch {
@@ -83,6 +72,24 @@ function Get-ConfigRecords {
       $relativePath = [System.Uri]::UnescapeDataString(
         $configRootUri.MakeRelativeUri($fileUri).ToString().Replace('/', '\\')
       )
+    }
+    if (-not (Test-JsonPropertyExists -Object $json -Name 'description')) {
+      if ($relativePath -match '^mycli\\' -and [System.IO.Path]::GetFileName($file.FullName) -ne 'workspace-config.json') {
+        [void]$records.Add([pscustomobject]@{
+          name = [System.IO.Path]::ChangeExtension($relativePath, $null).TrimEnd('.')
+          description = 'mycli package workspace config/data file'
+          path = $file.FullName
+        })
+        continue
+      }
+      [void]$errors.Add("Missing top-level description field: $($file.FullName)")
+      continue
+    }
+
+    $description = [string]$json.description
+    if ([string]::IsNullOrWhiteSpace($description)) {
+      [void]$errors.Add("Empty top-level description field: $($file.FullName)")
+      continue
     }
     $name = [System.IO.Path]::ChangeExtension($relativePath, $null).TrimEnd('.')
     if ((Test-JsonPropertyExists -Object $json -Name 'name') -and -not [string]::IsNullOrWhiteSpace([string]$json.name)) {

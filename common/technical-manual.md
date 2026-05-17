@@ -407,13 +407,28 @@ mycli package register dev/opencli --summary "..." --source "..."
 mycli package register demo/tools --summary "Demo tools" --source "D:\demo"
 ```
 
-2. 注册命令
+2. 生成 workspace 目录与 workspace-config
+
+```powershell
+mycli workspace ensure-package demo/tools
+mycli workspace config mycli demo/tools --json
+```
+
+`workspace-config.json` 默认写入：
+
+```text
+D:\agent_workspace\config\mycli\demo\tools\workspace-config.json
+```
+
+包内脚本必须读取该文件的 `paths` 字段来决定 `tmp`、`var`、`logs`、`cache`、`config`、`data`、`downloads`、`backups` 等产物位置，不要把这些路径写死在源码包目录中。
+
+3. 注册命令
 
 ```powershell
 mycli demo tools command register hello --summary "Say hello" --entry "D:\demo\hello.ps1" --args "[]"
 ```
 
-3. 更新 README
+4. 更新 README
 
 ```powershell
 mycli demo tools help update --content "# demo tools`n`n## Summary`nDemo tools"
@@ -424,6 +439,29 @@ mycli demo tools help update --content "# demo tools`n`n## Summary`nDemo tools"
 ```powershell
 mycli package register-full demo/tools --summary "Demo tools" --source "D:\demo" --commands "[{""name"":""hello"",""summary"":""Say hello"",""args"":[],""entry"":""D:\\demo\\hello.ps1""}]" --help "# demo tools`n`n## Summary`nDemo tools"
 ```
+
+一次性注册后仍应立即运行：
+
+```powershell
+mycli workspace ensure-package demo/tools
+```
+
+后续建议把 `package register` / `register-full` 和 `workspace ensure-package` 集成，让注册流程默认 workspace-aware。
+
+### Workspace-aware 脚本约束
+
+mycli 包脚本撰写时遵守：
+
+- 源码包目录只放源码、README、命令注册、模板、静态资源和需要随 Git 同步的轻量文件。
+- 本机真实配置、token、secret、账号、本机路径配置写入 workspace-config 的 `paths.config`。
+- 有效长期数据、采集结果、exports、registry/search 结果按性质写入 `paths.data`。
+- pid、session、queue、scheduler/mount state 等运行时状态写入 `paths.var`。
+- stdout/stderr、detached logs、trace 写入 `paths.logs`。
+- 可重建缓存写入 `paths.cache`。
+- 一次性实验、中间输入输出、临时 patch/prompt/sandbox 写入 `paths.tmp`。
+- 下载物、release artifacts、安装包、外部原始包写入 `paths.downloads`。
+- 迁移前快照、导出副本、备份写入 `paths.backups`。
+- 不要硬编码这些路径；默认读取 `D:\agent_workspace\config\mycli\<package-path>\workspace-config.json`。
 
 ---
 
@@ -522,4 +560,3 @@ mycli qa demo list
 ```
 
 测试结束后再清理临时包。
-

@@ -1,4 +1,0 @@
-- 当前任务大厅：无可领取任务（`mycli task-hall tasks` 返回空）。
-- `agent-cli current` 显示当前会话/代理为 `opencode/private-assistant`（未见“待完成工作”线索）。
-
-**Idle 状态**：目前没有适合我立刻处理的轻量任务。

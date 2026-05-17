@@ -27,8 +27,9 @@ if (-not [string]::IsNullOrWhiteSpace($device.sshKeyPath)) {
     }
 }
 
-$encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($Command))
-$remote = "powershell -NoProfile -ExecutionPolicy Bypass -EncodedCommand $encoded"
+$wrappedCommand = "`$ProgressPreference = 'SilentlyContinue'; `$InformationPreference = 'SilentlyContinue'; $Command"
+$encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($wrappedCommand))
+$remote = "powershell -NoProfile -ExecutionPolicy Bypass -OutputFormat Text -EncodedCommand $encoded"
 
 $sshArgs = @('-o', 'StrictHostKeyChecking=accept-new', '-o', "ConnectTimeout=$TimeoutSeconds")
 if ($keyPath) {

@@ -1,3 +1,0 @@
-2026-04-24T02:12:47.0018835Z Broker ready. pid=32096; admin=True; idle_timeout_sec=20
-2026-04-24T02:13:06.0907313Z Idle timeout reached (20s).
-2026-04-24T02:13:06.0959798Z Broker stopped.

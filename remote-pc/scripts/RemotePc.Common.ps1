@@ -4,6 +4,13 @@ function Get-RemotePcProjectRoot {
     Split-Path -Parent $PSScriptRoot
 }
 
+function Get-RemotePcWorkspaceConfig {
+    $root = Get-RemotePcProjectRoot
+    $module = Join-Path (Split-Path -Parent $root) 'common\workspace-config.ps1'
+    . $module
+    Get-MyCliWorkspaceConfig -PackagePath 'remote-pc'
+}
+
 function Resolve-RemotePcPath {
     param([Parameter(Mandatory)][string]$Path)
     [Environment]::ExpandEnvironmentVariables($Path)
@@ -11,8 +18,10 @@ function Resolve-RemotePcPath {
 
 function Get-RemotePcConfig {
     $root = Get-RemotePcProjectRoot
-    $devicesPath = Join-Path $root 'config\devices.local.json'
-    $mapsPath = Join-Path $root 'config\drive-maps.local.json'
+    $workspaceConfig = Get-RemotePcWorkspaceConfig
+    $configRoot = [string]$workspaceConfig.paths.config
+    $devicesPath = Join-Path $configRoot 'devices.local.json'
+    $mapsPath = Join-Path $configRoot 'drive-maps.local.json'
 
     if (-not (Test-Path $devicesPath)) {
         throw "Missing config: $devicesPath. Copy config\devices.example.json to devices.local.json first."
@@ -80,8 +89,8 @@ function Write-RemotePcLog {
         [Parameter(Mandatory)][string]$Action,
         [Parameter(Mandatory)][string]$Message
     )
-    $root = Get-RemotePcProjectRoot
-    $logDir = Join-Path $root 'logs'
+    $workspaceConfig = Get-RemotePcWorkspaceConfig
+    $logDir = [string]$workspaceConfig.paths.logs
     if (-not (Test-Path $logDir)) {
         New-Item -ItemType Directory -Path $logDir -Force | Out-Null
     }

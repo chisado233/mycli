@@ -41,17 +41,14 @@ D:\agent_workspace\capability-library\mycli\mycli.ps1 list
 | 注册和管理一次性/持久定时命令或脚本 | `mycli cron ...` |
 | GitHub 仓库、issue、PR、Actions 与 API 操作 | `mycli github ...` |
 | 管理长期项目状态、任务和 next actions | `mycli project-manager ...` |
-| 查询/创建 workspace 标准 runtime/data/config/cache/logs 路径 | `mycli workspace ...` |
+| 查询/创建 workspace 标准 runtime/data/config/cache/logs 路径与打开统一 UI | `mycli workspace ...` |
 | 控制 Clash 代理、测速、切换节点 | `mycli clash ...` |
 | 远程电脑 / WireGuard / 中转命令 | `mycli remote-pc ...` |
 | 外部消息通道与 bridge | `mycli channels ...` |
 | 本地素材 / 表情包路径与发送 | `mycli asset-library ...` |
 | Windows 登录启动命令 | `mycli startup ...` |
-| 持久 PowerShell session | `mycli PowerShell-cli ...` |
 | CLIProxyAPI 本地服务 | `mycli cliproxyapi ...` |
 | Codex 账号注册与 CPA 配套 | `mycli codex-register ...` |
-| 原生 opencode CLI 包装 | `mycli opencode ...` |
-| agent 任务大厅 | `mycli task-hall ...` |
 
 ## 顶层包
 
@@ -73,15 +70,11 @@ mycli list
 - `cron` — 注册和管理一次性/持久 Windows Task Scheduler 定时命令或脚本任务。
 - `github` — 官方 GitHub CLI (`gh`) 包装，支持 repo、issue、PR、Actions、search、api 与 auth。
 - `novel-writing` — 小说写作 skill 的工作入口和拆书初始化入口。
-- `opencode` — 原生 opencode CLI 的 mapped commands + native 透传。
-- `PowerShell-cli` — detached persistent PowerShell runspace sessions。
 - `project-manager` — 持久项目注册、查询、状态、任务和上下文管理。
 - `remote-pc` — 基于 WireGuard 的 remote PC bridge control commands。
 - `skill-library` — 本地 skill 索引、搜索、注册。
 - `startup` — 当前 Windows 用户登录时自动运行的 mycli commands。
-- `task-hall` — agent 任务大厅：发布、展示、领取、审核、关闭和生命周期唤醒。
-- `workspace` — 管理 `D:\agent_workspace` 标准 runtime/data/config/cache/logs 路径与命名空间目录。
-- `workspace-ui` — agent-workspace 统一 UI 总控台 / launcher。
+- `workspace` — 管理 `D:\agent_workspace` 标准 runtime/data/config/cache/logs/ui 路径、命名空间目录与统一 UI 总控台 / launcher（`mycli workspace ui ...`）。
 
 ## 常用流程
 
@@ -166,6 +159,23 @@ mycli startup add task-hall-recover mycli task-hall lifecycle-wake --reason star
 mycli startup status
 ```
 
+### Workspace-config 路径治理
+
+```powershell
+mycli workspace ensure-package channels/QQ
+mycli workspace config-path mycli channels/QQ
+mycli workspace config mycli channels/QQ --json
+mycli workspace ui open
+```
+
+每个包、项目、skill、agent 默认都应有自动生成的 `workspace-config.json`，用于记录 `tmp/var/logs/cache/config/data/downloads/backups/ui` 等路径。以 mycli 包为例：
+
+```text
+D:\agent_workspace\config\mycli\<package-path>\workspace-config.json
+```
+
+mycli 包脚本撰写规则：不要把中间产物、日志、下载物、状态、缓存、真实配置或有效数据路径写死在源码包目录中；脚本应读取对应 `workspace-config.json` 的 `paths` 字段，并把产物写入相应 workspace 位置。
+
 ## 包与命令维护
 
 修改 `mycli` 运行时或包注册前，先读：
@@ -185,6 +195,15 @@ mycli <package> command register <name> --summary <text> --entry <absolute-path>
 mycli <package> command update <name> [--summary <text>] [--entry <absolute-path>] [--args <json>] [--prefix-args <json>]
 mycli <package> help update --content <markdown>
 ```
+
+新增或重整包的 workspace-aware 流程：
+
+1. 注册子包：创建包目录、`cli.package.json`、`README.md`。
+2. 生成 workspace 目录：`mycli workspace ensure-package <package-path>`。
+3. 生成/确认 workspace-config：`mycli workspace config mycli <package-path> --json`。
+4. 撰写脚本：从 workspace-config 读取路径，不写死 tmp/logs/downloads/config/data 等产物路径。
+5. 注册命令并更新 README。
+6. 验证 `--help`、`list`、代表性只读命令，并确认产物写入 workspace 对应位置。
 
 维护约束：
 

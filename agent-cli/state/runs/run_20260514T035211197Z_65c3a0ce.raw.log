@@ -1,2 +1,0 @@
-{"type":"step_start","timestamp":1778730740505,"sessionID":"ses_1db62efbfffe1sFep4sVgiUwha","part":{"id":"prt_e249d2b18001JFlN0wGz6IRgwS","messageID":"msg_e249d11550014Q6R6xjCHQRUVR","sessionID":"ses_1db62efbfffe1sFep4sVgiUwha","type":"step-start"}}
-{"type":"text","timestamp":1778730740831,"sessionID":"ses_1db62efbfffe1sFep4sVgiUwha","part":{"id":"prt_e249d2b3b0016XcOTv2Np5DJQn","messageID":"msg_e249d11550014Q6R6xjCHQRUVR","sessionID":"ses_1db62efbfffe1sFep4sVgiUwha","type":"text","text":"测试成功","time":{"start":1778730740539,"end":1778730740830}}}

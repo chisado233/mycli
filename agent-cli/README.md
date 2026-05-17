@@ -9,6 +9,7 @@ Current sources:
 - `claude`
 - `codex`
 - `opencode`
+- `remote-opencode`
 
 Current first-class features:
 
@@ -44,6 +45,10 @@ Current first-class features:
 - `mycli agent-cli schedule ...`
 - `mycli agent-cli mount ...`
 - `mycli agent-cli llm-call ...`
+- `mycli agent-cli ui`
+- `mycli agent-cli ui-open`
+- `mycli agent-cli ui-status`
+- `mycli agent-cli ui-stop`
 - `mycli agent-cli native ...`
 - `mycli agent-cli codex-auto ...`
 - `mycli agent-cli agent list`
@@ -75,7 +80,41 @@ mycli agent-cli run --agent codex/default --model gpt-5.4 --session_name "bugfix
 mycli agent-cli run --agent claude/default --model sonnet --session_name "repo-review" --prompt "review this repo"
 mycli agent-cli run --agent opencode/private-assistant --continue --prompt "continue and summarize progress" --return_mode silent
 mycli agent-cli run --session ses_123 --fork --session_name "alt-fix" --prompt "try a safer implementation"
+mycli agent-cli run --agent remote-opencode/private-assistant --cwd D:\agent_workspace --prompt "work on the remote PC workspace" --return_mode stream
 ```
+
+## Agent CLI Terminal UI
+
+`agent-cli` includes a local browser terminal UI. The first supported remote agent is:
+
+- `remote-opencode/private-assistant` → forwarded through `mycli remote-pc run B ...` to OpenCode on Remote PC B, running in B's own `D:\agent_workspace`.
+- Remote OpenCode is launched with `XDG_CONFIG_HOME=D:\agent_workspace\agent`, so its workspace-local config root is `D:\agent_workspace\agent\opencode` instead of `C:\Users\remote_admin\.config\opencode`.
+- The first remote agent file is `D:\agent_workspace\agent\opencode\agent\private-assistant.md`; OpenCode currently exposes it as `opencode/agent/private-assistant` on B.
+
+Commands:
+
+```powershell
+mycli agent-cli ui
+mycli agent-cli ui-open
+mycli agent-cli ui-status
+mycli agent-cli ui-stop
+```
+
+Default URL:
+
+- `http://127.0.0.1:46030`
+- health snapshot: `http://127.0.0.1:46030/api/snapshot`
+
+Workspace UI manifest:
+
+- `D:\agent_workspace\ui\mycli\agent-cli\ui.json`
+
+Implementation notes:
+
+- The UI uses a lightweight Server-Sent Events stream from `/api/run`.
+- The server calls `mycli agent-cli run --agent remote-opencode/private-assistant --return_mode stream` and forwards each output line to the browser.
+- `remote-opencode` stores local tracking records under the standard agent-cli run-state path, while the actual OpenCode process and file edits happen on Remote PC B.
+- The current remote transport uses SSH via `mycli remote-pc run B ...`; if SSH/PowerShell wraps stderr as CLIXML, the UI may display those raw lines until the transport is upgraded.
 
 ## Direct LLM Calls
 
@@ -299,6 +338,7 @@ Mapped agent names keep the source prefix:
 - `codex/default`
 - `opencode/build`
 - `opencode/private-assistant`
+- `remote-opencode/private-assistant`
 
 ## Native Access
 

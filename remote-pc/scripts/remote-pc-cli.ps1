@@ -7,8 +7,23 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $PackageRoot = Split-Path -Parent $PSScriptRoot
 
+function Get-RemotePcWorkspaceConfigForCli {
+    $module = Join-Path (Split-Path -Parent $PackageRoot) 'common\workspace-config.ps1'
+    . $module
+    Get-MyCliWorkspaceConfig -PackagePath 'remote-pc'
+}
+
+function Get-RemotePcConfigRootForCli {
+    $workspaceConfig = Get-RemotePcWorkspaceConfigForCli
+    [string]$workspaceConfig.paths.config
+}
+
+function Get-RemotePcToolRootForCli {
+    'D:\agent_workspace\tools\mycli\remote-pc'
+}
+
 function Import-RemotePcEnvFile {
-    $envPath = Join-Path $PackageRoot 'config\relay.env.local'
+    $envPath = Join-Path (Get-RemotePcConfigRootForCli) 'relay.env.local'
     if (-not (Test-Path -LiteralPath $envPath)) { return }
     foreach ($line in Get-Content -LiteralPath $envPath) {
         if ([string]::IsNullOrWhiteSpace($line) -or $line.TrimStart().StartsWith('#')) { continue }
@@ -49,6 +64,11 @@ Examples:
 "@
 }
 
+if ($Command -in @('--help', '-h') -or (($Rest -contains '--help') -or ($Rest -contains '-h') -or ($Rest -contains 'help'))) {
+    Show-RemotePcUsage
+    exit 0
+}
+
 function Invoke-PackageScript {
     param([Parameter(Mandatory)][string]$Name, [string[]]$Args = @())
     $scriptPath = Join-Path $PackageRoot "scripts\$Name"
@@ -59,26 +79,32 @@ function Invoke-PackageScript {
     exit 0
 }
 
+function Exit-WithNativeCode {
+    $lastExitCodeVariable = Get-Variable -Name LASTEXITCODE -Scope Global -ErrorAction SilentlyContinue
+    if ($lastExitCodeVariable -and $lastExitCodeVariable.Value -is [int]) { exit $lastExitCodeVariable.Value }
+    exit 0
+}
+
 function Get-WireGuardExe {
     $candidates = @(
+        (Join-Path (Get-RemotePcToolRootForCli) 'wireguard\wireguard.exe'),
         'C:\Program Files\WireGuard\wireguard.exe',
-        (Join-Path $PackageRoot 'wireguard\bin\wireguard.exe'),
-        'D:\agent_workspace\tmp\wireguard-portable\wireguard.exe'
+        (Join-Path $PackageRoot 'wireguard\bin\wireguard.exe')
     )
     foreach ($candidate in $candidates) {
         if (Test-Path -LiteralPath $candidate) { return $candidate }
     }
-    throw "WireGuard executable not found. Install WireGuard or place portable binaries under $PackageRoot\wireguard\bin."
+    throw "WireGuard executable not found. Expected workspace copy under $(Join-Path (Get-RemotePcToolRootForCli) 'wireguard\wireguard.exe') or official install under C:\Program Files\WireGuard."
 }
 
 function Get-ClientAConfig {
-    $path = Join-Path $PackageRoot 'wireguard\client-a.local.conf'
+    $path = Join-Path (Get-RemotePcConfigRootForCli) 'wireguard\client-a.local.conf'
     if (-not (Test-Path -LiteralPath $path)) { throw "Missing WireGuard client config: $path" }
     $path
 }
 
 function Get-RemotePcLocalDeviceName {
-    $devicesPath = Join-Path $PackageRoot 'config\devices.local.json'
+    $devicesPath = Join-Path (Get-RemotePcConfigRootForCli) 'devices.local.json'
     if (-not (Test-Path -LiteralPath $devicesPath)) { return 'A' }
     $config = Get-Content -LiteralPath $devicesPath -Raw | ConvertFrom-Json
     if ([string]::IsNullOrWhiteSpace($config.localDevice)) { return 'A' }
@@ -88,7 +114,7 @@ function Get-RemotePcLocalDeviceName {
 function Get-ClientConfig {
     $localDevice = Get-RemotePcLocalDeviceName
     $configName = 'client-{0}.local' -f $localDevice.ToLowerInvariant()
-    $path = Join-Path $PackageRoot "wireguard\$configName.conf"
+    $path = Join-Path (Get-RemotePcConfigRootForCli) "wireguard\$configName.conf"
     if (-not (Test-Path -LiteralPath $path)) {
         throw "Missing WireGuard client config: $path. Run scripts\configure-from-secrets.ps1 first."
     }
@@ -111,7 +137,7 @@ function Get-CommandServerScript {
 }
 
 function Get-RemotePcSecrets {
-    $path = Join-Path $PackageRoot 'config\secrets.local.json'
+    $path = Join-Path (Get-RemotePcConfigRootForCli) 'secrets.local.json'
     if (-not (Test-Path -LiteralPath $path)) { return $null }
     Get-Content -LiteralPath $path -Raw | ConvertFrom-Json
 }
@@ -119,7 +145,7 @@ function Get-RemotePcSecrets {
 function Get-RemotePcCommandConfig {
     $secrets = Get-RemotePcSecrets
     $localDevice = Get-RemotePcLocalDeviceName
-    $devicesPath = Join-Path $PackageRoot 'config\devices.local.json'
+    $devicesPath = Join-Path (Get-RemotePcConfigRootForCli) 'devices.local.json'
     $commandHost = if ($localDevice -eq 'B') { '10.66.0.3' } else { '10.66.0.2' }
     if (Test-Path -LiteralPath $devicesPath) {
         $devices = Get-Content -LiteralPath $devicesPath -Raw | ConvertFrom-Json
@@ -213,12 +239,14 @@ switch ($Command) {
     'help' { Show-RemotePcUsage; exit 0 }
     'paths' {
         $localDevice = Get-RemotePcLocalDeviceName
+        $workspaceConfig = Get-RemotePcWorkspaceConfigForCli
         [pscustomobject]@{
             PackageRoot = $PackageRoot
-            Config = Join-Path $PackageRoot 'config'
+            Config = [string]$workspaceConfig.paths.config
+            Tools = Get-RemotePcToolRootForCli
             LocalDevice = $localDevice
-            WireGuardConfig = Join-Path $PackageRoot ('wireguard\client-{0}.local.conf' -f $localDevice.ToLowerInvariant())
-            Logs = Join-Path $PackageRoot 'logs'
+            WireGuardConfig = Join-Path ([string]$workspaceConfig.paths.config) ('wireguard\client-{0}.local.conf' -f $localDevice.ToLowerInvariant())
+            Logs = [string]$workspaceConfig.paths.logs
         } | Format-List
         exit 0
     }
@@ -240,10 +268,9 @@ switch ($Command) {
         Get-Service -Name 'WireGuardTunnel*' -ErrorAction SilentlyContinue | Format-Table -AutoSize
         Get-NetAdapter | Where-Object { $_.InterfaceDescription -match 'WireGuard' -or $_.Name -match 'client-a|WireGuard' } | Format-Table -AutoSize
         Invoke-ServerCommand -RemoteCommand 'wg show'
-        exit $LASTEXITCODE
+        Exit-WithNativeCode
     }
     'wg-start' {
-        $wg = Get-WireGuardExe
         $conf = Get-ClientConfig
         $serviceName = Get-WireGuardServiceName -ConfigName $conf.Name
         $service = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
@@ -251,22 +278,24 @@ switch ($Command) {
             if ($service.Status -ne 'Running') { Start-Service -Name $service.Name }
             Get-Service -Name $service.Name | Format-Table -AutoSize
         } else {
+            $wg = Get-WireGuardExe
             & $wg /installtunnelservice $conf.Path
         }
-        exit $LASTEXITCODE
+        Exit-WithNativeCode
     }
-    'wg-stop' { $conf = Get-ClientConfig; & (Get-WireGuardExe) /uninstalltunnelservice $conf.Name; exit $LASTEXITCODE }
+    'wg-stop' { $conf = Get-ClientConfig; & (Get-WireGuardExe) /uninstalltunnelservice $conf.Name; Exit-WithNativeCode }
     'wg-restart' {
         $wg = Get-WireGuardExe
         $conf = Get-ClientConfig
         & $wg /uninstalltunnelservice $conf.Name 2>$null
         Start-Sleep -Seconds 2
         & $wg /installtunnelservice $conf.Path
-        exit $LASTEXITCODE
+        Exit-WithNativeCode
     }
     'command-server-start' {
         $scriptPath = Get-CommandServerScript
-        $logDir = Join-Path $PackageRoot 'logs'
+        $workspaceConfig = Get-RemotePcWorkspaceConfigForCli
+        $logDir = [string]$workspaceConfig.paths.logs
         if (-not (Test-Path -LiteralPath $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
         $commandConfig = Get-RemotePcCommandConfig
         New-NetFirewallRule -DisplayName "Remote Bridge Command $($commandConfig.Port) WireGuard" -Direction Inbound -Action Allow -Protocol TCP -LocalPort $commandConfig.Port -RemoteAddress "$($commandConfig.AllowedClient)/32" -Profile Any -ErrorAction SilentlyContinue | Out-Null
@@ -292,16 +321,17 @@ switch ($Command) {
         netstat -ano | Select-String ':18082'
         exit 0
     }
-    'relay-health' { Invoke-RelayRequest -PathAndQuery '/health'; exit $LASTEXITCODE }
+    'relay-health' { Invoke-RelayRequest -PathAndQuery '/health'; Exit-WithNativeCode }
     'relay-run' {
         if (-not $Rest -or $Rest.Count -lt 1) { throw 'relay-run requires a PowerShell command string.' }
         $cmd = $Rest -join ' '
         $cmd64 = ConvertTo-UrlSafeBase64 -Text $cmd
         Invoke-RelayRequest -PathAndQuery "/run?cmd64=$cmd64"
-        exit $LASTEXITCODE
+        Exit-WithNativeCode
     }
     'test-relay-file' {
-        $testDir = Join-Path $PackageRoot 'tmp\wireguard-self-test'
+        $workspaceConfig = Get-RemotePcWorkspaceConfigForCli
+        $testDir = Join-Path ([string]$workspaceConfig.paths.tmp) 'wireguard-self-test'
         if (-not (Test-Path -LiteralPath $testDir)) { New-Item -ItemType Directory -Path $testDir -Force | Out-Null }
         $filePath = Join-Path $testDir 'from-a-via-wireguard.txt'
         Set-Content -LiteralPath $filePath -Value "hello from A via WireGuard relay $(Get-Date -Format o)" -Encoding UTF8
@@ -312,7 +342,7 @@ switch ($Command) {
             Start-Sleep -Seconds 2
         }
         Invoke-ServerCommand -RemoteCommand 'curl -sS --max-time 10 http://10.66.0.2:18080/from-a-via-wireguard.txt; echo; wg show'
-        exit $LASTEXITCODE
+        Exit-WithNativeCode
     }
     default { throw "Unknown remote-pc command '$Command'. Use: mycli remote-pc native help" }
 }

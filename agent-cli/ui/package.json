@@ -1,0 +1,8 @@
+{
+  "name": "agent-cli-ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local terminal UI for mycli agent-cli",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" }
+}

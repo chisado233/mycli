@@ -1,6 +1,0 @@
-﻿{
-  "allowed": true,
-  "agent_tier": "expert",
-  "required_tier": "cheap",
-  "reason": "该任务最低模型要求为 cheap，申请 agent 模型等级为 expert，高于最低门槛，满足领取条件。"
-}

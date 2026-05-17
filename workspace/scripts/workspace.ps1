@@ -19,8 +19,8 @@ foreach ($argument in @($Arguments)) {
 $ArgumentArray = [string[]]$ArgumentList.ToArray()
 
 $WorkspaceRoot = 'D:\agent_workspace'
-$RootNames = @('tmp', 'var', 'logs', 'cache', 'config', 'data', 'downloads', 'backups', 'tools', 'models')
-$ScopedRootNames = @('tmp', 'var', 'logs', 'cache', 'config', 'data', 'downloads', 'backups')
+$RootNames = @('tmp', 'var', 'logs', 'cache', 'config', 'data', 'downloads', 'backups', 'ui', 'tools', 'models')
+$ScopedRootNames = @('tmp', 'var', 'logs', 'cache', 'config', 'data', 'downloads', 'backups', 'ui')
 $Domains = @('mycli', 'projects', 'skills', 'agents', 'shared')
 
 function Write-Usage {
@@ -30,6 +30,8 @@ Usage:
   mycli workspace paths [--json]
   mycli workspace path <root> <domain> <name...>
   mycli workspace inspect <domain> <name...> [--json]
+  mycli workspace config-path <domain> <name...>
+  mycli workspace config <domain> <name...> [--json]
   mycli workspace ensure [--json]
   mycli workspace ensure <domain> <name...> [--json]
   mycli workspace ensure-package <package-path> [--json]
@@ -37,7 +39,7 @@ Usage:
   mycli workspace ensure-skill <skill-name-or-path> [--json]
 
 Roots:
-  tmp, var, logs, cache, config, data, downloads, backups, tools, models
+  tmp, var, logs, cache, config, data, downloads, backups, ui, tools, models
 
 Domains:
   mycli, projects, skills, agents, shared
@@ -47,6 +49,11 @@ Domains:
 function Test-JsonFlag {
     param([string[]]$Items)
     return @($Items) -contains '--json'
+}
+
+function Test-HelpFlag {
+    param([string[]]$Items)
+    return @($Items) -contains '--help' -or @($Items) -contains '-h' -or @($Items) -contains 'help'
 }
 
 function Remove-Flags {
@@ -215,6 +222,59 @@ function Get-ScopedRows {
     }
 }
 
+function Get-WorkspaceConfigPath {
+    param(
+        [string]$Domain,
+        [string[]]$NameSegments
+    )
+
+    $configRoot = Resolve-WorkspacePath -RootName 'config' -Domain $Domain -NameSegments $NameSegments
+    return [System.IO.Path]::Combine($configRoot, 'workspace-config.json')
+}
+
+function New-WorkspaceConfigObject {
+    param(
+        [string]$Domain,
+        [string[]]$NameSegments
+    )
+
+    $safeSegments = ConvertTo-SafeSegments $NameSegments
+    $paths = [ordered]@{}
+    foreach ($rootName in $ScopedRootNames) {
+        $paths[$rootName] = Resolve-WorkspacePath -RootName $rootName -Domain $Domain -NameSegments $safeSegments
+    }
+
+    [pscustomobject]@{
+        schema = 'mycli.workspace-config.v1'
+        domain = $Domain
+        name = ($safeSegments -join '/')
+        workspaceRoot = $WorkspaceRoot
+        generatedAt = (Get-Date).ToString('o')
+        paths = $paths
+    }
+}
+
+function Save-WorkspaceConfig {
+    param(
+        [string]$Domain,
+        [string[]]$NameSegments
+    )
+
+    $safeSegments = ConvertTo-SafeSegments $NameSegments
+    $configDirectory = Resolve-WorkspacePath -RootName 'config' -Domain $Domain -NameSegments $safeSegments
+    New-DirectoryIfMissing $configDirectory | Out-Null
+    $configPath = Get-WorkspaceConfigPath -Domain $Domain -NameSegments $safeSegments
+    Assert-WorkspaceTarget -Path $configPath
+    $config = New-WorkspaceConfigObject -Domain $Domain -NameSegments $safeSegments
+    $jsonText = $config | ConvertTo-Json -Depth 8
+    [System.IO.File]::WriteAllText($configPath, $jsonText + [Environment]::NewLine, [System.Text.UTF8Encoding]::new($false))
+    [pscustomobject]@{
+        path = $configPath
+        created = $true
+        exists = Test-Path -LiteralPath $configPath -PathType Leaf
+    }
+}
+
 function Write-TableRows {
     param([object[]]$Rows)
     foreach ($row in $Rows) {
@@ -254,6 +314,7 @@ function Ensure-ScopedWorkspace {
     foreach ($row in (Get-ScopedRows -Domain $Domain -NameSegments $NameSegments)) {
         $results.Add((New-DirectoryIfMissing $row.path)) | Out-Null
     }
+    $results.Add((Save-WorkspaceConfig -Domain $Domain -NameSegments $NameSegments)) | Out-Null
     return $results.ToArray()
 }
 
@@ -263,6 +324,11 @@ $json = Test-JsonFlag $ArgumentArray
 $command = if ($argsNoFlags.Length -gt 0) { $argsNoFlags[0] } else { '--help' }
 $rest = [string[]]$(if ($argsNoFlags.Length -gt 1) { @($argsNoFlags[1..($argsNoFlags.Length - 1)]) } else { @() })
 if ($null -eq $rest) { $rest = [string[]]@() }
+
+if ($command -notin @('--help', '-h', 'help') -and (Test-HelpFlag $rest)) {
+    Write-Usage
+    exit 0
+}
 
 try {
     switch ($command) {
@@ -284,6 +350,24 @@ try {
             $segments = ConvertTo-SafeSegments @($rest[1..($rest.Length - 1)])
             $rows = @(Get-ScopedRows -Domain $rest[0] -NameSegments $segments)
             if ($json) { $rows | ConvertTo-Json -Depth 5 } else { Write-TableRows $rows }
+        }
+        'config-path' {
+            if ($rest.Length -lt 2) { throw 'Usage: mycli workspace config-path <domain> <name...>' }
+            $segments = ConvertTo-SafeSegments @($rest[1..($rest.Length - 1)])
+            Get-WorkspaceConfigPath -Domain $rest[0] -NameSegments $segments
+        }
+        'config' {
+            if ($rest.Length -lt 2) { throw 'Usage: mycli workspace config <domain> <name...>' }
+            $segments = ConvertTo-SafeSegments @($rest[1..($rest.Length - 1)])
+            $configPath = Get-WorkspaceConfigPath -Domain $rest[0] -NameSegments $segments
+            if (-not (Test-Path -LiteralPath $configPath -PathType Leaf)) {
+                Save-WorkspaceConfig -Domain $rest[0] -NameSegments $segments | Out-Null
+            }
+            if ($json) {
+                Get-Content -LiteralPath $configPath -Raw
+            } else {
+                $configPath
+            }
         }
         'ensure' {
             if ($rest.Length -eq 0) {

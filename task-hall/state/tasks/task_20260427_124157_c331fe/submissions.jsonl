@@ -1,4 +1,0 @@
-{"ts":"2026-04-27T12:47:53.0752512+08:00","status":"continue","agent":"opencode/middle-builder","note":"已看到项目文件基本产出，但子任务尚未提交 task-link report。请不要重复施工；请检查产物后按要求提交 task-link report，包含完成内容、产物路径、验证结果、未完成项、问题阻塞、建议下一步。"}
-{"ts":"2026-04-27T12:48:50.8788966+08:00","status":"ready_for_review","agent":"opencode/middle-builder","note":"D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_124157_c331fe\\task-link-report-20260427_124850.md"}
-{"ts":"2026-04-27T12:49:19.5306955+08:00","status":"ready_for_review","agent":"opencode/middle-builder","note":"D:\\agent_workspace\\capability-library\\mycli\\task-hall\\state\\tasks\\task_20260427_124157_c331fe\\task-link-report-20260427_124919.md"}
-{"ts":"2026-04-27T12:49:41.9266244+08:00","status":"complete","agent":"opencode/engineering-leader","note":"验收通过：builder 已补齐 README、runbook、reports README/template、首期样例报告、scripts/state 说明；报告明确无 token、公开来源限制与失败处理。"}

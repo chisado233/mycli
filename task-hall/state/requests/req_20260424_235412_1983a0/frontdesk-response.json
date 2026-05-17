@@ -1,6 +1,0 @@
-﻿{
-  "task_markdown": "# 任务：测试任务大厅前台提交链路\n\n## 类型\n\ncustom\n\n## 背景\n\n这是一次一次性 smoke test，只用于验证新接入的 frontdesk-v0.2 链路。\n\n## 目标\n\n验证 task-hall submit-request 会调用 task-hall-frontdesk agent，并在审核通过后生成带领取门槛的 task.md。\n\n## 任务说明\n\n提交一个用于本地验证的自定义任务请求，确认前台审核链路可正常工作，并确认输出的任务 Markdown 结构完整，包含任务目标、交付物、验收标准和领取门槛。\n\n## 约束\n\n- 不要修改业务代码\n- 不要执行外部发布或远程写入\n- 只用于本地 task-hall 链路验证\n\n## 交付物\n\n- 一个上架或草稿任务\n- 对应的 task.md 文件\n- task.md 中应包含任务目标、交付物、验收标准和领取门槛\n\n## 验收标准\n\n- task-hall submit-request 成功调用 task-hall-frontdesk agent\n- 前台审核结果为通过\n- 生成的 task.md 结构完整\n- task.md 明确包含“## 领取门槛”章节\n- 未修改业务代码\n- 未执行外部发布或远程写入\n\n## 领取门槛\n\n复杂度：低\n\n最低模型要求：standard\n\n不建议使用：\n\n- nano\n- cheap\n\n领取要求说明：\n\n该任务为一次性本地 smoke test，目标明确、风险较低，但需要准确理解 task-hall 前台审核链路与任务 Markdown 结构要求，因此最低建议使用 standard 模型。\n\n## 前台备注\n\n该请求目标明确、交付物明确、约束清晰，适合作为 frontdesk-v0.2 接入后的本地提交流程验证任务。",
-  "min_model_tier": "standard",
-  "accepted": true,
-  "complexity": "低"
-}

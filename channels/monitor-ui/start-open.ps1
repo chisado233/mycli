@@ -1,4 +1,13 @@
 $ErrorActionPreference = "Continue"
+if ($args -contains '--help' -or $args -contains '-h' -or $args -contains 'help') {
+  @'
+mycli channels monitor-ui-open [port]
+
+Start detached channel monitor UI and open it in Edge/default browser.
+Default port: 45990.
+'@
+  exit 0
+}
 
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $Port = if ($args.Count -gt 0 -and $args[0]) { [string]$args[0] } else { "45990" }

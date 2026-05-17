@@ -11,15 +11,18 @@ $ErrorActionPreference = "Stop"
 $OutputEncoding = [Console]::OutputEncoding
 
 $script:PackageRoot = Split-Path -Parent $PSScriptRoot
-$script:ConfigPath = Join-Path $script:PackageRoot "mapping-config.json"
-$script:RegistryPath = Join-Path $script:PackageRoot "registry.json"
 $script:ReadmePath = Join-Path $script:PackageRoot "README.md"
-$script:RunStateRoot = Join-Path $script:PackageRoot "state\runs"
-$script:ScheduleStateRoot = Join-Path $script:PackageRoot "state\schedules"
-$script:MountStateRoot = Join-Path $script:PackageRoot "state\mounts"
+$script:WorkspaceConfigModule = Join-Path (Split-Path -Parent $script:PackageRoot) "common\workspace-config.ps1"
+. $script:WorkspaceConfigModule
+$script:WorkspaceConfig = Get-MyCliWorkspaceConfig -PackagePath 'agent-cli'
+$script:ConfigPath = Join-Path ([string]$script:WorkspaceConfig.paths.config) "mapping-config.json"
+$script:RegistryPath = Join-Path ([string]$script:WorkspaceConfig.paths.config) "registry.json"
+$script:RunStateRoot = Join-Path ([string]$script:WorkspaceConfig.paths.var) "runs"
+$script:ScheduleStateRoot = Join-Path ([string]$script:WorkspaceConfig.paths.var) "schedules"
+$script:MountStateRoot = Join-Path ([string]$script:WorkspaceConfig.paths.var) "mounts"
 $script:ClashPackageRoot = Join-Path (Split-Path -Parent $script:PackageRoot) "clash"
 $script:DefaultClashScriptPath = Join-Path $script:ClashPackageRoot "scripts\clash-cli.ps1"
-$script:DefaultClashAutoStatePath = Join-Path $script:ClashPackageRoot "state\auto-state.json"
+$script:DefaultClashAutoStatePath = "D:\agent_workspace\var\mycli\clash\auto-state.json"
 $script:DefaultClashConfigPath = "C:\Users\38188\.config\clash\config.yaml"
 $script:Utf8NoBom = [System.Text.UTF8Encoding]::new($false)
 $script:Utf8WithBom = [System.Text.UTF8Encoding]::new($true)
@@ -249,6 +252,130 @@ function Get-OpenCodeFinalReport {
         return ""
     }
     return ($TextParts.ToArray() -join "")
+}
+
+function ConvertTo-PowerShellSingleQuotedString {
+    param([string]$Value)
+    if ($null -eq $Value) { $Value = "" }
+    return "'{0}'" -f ($Value -replace "'", "''")
+}
+
+function Build-RemoteOpenCodeCommand {
+    param(
+        [hashtable]$Agent,
+        [hashtable]$Options,
+        [hashtable]$ProviderConfig
+    )
+
+    $remoteOpenCode = if ($ProviderConfig.ContainsKey("remote_opencode_binary")) { [string]$ProviderConfig["remote_opencode_binary"] } else { "opencode" }
+    $remoteCwd = if ($Options.ContainsKey("cwd")) { [string]$Options["cwd"] } elseif ($ProviderConfig.ContainsKey("default_cwd")) { [string]$ProviderConfig["default_cwd"] } else { "D:\agent_workspace" }
+    $remoteAgent = if ($ProviderConfig.ContainsKey("remote_opencode_agent_name") -and -not [string]::IsNullOrWhiteSpace([string]$ProviderConfig["remote_opencode_agent_name"])) { [string]$ProviderConfig["remote_opencode_agent_name"] } elseif ($Agent.ContainsKey("upstream_agent_name") -and -not [string]::IsNullOrWhiteSpace([string]$Agent["upstream_agent_name"])) { [string]$Agent["upstream_agent_name"] } else { "private-assistant" }
+
+    $parts = New-Object System.Collections.Generic.List[string]
+    $remoteConfigHome = if ($ProviderConfig.ContainsKey("remote_config_home")) { [string]$ProviderConfig["remote_config_home"] } else { "D:\agent_workspace\agent" }
+    $parts.Add("`$env:XDG_CONFIG_HOME =")
+    $parts.Add((ConvertTo-PowerShellSingleQuotedString -Value $remoteConfigHome))
+    $parts.Add(";")
+    $parts.Add("''")
+    $parts.Add("|")
+    $parts.Add("&")
+    $parts.Add((ConvertTo-PowerShellSingleQuotedString -Value $remoteOpenCode))
+    $parts.Add("run")
+    $parts.Add("--agent")
+    $parts.Add((ConvertTo-PowerShellSingleQuotedString -Value $remoteAgent))
+    $parts.Add("--dir")
+    $parts.Add((ConvertTo-PowerShellSingleQuotedString -Value $remoteCwd))
+    $parts.Add("--format")
+    $parts.Add("json")
+    if ($Options.ContainsKey("fork")) { $parts.Add("--fork") }
+    if ($Options.ContainsKey("continue")) {
+        $parts.Add("--continue")
+    } elseif ($Options.ContainsKey("session")) {
+        $parts.Add("--session")
+        $parts.Add((ConvertTo-PowerShellSingleQuotedString -Value ([string]$Options["session"])))
+    }
+    if ($Options.ContainsKey("model")) {
+        $parts.Add("--model")
+        $parts.Add((ConvertTo-PowerShellSingleQuotedString -Value ([string]$Options["model"])))
+    }
+    if ($Options.ContainsKey("session_name")) {
+        $parts.Add("--title")
+        $parts.Add((ConvertTo-PowerShellSingleQuotedString -Value ([string]$Options["session_name"])))
+    }
+    if ($Options.ContainsKey("prompt")) {
+        $parts.Add((ConvertTo-PowerShellSingleQuotedString -Value ([string]$Options["prompt"])))
+    }
+    return ($parts.ToArray() -join " ")
+}
+
+function Invoke-TrackedRemoteOpenCodeRun {
+    param(
+        [string]$RemotePcBinary,
+        [string]$Target,
+        [string]$RemoteCommand,
+        [int]$TimeoutSeconds,
+        [hashtable]$Environment,
+        [string]$ReturnMode,
+        [string]$MappedAgentName,
+        [string]$Prompt,
+        [string]$Cwd,
+        [string]$SessionName
+    )
+
+    $runId = New-RunId
+    $files = Get-RunFileSet -RunId $runId
+    $rawLines = [System.Collections.Generic.List[string]]::new()
+    $eventLines = [System.Collections.Generic.List[string]]::new()
+    $textParts = [System.Collections.Generic.List[string]]::new()
+    $sessionId = $null
+    $jsonParseErrors = 0
+    $startedAt = [DateTime]::UtcNow.ToString("o")
+    $savedEnvironment = Set-TemporaryEnvironment -Environment $Environment
+    $arguments = @("run", $Target, $RemoteCommand)
+
+    try {
+        & $RemotePcBinary @arguments | ForEach-Object {
+            $line = [string]$_
+            $rawLines.Add($line)
+            $parsed = $null
+            if (-not [string]::IsNullOrWhiteSpace($line)) {
+                try {
+                    $parsed = ConvertTo-HashtableDeep -InputObject ($line | ConvertFrom-Json)
+                } catch {
+                    $parsed = $null
+                    if ($line.TrimStart().StartsWith("{")) { $jsonParseErrors += 1 }
+                }
+            }
+            if ($null -ne $parsed) {
+                $eventLines.Add($line)
+                if ([string]::IsNullOrWhiteSpace($sessionId) -and $parsed.ContainsKey("sessionID")) { $sessionId = [string]$parsed["sessionID"] }
+                if ($parsed.ContainsKey("type") -and [string]$parsed["type"] -eq "text") {
+                    $part = ConvertTo-HashtableDeep -InputObject $parsed["part"]
+                    if ($null -ne $part -and $part.ContainsKey("text")) { $textParts.Add([string]$part["text"]) }
+                }
+            }
+            if ($ReturnMode -eq "stream") { Write-Output $line }
+        }
+        $exitCode = $LASTEXITCODE
+    } finally {
+        Restore-TemporaryEnvironment -SavedEnvironment $savedEnvironment
+    }
+
+    $finalReport = Get-OpenCodeFinalReport -TextParts $textParts
+    $round = Get-NextRoundNumber -SessionId $sessionId -CurrentRunId $runId
+    $finishedAt = [DateTime]::UtcNow.ToString("o")
+    Write-Utf8Text -Path $files["raw"] -Content (($rawLines.ToArray()) -join [Environment]::NewLine) -EmitBom $false
+    Write-Utf8Text -Path $files["events"] -Content (($eventLines.ToArray()) -join [Environment]::NewLine) -EmitBom $false
+    Write-Utf8Text -Path $files["report"] -Content $finalReport -EmitBom $false
+    $meta = @{
+        run_id = $runId; started_at_utc = $startedAt; finished_at_utc = $finishedAt; agent = $MappedAgentName; source = "remote-opencode"; remote_target = $Target; prompt = $Prompt; cwd = $Cwd; session_name = $SessionName; session_id = $sessionId; round = $round; return_mode = $ReturnMode; provider_command = @($RemotePcBinary) + @($arguments); exit_code = $exitCode; status = if ($exitCode -eq 0) { "success" } else { "failed" }; json_parse_error_count = $jsonParseErrors; raw_output_path = $files["raw"]; event_log_path = $files["events"]; report_path = $files["report"]; event_count = $eventLines.Count
+    }
+    Save-JsonFile -Path $files["meta"] -Value $meta
+    if ($ReturnMode -eq "silent") {
+        if (-not [string]::IsNullOrWhiteSpace($sessionId)) { Write-Output ("sessionID: {0}" -f $sessionId); Write-Output ("round: {0}" -f $round); Write-Output "" }
+        if (-not [string]::IsNullOrWhiteSpace($finalReport)) { Write-Output $finalReport }
+    }
+    if ($exitCode -ne 0) { exit $exitCode }
 }
 
 function Invoke-TrackedOpenCodeRun {
@@ -1054,6 +1181,24 @@ function Sync-Provider {
         return @($mapped)
     }
 
+    if ($ProviderName -eq "remote-opencode") {
+        $remoteAgent = if ($provider.ContainsKey("remote_agent")) { [string]$provider["remote_agent"] } else { "opencode/private-assistant" }
+        $upstream = if ($remoteAgent.Contains("/")) { $remoteAgent.Substring($remoteAgent.IndexOf("/") + 1) } else { $remoteAgent }
+        $target = if ($provider.ContainsKey("remote_target")) { [string]$provider["remote_target"] } else { "B" }
+        $binary = if ($provider.ContainsKey("binary")) { [string]$provider["binary"] } else { "D:\agent_workspace\capability-library\mycli\remote-pc\scripts\remote-pc-cli.ps1" }
+        return ,@{
+            name = "remote-opencode/private-assistant"
+            display_name = "remote-opencode/private-assistant on $target"
+            source = "remote-opencode"
+            upstream_agent_name = $upstream
+            remote_agent = $remoteAgent
+            remote_target = $target
+            mode = "primary"
+            binary = $binary
+            enabled = $true
+        }
+    }
+
     Write-AgentCliError "Provider '$ProviderName' sync is not implemented."
 }
 
@@ -1480,6 +1625,14 @@ function Build-RunInvocation {
         }
     }
 
+    if ($source -eq "remote-opencode") {
+        return @{
+            binary = $binary
+            args = @()
+            working_directory = ""
+        }
+    }
+
     if ($source -eq "codex") {
         if ($Options.ContainsKey("fork")) {
             $args.Add("fork")
@@ -1642,6 +1795,17 @@ Options:
         $cwd = if ($options.ContainsKey("cwd")) { [string]$options["cwd"] } else { "" }
         $sessionName = if ($options.ContainsKey("session_name")) { [string]$options["session_name"] } else { "" }
         Invoke-TrackedOpenCodeRun -Binary ([string]$invocation["binary"]) -Arguments $invokeArgs -Environment $environment -ReturnMode $returnMode -MappedAgentName ([string]$agent["name"]) -Prompt $prompt -Cwd $cwd -SessionName $sessionName
+        return
+    }
+
+    if ([string]$agent["source"] -eq "remote-opencode" -and $returnMode -in @("stream", "silent")) {
+        $prompt = if ($options.ContainsKey("prompt")) { [string]$options["prompt"] } else { "" }
+        $cwd = if ($options.ContainsKey("cwd")) { [string]$options["cwd"] } elseif ($providerConfig.ContainsKey("default_cwd")) { [string]$providerConfig["default_cwd"] } else { "D:\agent_workspace" }
+        $sessionName = if ($options.ContainsKey("session_name")) { [string]$options["session_name"] } else { "" }
+        $target = if ($agent.ContainsKey("remote_target")) { [string]$agent["remote_target"] } elseif ($providerConfig.ContainsKey("remote_target")) { [string]$providerConfig["remote_target"] } else { "B" }
+        $timeoutSeconds = if ($providerConfig.ContainsKey("timeout_seconds")) { [int]$providerConfig["timeout_seconds"] } else { 3600 }
+        $remoteCommand = Build-RemoteOpenCodeCommand -Agent $agent -Options $options -ProviderConfig $providerConfig
+        Invoke-TrackedRemoteOpenCodeRun -RemotePcBinary ([string]$invocation["binary"]) -Target $target -RemoteCommand $remoteCommand -TimeoutSeconds $timeoutSeconds -Environment $environment -ReturnMode $returnMode -MappedAgentName ([string]$agent["name"]) -Prompt $prompt -Cwd $cwd -SessionName $sessionName
         return
     }
 
@@ -2463,6 +2627,19 @@ function Invoke-Native {
         [hashtable]$Registry,
         [string[]]$Tokens
     )
+
+    if (-not $Tokens -or $Tokens.Count -eq 0 -or $Tokens -contains '--help' -or $Tokens -contains '-h' -or $Tokens -contains 'help') {
+        @"
+agent-cli native
+
+Usage:
+  mycli agent-cli native [--agent <mapped-agent> | --source <provider>] [--] [native-args...]
+
+Pass arguments through to the selected provider's native CLI. Use -- to separate
+agent-cli options from native provider arguments.
+"@ | Write-Output
+        return
+    }
 
     $passthroughIndex = [Array]::IndexOf($Tokens, "--")
     $passthrough = @()

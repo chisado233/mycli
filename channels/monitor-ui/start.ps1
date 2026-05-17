@@ -1,9 +1,12 @@
 $ErrorActionPreference = "Stop"
 
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
+$WorkspaceConfigModule = Join-Path (Split-Path -Parent (Split-Path -Parent $Root)) "common\workspace-config.ps1"
+. $WorkspaceConfigModule
+$WorkspaceConfig = Get-MyCliWorkspaceConfig -PackagePath 'channels/monitor-ui'
 $Port = if ($args.Count -gt 0 -and $args[0]) { [string]$args[0] } else { "45990" }
-$LogDir = Join-Path $Root "logs"
-$StateDir = Join-Path $Root "state"
+$LogDir = [string]$WorkspaceConfig.paths.logs
+$StateDir = [string]$WorkspaceConfig.paths.var
 $OutLog = Join-Path $LogDir "monitor-ui.out.log"
 $ErrLog = Join-Path $LogDir "monitor-ui.err.log"
 $PidFile = Join-Path $StateDir "monitor-ui-pids.json"

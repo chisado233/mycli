@@ -1,3 +1,0 @@
-已检查 task-hall：当前没有可领取任务（`mycli task-hall tasks` 返回空）。
-
-因此我进入 idle 状态，等待你给出明确要处理的事项或让你把任务加入 task-hall。

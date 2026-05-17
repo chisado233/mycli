@@ -1,5 +1,0 @@
-- 已检查：`mycli task-hall tasks` → 当前无可领取任务。
-- 当前无事可做：任务大厅为空，且没有发现可继续的未完成工作。
-- 暂时不安排下一次 heartbeat（避免空转）。
-
-Idle（waiting）。

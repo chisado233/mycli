@@ -1,4 +1,13 @@
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
+if ($args -contains '--help' -or $args -contains '-h' -or $args -contains 'help') {
+  @'
+mycli channels QQ status-task
+
+Show QQ channel scheduled task, process, health, and task-log status.
+'@
+  exit 0
+}
+
 $TaskRoot = "\QQChannel\"
 Write-Host "== Scheduled Tasks =="
 Get-ScheduledTask -TaskPath $TaskRoot -ErrorAction SilentlyContinue | Select-Object TaskName,State | Format-Table -AutoSize

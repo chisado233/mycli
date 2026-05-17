@@ -1,7 +1,0 @@
-已检查当前上下文与 task-hall。
-
-- 当前没有可领取的 listed 任务：`mycli task-hall tasks` → `No tasks.`
-- 也没有你在本轮里交代的其他明确活跃工作可继续推进。
-- 因此目前无需领取任务，也无需创建后续 schedule。
-
-AGENT_CLI_LIFECYCLE_END

@@ -11,7 +11,10 @@ $ErrorActionPreference = "Stop"
 $OutputEncoding = [Console]::OutputEncoding
 
 $script:PackageRoot = Split-Path -Parent $PSScriptRoot
-$script:StateDirectory = Join-Path $script:PackageRoot "state"
+$script:WorkspaceConfigModule = Join-Path (Split-Path -Parent $script:PackageRoot) "common\workspace-config.ps1"
+. $script:WorkspaceConfigModule
+$script:WorkspaceConfig = Get-MyCliWorkspaceConfig -PackagePath 'clash'
+$script:StateDirectory = [string]$script:WorkspaceConfig.paths.var
 $script:AutoStatePath = Join-Path $script:StateDirectory "auto-state.json"
 $script:ConfigDirectory = "C:\Users\38188\.config\clash"
 $script:ConfigFilePath = Join-Path $script:ConfigDirectory "config.yaml"
@@ -1067,6 +1070,10 @@ function Invoke-Main {
 
     $Tokens = if ($null -eq $Tokens) { @() } else { @($Tokens) }
     if ($Tokens.Count -eq 0 -or $Tokens[0] -in @("--help", "help")) {
+        Show-Help
+        return
+    }
+    if ($Tokens.Count -gt 1 -and ($Tokens -contains '--help' -or $Tokens -contains '-h' -or $Tokens -contains 'help')) {
         Show-Help
         return
     }

@@ -1,12 +1,12 @@
 {
-  "localAgentUrl": "http://127.0.0.1:45888",
+  "projectRoot": "D:\\agent_workspace\\capability-library\\mycli\\channels\\chat-soft\\source",
   "serverBaseUrl": "http://39.106.125.149:3000",
+  "localAgentUrl": "http://127.0.0.1:45888",
+  "startedAt": "2026-05-17T11:57:17.1482749+08:00",
+  "localAgentPid": null,
   "logs": {
     "stdout": "D:\\agent_workspace\\capability-library\\mycli\\channels\\chat-soft\\logs\\local-agent.detached.out.log",
     "stderr": "D:\\agent_workspace\\capability-library\\mycli\\channels\\chat-soft\\logs\\local-agent.detached.err.log"
   },
-  "localAgentPid": null,
-  "startedAt": "2026-05-16T15:52:28.0652371+08:00",
-  "packageRoot": "D:\\agent_workspace\\capability-library\\mycli\\channels\\chat-soft",
-  "projectRoot": "D:\\agent_workspace\\capability-library\\mycli\\channels\\chat-soft\\source"
+  "packageRoot": "D:\\agent_workspace\\capability-library\\mycli\\channels\\chat-soft"
 }

@@ -1,9 +1,0 @@
-当前无可继续推进的明确工作，也未发现可领取任务。
-
-检查结果：
-- 当前 agent：`opencode/private-assistant`
-- 任务大厅：`No tasks.`
-
-因此本次 heartbeat 无需领取任务，也无需设置后续定时唤起。
-
-AGENT_CLI_LIFECYCLE_END

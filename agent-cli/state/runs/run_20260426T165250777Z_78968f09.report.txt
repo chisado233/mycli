@@ -1,1 +1,0 @@
-{"allowed":false,"reason":"任务最低模型要求为 standard，但申请中的 model_tier 为 \"opencode/middle-builder\"，不属于可判定的标准模型等级（nano < cheap < standard < strong < expert），因此无法确认其满足领取门槛，按不满足处理。","required_tier":"standard","agent_tier":"opencode/middle-builder"}

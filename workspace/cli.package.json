@@ -77,6 +77,52 @@
       "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
     },
     {
+      "name": "config-path",
+      "summary": "Print the workspace-config.json path for a domain/name tuple",
+      "args": [
+        {
+          "name": "domain",
+          "required": true,
+          "summary": "One of mycli, projects, skills, agents, shared",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "required": true,
+          "summary": "Package path, project id, skill name, agent name, or shared namespace",
+          "type": "string[]"
+        }
+      ],
+      "prefixArgs": ["config-path"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
+    },
+    {
+      "name": "config",
+      "summary": "Ensure and print the workspace-config.json path or JSON content for a domain/name tuple",
+      "args": [
+        {
+          "name": "domain",
+          "required": true,
+          "summary": "One of mycli, projects, skills, agents, shared",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "required": true,
+          "summary": "Package path, project id, skill name, agent name, or shared namespace",
+          "type": "string[]"
+        },
+        {
+          "name": "--json",
+          "required": false,
+          "summary": "Emit workspace-config JSON content",
+          "type": "flag"
+        }
+      ],
+      "prefixArgs": ["config"],
+      "entry": "D:\\agent_workspace\\capability-library\\mycli\\workspace\\scripts\\workspace.ps1"
+    },
+    {
       "name": "ensure",
       "summary": "Create standard workspace roots and namespace directories, or scoped directories for a domain/name tuple",
       "args": [

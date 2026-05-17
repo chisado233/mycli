@@ -1,6 +1,0 @@
-- 已完成：Heartbeat 检查完成
-- 验证情况：执行 `mycli task-hall tasks` 返回 **No tasks**（任务大厅当前无可领取任务）
-- 需要升级处理的问题：无
-
-IDLE：当前无可继续/可领取事项，等待你提供具体任务或开启任务大厅条目。  
-AGENT_CLI_LIFECYCLE_END

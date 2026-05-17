@@ -1,5 +1,16 @@
 $ErrorActionPreference = "Stop"
 
+if ($args -contains '--help' -or $args -contains '-h' -or $args -contains 'help') {
+  @'
+mycli channels chat-soft start-detached
+
+Start the bundled Chat Soft local agent in the background.
+
+This command may install/build the bundled source and start a local service.
+'@
+  exit 0
+}
+
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $ProjectRoot = Join-Path $Root "source"
 $ServerBaseUrl = "http://39.106.125.149:3000"
