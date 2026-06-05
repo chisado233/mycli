@@ -1,6 +1,6 @@
 import Fastify from "fastify";
-import { spawn } from "node:child_process";
-import { basename, extname, resolve } from "node:path";
+import { spawn, spawnSync } from "node:child_process";
+import { basename, extname, join, resolve } from "node:path";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { LOCAL_AGENT_PORT } from "@chat-soft/protocol";
@@ -76,6 +76,56 @@ interface OpenCodeSessionSummary {
   sessionId: string;
   title: string;
   updatedAt: string;
+}
+
+interface OpenCodeJsonlEvent {
+  id?: string;
+  type?: string;
+  sessionID?: string;
+  sessionId?: string;
+  step?: {
+    id?: string;
+    title?: string;
+    name?: string;
+    kind?: string;
+    status?: string;
+    reason?: string;
+  };
+  part?: {
+    id?: string;
+    type?: string;
+    text?: string;
+    tool?: string;
+    title?: string;
+    input?: Record<string, unknown>;
+    output?: unknown;
+    metadata?: Record<string, unknown>;
+    state?: {
+      input?: Record<string, unknown>;
+      output?: unknown;
+      title?: string;
+      metadata?: Record<string, unknown>;
+    };
+  };
+  tool?: string | { name?: string };
+  name?: string;
+  title?: string;
+  text?: string;
+  input?: Record<string, unknown>;
+  output?: unknown;
+  metadata?: Record<string, unknown>;
+  reason?: string;
+  status?: string;
+  error?: string | { message?: string };
+  message?: string;
+  tokens?: { total?: number };
+  info?: { tokens?: { total?: number } };
+ }
+
+interface StreamStepState {
+  started: boolean;
+  finished: boolean;
+  toolKey?: string;
 }
 
 interface WorkerListModelsResult {
@@ -229,6 +279,9 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
   const agentCliAgents = new Map<string, AgentCliAgentState>();
   const agentCliSessionStore = loadAgentCliSessionStore();
   let agentCliTimer: NodeJS.Timeout | null = null;
+  let bridgeWs: WebSocket | null = null;
+  let bridgeWsReconnectTimer: NodeJS.Timeout | null = null;
+  let messageIdCounter = 0;
 
   function agentCliCommandCandidates() {
     const configured = config.agentCliPath.trim();
@@ -244,6 +297,53 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
 
   function baseUrl() {
     return config.serverBaseUrl.replace(/\/$/, "");
+  }
+
+  function wsUrl() {
+    return baseUrl().replace(/^http/, "ws") + "/ws/bridge";
+  }
+
+  function connectBridgeWs() {
+    if (bridgeWs && bridgeWs.readyState <= 1) return;
+    try {
+      bridgeWs = new WebSocket(wsUrl());
+      bridgeWs.addEventListener("open", () => {
+        const agents = [...registeredAgents.values()].map((a) => ({
+          agentId: a.agentId,
+          name: a.name || a.agentId,
+          conversationId: a.conversationId,
+          agentDeviceId: a.agentDeviceId
+        }));
+        console.error("[bridge-ws] connected, sending hello with agents:", agents.map(a => a.conversationId));
+        bridgeWs!.send(JSON.stringify({ type: "bridge.hello", deviceId: config.deviceId, agents }));
+      });
+      bridgeWs.addEventListener("message", (raw) => {
+        console.error("[bridge-ws] received:", String(raw.data).slice(0, 200));
+        const event = JSON.parse(String(raw.data));
+        if (event.type === "bridge.message.new") {
+          console.error("[bridge-ws] processing message for:", event.conversationId);
+          void handleBridgeMessage(event).catch((e) => console.error("[bridge-ws] error:", e));
+        }
+      });
+      bridgeWs.addEventListener("close", () => {
+        if (bridgeWsReconnectTimer) clearTimeout(bridgeWsReconnectTimer);
+        bridgeWsReconnectTimer = setTimeout(connectBridgeWs, 3000);
+      });
+      bridgeWs.addEventListener("error", () => {
+        bridgeWs?.close();
+      });
+    } catch {
+      if (bridgeWsReconnectTimer) clearTimeout(bridgeWsReconnectTimer);
+      bridgeWsReconnectTimer = setTimeout(connectBridgeWs, 5000);
+    }
+  }
+
+  function sendBridge(event: Record<string, unknown>) {
+    if (bridgeWs && bridgeWs.readyState === WebSocket.OPEN) {
+      bridgeWs.send(JSON.stringify(event));
+    } else {
+      console.error("[bridge-ws] sendBridge failed, readyState:", bridgeWs?.readyState, "event type:", event.type);
+    }
   }
 
   function guessMimeType(filePath: string, fallbackKind: "audio" | "image" | "video" | "file") {
@@ -343,6 +443,18 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     return response.json();
   }
 
+  async function sendTyping(conversationId: string, typing: boolean) {
+    try {
+      await fetch(`${baseUrl()}/api/conversations/${encodeURIComponent(conversationId)}/typing`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ typing })
+      });
+    } catch {
+      // typing indicator is best-effort; ignore failures
+    }
+  }
+
   async function registerRemoteAgent(input: {
     agentId: string;
     name: string;
@@ -433,6 +545,78 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     return lines.filter((line) => !/^sessionID:\s+/i.test(line) && !/^round:\s+/i.test(line)).join("\n").trim();
   }
 
+  function normalizeOpenCodeSessionId(event: OpenCodeJsonlEvent) {
+    const candidate = event.sessionID ?? event.sessionId;
+    return typeof candidate === "string" && candidate.trim() ? candidate.trim() : undefined;
+  }
+
+  function normalizeOpenCodeStepId(event: OpenCodeJsonlEvent, fallbackBase: string) {
+    const stepId = event.step?.id ?? event.part?.id ?? event.id;
+    if (typeof stepId === "string" && stepId.trim()) return stepId.trim();
+    return fallbackBase;
+  }
+
+  function normalizeOpenCodeStepTitle(event: OpenCodeJsonlEvent) {
+    const title = event.step?.title ?? event.step?.name ?? event.title ?? event.part?.title;
+    return typeof title === "string" && title.trim() ? title.trim() : undefined;
+  }
+
+  function normalizeOpenCodeReason(event: OpenCodeJsonlEvent) {
+    const reason = event.reason ?? event.step?.reason ?? event.status ?? event.step?.status;
+    return typeof reason === "string" && reason.trim() ? reason.trim() : undefined;
+  }
+
+  function normalizeOpenCodeTokens(event: OpenCodeJsonlEvent) {
+    return event.tokens ?? event.info?.tokens;
+  }
+
+  function extractOpenCodeText(event: OpenCodeJsonlEvent) {
+    const partType = event.part?.type ?? event.type;
+    const partText = event.part?.text ?? event.text;
+    if (typeof partText !== "string" || !partText) return "";
+    if (partType === "text") return partText;
+    if (partType === "thinking" || partType === "reasoning") return "";
+    return "";
+  }
+
+  function stringifyToolOutput(output: unknown) {
+    if (typeof output === "string") return output;
+    if (output == null) return "";
+    try {
+      return JSON.stringify(output, null, 2);
+    } catch {
+      return String(output);
+    }
+  }
+
+  function normalizeToolName(event: OpenCodeJsonlEvent) {
+    const raw = event.part?.tool ?? event.name ?? (typeof event.tool === "string" ? event.tool : event.tool?.name);
+    return typeof raw === "string" && raw.trim() ? raw.trim() : "tool";
+  }
+
+  function normalizeToolInput(event: OpenCodeJsonlEvent) {
+    return event.part?.state?.input ?? event.part?.input ?? event.input ?? {};
+  }
+
+  function normalizeToolOutput(event: OpenCodeJsonlEvent) {
+    return stringifyToolOutput(event.part?.state?.output ?? event.part?.output ?? event.output);
+  }
+
+  function normalizeToolMetadata(event: OpenCodeJsonlEvent) {
+    return event.part?.state?.metadata ?? event.part?.metadata ?? event.metadata;
+  }
+
+  function normalizeToolTitle(event: OpenCodeJsonlEvent) {
+    const title = event.part?.state?.title ?? event.part?.title ?? event.title;
+    return typeof title === "string" ? title : "";
+  }
+
+  function maybeSendTodoBridge(conversationId: string, input: Record<string, unknown>) {
+    if (input && Array.isArray(input.todos)) {
+      sendBridge({ type: "bridge.todo", conversationId, todos: input.todos });
+    }
+  }
+
   function runAgentCli(command: string, args: string[]) {
     return new Promise<AgentCliResult>((resolve, reject) => {
       const isPowerShellScript = process.platform === "win32" && /\.ps1$/i.test(command);
@@ -488,6 +672,277 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
       throw new Error(lastFailure.stderr || `${lastFailure.command} exited with code ${lastFailure.exitCode}`);
     }
     throw new Error(String(lastError ?? "agent-cli not available"));
+  }
+
+  async function invokeAgentCliStream(args: string[], conversationId: string) {
+    const messageId = `msg_stream_${Date.now()}_${++messageIdCounter}`;
+    let doneSent = false;
+    let finalText = "";
+    let stderrText = "";
+    let stdoutBuffer = "";
+    let sawTerminalStep = false;
+    let sessionSavedToStore = false;
+    let timeoutTimer: NodeJS.Timeout | null = null;
+    const activeSteps = new Map<string, StreamStepState>();
+    const activeToolSteps = new Map<string, string>();
+
+    const saveStreamSession = (sid: string) => {
+      if (sessionSavedToStore || !sid) return;
+      for (const s of agentCliAgents.values()) {
+        if (s.agent.conversationId === conversationId) {
+          setSessionIdForConversation(s, sid);
+          sessionSavedToStore = true;
+          return;
+        }
+      }
+    };
+
+    const finishStream = (reason: "done" | "error" | "close" | "timeout", overrideText?: string) => {
+      if (doneSent) return;
+      doneSent = true;
+      if (timeoutTimer) clearTimeout(timeoutTimer);
+      if (reason === "error" || reason === "timeout") {
+        const errorText = (overrideText ?? stderrText).trim();
+        if (errorText) {
+          sendBridge({ type: "bridge.stream.error", conversationId, messageId, error: errorText });
+        }
+      }
+      sendBridge({
+        type: "bridge.stream.done",
+        conversationId,
+        messageId,
+        finalText: (overrideText ?? finalText).trim()
+      });
+    };
+
+    const ensureStepStarted = (stepId: string) => {
+      const existing = activeSteps.get(stepId);
+      if (existing?.started) return;
+      activeSteps.set(stepId, { ...(existing ?? { finished: false }), started: true, finished: existing?.finished ?? false });
+      sendBridge({ type: "bridge.stream.step_start", conversationId, stepId });
+    };
+
+    const finishStep = (stepId: string, tokens?: { total?: number }) => {
+      const existing = activeSteps.get(stepId);
+      if (existing?.finished) return;
+      if (!existing?.started) {
+        sendBridge({ type: "bridge.stream.step_start", conversationId, stepId });
+      }
+      activeSteps.set(stepId, { ...(existing ?? { started: true }), started: true, finished: true });
+      sendBridge({ type: "bridge.stream.step_done", conversationId, stepId, durationMs: 0, tokens });
+    };
+
+    let prompt = "";
+    for (let i = 0; i < args.length; i++) {
+      if (args[i] === "--prompt" && i + 1 < args.length) prompt = args[i + 1];
+    }
+    let sessionId = "";
+    for (let i = 0; i < args.length; i++) {
+      if (args[i] === "--session" && i + 1 < args.length) sessionId = args[i + 1];
+    }
+    if (!sessionId) {
+      const state = agentCliAgents.get(config.agentCliMappedAgent) || [...agentCliAgents.values()][0];
+      if (state) sessionId = getSessionIdForConversation(state) || "";
+    }
+    // Allow running without a pre-existing session — opencode will create one,
+    // and we capture the new sessionId from JSONL output below.
+    const model = args.includes("--model") ? args[args.indexOf("--model") + 1] : "";
+    const opencodeBin = "C:\\Users\\38188\\AppData\\Roaming\\npm\\node_modules\\opencode-ai\\bin\\opencode.exe";
+    const agentName = config.agentCliMappedAgent.includes("/") ? config.agentCliMappedAgent.split("/")[1] : config.agentCliMappedAgent;
+    const runArgs = ["run", prompt, "--format", "json", "--agent", agentName, "--dir", config.agentCliCwd];
+    if (sessionId) runArgs.push("--session", sessionId);
+    if (model) runArgs.push("--model", model);
+
+    const runChild = spawn(opencodeBin, runArgs, { timeout: 5 * 60 * 1000, stdio: ["ignore", "pipe", "pipe"], windowsHide: true, env: { ...process.env, XDG_CONFIG_HOME: "D:\\agent_workspace\\agent" } });
+    const processJsonlLine = (rawLine: string) => {
+      const line = rawLine.trim();
+      if (!line) return;
+
+      const sessionLine = line.match(/^sessionID:\s*(.+)$/i);
+      if (sessionLine?.[1]?.trim()) {
+        sessionId = sessionLine[1].trim();
+        saveStreamSession(sessionId);
+        return;
+      }
+
+      let event: OpenCodeJsonlEvent;
+      try {
+        event = JSON.parse(line) as OpenCodeJsonlEvent;
+      } catch {
+        return;
+      }
+
+      const parsedSessionId = normalizeOpenCodeSessionId(event);
+      if (parsedSessionId) {
+        sessionId = parsedSessionId;
+        saveStreamSession(sessionId);
+      }
+
+      const eventType = event.type ?? event.part?.type ?? "";
+      const tokens = normalizeOpenCodeTokens(event);
+      if (tokens?.total != null) {
+        sendBridge({ type: "bridge.status", conversationId, tokenUsed: tokens.total, tokenTotal: 1048576 });
+      }
+
+      if (eventType === "step_start") {
+        const stepId = normalizeOpenCodeStepId(event, `${messageId}_${activeSteps.size + 1}`);
+        ensureStepStarted(stepId);
+        return;
+      }
+
+      if (eventType === "text") {
+        const textPart = extractOpenCodeText(event);
+        if (!textPart) return;
+        finalText += textPart;
+        sendBridge({ type: "bridge.stream.text", conversationId, messageId, text: textPart, sequence: finalText.length });
+        return;
+      }
+
+      if (eventType === "tool" || eventType === "tool_use") {
+        const tool = normalizeToolName(event);
+        const input = normalizeToolInput(event);
+        const output = normalizeToolOutput(event);
+        const title = normalizeToolTitle(event);
+        const metadata = normalizeToolMetadata(event);
+        const eventKey = event.id ?? event.part?.id ?? `${tool}_${activeToolSteps.size + 1}`;
+        const stepId = activeToolSteps.get(eventKey) ?? normalizeOpenCodeStepId(event, `${messageId}_tool_${activeToolSteps.size + 1}`);
+        activeToolSteps.set(eventKey, stepId);
+        ensureStepStarted(stepId);
+        const summary = summarizeToolInput(tool, input, metadata);
+        if (summary != null) {
+          sendBridge({ type: "bridge.stream.tool_call", conversationId, stepId, tool, summary });
+        }
+        sendBridge({
+          type: "bridge.stream.tool_detail",
+          conversationId,
+          stepId,
+          tool,
+          input,
+          output: output.slice(0, 2000),
+          title: title.slice(0, 200)
+        });
+        maybeSendTodoBridge(conversationId, input);
+        if (eventType === "tool") {
+          finishStep(stepId, tokens);
+        }
+        return;
+      }
+
+      if (eventType === "step_finish") {
+        const stepId = normalizeOpenCodeStepId(event, `${messageId}_${activeSteps.size + 1}`);
+        finishStep(stepId, tokens);
+        const reason = normalizeOpenCodeReason(event)?.toLowerCase();
+        if (reason === "stop") {
+          sawTerminalStep = true;
+          finishStream("done");
+        }
+        return;
+      }
+
+      if (eventType === "error") {
+        const errorText = typeof event.error === "string"
+          ? event.error
+          : event.error?.message || event.message || stderrText || "OpenCode stream error";
+        finishStream("error", errorText);
+      }
+    };
+
+    runChild.stdout?.on("data", (chunk: Buffer) => {
+      stdoutBuffer += String(chunk);
+      const lines = stdoutBuffer.split(/\r?\n/);
+      stdoutBuffer = lines.pop() ?? "";
+      for (const line of lines) {
+        processJsonlLine(line);
+      }
+    });
+
+    runChild.stderr?.on("data", (d: Buffer) => {
+      stderrText += String(d);
+    });
+
+    runChild.on("error", (error) => {
+      finishStream("error", String(error));
+    });
+
+    runChild.on("close", (code) => {
+      if (stdoutBuffer.trim()) {
+        processJsonlLine(stdoutBuffer);
+        stdoutBuffer = "";
+      }
+      saveStreamSession(sessionId);
+      if (code !== 0) {
+        console.error("[stream] run failed, code:", code, "stderr:", stderrText.slice(0, 200));
+        finishStream("error", stderrText || `opencode run exited with code ${code}`);
+        return;
+      }
+      if (!sawTerminalStep) {
+        finishStream("close");
+      }
+    });
+
+    timeoutTimer = setTimeout(() => {
+      finishStream("timeout", "OpenCode stream timed out after 5 minutes");
+    }, 5 * 60 * 1000);
+  }
+  function summarizeToolInput(tool: string, input: Record<string, unknown>, metadata?: Record<string, unknown>): string | null {
+    const truncate = (s: string, max: number) => s.length > max ? s.slice(0, max) + "..." : s;
+    switch (tool) {
+      case "apply_patch": case "edit": {
+        const files = (metadata?.files as Array<{ relativePath?: string; filePath?: string; additions?: number; deletions?: number }>) || [];
+        if (files.length > 0) return files.map(f =>
+          `${f.relativePath || f.filePath} (+${f.additions ?? "?"} -${f.deletions ?? "?"})`
+        ).join(", ");
+        return (input.filePath || input.patchText) ? truncate(String(input.filePath || input.patchText), 80) : null;
+      }
+      case "write": return truncate(String(input.filePath || ""), 80);
+      case "bash": return truncate(String(input.command || input.description || ""), 80);
+      case "websearch_web_search_exa": case "context7_query-docs":
+      case "grep_app_searchGitHub": return `"${truncate(String(input.query || ""), 50)}"`;
+      case "webfetch": return truncate(String(input.url || ""), 50);
+      case "grep": case "glob": case "ast_grep_search":
+        return `"${truncate(String(input.pattern || ""), 50)}"`;
+      case "read": case "look_at": return truncate(String(input.filePath || ""), 60);
+      case "task": case "call_omo_agent":
+        return truncate(String(input.prompt || input.description || ""), 60);
+      case "todowrite": return null;
+      default: {
+        const title = input.title as string | undefined;
+        if (title) return truncate(title, 60);
+        const firstStr = Object.values(input).find(v => typeof v === "string");
+        return firstStr ? truncate(firstStr, 60) : "";
+      }
+    }
+  }
+
+  // Handle incoming messages from bridge WS (replaces HTTP polling)
+  async function handleBridgeMessage(event: { conversationId: string; message: { id: string; text: string; senderDeviceId: string } }) {
+    console.error("[bridge-ws] handleBridgeMessage:", event.conversationId, "registered convs:", [...agentCliAgents.values()].map(s => s.agent.conversationId));
+    for (const state of agentCliAgents.values()) {
+      if (state.agent.conversationId === event.conversationId) {
+        if (state.running) return;
+        state.running = true;
+        try {
+          const text = event.message.text?.trim() || "";
+          if (!text) return;
+
+          // Check if it's a command
+      const cmdResult = await handleAgentCliTextCommand(state, text);
+      if (cmdResult) { console.error("[bridge-ws] command handled, returning"); return; }
+
+      console.error("[bridge-ws] invoking stream for:", text.slice(0, 50));
+      const sessionId = getSessionIdForConversation(state);
+          const args = ["agent-cli", "run", "--agent", config.agentCliMappedAgent,
+            "--prompt", text, "--cwd", config.agentCliCwd, "--return_mode", "stream"];
+          if (sessionId) args.push("--session", sessionId);
+          if (state.model) args.push("--model", state.model);
+
+          await invokeAgentCliStream(args, state.agent.conversationId);
+        } finally {
+          state.running = false;
+        }
+        return;
+      }
+    }
   }
 
   async function listAgentCliSessionEvents(sessionId: string) {
@@ -558,120 +1013,64 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
 
   async function handleAgentCliTextCommand(state: AgentCliAgentState, text: string) {
     const trimmed = text.trim();
+    const convId = state.agent.conversationId;
 
-    if (/^\/help$/i.test(trimmed)) {
-      await sendAgentText(
-        state.agent,
-        [
-          "可用指令：",
-          "/help",
-          "/agents",
-          "/providers",
-          "/models",
-          "/model provider/model",
-          "/session",
-          "/session current",
-          "/session use <SESSION_ID>",
-          "/session new",
-          "/session reset",
-          "/session events",
-          "/restart"
-        ].join("\n")
-      );
-      return true;
-    }
-
-    const restartCommand = normalizeRestartCommand(trimmed);
-    if (restartCommand) {
-      if (!["session", "context", "opencode", "private-assistant"].includes(restartCommand.target)) {
-        await sendAgentText(state.agent, "用法：/restart\n等价于 /session reset：清空当前 Chat Soft 会话绑定的 opencode session，下一条普通消息会启动新 session。");
-        return true;
-      }
-
-      setSessionIdForConversation(state, undefined);
-      state.lastError = undefined;
-      await sendAgentText(
-        state.agent,
-        "已重启 private-assistant 会话：当前 Chat Soft 会话的 opencode session 绑定已清空。下一条普通消息会创建新 session，并继续通过 mycli agent-cli 调用 opencode/private-assistant。"
-      );
-      return true;
-    }
-
-    if (/^\/agents$/i.test(trimmed)) {
+    // /agent → list agents
+    if (/^\/agent$/i.test(trimmed)) {
       const agents = await listAgentCliAgents();
-      await sendAgentText(state.agent, `agent-cli 可用 agents：\n${agents.join("\n") || "未找到 agent"}`);
+      sendBridge({
+        type: "bridge.command.response", conversationId: convId, command: "/agent",
+        data: { kind: "agents", items: agents.map(a => ({ name: a, current: a === config.agentCliMappedAgent })) }
+      });
       return true;
     }
 
-    if (/^\/providers$/i.test(trimmed)) {
-      const providers = await listOpenCodeProviders();
-      await sendAgentText(state.agent, `可用 providers：\n${providers.join("\n") || "未找到 provider"}`);
+    // /agent <name> → switch agent
+    const agentSwitch = trimmed.match(/^\/agent\s+(.+)$/i);
+    if (agentSwitch) {
+      config.agentCliMappedAgent = agentSwitch[1].trim();
+      sendBridge({ type: "bridge.status", conversationId: convId, agentName: config.agentCliMappedAgent });
       return true;
     }
 
-    if (/^\/models$/i.test(trimmed)) {
+    // /model → list models
+    if (/^\/model$/i.test(trimmed)) {
       const models = await listOpenCodeModels();
-      const lines = models.map((model) => `${model}${state.model === model ? "  *当前" : ""}`);
-      await sendAgentText(state.agent, `可用模型：\n${lines.join("\n") || "未找到模型"}`);
+      sendBridge({
+        type: "bridge.command.response", conversationId: convId, command: "/model",
+        data: { kind: "models", items: models.map(m => ({ name: m, current: m === state.model })) }
+      });
       return true;
     }
 
-    const modelCommand = normalizeAgentCliModelCommand(trimmed);
-    if (modelCommand) {
-      state.model = modelCommand;
-      const currentSessionId = getSessionIdForConversation(state);
-      await sendAgentText(state.agent, `已切换模型：${state.model}\n后续消息将继续使用当前 Chat Soft 会话绑定的 session${currentSessionId ? ` (${currentSessionId})` : ""}。`);
+    // /model <name> → switch model
+    const modelSwitch = trimmed.match(/^\/model\s+(.+)$/i);
+    if (modelSwitch) {
+      state.model = modelSwitch[1].trim();
+      sendBridge({ type: "bridge.status", conversationId: convId, modelName: state.model });
       return true;
     }
 
-    const sessionCommand = normalizeAgentCliSessionCommand(trimmed);
-    if (sessionCommand?.action === "list") {
+    // /session → list sessions
+    if (/^\/session$/i.test(trimmed)) {
       const currentSessionId = getSessionIdForConversation(state);
       const sessions = await listOpenCodeSessions();
-      const lines = sessions.map((session) => {
-        const current = session.sessionId === currentSessionId ? "  *当前" : "";
-        return `- ${session.sessionId} | ${session.title} | ${session.updatedAt}${current}`;
+      sendBridge({
+        type: "bridge.command.response", conversationId: convId, command: "/session",
+        data: {
+          kind: "sessions",
+          items: sessions.map(s => ({ sessionId: s.sessionId, title: s.title, updatedAt: s.updatedAt })),
+          current: currentSessionId
+        }
       });
-      await sendAgentText(state.agent, `可用会话：\n${lines.join("\n") || "暂无会话"}`);
       return true;
     }
 
-    if (sessionCommand?.action === "current") {
-      const currentSessionId = getSessionIdForConversation(state);
-      await sendAgentText(
-        state.agent,
-        currentSessionId
-          ? `当前 Chat Soft 会话：${state.agent.conversationId}\n当前 session：${currentSessionId}\n当前模型：${state.model ?? "默认"}`
-          : `当前 Chat Soft 会话：${state.agent.conversationId}\n当前还没有绑定 session。下一条普通消息会自动创建并沿用。`
-      );
-      return true;
-    }
-
-    if (sessionCommand?.action === "use") {
-      setSessionIdForConversation(state, sessionCommand.sessionId);
-      await sendAgentText(state.agent, `已将当前 Chat Soft 会话绑定到 session：${sessionCommand.sessionId}`);
-      return true;
-    }
-
-    if (sessionCommand?.action === "new") {
-      setSessionIdForConversation(state, undefined);
-      await sendAgentText(state.agent, "已为当前 Chat Soft 会话开启新 session：下一条普通消息会创建新 session，并在之后自动沿用。也可以直接发送任务内容开始新 session。");
-      return true;
-    }
-
-    if (sessionCommand?.action === "reset") {
-      setSessionIdForConversation(state, undefined);
-      await sendAgentText(state.agent, "已清空当前 Chat Soft 会话的 session 绑定。下一条普通消息会创建新 session。其他 Chat Soft 会话不受影响。");
-      return true;
-    }
-
-    if (/^\/sessions?\s+events$/i.test(trimmed)) {
-      const currentSessionId = getSessionIdForConversation(state);
-      if (!currentSessionId) {
-        await sendAgentText(state.agent, "当前还没有绑定 session。");
-      } else {
-        await sendAgentText(state.agent, await listAgentCliSessionEvents(currentSessionId));
-      }
+    // /session <id> → switch session
+    const sessionSwitch = trimmed.match(/^\/session\s+(.+)$/i);
+    if (sessionSwitch) {
+      setSessionIdForConversation(state, sessionSwitch[1].trim());
+      sendBridge({ type: "bridge.status", conversationId: convId, sessionId: sessionSwitch[1].trim() });
       return true;
     }
 
@@ -877,78 +1276,18 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     };
   }
 
-  async function processAgentCliAgent(state: AgentCliAgentState) {
-    const messages = await fetchConversationMessages(state.agent.conversationId);
-    for (const message of messages) {
-      if (state.processedMessageIds.has(message.id)) continue;
-      if (message.senderDeviceId === state.agent.agentDeviceId) {
-        state.processedMessageIds.add(message.id);
-        continue;
-      }
-
-      state.processedMessageIds.add(message.id);
-      if (message.kind !== "text") {
-        await sendAgentText(state.agent, "当前 private-assistant agent 先只处理文本指令。");
-        continue;
-      }
-
-      const text = message.text?.trim() || "";
-      if (!text) continue;
-
-      try {
-        if (await handleAgentCliTextCommand(state, text)) {
-          state.lastError = undefined;
-          continue;
-        }
-
-        const args = ["agent-cli", "run", "--agent", config.agentCliMappedAgent, "--prompt", text, "--cwd", config.agentCliCwd, "--return_mode", "silent"];
-        const currentSessionId = getSessionIdForConversation(state);
-        if (currentSessionId) {
-          args.push("--session", currentSessionId);
-        }
-        if (state.model) {
-          args.push("--model", state.model);
-        }
-
-        const answer = await invokeAgentCli(args);
-        if (answer.sessionId) {
-          setSessionIdForConversation(state, answer.sessionId);
-        }
-        const nextSessionId = getSessionIdForConversation(state);
-        state.lastError = undefined;
-        await sendAgentText(
-          state.agent,
-          `${answer.text}${nextSessionId ? `\n\n[session: ${nextSessionId}]` : ""}${state.model ? `\n[model: ${state.model}]` : ""}`
-        );
-      } catch (error) {
-        state.lastError = String(error);
-        await sendAgentText(
-          state.agent,
-          `private-assistant 执行失败：${state.lastError}\n请确认 mycli agent-cli 可用，并且 ${config.agentCliMappedAgent} 已同步注册。`
-        );
-      }
-    }
+  // No-op: agent-cli messages are now handled via bridge WS (handleBridgeMessage),
+  // not via HTTP polling. This function kept for reference.
+  async function processAgentCliAgent(_state: AgentCliAgentState) {
+    // no longer used - bridge WS drives agent invocation
   }
 
   async function tickAgentCliAgents() {
-    for (const state of agentCliAgents.values()) {
-      if (state.running) continue;
-      state.running = true;
-      try {
-        await processAgentCliAgent(state);
-      } finally {
-        state.running = false;
-      }
-    }
+    // no longer polls HTTP - bridge WS handles incoming messages
   }
 
   function startAgentCliLoop() {
-    if (agentCliTimer) clearInterval(agentCliTimer);
-    agentCliTimer = setInterval(() => {
-      void tickAgentCliAgents().catch((error) => {
-        console.error("[local-agent] agent-cli loop failed", error);
-      });
-    }, AGENT_CLI_POLL_INTERVAL_MS);
+    // no longer needed - WS connection handles real-time messaging
   }
 
   async function handleLlmTextCommand(state: LlmAgentState, text: string) {
@@ -1376,13 +1715,12 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
 
   await localAgent.listen({ host: "127.0.0.1", port: LOCAL_AGENT_PORT });
   startLlmLoop();
-  // 自动注册 private-assistant agent
   await registerAgentCliAgent().catch(console.error);
   await registerAgentCliAgent({
     agentId: "private-assistant-2",
     name: "Private Assistant 2",
     description: "备用 private-assistant，通过 agent-cli 接入；当主助手异常时可用于修复或接管任务。"
   }).catch(console.error);
-  startAgentCliLoop();
+  connectBridgeWs();
   return localAgent;
 }
