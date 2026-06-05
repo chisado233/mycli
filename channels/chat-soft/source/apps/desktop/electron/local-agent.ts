@@ -749,7 +749,7 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     const model = args.includes("--model") ? args[args.indexOf("--model") + 1] : "";
     const opencodeBin = "C:\\Users\\38188\\AppData\\Roaming\\npm\\node_modules\\opencode-ai\\bin\\opencode.exe";
     const agentName = config.agentCliMappedAgent.includes("/") ? config.agentCliMappedAgent.split("/")[1] : config.agentCliMappedAgent;
-    const runArgs = ["run", prompt, "--format", "json", "--agent", agentName, "--dir", config.agentCliCwd];
+    const runArgs = ["run", prompt, "--agent", agentName, "--dir", config.agentCliCwd];
     if (sessionId) runArgs.push("--session", sessionId);
     if (model) runArgs.push("--model", model);
 
@@ -929,14 +929,22 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
       const cmdResult = await handleAgentCliTextCommand(state, text);
       if (cmdResult) { console.error("[bridge-ws] command handled, returning"); return; }
 
-      console.error("[bridge-ws] invoking stream for:", text.slice(0, 50));
+      console.error("[bridge-ws] invoking agent-cli for:", text.slice(0, 50));
       const sessionId = getSessionIdForConversation(state);
           const args = ["agent-cli", "run", "--agent", config.agentCliMappedAgent,
-            "--prompt", text, "--cwd", config.agentCliCwd, "--return_mode", "stream"];
+            "--prompt", text, "--cwd", config.agentCliCwd, "--return_mode", "silent"];
           if (sessionId) args.push("--session", sessionId);
           if (state.model) args.push("--model", state.model);
 
-          await invokeAgentCliStream(args, state.agent.conversationId);
+          const result = await invokeAgentCli(args);
+          if (result.sessionId) {
+            setSessionIdForConversation(state, result.sessionId);
+          }
+
+          const replyText = result.text || "执行完成，无返回结果。";
+          const msgId = `msg_${Date.now()}_${++messageIdCounter}`;
+          sendBridge({ type: "bridge.stream.text", conversationId: state.agent.conversationId, messageId: msgId, text: replyText, sequence: replyText.length });
+          sendBridge({ type: "bridge.stream.done", conversationId: state.agent.conversationId, messageId: msgId, finalText: replyText });
         } finally {
           state.running = false;
         }
