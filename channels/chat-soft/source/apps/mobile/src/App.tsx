@@ -1,6 +1,15 @@
 import { Fragment, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { ChatClient, createId } from "@chat-soft/core";
 import type { TodoItem } from "@chat-soft/protocol";
+import { marked } from "marked";
+
+const Markdown = ({ text }: { text: string }) => {
+  const html = useMemo(() => {
+    try { return marked.parse(text, { async: false }) as string; }
+    catch { return text; }
+  }, [text]);
+  return <div className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />;
+};
 
 /* ── Types ─────────────────────────────── */
 
@@ -431,13 +440,13 @@ export function App({ platform }: { platform: "android" | "windows" | "unknown" 
       <div className="message-list" ref={listRef} onScroll={onScroll}>
         {state.messages.map(msg => (
           <Fragment key={msg.id}>
-            {msg.role === "user" ? <div className="user-msg"><span className="content">{msg.text}</span></div> : <div className="stream-text">{msg.text}</div>}
+            {msg.role === "user" ? <div className="user-msg"><span className="content">{msg.text}</span></div> : <Markdown text={msg.text} />}
             {msg.steps?.map(s => <StepRow key={s.id} step={s} now={now} />)}
           </Fragment>
         ))}
         {state.completedSteps.map(s => <StepRow key={s.id} step={s} now={now} />)}
         {state.activeSteps.map(s => <StepRow key={s.id} step={s} now={now} />)}
-        {state.streamingText && <div className="stream-text">{state.streamingText}<span className="stream-cursor">\u258E</span></div>}
+        {state.streamingText && <Markdown text={state.streamingText + "\u258E"} />}
       </div>
 
       <div className="input-bar">

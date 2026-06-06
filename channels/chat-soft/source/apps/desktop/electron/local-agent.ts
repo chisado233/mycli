@@ -1016,6 +1016,19 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     const trimmed = text.trim();
     const convId = state.agent.conversationId;
 
+    // /abort → cancel current turn on opencode serve
+    if (/^\/abort$/i.test(trimmed)) {
+      const sid = getSessionIdForConversation(state);
+      if (sid) {
+        try {
+          await fetch(`${OPENCODE_SERVE_URL}/session/${encodeURIComponent(sid)}/abort`, { method: "POST" });
+          console.error("[cmd] aborted session:", sid);
+        } catch (e) { console.error("[cmd] abort failed:", e); }
+      }
+      state.running = false;
+      return true;
+    }
+
     // /agent → list agents
     if (/^\/agent$/i.test(trimmed)) {
       const agents = await listAgentCliAgents();
@@ -1064,6 +1077,15 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
           current: currentSessionId
         }
       });
+      return true;
+    }
+
+    // /session new → create new session on opencode serve
+    if (/^\/session\s+new$/i.test(trimmed)) {
+      const newSid = await createSession();
+      setSessionIdForConversation(state, newSid);
+      sendBridge({ type: "bridge.status", conversationId: convId, sessionId: newSid });
+      console.error("[cmd] created new session:", newSid);
       return true;
     }
 
