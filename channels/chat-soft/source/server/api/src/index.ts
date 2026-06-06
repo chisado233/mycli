@@ -561,6 +561,15 @@ app.post<{ Body: TextMessageBody }>("/api/messages/text", async (request) => {
   saveDb(db);
   pushToAll({ type: "message.created", message });
   pushToAll({ type: "message.status", messageId: message.id, status: "delivered" });
+  sendToBridgeClients({
+    type: "bridge.message.new",
+    conversationId: message.conversationId,
+    message: {
+      id: message.id,
+      text: message.text ?? "",
+      senderDeviceId: message.senderDeviceId
+    }
+  });
   return { ok: true, message };
 });
 

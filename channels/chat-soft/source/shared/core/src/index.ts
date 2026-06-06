@@ -120,6 +120,7 @@ export class ChatClient {
       });
       this.socket.addEventListener("close", () => {
         this.socket = null;
+        setTimeout(() => this.connect(), 3000);
       });
       this.socket.addEventListener("error", () => {
         this.socket?.close();
