@@ -921,6 +921,7 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     for (const state of agentCliAgents.values()) {
       if (state.agent.conversationId === event.conversationId) {
         if (state.running) return;
+        if (!sseReady) { console.error("[bridge-ws] SSE not ready, skipping"); return; }
         state.running = true;
         try {
           const text = event.message.text?.trim() || "";
@@ -1752,14 +1753,17 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
   const opencodeBin = "C:\\Users\\38188\\AppData\\Roaming\\npm\\node_modules\\opencode-ai\\bin\\opencode.exe";
   const agentName = config.agentCliMappedAgent.includes("/") ? config.agentCliMappedAgent.split("/")[1] : config.agentCliMappedAgent;
   let sseResponse: any = null;
+  let sseReady = false;
 
   async function ensureOpenCodeServe() {
     try {
-      await fetch(`${OPENCODE_SERVE_URL}/health`);
-      return;
+      const r = await fetch(`${OPENCODE_SERVE_URL}/health`);
+      const text = await r.text();
+      if (text.includes('"ok"')) return;
+      console.error("[sse] stale serve (no API), killing and restarting...");
     } catch {}
     spawn(opencodeBin, ["serve", "--port", String(OPENCODE_SERVE_PORT), "--hostname", "127.0.0.1"], {
-      stdio: "ignore", windowsHide: true,
+      stdio: "pipe", windowsHide: true,
       env: { ...process.env, XDG_CONFIG_HOME: "D:\\agent_workspace\\agent" }
     });
     for (let i = 0; i < 30; i++) {
@@ -1775,6 +1779,7 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     http.get(`${OPENCODE_SERVE_URL}/event`, (res: any) => {
       console.error("[sse] connected, status:", res.statusCode, "ct:", res.headers["content-type"]);
       sseResponse = res;
+      sseReady = true;
       let buf = "";
       res.on("data", (chunk: Buffer) => {
         buf += chunk.toString();
@@ -1791,9 +1796,9 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
           sendBridge({ type: "bridge.sse", conversationId: `agent:${agentName}`, eventType: parsed.type || "raw", data: parsed });
         }
       });
-      res.on("error", () => { sseResponse = null; setTimeout(connectSSE, 3000); });
-      res.on("close", () => { sseResponse = null; setTimeout(connectSSE, 3000); });
-    }).on("error", () => { setTimeout(connectSSE, 3000); });
+      res.on("error", () => { sseResponse = null; sseReady = false; setTimeout(connectSSE, 3000); });
+      res.on("close", () => { sseResponse = null; sseReady = false; setTimeout(connectSSE, 3000); });
+    }).on("error", () => { sseReady = false; setTimeout(connectSSE, 3000); });
   }
 
   async function sendPromptAsync(sessionId: string, text: string) {
