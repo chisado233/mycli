@@ -1,911 +1,459 @@
-import { Fragment, useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
+import { Fragment, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { ChatClient, createId } from "@chat-soft/core";
-import type { AgentInfo, ChatMessage, ConversationSummary, DeviceInfo } from "@chat-soft/protocol";
+import type { TodoItem } from "@chat-soft/protocol";
 
-const attachmentPickerMap = {
-  audio: "audio/*",
-  image: "image/*",
-  video: "video/*",
-  file: "*/*"
-} as const;
+/* ── Types ─────────────────────────────── */
 
-type AttachmentKind = keyof typeof attachmentPickerMap;
+interface ToolInfo {
+  tool: string;
+  summary: string;
+  output?: string;
+  title?: string;
+  status: "pending" | "running" | "completed" | "error";
+}
+interface ActiveStep {
+  id: string;
+  status: "running" | "done";
+  startedAt: number;
+  completedAt?: number;
+  thinking?: string;
+  tools: ToolInfo[];
+  tokens?: { total: number };
+}
+interface Message {
+  id: string;
+  role: "user" | "assistant";
+  text: string;
+  steps?: ActiveStep[];
+}
+type PickerItem = { label: string; value: string; current: boolean };
+type Picker = { type: "agent" | "model" | "session"; items: PickerItem[] };
 
-const commandSuggestions = [
-  { command: "/help", label: "查看指令", description: "列出 private-assistant 可用指令" },
-  { command: "/agents", label: "查看 agents", description: "列出 agent-cli 当前可用 agent" },
-  { command: "/models", label: "查看模型", description: "列出当前可用模型" },
-  { command: "/model MoreCode/gpt-5.5", label: "切换到 gpt-5.5", description: "把当前 private-assistant 模型切到 gpt-5.5" },
-  { command: "/session", label: "查看会话", description: "列出最近 OpenCode 会话" },
-  { command: "/session current", label: "当前会话", description: "查看当前绑定的 private-assistant session" },
-  { command: "/session new", label: "新会话", description: "为当前 Chat Soft 对话开启一个新的 agent session" },
-  { command: "/session events", label: "查看事件", description: "查看当前 session 最近 agent-cli 事件" },
-  { command: "/session reset", label: "重置会话", description: "清空当前 session 绑定" }
-] as const;
+interface AppState {
+  messages: Message[];
+  streamingText: string;
+  streamingId: string | null;
+  activeSteps: ActiveStep[];
+  completedSteps: ActiveStep[];
+  todos: TodoItem[];
+  todoCollapsed: boolean;
+  agentName: string;
+  modelName: string;
+  tokenUsed: number;
+  tokenTotal: number;
+  sessionId: string | null;
+  showCommand: boolean;
+  picker: Picker | null;
+  inputText: string;
+  authenticated: boolean;
+}
+
+/* ── Constants ──────────────────────────── */
 
 const WEB_AUTH_USERNAME = "chisado";
 const WEB_AUTH_PASSWORD = "chisado233";
-const WEB_AUTH_STORAGE_KEY = "chatsoft.mobile.webAuth";
+const AUTH_KEY = "chatsoft.mobile.webAuth";
 
-type PreviewState =
-  | {
-      kind: "image" | "video" | "audio" | "file";
-      url: string;
-      title: string;
-      mimeType?: string;
+const TOOL_ICONS: Record<string, string> = {
+  apply_patch: "\u270E", edit: "\u270E", write: "\u270E",
+  read: "\uD83D\uDCC4", glob: "\uD83D\uDCC4", grep: "\uD83D\uDCC4",
+  bash: "\u2699", websearch_web_search_exa: "\uD83C\uDF10",
+  webfetch: "\uD83C\uDF10", task: "\uD83E\uDD16", todowrite: "\u2610"
+};
+const STATUS_ICONS: Record<ToolInfo["status"], string> = {
+  pending: "\u25CB", running: "\u25CC", completed: "\u2713", error: "\u2717"
+};
+
+function fmtDur(step: ActiveStep, now: number) {
+  return ((Math.max(0, (step.completedAt ?? now) - step.startedAt)) / 1000).toFixed(1) + "s";
+}
+function fmtTok(n: number) {
+  return n >= 1000 ? (n / 1000).toFixed(1) + "K" : String(n);
+}
+function fmtPct(used: number, total: number) {
+  return total > 0 ? Math.round((used / total) * 100) + "%" : "0%";
+}
+
+/* ── Reducer helpers ────────────────────── */
+
+function updStep(steps: ActiveStep[], id: string, fn: (s: ActiveStep) => ActiveStep): ActiveStep[] {
+  return steps.map(s => (s.id === id ? fn(s) : s));
+}
+function updTool(step: ActiveStep, nm: string, fn: (t: ToolInfo | undefined) => ToolInfo): ActiveStep {
+  const idx = step.tools.findIndex(t => t.tool === nm);
+  return {
+    ...step,
+    tools: idx === -1 ? [...step.tools, fn(undefined)] : step.tools.map((t, i) => (i === idx ? fn(t) : t))
+  };
+}
+function markDone(step: ActiveStep): ActiveStep {
+  return {
+    ...step,
+    tools: step.tools.map(t => ({ ...t, status: t.status === "error" ? "error" : "completed" as const }))
+  };
+}
+
+/* ── Reducer ────────────────────────────── */
+
+type Action =
+  | { type: "STREAM_TEXT"; id: string; text: string }
+  | { type: "STREAM_DONE"; id: string; finalText: string }
+  | { type: "STEP_START"; stepId: string }
+  | { type: "STEP_DONE"; stepId: string; tokens?: { total: number } }
+  | { type: "STEP_TOOL"; stepId: string; tool: string; summary: string }
+  | { type: "TOOL_STATUS"; stepId: string; tool: string; status: ToolInfo["status"]; title?: string }
+  | { type: "TOOL_DETAIL"; stepId: string; tool: string; output: string; title: string }
+  | { type: "THINKING"; stepId: string; text: string }
+  | { type: "STATUS"; agent?: string; model?: string; tokenUsed?: number; tokenTotal?: number; sessionId?: string }
+  | { type: "TODO"; todos: TodoItem[] }
+  | { type: "COMMAND_RESPONSE"; command: string; data: unknown }
+  | { type: "INPUT"; text: string }
+  | { type: "SEND" }
+  | { type: "TOGGLE_TODO" }
+  | { type: "OPEN_PICKER"; picker: Picker }
+  | { type: "CLOSE_PICKER" }
+  | { type: "AUTH_OK" }
+  | { type: "SSE_EVENT"; eventType: string; data: any };
+
+const initialState: AppState = {
+  messages: [], streamingText: "", streamingId: null, activeSteps: [], completedSteps: [],
+  todos: [], todoCollapsed: true,
+  agentName: "private-assistant", modelName: "", tokenUsed: 0, tokenTotal: 1048576, sessionId: null,
+  showCommand: false, picker: null, inputText: "",
+  authenticated: localStorage.getItem(AUTH_KEY) === "ok"
+};
+
+function reducer(state: AppState, action: Action): AppState {
+  switch (action.type) {
+    case "STREAM_TEXT":
+      return state.streamingId === action.id
+        ? { ...state, streamingText: state.streamingText + action.text }
+        : { ...state, streamingId: action.id, streamingText: action.text };
+
+    case "STREAM_DONE": {
+      const ft = state.streamingText || action.finalText;
+      const msg: Message = {
+        id: action.id, role: "assistant", text: ft,
+        steps: [...state.completedSteps, ...state.activeSteps.map(s => ({ ...markDone(s), status: "done" as const, completedAt: Date.now() }))]
+      };
+      return { ...state, streamingText: "", streamingId: null, messages: [...state.messages, msg], activeSteps: [], completedSteps: [] };
     }
-  | null;
 
-type TextBlock =
-  | {
-      type: "text";
-      content: string;
+    case "STEP_START":
+      return { ...state, activeSteps: [...state.activeSteps, { id: action.stepId, status: "running", startedAt: Date.now(), tools: [] }] };
+
+    case "STEP_TOOL":
+      return { ...state, activeSteps: updStep(state.activeSteps, action.stepId, s => updTool(s, action.tool, t => ({
+        tool: action.tool, summary: action.summary, output: t?.output, title: t?.title, status: t?.status ?? "running"
+      }))) };
+
+    case "TOOL_STATUS":
+      return { ...state, activeSteps: updStep(state.activeSteps, action.stepId, s => updTool(s, action.tool, t => ({
+        tool: action.tool, summary: t?.summary ?? "", output: t?.output, title: action.title ?? t?.title, status: action.status
+      }))) };
+
+    case "TOOL_DETAIL":
+      return { ...state, activeSteps: updStep(state.activeSteps, action.stepId, s => updTool(s, action.tool, t => ({
+        tool: action.tool, summary: t?.summary ?? "", output: action.output, title: action.title || t?.title,
+        status: t?.status === "error" ? "error" : "completed"
+      }))) };
+
+    case "THINKING":
+      return { ...state, activeSteps: updStep(state.activeSteps, action.stepId, s => ({
+        ...s, thinking: s.thinking ? s.thinking + "\n" + action.text : action.text
+      })) };
+
+    case "STEP_DONE": {
+      const st = state.activeSteps.find(s => s.id === action.stepId);
+      if (!st) return state;
+      return {
+        ...state,
+        activeSteps: state.activeSteps.filter(s => s.id !== action.stepId),
+        completedSteps: [...state.completedSteps, { ...markDone(st), status: "done", completedAt: Date.now(), tokens: action.tokens }]
+      };
     }
-  | {
-      type: "code";
-      content: string;
-      language: string;
-    };
 
-const LONG_TEXT_COLLAPSE_LENGTH = 220;
-const LONG_TEXT_COLLAPSE_LINES = 8;
+    case "STATUS":
+      return { ...state, agentName: action.agent ?? state.agentName, modelName: action.model ?? state.modelName, tokenUsed: action.tokenUsed ?? state.tokenUsed, tokenTotal: action.tokenTotal ?? state.tokenTotal, sessionId: action.sessionId ?? state.sessionId };
 
-function formatClock(value?: string) {
-  if (!value) return "";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleTimeString("zh-CN", {
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-}
-
-function avatarText(title: string) {
-  const cleaned = title.trim();
-  if (!cleaned) return "?";
-  return cleaned.slice(0, 1).toUpperCase();
-}
-
-function Avatar({ title, avatarUrl, className }: { title: string; avatarUrl?: string; className: string }) {
-  if (avatarUrl) {
-    return (
-      <div className={className}>
-        <img className="avatar-image" src={avatarUrl} alt={title} />
-      </div>
-    );
-  }
-  return <div className={className}>{avatarText(title)}</div>;
-}
-
-function messagePreview(message?: ChatMessage) {
-  if (!message) return "暂无消息";
-  if (message.kind === "text") return message.text;
-  if (message.kind === "voice") return "[语音消息]";
-  if (message.kind === "audio") return `[音频] ${message.fileName}`;
-  if (message.kind === "image") return "[图片]";
-  if (message.kind === "video") return "[视频]";
-  return `[文件] ${message.fileName}`;
-}
-
-function formatAgentStateSummary(conversation: ConversationSummary, agent?: AgentInfo) {
-  if (conversation.agentState?.provider === "codex") {
-    const pieces = ["Codex 已同步"];
-    if (conversation.agentState.selectedModelId) {
-      pieces.push(conversation.agentState.selectedModelId);
+    case "TODO": return { ...state, todos: action.todos, todoCollapsed: false };
+    case "COMMAND_RESPONSE": {
+      const d = action.data as { kind: string; items: { name?: string; sessionId?: string; title?: string; current?: boolean }[]; current?: string | null };
+      const items: PickerItem[] = d.items.map(i => ({
+        label: i.name || i.title || i.sessionId || "",
+        value: i.name || i.sessionId || "",
+        current: i.current ?? false
+      }));
+      return { ...state, picker: { type: action.command.replace("/", "") as Picker["type"], items } };
     }
-    if (conversation.agentState.threadTitle) {
-      pieces.push(conversation.agentState.threadTitle);
-    }
-    return pieces.join(" · ");
-  }
-  return agent ? agent.description || "Agent 好友" : "本机设备";
-}
-
-function triggerDownload(url: string, fileName: string) {
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = fileName;
-  anchor.target = "_blank";
-  anchor.rel = "noreferrer";
-  document.body.appendChild(anchor);
-  anchor.click();
-  anchor.remove();
-}
-
-function openExternal(url: string) {
-  window.open(url, "_blank", "noopener,noreferrer");
-}
-
-function parseTextBlocks(text: string) {
-  const blocks: TextBlock[] = [];
-  const source = text ?? "";
-  const fencePattern = /```([^\n`]*)\n([\s\S]*?)```/g;
-  let lastIndex = 0;
-  let match: RegExpExecArray | null;
-
-  while ((match = fencePattern.exec(source)) !== null) {
-    if (match.index > lastIndex) {
-      const textContent = source.slice(lastIndex, match.index);
-      if (textContent.trim()) {
-        blocks.push({
-          type: "text",
-          content: textContent.trim()
-        });
+    case "INPUT": return { ...state, inputText: action.text, showCommand: action.text === "/" };
+    case "SEND":
+      return { ...state, inputText: "", showCommand: false, messages: [...state.messages, { id: createId(), role: "user", text: state.inputText }], activeSteps: [], completedSteps: [] };
+    case "TOGGLE_TODO": return { ...state, todoCollapsed: !state.todoCollapsed };
+    case "OPEN_PICKER": return { ...state, picker: action.picker, showCommand: false };
+    case "CLOSE_PICKER": return { ...state, picker: null };
+    case "AUTH_OK": return { ...state, authenticated: true };
+    case "SSE_EVENT": {
+      const d = action.data;
+      const p = d?.properties || {};
+      switch (action.eventType) {
+        case "message.part.delta":
+          if (p.delta) return { ...state, streamingText: state.streamingText + (p.delta||""), streamingId: p.messageID || state.streamingId || p.partID };
+          return state;
+        case "message.part.updated": {
+          const pt = p.part || {};
+          if (pt.type === "tool") {
+            const st = pt.state?.status || pt.status || "";
+            const sid = p.sessionID || pt.id || pt.sessionID || "";
+            const tn = pt.tool || "";
+            if (st) return { ...state, activeSteps: updStep(state.activeSteps, sid, s => 
+              updTool(s, tn, t => ({ tool: tn, summary: t?.summary || pt.state?.title || pt.title || "", output: t?.output || (typeof pt.state?.output === "string" ? pt.state.output : "") || "", title: t?.title || pt.state?.title || pt.title || "", status: st as ToolInfo["status"] }))
+            )};
+          }
+          if (pt.type === "step-start") {
+            return { ...state, activeSteps: [...state.activeSteps, { id: p.sessionID || pt.id || pt.sessionID || "", status: "running" as const, startedAt: Date.now(), tools: [] }] };
+          }
+          if (pt.type === "step-finish") {
+            const sid = p.sessionID || pt.id || pt.sessionID || "";
+            const stp = state.activeSteps.find(s => s.id === sid);
+            if (!stp) return state;
+            const tok = pt.tokens;
+            return { ...state, activeSteps: state.activeSteps.filter(s => s.id !== sid), completedSteps: [...state.completedSteps, { ...markDone(stp), status: "done" as const, completedAt: Date.now(), tokens: tok }] };
+          }
+          if (pt.type === "text" && pt.text) {
+            return { ...state, streamingText: pt.text, streamingId: p.sessionID || pt.sessionID || state.streamingId };
+          }
+          if (pt.type === "reasoning" || pt.type === "thinking") {
+            const sid = p.sessionID || pt.sessionID || "";
+            const txt = pt.text || "";
+            if (txt) return { ...state, activeSteps: updStep(state.activeSteps, sid, s => ({ ...s, thinking: s.thinking ? s.thinking + "\n" + txt : txt })) };
+          }
+          return state;
+        }
+        case "session.idle": {
+          const final = state.streamingText;
+          const msg: Message = {
+            id: p.sessionID || "",
+            role: "assistant",
+            text: final,
+            steps: [...state.completedSteps, ...state.activeSteps.map(s => ({ ...markDone(s), status: "done" as const, completedAt: Date.now() }))]
+          };
+          return { ...state, streamingText: "", streamingId: null, messages: [...state.messages, msg], activeSteps: [], completedSteps: [] };
+        }
+        case "todo.updated":
+          if (Array.isArray(p.todos)) return { ...state, todos: p.todos, todoCollapsed: false };
+          return state;
+        case "message.updated":
+          if (p.info?.tokens?.total) return { ...state, tokenUsed: p.info.tokens.total };
+          return state;
+        case "session.status":
+          return state;
+        case "session.diff":
+        case "file.edited":
+          return state;
+        default: return state;
       }
     }
-
-    blocks.push({
-      type: "code",
-      language: match[1].trim(),
-      content: match[2].replace(/\s+$/, "")
-    });
-    lastIndex = match.index + match[0].length;
+    default: return state;
   }
-
-  const trailing = source.slice(lastIndex);
-  if (trailing.trim()) {
-    blocks.push({
-      type: "text",
-      content: trailing.trim()
-    });
-  }
-
-  if (blocks.length === 0) {
-    blocks.push({
-      type: "text",
-      content: source
-    });
-  }
-
-  return blocks;
 }
 
-function shouldCollapseLongText(text: string) {
-  const normalized = text.trim();
-  if (!normalized) return false;
-  const lineCount = normalized.split(/\r?\n/).length;
-  return normalized.length > LONG_TEXT_COLLAPSE_LENGTH || lineCount > LONG_TEXT_COLLAPSE_LINES;
-}
+/* ── Components ─────────────────────────── */
 
-function CodeBlock({ block }: { block: Extract<TextBlock, { type: "code" }> }) {
-  const [expanded, setExpanded] = useState(false);
-  const lineCount = block.content.split(/\r?\n/).length;
-  const title = block.language || "代码/命令";
-
+function TodoPanel({ todos, collapsed, onToggle }: { todos: TodoItem[]; collapsed: boolean; onToggle: () => void }) {
+  if (!todos.length) return null;
+  const done = todos.filter(t => t.status === "completed").length;
   return (
-    <div className="code-block-card">
-      <button type="button" className="code-block-header" onClick={() => setExpanded((current) => !current)}>
-        <div className="code-block-meta">
-          <strong>{title}</strong>
-          <span>{lineCount} 行</span>
+    <div className={`todo-panel${collapsed ? " collapsed" : ""}`}>
+      <div className="todo-header">
+        <span>Tasks {done}/{todos.length} done</span>
+        <button onClick={onToggle}>{collapsed ? "Show" : "Hide"}</button>
+      </div>
+      {todos.map((t, i) => (
+        <div key={i} className={`todo-item ${t.status}`}>
+          <span className="status">{t.status === "completed" ? "\u2713" : t.status === "in_progress" ? "\u25CF" : "\u25CB"}</span>
+          <span className="content">{t.content}</span>
         </div>
-        <span className="code-block-toggle">{expanded ? "收起" : "展开"}</span>
-      </button>
-      {expanded && (
-        <pre className="code-block-body">
-          <code>{block.content}</code>
-        </pre>
-      )}
-    </div>
-  );
-}
-
-function CollapsibleText({ text }: { text: string }) {
-  const [expanded, setExpanded] = useState(false);
-  const collapsible = shouldCollapseLongText(text);
-
-  if (!collapsible) {
-    return <p className="message-text">{text}</p>;
-  }
-
-  return (
-    <div className="long-text-card">
-      <p className={`message-text ${expanded ? "" : "message-text-clamped"}`}>{text}</p>
-      <button type="button" className="long-text-toggle" onClick={() => setExpanded((current) => !current)}>
-        {expanded ? "收起全文" : "展开全文"}
-      </button>
-    </div>
-  );
-}
-
-function TextMessageBody({ text, isSelf }: { text?: string; isSelf: boolean }) {
-  const blocks = useMemo(() => parseTextBlocks(text ?? ""), [text]);
-
-  return (
-    <div className="text-message-stack">
-      {blocks.map((block, index) => (
-        <Fragment key={`${block.type}-${index}`}>
-          {block.type === "text" ? (
-            isSelf ? (
-              <CollapsibleText text={block.content} />
-            ) : (
-              <p className="message-text">{block.content}</p>
-            )
-          ) : (
-            <CodeBlock block={block} />
-          )}
-        </Fragment>
       ))}
     </div>
   );
 }
 
-function renderAttachmentActions(message: Extract<ChatMessage, { mediaUrl: string }>, onPreview: (preview: PreviewState) => void) {
-  const previewKind = message.kind === "voice" ? "audio" : message.kind;
+function StepRow({ step, now }: { step: ActiveStep; now: number }) {
+  const [thinkOpen, setThinkOpen] = useState(step.status === "running");
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   return (
-    <div className="message-actions">
-      <button
-        type="button"
-        className="ghost-action"
-        onClick={() =>
-          onPreview({
-            kind: previewKind === "voice" ? "audio" : previewKind,
-            url: message.mediaUrl,
-            title: message.fileName ?? "附件",
-            mimeType: message.mimeType
-          })
-        }
-      >
-        预览
-      </button>
-      <button type="button" className="ghost-action" onClick={() => openExternal(message.mediaUrl)}>
-        打开
-      </button>
-      <button
-        type="button"
-        className="ghost-action"
-        onClick={() => triggerDownload(message.mediaUrl, message.fileName ?? "chat-soft-attachment")}
-      >
-        下载
-      </button>
-    </div>
-  );
-}
-
-function renderMessageBody(message: ChatMessage, onPreview: (preview: PreviewState) => void, isSelf: boolean) {
-  if (message.kind === "text") {
-    return <TextMessageBody text={message.text} isSelf={isSelf} />;
-  }
-
-  if (message.kind === "voice" || message.kind === "audio") {
-    return (
-      <div className="attachment-card audio-card">
-        <div className="attachment-title">{message.kind === "voice" ? "语音消息" : message.fileName}</div>
-        <audio className="inline-audio" controls preload="metadata" src={message.mediaUrl}></audio>
-        {renderAttachmentActions(message, onPreview)}
+    <div className={`step-group ${step.status}`}>
+      <div className={`step-header ${step.status}`}>
+        <span>{step.status === "running" ? "\u2699 Working..." : "\u2713 Done"}</span>
+        {step.tokens && <span className="step-tokens">{fmtTok(step.tokens.total)} tok</span>}
+        <span className="step-duration">{fmtDur(step, now)}</span>
       </div>
-    );
-  }
-
-  if (message.kind === "image") {
-    return (
-      <div className="attachment-card image-card">
-        <button
-          type="button"
-          className="preview-button"
-          onClick={() =>
-            onPreview({
-              kind: "image",
-              url: message.mediaUrl,
-              title: message.fileName,
-              mimeType: message.mimeType
-            })
-          }
-        >
-          <img className="message-image" src={message.mediaUrl} alt={message.fileName} />
-        </button>
-        <div className="attachment-title">{message.fileName}</div>
-        {renderAttachmentActions(message, onPreview)}
-      </div>
-    );
-  }
-
-  if (message.kind === "video") {
-    return (
-      <div className="attachment-card video-card">
-        <video
-          className="message-video"
-          controls
-          preload="metadata"
-          playsInline
-          src={message.mediaUrl}
-          onClick={() =>
-            onPreview({
-              kind: "video",
-              url: message.mediaUrl,
-              title: message.fileName,
-              mimeType: message.mimeType
-            })
-          }
-        ></video>
-        <div className="attachment-title">{message.fileName}</div>
-        {renderAttachmentActions(message, onPreview)}
-      </div>
-    );
-  }
-
-  return (
-    <div className="attachment-card file-card">
-      <div className="file-icon">文</div>
-      <div className="file-meta">
-        <strong>{message.fileName}</strong>
-        <span>{message.mimeType || "application/octet-stream"}</span>
-      </div>
-      {renderAttachmentActions(message, onPreview)}
-    </div>
-  );
-}
-
-function isSelfMessage(
-  message: ChatMessage,
-  options: {
-    currentDeviceId: string;
-    activeConversation: ConversationSummary | null;
-    activeAgent?: AgentInfo;
-  }
-) {
-  const { currentDeviceId, activeConversation, activeAgent } = options;
-
-  if (activeConversation?.type === "agent" && activeAgent?.agentDeviceId) {
-    return message.senderDeviceId !== activeAgent.agentDeviceId;
-  }
-
-  return message.senderDeviceId === currentDeviceId;
-}
-
-function PreviewModal({ preview, onClose }: { preview: PreviewState; onClose: () => void }) {
-  if (!preview) return null;
-  return (
-    <div className="preview-modal" onClick={onClose}>
-      <div className="preview-panel" onClick={(event) => event.stopPropagation()}>
-        <div className="preview-header">
-          <strong>{preview.title}</strong>
-          <button type="button" className="icon-button" onClick={onClose}>
-            关闭
+      {step.thinking && (
+        <div className="thinking-shell">
+          <button className="thinking-header" onClick={() => setThinkOpen(o => !o)}>
+            {thinkOpen ? "\u25BE" : "\u25B8"} Thinking...
           </button>
+          {thinkOpen && <div className="thinking-block">{step.thinking}</div>}
         </div>
-        <div className="preview-body">
-          {preview.kind === "image" && <img className="preview-image" src={preview.url} alt={preview.title} />}
-          {preview.kind === "video" && <video className="preview-video" controls preload="metadata" src={preview.url}></video>}
-          {preview.kind === "audio" && <audio className="preview-audio" controls preload="metadata" src={preview.url}></audio>}
-          {preview.kind === "file" && (
-            <div className="preview-file">
-              <p>{preview.title}</p>
-              <p>{preview.mimeType ?? "未知文件类型"}</p>
+      )}
+      {step.tools.map((t, i) => {
+        const key = `${step.id}:${t.tool}:${i}`;
+        return (
+          <div key={i} className="step-tool">
+            <div className="step-tool-line">
+              <span className={`tool-status ${t.status}`}>{STATUS_ICONS[t.status]}</span>
+              <span className="step-tool-name">{TOOL_ICONS[t.tool] || "\u2699"} {t.tool}</span>
+              <span className="step-tool-title">{t.title || t.summary || "..."}</span>
             </div>
-          )}
+            {t.output && (
+              <div className="tool-output-shell">
+                <button className="tool-output-toggle" onClick={() => setExpanded(e => ({ ...e, [key]: !e[key] }))}>
+                  {expanded[key] ? "\u25BE" : "\u25B8"} Output
+                </button>
+                {expanded[key] && <div className="tool-output-area">{t.output}</div>}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function StatusBar({ agentName, modelName, tokenUsed, tokenTotal, sessionId }: {
+  agentName: string; modelName: string; tokenUsed: number; tokenTotal: number; sessionId: string | null;
+}) {
+  return (
+    <div className="status-bar">
+      <span>{agentName}</span>
+      <span className="sep">\u00B7</span>
+      {modelName && <><span>{modelName}</span><span className="sep">\u00B7</span></>}
+      <span>{fmtTok(tokenUsed)}/{fmtTok(tokenTotal)} ({fmtPct(tokenUsed, tokenTotal)})</span>
+      {sessionId && <><span className="sep">\u00B7</span><span>{sessionId.slice(0, 12)}...</span></>}
+    </div>
+  );
+}
+
+function PickerSheet({ picker, onSelect, onClose }: { picker: Picker; onSelect: (v: string) => void; onClose: () => void }) {
+  return (
+    <div className="picker-backdrop" onClick={onClose}>
+      <div className="picker-sheet" onClick={e => e.stopPropagation()}>
+        <div className="picker-title">
+          <span>Select {picker.type}</span>
+          <button onClick={onClose}>Cancel</button>
         </div>
-        <div className="preview-actions">
-          <button type="button" className="primary-action" onClick={() => openExternal(preview.url)}>
-            打开
-          </button>
-          <button type="button" className="secondary-action" onClick={() => triggerDownload(preview.url, preview.title)}>
-            下载
-          </button>
-        </div>
+        {picker.items.map((item, i) => (
+          <div key={i} className={`picker-item${item.current ? " current" : ""}`} onClick={() => onSelect(item.value)}>
+            <span>{item.label}</span>
+            {item.current && <span className="check">\u2713</span>}
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-export function App({ platform }: { platform: DeviceInfo["platform"] }) {
-  const [authForm, setAuthForm] = useState({ username: "", password: "" });
-  const [authError, setAuthError] = useState("");
-  const [authenticated, setAuthenticated] = useState(
-    () => localStorage.getItem(WEB_AUTH_STORAGE_KEY) === "ok"
+function LoginScreen({ onLogin }: { onLogin: () => void }) {
+  const [u, setU] = useState("");
+  const [p, setP] = useState("");
+  const [err, setErr] = useState("");
+  const doLogin = () => {
+    if (u === WEB_AUTH_USERNAME && p === WEB_AUTH_PASSWORD) { localStorage.setItem(AUTH_KEY, "ok"); onLogin(); }
+    else setErr("Invalid credentials");
+  };
+  return (
+    <div className="login-screen">
+      <div className="login-card">
+        <h1>Chat Soft</h1>
+        <p>OpenCode terminal for mobile</p>
+        <label>Username<input value={u} autoComplete="username" onChange={e => setU(e.target.value)} onKeyDown={e => e.key === "Enter" && doLogin()} /></label>
+        <label>Password<input type="password" value={p} autoComplete="current-password" onChange={e => setP(e.target.value)} onKeyDown={e => e.key === "Enter" && doLogin()} /></label>
+        {err && <div className="login-error">{err}</div>}
+        <button className="login-button" onClick={doLogin}>Login</button>
+      </div>
+    </div>
   );
-  const [serverBaseUrl, setServerBaseUrl] = useState(
-    localStorage.getItem("chatsoft.mobile.serverBaseUrl") ?? "http://39.106.125.149:3000"
-  );
-  const [deviceName, setDeviceName] = useState(localStorage.getItem("chatsoft.mobile.deviceName") ?? "Huawei-P60");
-  const [agents, setAgents] = useState<AgentInfo[]>([]);
-  const [conversations, setConversations] = useState<ConversationSummary[]>([]);
-  const [allMessages, setAllMessages] = useState<ChatMessage[]>([]);
-  const [activeConversationId, setActiveConversationId] = useState<string>("");
-  const [text, setText] = useState("");
-  const [recording, setRecording] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [pickerKind, setPickerKind] = useState<AttachmentKind>("file");
-  const [chatOpen, setChatOpen] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
-  const [showAttachmentPanel, setShowAttachmentPanel] = useState(false);
-  const [showCommandPanel, setShowCommandPanel] = useState(false);
-  const [preview, setPreview] = useState<PreviewState>(null);
-  const mediaChunksRef = useRef<Blob[]>([]);
-  const recorderRef = useRef<MediaRecorder | null>(null);
-  const startedAtRef = useRef<number>(0);
-  const filePickerRef = useRef<HTMLInputElement | null>(null);
-  const composerTextAreaRef = useRef<HTMLTextAreaElement | null>(null);
-  const messageEndRef = useRef<HTMLDivElement | null>(null);
-  const chatListRef = useRef<HTMLElement | null>(null);
-  const lastAutoScrollMessageIdRef = useRef<string>("");
+}
+
+/* ── App ────────────────────────────────── */
+
+export function App({ platform }: { platform: "android" | "windows" | "unknown" }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [now, setNow] = useState(() => Date.now());
+  const listRef = useRef<HTMLDivElement>(null);
+  const wsRef = useRef<ChatClient | null>(null);
+  const autoScroll = useRef(true);
 
   const deviceId = useMemo(() => {
-    const existing = localStorage.getItem("chatsoft.mobile.deviceId");
-    if (existing) return existing;
-    const next = createId();
-    localStorage.setItem("chatsoft.mobile.deviceId", next);
-    return next;
+    const e = localStorage.getItem("chatsoft.mobile.deviceId");
+    if (e) return e;
+    const n = createId(); localStorage.setItem("chatsoft.mobile.deviceId", n); return n;
   }, []);
+  const deviceName = useMemo(() => localStorage.getItem("chatsoft.mobile.deviceName") || "P60-Pro", []);
+  const serverUrl = useMemo(() => "http://49.232.183.40:3000", []);
 
-  const client = useMemo(() => {
-    const normalized = serverBaseUrl.replace(/\/$/, "");
-    const httpUrl = new URL(normalized);
-    const wsProtocol = httpUrl.protocol === "https:" ? "wss:" : "ws:";
-    const wsUrl = `${wsProtocol}//${httpUrl.host}/ws`;
-    return new ChatClient({
-      serverBaseUrl: normalized,
-      wsUrl,
-      device: {
-        deviceId,
-        deviceName,
-        platform
-      }
-    });
-  }, [deviceId, deviceName, platform, serverBaseUrl]);
+  /* clock */
+  useEffect(() => { const t = setInterval(() => setNow(Date.now()), 500); return () => clearInterval(t); }, []);
 
-  const agentMap = useMemo(() => new Map(agents.map((agent) => [agent.conversationId, agent])), [agents]);
-
-  const activeConversation = useMemo(
-    () => conversations.find((conversation) => conversation.conversationId === activeConversationId) ?? null,
-    [activeConversationId, conversations]
-  );
-
-  const visibleMessages = useMemo(
-    () =>
-      allMessages
-        .filter((message) => message.conversationId === activeConversationId)
-        .sort((a, b) => a.createdAt.localeCompare(b.createdAt)),
-    [activeConversationId, allMessages]
-  );
-
-  const effectiveConversationId = activeConversationId || conversations[0]?.conversationId || "primary";
-
-  const slashSuggestions = useMemo(() => {
-    const trimmed = text.trimStart();
-    if (!trimmed.startsWith("/")) {
-      return [];
-    }
-    const query = trimmed.toLowerCase();
-    return commandSuggestions.filter((item) => {
-      const haystack = `${item.command} ${item.label} ${item.description}`.toLowerCase();
-      return haystack.includes(query);
-    });
-  }, [text]);
-
+  /* ws connect */
   useEffect(() => {
-    localStorage.setItem("chatsoft.mobile.serverBaseUrl", serverBaseUrl);
-    localStorage.setItem("chatsoft.mobile.deviceName", deviceName);
-  }, [deviceName, serverBaseUrl]);
+    const c = new ChatClient({ serverBaseUrl: serverUrl, wsUrl: serverUrl.replace(/^http/, "ws") + "/ws", device: { deviceId, deviceName, platform } });
+    wsRef.current = c; c.connect();
+    const u1 = c.onStreamText((_c, id, t) => dispatch({ type: "STREAM_TEXT", id, text: t }));
+    const u2 = c.onStreamDone((_c, id, t) => dispatch({ type: "STREAM_DONE", id, finalText: t }));
+    const u3 = c.onStep((_c, e) => { if (e.type === "step_start") dispatch({ type: "STEP_START", stepId: e.stepId }); else dispatch({ type: "STEP_DONE", stepId: e.stepId, tokens: e.tokens }); });
+    const u4 = c.onToolCall((_c, sid, tool, sum) => dispatch({ type: "STEP_TOOL", stepId: sid, tool, summary: sum }));
+    const u5 = c.onToolDetail((_c, sid, tool, _i, out, title) => dispatch({ type: "TOOL_DETAIL", stepId: sid, tool, output: out, title }));
+    const u6 = c.onStatus(s => dispatch({ type: "STATUS", ...s }));
+    const u7 = c.onTodo(todos => dispatch({ type: "TODO", todos }));
+    const u8 = c.onCommandResponse((cmd, data) => dispatch({ type: "COMMAND_RESPONSE", command: cmd, data }));
+    const u9 = c.onToolStatus((_c, sid, tool, status, title) => dispatch({ type: "TOOL_STATUS", stepId: sid, tool, status, title }));
+    const u10 = c.onThinking((_c, sid, text) => dispatch({ type: "THINKING", stepId: sid, text }));
+    const u11 = c.onSse((_c, _sid, evType, data) => dispatch({ type: "SSE_EVENT", eventType: evType, data: data as any }));
+    return () => { u1(); u2(); u3(); u4(); u5(); u6(); u7(); u8(); u9(); u10(); u11(); c.disconnect(); };
+  }, [serverUrl, deviceId, deviceName, platform]);
 
-  useEffect(() => {
-    async function loadSidebar() {
-      setLoading(true);
-      try {
-        const [agentPayload, conversationPayload] = await Promise.all([client.listAgents(), client.listConversations()]);
-        setAgents(agentPayload.agents);
-        setConversations(conversationPayload.conversations);
-        setActiveConversationId((current) => current || conversationPayload.conversations[0]?.conversationId || "");
-      } finally {
-        setLoading(false);
-      }
-    }
+  /* auto scroll */
+  useEffect(() => { if (autoScroll.current) listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" }); }, [state.messages, state.streamingText, state.activeSteps]);
 
-    client.connect();
-    void loadSidebar();
+  const onScroll = () => { if (listRef.current) autoScroll.current = listRef.current.scrollHeight - listRef.current.scrollTop - listRef.current.clientHeight < 40; };
+  const send = () => { const t = state.inputText.trim(); if (!t) return; dispatch({ type: "SEND" }); wsRef.current?.sendText(t, `agent:${state.agentName}`); };
+  const sendCmd = (cmd: string) => { wsRef.current?.sendText(cmd, `agent:${state.agentName}`); };
+  const pick = (v: string) => { if (!state.picker) return; dispatch({ type: "CLOSE_PICKER" }); setTimeout(() => wsRef.current?.sendText(`/${state.picker!.type} ${v}`, `agent:${state.agentName}`), 50); };
 
-    const offMessages = client.onMessages((messages) => {
-      setAllMessages(messages);
-    });
-    const offEvents = client.onEvent((event) => {
-      if (event.type === "message.created") {
-        void client.listConversations().then((payload) => {
-          setConversations(payload.conversations);
-          setActiveConversationId((current) => current || payload.conversations[0]?.conversationId || "");
-        });
-      }
-    });
-
-    return () => {
-      offMessages();
-      offEvents();
-      client.disconnect();
-    };
-  }, [client]);
-
-  useEffect(() => {
-    if (!chatOpen) return;
-    const container = chatListRef.current;
-    const lastMessageId = visibleMessages.at(-1)?.id ?? "";
-    if (!container || !lastMessageId || lastAutoScrollMessageIdRef.current === lastMessageId) {
-      return;
-    }
-
-    const distanceFromBottom = container.scrollHeight - container.scrollTop - container.clientHeight;
-    const shouldStickToBottom = distanceFromBottom < 120;
-    lastAutoScrollMessageIdRef.current = lastMessageId;
-
-    if (shouldStickToBottom) {
-      messageEndRef.current?.scrollIntoView({ behavior: "auto", block: "end" });
-    }
-  }, [chatOpen, visibleMessages]);
-
-  async function startRecording() {
-    if (!activeConversationId) return;
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const recorder = new MediaRecorder(stream);
-    mediaChunksRef.current = [];
-    recorderRef.current = recorder;
-    startedAtRef.current = Date.now();
-    recorder.ondataavailable = (event) => {
-      mediaChunksRef.current.push(event.data);
-    };
-    recorder.onstop = async () => {
-      const blob = new Blob(mediaChunksRef.current, { type: recorder.mimeType || "audio/webm" });
-      const durationMs = Date.now() - startedAtRef.current;
-      const uploaded = await client.uploadVoice(blob, durationMs);
-      await client.sendVoice(uploaded.mediaUrl, uploaded.durationMs, uploaded.mimeType, activeConversationId);
-      stream.getTracks().forEach((track) => track.stop());
-    };
-    recorder.start();
-    setRecording(true);
-  }
-
-  function stopRecording() {
-    recorderRef.current?.stop();
-    setRecording(false);
-  }
-
-  async function handleAttachmentSelect(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    if (!file || !activeConversationId) return;
-    const uploaded = await client.uploadAttachment(file, pickerKind, file.name);
-    await client.sendAttachment(pickerKind, uploaded, activeConversationId);
-    event.target.value = "";
-    setShowAttachmentPanel(false);
-  }
-
-  async function sendTextMessage(value: string) {
-    if (!effectiveConversationId || !value.trim()) return;
-    await client.sendText(value.trim(), effectiveConversationId);
-    setActiveConversationId((current) => current || effectiveConversationId);
-    setText("");
-  }
-
-  async function handleCommandQuickSend(command: string) {
-    await sendTextMessage(command);
-  }
-
-  const conversationItems = conversations.map((conversation) => {
-    const boundAgent = agentMap.get(conversation.conversationId);
-    return {
-      ...conversation,
-      displayTitle: boundAgent?.name ?? conversation.title,
-      displaySubtitle: formatAgentStateSummary(conversation, boundAgent),
-      avatarUrl: boundAgent?.avatarUrl
-    };
-  }).filter((conversation) => {
-    const boundAgent = agentMap.get(conversation.conversationId);
-    if (!boundAgent) return true;
-    if (boundAgent.agentId === "codex-agent") return true;
-    if (boundAgent.agentId === "llm-chat") return true;
-    if (boundAgent.agentId === "desktop-helper") return true;
-    if (boundAgent.agentId === "private-assistant") return true;
-    if (boundAgent.agentId === "private-assistant-2") return true;
-    if (boundAgent.agentId.startsWith("codex-thread-")) return false;
-    if (/debug/i.test(boundAgent.name)) return false;
-    return true;
-  });
-
-  function handleLogin() {
-    if (authForm.username === WEB_AUTH_USERNAME && authForm.password === WEB_AUTH_PASSWORD) {
-      localStorage.setItem(WEB_AUTH_STORAGE_KEY, "ok");
-      setAuthenticated(true);
-      setAuthError("");
-      return;
-    }
-    setAuthError("用户名或密码不正确");
-  }
-
-  if (!authenticated) {
-    return (
-      <main className="login-screen">
-        <section className="login-card">
-          <div>
-            <div className="login-kicker">Chat Soft</div>
-            <h1>需要登录</h1>
-            <p>请输入访问账号和密码后继续使用网页端。</p>
-          </div>
-          <label>
-            用户名
-            <input
-              value={authForm.username}
-              autoComplete="username"
-              onChange={(event) => setAuthForm((current) => ({ ...current, username: event.target.value }))}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") handleLogin();
-              }}
-            />
-          </label>
-          <label>
-            密码
-            <input
-              type="password"
-              value={authForm.password}
-              autoComplete="current-password"
-              onChange={(event) => setAuthForm((current) => ({ ...current, password: event.target.value }))}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") handleLogin();
-              }}
-            />
-          </label>
-          {authError && <div className="login-error">{authError}</div>}
-          <button type="button" className="login-button" onClick={handleLogin}>
-            登录
-          </button>
-        </section>
-      </main>
-    );
-  }
+  if (!state.authenticated) return <LoginScreen onLogin={() => dispatch({ type: "AUTH_OK" })} />;
 
   return (
-    <div className="qq-shell">
-      {!chatOpen && (
-        <section className="qq-list-page">
-          <header className="qq-topbar">
-            <div>
-              <div className="qq-title">消息</div>
-              <div className="qq-subtitle">一个 agent 就像一个 QQ 好友</div>
-            </div>
-            <button type="button" className="icon-button" onClick={() => setShowSettings((current) => !current)}>
-              设置
-            </button>
-          </header>
+    <div className="app-shell">
+      <TodoPanel todos={state.todos} collapsed={state.todoCollapsed} onToggle={() => dispatch({ type: "TOGGLE_TODO" })} />
 
-          {showSettings && (
-            <section className="settings-card">
-              <label>
-                服务器地址
-                <input value={serverBaseUrl} onChange={(event) => setServerBaseUrl(event.target.value)} placeholder="服务器地址" />
-              </label>
-              <label>
-                设备名称
-                <input value={deviceName} onChange={(event) => setDeviceName(event.target.value)} placeholder="设备名称" />
-              </label>
-            </section>
-          )}
+      <div className="message-list" ref={listRef} onScroll={onScroll}>
+        {state.messages.map(msg => (
+          <Fragment key={msg.id}>
+            {msg.role === "user" ? <div className="user-msg"><span className="content">{msg.text}</span></div> : <div className="stream-text">{msg.text}</div>}
+            {msg.steps?.map(s => <StepRow key={s.id} step={s} now={now} />)}
+          </Fragment>
+        ))}
+        {state.completedSteps.map(s => <StepRow key={s.id} step={s} now={now} />)}
+        {state.activeSteps.map(s => <StepRow key={s.id} step={s} now={now} />)}
+        {state.streamingText && <div className="stream-text">{state.streamingText}<span className="stream-cursor">\u258E</span></div>}
+      </div>
 
-          <main className="friend-list">
-            {loading && <div className="empty-hint">加载中...</div>}
-            {!loading &&
-              conversationItems.map((conversation) => (
-                <button
-                  key={conversation.conversationId}
-                  type="button"
-                  className="friend-row"
-                  onClick={() => {
-                    setActiveConversationId(conversation.conversationId);
-                    setChatOpen(true);
-                  }}
-                >
-                  <Avatar title={conversation.displayTitle} avatarUrl={conversation.avatarUrl} className="friend-avatar" />
-                  <div className="friend-main">
-                    <div className="friend-line">
-                      <strong>{conversation.displayTitle}</strong>
-                      <span>{formatClock(conversation.updatedAt)}</span>
-                    </div>
-                    <div className="friend-line friend-secondary">
-                      <span>{conversation.displaySubtitle}</span>
-                      <span className="preview-text">{messagePreview(conversation.lastMessage)}</span>
-                    </div>
-                  </div>
-                </button>
-              ))}
-          </main>
-        </section>
-      )}
+      <div className="input-bar">
+        {state.showCommand && (
+          <div className="command-overlay">
+            <button className="command-btn" onClick={() => sendCmd("/agent")}>/agent</button>
+            <button className="command-btn" onClick={() => sendCmd("/model")}>/model</button>
+            <button className="command-btn" onClick={() => sendCmd("/session")}>/session</button>
+          </div>
+        )}
+        <textarea value={state.inputText} placeholder="Message OpenCode..." onChange={e => dispatch({ type: "INPUT", text: e.target.value })} onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } }} rows={1} />
+      </div>
 
-      {chatOpen && (
-        <section className="qq-chat-page">
-          <header className="chat-topbar">
-            <button
-              type="button"
-              className="icon-button"
-              onClick={() => {
-                setChatOpen(false);
-                setShowAttachmentPanel(false);
-              }}
-            >
-              返回
-            </button>
-            <div className="chat-title-block">
-              <strong>{activeConversation ? agentMap.get(activeConversation.conversationId)?.name ?? activeConversation.title : "聊天"}</strong>
-              <span>
-                {activeConversation?.agentState?.provider === "codex"
-                  ? `${activeConversation.agentState.selectedModelId || "Codex"} · ${
-                      activeConversation.agentState.threadTitle || "未绑定线程"
-                    }`
-                  : agentMap.get(activeConversationId)?.status === "online"
-                    ? "在线"
-                    : "会话中"}
-              </span>
-            </div>
-          </header>
+      <StatusBar agentName={state.agentName} modelName={state.modelName} tokenUsed={state.tokenUsed} tokenTotal={state.tokenTotal} sessionId={state.sessionId} />
 
-          <main
-            className="chat-message-list"
-            ref={(node) => {
-              chatListRef.current = node;
-            }}
-          >
-            {visibleMessages.map((message) => {
-              const activeAgent = activeConversation ? agentMap.get(activeConversation.conversationId) : undefined;
-              const isSelf = isSelfMessage(message, {
-                currentDeviceId: deviceId,
-                activeConversation,
-                activeAgent
-              });
-              const peerTitle = activeConversation ? activeAgent?.name ?? activeConversation.title : "A";
-              return (
-                <div key={message.id} className={`chat-row ${isSelf ? "self" : "peer"}`}>
-                  {!isSelf && (
-                    <Avatar title={peerTitle} avatarUrl={activeAgent?.avatarUrl} className="message-avatar" />
-                  )}
-                  {isSelf && <div className="message-side-spacer" aria-hidden="true"></div>}
-                  <div className={`message-bubble ${isSelf ? "self" : "peer"}`}>
-                    {renderMessageBody(message, setPreview, isSelf)}
-                  </div>
-                  {isSelf && <div className="message-avatar self-avatar">我</div>}
-                </div>
-              );
-            })}
-            {activeConversationId && visibleMessages.length === 0 && <div className="empty-hint chat-empty">这个会话里还没有消息</div>}
-            <div ref={messageEndRef}></div>
-          </main>
-
-          <footer className="qq-composer">
-            <div className="composer-main">
-              <button type="button" className="composer-tool" onClick={() => setShowAttachmentPanel((current) => !current)}>
-                +
-              </button>
-              <button
-                type="button"
-                className="composer-tool slash-tool"
-                disabled={!activeConversationId}
-                onClick={() => {
-                  setShowAttachmentPanel(false);
-                  setText((current) => (current.trimStart().startsWith("/") ? current : "/"));
-                  setShowCommandPanel(true);
-                  requestAnimationFrame(() => composerTextAreaRef.current?.focus());
-                }}
-              >
-                /
-              </button>
-              <textarea
-                ref={composerTextAreaRef}
-                value={text}
-                onChange={(event) => {
-                  setText(event.target.value);
-                  setShowCommandPanel(event.target.value.trimStart().startsWith("/"));
-                }}
-                placeholder={activeConversationId ? "输入消息" : "先选择一个会话"}
-                disabled={!effectiveConversationId}
-              />
-              <button
-                type="button"
-                className="send-button"
-                disabled={!effectiveConversationId}
-                onClick={() => {
-                  void sendTextMessage(text);
-                }}
-              >
-                发送
-              </button>
-            </div>
-
-            {showCommandPanel && (
-              <div className="command-panel">
-                <div className="command-panel-title">可用指令</div>
-                {slashSuggestions.length > 0 ? (
-                  slashSuggestions.map((item) => (
-                    <button
-                      key={item.command}
-                      type="button"
-                      className="command-row"
-                      disabled={!activeConversationId}
-                      onClick={() => {
-                        setShowCommandPanel(false);
-                        void handleCommandQuickSend(item.command);
-                      }}
-                    >
-                      <div className="command-main">
-                        <strong>{item.command}</strong>
-                        <span>{item.label}</span>
-                      </div>
-                      <div className="command-desc">{item.description}</div>
-                    </button>
-                  ))
-                ) : (
-                  <div className="command-empty">没有匹配的指令</div>
-                )}
-              </div>
-            )}
-
-            {showAttachmentPanel && (
-              <div className="attachment-panel">
-                <input
-                  ref={filePickerRef}
-                  type="file"
-                  accept={attachmentPickerMap[pickerKind]}
-                  className="hidden-picker"
-                  onChange={handleAttachmentSelect}
-                />
-                <button
-                  type="button"
-                  className="attachment-tile"
-                  disabled={!activeConversationId}
-                  onTouchStart={startRecording}
-                  onTouchEnd={stopRecording}
-                  onTouchCancel={stopRecording}
-                >
-                  <strong>{recording ? "松开" : "语音"}</strong>
-                  <span>{recording ? "发送录音" : "按住录音"}</span>
-                </button>
-                <button
-                  type="button"
-                  className="attachment-tile"
-                  disabled={!activeConversationId}
-                  onClick={() => {
-                    setPickerKind("image");
-                    filePickerRef.current?.click();
-                  }}
-                >
-                  <strong>图片</strong>
-                  <span>发送照片</span>
-                </button>
-                <button
-                  type="button"
-                  className="attachment-tile"
-                  disabled={!activeConversationId}
-                  onClick={() => {
-                    setPickerKind("video");
-                    filePickerRef.current?.click();
-                  }}
-                >
-                  <strong>视频</strong>
-                  <span>发送视频</span>
-                </button>
-                <button
-                  type="button"
-                  className="attachment-tile"
-                  disabled={!activeConversationId}
-                  onClick={() => {
-                    setPickerKind("audio");
-                    filePickerRef.current?.click();
-                  }}
-                >
-                  <strong>音频</strong>
-                  <span>发送音频</span>
-                </button>
-                <button
-                  type="button"
-                  className="attachment-tile"
-                  disabled={!activeConversationId}
-                  onClick={() => {
-                    setPickerKind("file");
-                    filePickerRef.current?.click();
-                  }}
-                >
-                  <strong>文件</strong>
-                  <span>发送文件</span>
-                </button>
-              </div>
-            )}
-          </footer>
-        </section>
-      )}
-
-      <PreviewModal preview={preview} onClose={() => setPreview(null)} />
+      {state.picker && <PickerSheet picker={state.picker} onSelect={pick} onClose={() => dispatch({ type: "CLOSE_PICKER" })} />}
     </div>
   );
 }

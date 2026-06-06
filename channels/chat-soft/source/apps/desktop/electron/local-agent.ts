@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import * as http from "node:http";
 import { spawn, spawnSync } from "node:child_process";
 import { basename, extname, join, resolve } from "node:path";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -929,22 +930,14 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
       const cmdResult = await handleAgentCliTextCommand(state, text);
       if (cmdResult) { console.error("[bridge-ws] command handled, returning"); return; }
 
-      console.error("[bridge-ws] invoking agent-cli for:", text.slice(0, 50));
-      const sessionId = getSessionIdForConversation(state);
-          const args = ["agent-cli", "run", "--agent", config.agentCliMappedAgent,
-            "--prompt", text, "--cwd", config.agentCliCwd, "--return_mode", "silent"];
-          if (sessionId) args.push("--session", sessionId);
-          if (state.model) args.push("--model", state.model);
-
-          const result = await invokeAgentCli(args);
-          if (result.sessionId) {
-            setSessionIdForConversation(state, result.sessionId);
-          }
-
-          const replyText = result.text || "执行完成，无返回结果。";
-          const msgId = `msg_${Date.now()}_${++messageIdCounter}`;
-          sendBridge({ type: "bridge.stream.text", conversationId: state.agent.conversationId, messageId: msgId, text: replyText, sequence: replyText.length });
-          sendBridge({ type: "bridge.stream.done", conversationId: state.agent.conversationId, messageId: msgId, finalText: replyText });
+      console.error("[bridge-ws] invoking SSE for:", text.slice(0, 50));
+      let sessionId: string = getSessionIdForConversation(state) || "";
+      if (!sessionId) {
+        sessionId = await createSession();
+        setSessionIdForConversation(state, sessionId);
+        console.error("[sse] created new session:", sessionId);
+      }
+      await sendPromptAsync(sessionId, text);
         } finally {
           state.running = false;
         }
@@ -1730,5 +1723,74 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     description: "备用 private-assistant，通过 agent-cli 接入；当主助手异常时可用于修复或接管任务。"
   }).catch(console.error);
   connectBridgeWs();
+
+  // ── opencode serve + SSE ──
+  const OPENCODE_SERVE_PORT = 4096;
+  const OPENCODE_SERVE_URL = `http://127.0.0.1:${OPENCODE_SERVE_PORT}`;
+  const opencodeBin = "C:\\Users\\38188\\AppData\\Roaming\\npm\\node_modules\\opencode-ai\\bin\\opencode.exe";
+  const agentName = config.agentCliMappedAgent.includes("/") ? config.agentCliMappedAgent.split("/")[1] : config.agentCliMappedAgent;
+  let sseResponse: any = null;
+
+  async function ensureOpenCodeServe() {
+    try {
+      await fetch(`${OPENCODE_SERVE_URL}/health`);
+      return;
+    } catch {}
+    spawn(opencodeBin, ["serve", "--port", String(OPENCODE_SERVE_PORT), "--hostname", "127.0.0.1"], {
+      stdio: "ignore", windowsHide: true,
+      env: { ...process.env, XDG_CONFIG_HOME: "D:\\agent_workspace\\agent" }
+    });
+    for (let i = 0; i < 30; i++) {
+      await new Promise(r => setTimeout(r, 1000));
+      try { await fetch(`${OPENCODE_SERVE_URL}/health`); return; } catch {}
+    }
+    console.error("[sse] opencode serve failed to start");
+  }
+
+  async function connectSSE() {
+    await ensureOpenCodeServe();
+    console.error("[sse] connecting to /event...");
+    http.get(`${OPENCODE_SERVE_URL}/event`, (res: any) => {
+      console.error("[sse] connected, status:", res.statusCode, "ct:", res.headers["content-type"]);
+      sseResponse = res;
+      let buf = "";
+      res.on("data", (chunk: Buffer) => {
+        buf += chunk.toString();
+        const parts = buf.split("\n\n");
+        buf = parts.pop() || "";
+        for (const part of parts) {
+          const line = part.trim();
+          if (!line.startsWith("data:")) continue;
+          const raw = line.slice(5).trim();
+          if (!raw) continue;
+          console.error("[sse]", raw);
+          let parsed: any = {};
+          try { parsed = JSON.parse(raw); } catch { parsed = { raw }; }
+          sendBridge({ type: "bridge.sse", conversationId: `agent:${agentName}`, eventType: parsed.type || "raw", data: parsed });
+        }
+      });
+      res.on("error", () => { sseResponse = null; setTimeout(connectSSE, 3000); });
+      res.on("close", () => { sseResponse = null; setTimeout(connectSSE, 3000); });
+    }).on("error", () => { setTimeout(connectSSE, 3000); });
+  }
+
+  async function sendPromptAsync(sessionId: string, text: string) {
+    await ensureOpenCodeServe();
+    const body = JSON.stringify({ parts: [{ type: "text", text }] });
+    fetch(`${OPENCODE_SERVE_URL}/session/${encodeURIComponent(sessionId)}/prompt_async`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body
+    }).then(r => console.error("[sse] prompt_async:", r.status)).catch(e => console.error("[sse] prompt_async err:", e));
+  }
+
+  async function createSession() {
+    await ensureOpenCodeServe();
+    const r = await fetch(`${OPENCODE_SERVE_URL}/session`, { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+    const j = await r.json() as any;
+    return j.id || "";
+  }
+
+  connectSSE().catch((e) => console.error("[sse] connect failed:", e));
   return localAgent;
 }

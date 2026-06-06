@@ -172,9 +172,10 @@ export class ChatClient {
   onTodo(listener: TodoListener) { return this.subscribe(this.todoListeners, listener); }
   onCommandResponse(listener: CommandResponseListener) { return this.subscribe(this.commandResponseListeners, listener); }
 
-  // SSE events (not yet wired through bridge protocol — placeholder to prevent crash)
-  onSse(_listener: (_conversationId: string, _sessionId: string, _eventType: string, _data: unknown) => void) {
-    return () => {};
+  private sseListeners = new Set<(_conversationId: string, _sessionId: string, _eventType: string, _data: unknown) => void>();
+  onSse(listener: (_conversationId: string, _sessionId: string, _eventType: string, _data: unknown) => void) {
+    this.sseListeners.add(listener);
+    return () => { this.sseListeners.delete(listener); };
   }
 
   private subscribe<T extends (...args: never[]) => void>(set: Set<T>, listener: T) {
@@ -462,6 +463,11 @@ export class ChatClient {
     }
     if (event.type === "command.response") {
       this.commandResponseListeners.forEach((listener) => listener(event.command, event.data));
+    }
+    if (event.type === "sse") {
+      const sseEvent = event as { type: "sse"; conversationId: string; eventType: string; data: Record<string, unknown> };
+      const sessionId = (sseEvent.data?.properties as any)?.sessionID || "";
+      this.sseListeners.forEach((listener) => listener(sseEvent.conversationId, sessionId, sseEvent.eventType, sseEvent.data));
     }
     this.eventListeners.forEach((listener) => listener(event));
   }

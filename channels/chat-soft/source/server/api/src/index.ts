@@ -11,6 +11,8 @@ import type {
   AgentInfo,
   AgentConversationState,
   AttachmentPayload,
+  BridgeClientEvent,
+  BridgeServerEvent,
   ChatMessage,
   ClientToServerEvent,
   ConversationSummary,
@@ -60,7 +62,8 @@ const app = Fastify({ logger: true });
 const dataDir = join(process.cwd(), "data");
 const mediaDir = join(dataDir, "media");
 const dbPath = join(dataDir, "db.json");
-const sockets = new Map<string, Set<WebSocket>>();
+const sockets = new Map<string, Set<any>>();
+const bridgeSockets = new Set<any>();
 
 function defaultConversation(): ConversationSummary {
   return {
@@ -117,6 +120,165 @@ function pushToAll(event: ServerToClientEvent) {
     for (const socket of group) {
       socket.send(payload);
     }
+  }
+}
+
+function sendToBridgeClients(event: BridgeServerEvent) {
+  const payload = JSON.stringify(event);
+  for (const socket of bridgeSockets) {
+    socket.send(payload);
+  }
+}
+
+function relayBridgeEvent(event: BridgeClientEvent) {
+  if (event.type === "bridge.stream.text") {
+    pushToAll({
+      type: "stream.text_delta",
+      conversationId: event.conversationId,
+      messageId: event.messageId,
+      delta: event.text,
+      sequence: event.sequence
+    });
+    return;
+  }
+
+  if (event.type === "bridge.stream.text_delta") {
+    pushToAll({
+      type: "stream.text_delta",
+      conversationId: event.conversationId,
+      messageId: event.messageId,
+      delta: event.delta,
+      sequence: event.sequence
+    });
+    return;
+  }
+
+  if (event.type === "bridge.stream.tool_status") {
+    pushToAll({
+      type: "stream.tool_status",
+      conversationId: event.conversationId,
+      stepId: event.stepId,
+      tool: event.tool,
+      status: event.status,
+      title: event.title
+    });
+    return;
+  }
+
+  if (event.type === "bridge.stream.thinking") {
+    pushToAll({
+      type: "stream.thinking",
+      conversationId: event.conversationId,
+      stepId: event.stepId,
+      text: event.text
+    });
+    return;
+  }
+
+  if (event.type === "bridge.stream.tool_call") {
+    pushToAll({
+      type: "stream.tool_call",
+      conversationId: event.conversationId,
+      stepId: event.stepId,
+      tool: event.tool,
+      summary: event.summary
+    });
+    return;
+  }
+
+  if (event.type === "bridge.stream.tool_detail") {
+    pushToAll({
+      type: "stream.tool_detail",
+      conversationId: event.conversationId,
+      stepId: event.stepId,
+      tool: event.tool,
+      input: event.input,
+      output: event.output,
+      title: event.title,
+      summary: event.summary
+    });
+    return;
+  }
+
+  if (event.type === "bridge.stream.step_start") {
+    pushToAll({
+      type: "stream.step_start",
+      conversationId: event.conversationId,
+      stepId: event.stepId
+    });
+    return;
+  }
+
+  if (event.type === "bridge.stream.step_done") {
+    pushToAll({
+      type: "stream.step_done",
+      conversationId: event.conversationId,
+      stepId: event.stepId,
+      durationMs: event.durationMs,
+      tokens: event.tokens
+    });
+    return;
+  }
+
+  if (event.type === "bridge.stream.done") {
+    pushToAll({
+      type: "stream.done",
+      conversationId: event.conversationId,
+      messageId: event.messageId,
+      finalText: event.finalText
+    });
+    return;
+  }
+
+  if (event.type === "bridge.stream.error") {
+    pushToAll({
+      type: "stream.error",
+      conversationId: event.conversationId,
+      messageId: event.messageId,
+      error: event.error
+    });
+    return;
+  }
+
+  if (event.type === "bridge.status") {
+    pushToAll({
+      type: "status",
+      conversationId: event.conversationId,
+      agentName: event.agentName,
+      modelName: event.modelName,
+      tokenUsed: event.tokenUsed,
+      tokenTotal: event.tokenTotal,
+      sessionId: event.sessionId
+    });
+    return;
+  }
+
+  if (event.type === "bridge.todo") {
+    pushToAll({
+      type: "todo",
+      conversationId: event.conversationId,
+      todos: event.todos
+    });
+    return;
+  }
+
+  if (event.type === "bridge.command.response") {
+    pushToAll({
+      type: "command.response",
+      conversationId: event.conversationId,
+      command: event.command,
+      data: event.data
+    });
+    return;
+  }
+
+  if (event.type === "bridge.sse") {
+    pushToAll({
+      type: "sse",
+      conversationId: event.conversationId,
+      eventType: event.eventType,
+      data: event.data
+    });
   }
 }
 
@@ -214,10 +376,10 @@ function findMessageByClientId(db: PersistedDb, clientMessageId?: string) {
   return db.messages.find((message) => message.id === clientMessageId) ?? null;
 }
 
-app.register(cors, { origin: true });
-app.register(multipart);
-app.register(websocket);
-app.register(fastifyStatic, {
+app.register(cors as never, { origin: true });
+app.register(multipart as never);
+app.register(websocket as never);
+app.register(fastifyStatic as never, {
   root: mediaDir,
   prefix: "/media/"
 });
@@ -431,7 +593,7 @@ app.post<{ Body: AttachmentMessageBody }>("/api/messages/attachment", async (req
 });
 
 app.post("/api/upload/voice", async (request, reply) => {
-  const file = await request.file();
+  const file = await (request as any).file();
   if (!file) {
     return reply.code(400).send({ message: "缺少文件" });
   }
@@ -448,7 +610,7 @@ app.post("/api/upload/voice", async (request, reply) => {
 });
 
 app.post("/api/upload/attachment", async (request, reply) => {
-  const file = await request.file();
+  const file = await (request as any).file();
   if (!file) {
     return reply.code(400).send({ message: "缺少文件" });
   }
@@ -469,7 +631,60 @@ app.post("/api/upload/attachment", async (request, reply) => {
 });
 
 app.register(async (wsApp) => {
-  wsApp.get("/ws", { websocket: true }, (socket) => {
+  (wsApp.get as any)("/ws/bridge", { websocket: true }, (socket: any) => {
+    bridgeSockets.add(socket);
+
+    socket.on("message", (raw: unknown) => {
+      const event = JSON.parse(String(raw)) as BridgeClientEvent;
+
+      if (event.type === "bridge.hello") {
+        const db = loadDb();
+        for (const agent of event.agents) {
+          const registeredAt = new Date().toISOString();
+          const existing = db.agents.find((item) => item.agentId === agent.agentId);
+          const nextAgent: AgentInfo = {
+            agentId: agent.agentId,
+            name: agent.name,
+            description: existing?.description ?? "Desktop agent",
+            avatarUrl: existing?.avatarUrl,
+            conversationId: agent.conversationId,
+            registeredAt: existing?.registeredAt ?? registeredAt,
+            status: "online",
+            transport: "desktop-local",
+            agentDeviceId: agent.agentDeviceId
+          };
+
+          db.agents = db.agents.filter((item) => item.agentId !== agent.agentId);
+          db.agents.push(nextAgent);
+          upsertConversation(db, {
+            conversationId: agent.conversationId,
+            title: agent.name,
+            type: "agent",
+            updatedAt: existing?.registeredAt ?? registeredAt,
+            agentId: agent.agentId
+          });
+
+          if (!db.devices.some((device) => device.deviceId === agent.agentDeviceId)) {
+            db.devices.push({
+              deviceId: agent.agentDeviceId,
+              deviceName: agent.name,
+              platform: "windows"
+            });
+          }
+        }
+        saveDb(db);
+        return;
+      }
+
+      relayBridgeEvent(event);
+    });
+
+    socket.on("close", () => {
+      bridgeSockets.delete(socket);
+    });
+  });
+
+  (wsApp.get as any)("/ws", { websocket: true }, (socket: any) => {
     let currentDeviceId = "";
     socket.on("message", (raw: unknown) => {
       const db = loadDb();
@@ -515,6 +730,15 @@ app.register(async (wsApp) => {
         saveDb(db);
         pushToAll({ type: "message.created", message });
         pushToAll({ type: "message.status", messageId: message.id, status: "delivered" });
+        sendToBridgeClients({
+          type: "bridge.message.new",
+          conversationId: event.conversationId,
+          message: {
+            id: message.id,
+            text: event.text,
+            senderDeviceId: currentDeviceId
+          }
+        });
         return;
       }
 
