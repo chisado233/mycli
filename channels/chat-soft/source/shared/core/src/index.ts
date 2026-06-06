@@ -94,6 +94,7 @@ export class ChatClient {
   private pollCompletedStreams = new Set<string>();
   private pollSeenTools = new Set<string>();
   private pollTimer: number | null = null;
+  private wsPingTimer: number | null = null;
 
   constructor(private readonly options: ChatClientOptions) {}
 
@@ -113,6 +114,12 @@ export class ChatClient {
           device: this.options.device
         });
         this.send({ type: "sync.pull" });
+        // keepalive ping every 30s to prevent idle disconnect
+        this.wsPingTimer = window.setInterval(() => {
+          if (this.socket?.readyState === WebSocket.OPEN) {
+            this.socket.send(JSON.stringify({ type: "sync.pull" }));
+          }
+        }, 30000);
       });
       this.socket.addEventListener("message", (raw) => {
         const event = JSON.parse(String(raw.data)) as ServerToClientEvent;
@@ -120,6 +127,7 @@ export class ChatClient {
       });
       this.socket.addEventListener("close", () => {
         this.socket = null;
+        if (this.wsPingTimer) { clearInterval(this.wsPingTimer); this.wsPingTimer = null; }
         setTimeout(() => this.connect(), 3000);
       });
       this.socket.addEventListener("error", () => {
@@ -135,6 +143,7 @@ export class ChatClient {
   disconnect() {
     this.socket?.close();
     this.socket = null;
+    if (this.wsPingTimer) { clearInterval(this.wsPingTimer); this.wsPingTimer = null; }
     if (this.pollTimer !== null) {
       window.clearInterval(this.pollTimer);
       this.pollTimer = null;

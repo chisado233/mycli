@@ -749,7 +749,7 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     // and we capture the new sessionId from JSONL output below.
     const model = args.includes("--model") ? args[args.indexOf("--model") + 1] : "";
     const opencodeBin = "C:\\Users\\38188\\AppData\\Roaming\\npm\\node_modules\\opencode-ai\\bin\\opencode.exe";
-    const agentName = config.agentCliMappedAgent.includes("/") ? config.agentCliMappedAgent.split("/")[1] : config.agentCliMappedAgent;
+  let agentName = config.agentCliMappedAgent.includes("/") ? config.agentCliMappedAgent.split("/")[1] : config.agentCliMappedAgent;
     const runArgs = ["run", prompt, "--agent", agentName, "--dir", config.agentCliCwd];
     if (sessionId) runArgs.push("--session", sessionId);
     if (model) runArgs.push("--model", model);
@@ -933,11 +933,11 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
       console.error("[bridge-ws] invoking SSE for:", text.slice(0, 50));
       let sessionId: string = getSessionIdForConversation(state) || "";
       if (!sessionId) {
-        sessionId = await createSession();
+        sessionId = await createSession(agentName, state.model);
         setSessionIdForConversation(state, sessionId);
         console.error("[sse] created new session:", sessionId);
       }
-      await sendPromptAsync(sessionId, text);
+      await sendPromptAsync(sessionId, text, agentName, state.model);
         } finally {
           state.running = false;
         }
@@ -952,8 +952,30 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
   }
 
   async function listAgentCliAgents() {
-    const result = await invokeAgentCli(["agent-cli", "agents"]);
-    return result.text.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+    try {
+      const agentDir = "D:\\agent_workspace\\agent\\opencode\\agent";
+      const { readdirSync } = await import("node:fs");
+      return readdirSync(agentDir)
+        .filter((f: string) => f.endsWith(".md") && !f.includes(" copy") && !f.includes("old"))
+        .map((f: string) => f.replace(".md", ""));
+    } catch { return [agentName]; }
+  }
+
+  async function listOpenCodeModels() {
+    try {
+      const configPath = "D:\\agent_workspace\\agent\\opencode\\opencode.json";
+      const { readFileSync } = await import("node:fs");
+      const cfg = JSON.parse(readFileSync(configPath, "utf8"));
+      const providers = cfg.provider || {};
+      const entries: string[] = [];
+      for (const [pid, pcfg] of Object.entries(providers) as [string, any][]) {
+        const models = pcfg.models || {};
+        for (const mid of Object.keys(models)) {
+          entries.push(`${pid}/${mid}`);
+        }
+      }
+      return entries;
+    } catch { return []; }
   }
 
   function getSessionIdForConversation(state: AgentCliAgentState) {
@@ -975,32 +997,18 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
   }
 
   async function listOpenCodeSessions() {
-    const result = await invokeAgentCli(["opencode", "native", "session", "list"]);
-    const lines = result.text
-      .split(/\r?\n/)
-      .map((line) => line.trimEnd())
-      .filter(Boolean)
-      .filter((line) => !/^Session ID\s+/i.test(line))
-      .filter((line) => !/^─+$/u.test(line));
-    const sessions: OpenCodeSessionSummary[] = [];
-    for (const line of lines) {
-      const match = line.match(/^(ses_[^\s]+)\s{2,}(.+?)\s{2,}([^\s]+)$/);
-      if (!match) continue;
-      sessions.push({
-        sessionId: match[1],
-        title: match[2].trim(),
-        updatedAt: match[3].trim()
-      });
+    try {
+      await ensureOpenCodeServe();
+      const r = await fetch(`${OPENCODE_SERVE_URL}/api/session`);
+      const j = await r.json() as any;
+      return (j.items || []).map((s: any) => ({
+        sessionId: s.id || "",
+        title: s.title || "Untitled",
+        updatedAt: s.time?.updated ? new Date(s.time.updated).toISOString() : ""
+      }));
+    } catch {
+      return [];
     }
-    return sessions;
-  }
-
-  async function listOpenCodeModels() {
-    const result = await invokeAgentCli(["opencode", "native", "models"]);
-    return result.text
-      .split(/\r?\n/)
-      .map((line) => line.trim())
-      .filter(Boolean);
   }
 
   async function listOpenCodeProviders() {
@@ -1039,11 +1047,12 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
       return true;
     }
 
-    // /agent <name> → switch agent
+    // /agent <name> → switch agent (create new session)
     const agentSwitch = trimmed.match(/^\/agent\s+(.+)$/i);
     if (agentSwitch) {
       config.agentCliMappedAgent = agentSwitch[1].trim();
-      sendBridge({ type: "bridge.status", conversationId: convId, agentName: config.agentCliMappedAgent });
+      agentName = config.agentCliMappedAgent.includes("/") ? config.agentCliMappedAgent.split("/")[1] : config.agentCliMappedAgent;
+      sendBridge({ type: "bridge.status", conversationId: convId, agentName: agentName });
       return true;
     }
 
@@ -1057,11 +1066,19 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
       return true;
     }
 
-    // /model <name> → switch model
+    // /model <name> → switch model (create new session)
     const modelSwitch = trimmed.match(/^\/model\s+(.+)$/i);
     if (modelSwitch) {
       state.model = modelSwitch[1].trim();
-      sendBridge({ type: "bridge.status", conversationId: convId, modelName: state.model });
+      const sid = getSessionIdForConversation(state);
+      if (sid) {
+        fetch(`${OPENCODE_SERVE_URL}/session/${encodeURIComponent(sid)}`, {
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ modelId: state.model })
+        }).catch(() => {});
+      }
+      sendBridge({ type: "bridge.status", conversationId: convId, agentName: agentName, modelName: state.model });
       return true;
     }
 
@@ -1073,7 +1090,7 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
         type: "bridge.command.response", conversationId: convId, command: "/session",
         data: {
           kind: "sessions",
-          items: sessions.map(s => ({ sessionId: s.sessionId, title: s.title, updatedAt: s.updatedAt })),
+          items: [{ sessionId: "new", title: "+ New Session", updatedAt: "" }, ...sessions.map((s: OpenCodeSessionSummary) => ({ sessionId: s.sessionId, title: s.title, updatedAt: s.updatedAt }))],
           current: currentSessionId
         }
       });
@@ -1082,7 +1099,7 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
 
     // /session new → create new session on opencode serve
     if (/^\/session\s+new$/i.test(trimmed)) {
-      const newSid = await createSession();
+      const newSid = await createSession(agentName);
       setSessionIdForConversation(state, newSid);
       sendBridge({ type: "bridge.status", conversationId: convId, sessionId: newSid });
       console.error("[cmd] created new session:", newSid);
@@ -1750,7 +1767,7 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
   const OPENCODE_SERVE_PORT = 4096;
   const OPENCODE_SERVE_URL = `http://127.0.0.1:${OPENCODE_SERVE_PORT}`;
   const opencodeBin = "C:\\Users\\38188\\AppData\\Roaming\\npm\\node_modules\\opencode-ai\\bin\\opencode.exe";
-  const agentName = config.agentCliMappedAgent.includes("/") ? config.agentCliMappedAgent.split("/")[1] : config.agentCliMappedAgent;
+  let agentName = config.agentCliMappedAgent.includes("/") ? config.agentCliMappedAgent.split("/")[1] : config.agentCliMappedAgent;
   let sseResponse: any = null;
 
   async function ensureOpenCodeServe() {
@@ -1760,6 +1777,7 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     } catch {}
     spawn(opencodeBin, ["serve", "--port", String(OPENCODE_SERVE_PORT), "--hostname", "127.0.0.1"], {
       stdio: "ignore", windowsHide: true,
+      cwd: "D:\\agent_workspace",
       env: { ...process.env, XDG_CONFIG_HOME: "D:\\agent_workspace\\agent" }
     });
     for (let i = 0; i < 30; i++) {
@@ -1798,19 +1816,24 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     }).on("error", () => { setTimeout(connectSSE, 3000); });
   }
 
-  async function sendPromptAsync(sessionId: string, text: string) {
+  async function sendPromptAsync(sessionId: string, text: string, agent?: string, model?: string) {
     await ensureOpenCodeServe();
-    const body = JSON.stringify({ parts: [{ type: "text", text }] });
+    const body: any = { parts: [{ type: "text", text }] };
+    if (agent) body.agentId = agent;
+    if (model) body.modelId = model;
     fetch(`${OPENCODE_SERVE_URL}/session/${encodeURIComponent(sessionId)}/prompt_async`, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body
+      body: JSON.stringify(body)
     }).then(r => console.error("[sse] prompt_async:", r.status)).catch(e => console.error("[sse] prompt_async err:", e));
   }
 
-  async function createSession() {
+  async function createSession(agent?: string, model?: string) {
     await ensureOpenCodeServe();
-    const r = await fetch(`${OPENCODE_SERVE_URL}/session`, { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+    const body: any = {};
+    if (agent) body.agentId = agent;
+    if (model) body.modelId = model;
+    const r = await fetch(`${OPENCODE_SERVE_URL}/session`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
     const j = await r.json() as any;
     return j.id || "";
   }

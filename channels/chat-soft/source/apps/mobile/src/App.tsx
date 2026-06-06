@@ -419,9 +419,29 @@ export function App({ platform }: { platform: "android" | "windows" | "unknown" 
     const u8 = c.onCommandResponse((cmd, data) => dispatch({ type: "COMMAND_RESPONSE", command: cmd, data }));
     const u9 = c.onToolStatus((_c, sid, tool, status, title) => dispatch({ type: "TOOL_STATUS", stepId: sid, tool, status, title }));
     const u10 = c.onThinking((_c, sid, text) => dispatch({ type: "THINKING", stepId: sid, text }));
-    const u11 = c.onSse((_c, _sid, evType, data) => dispatch({ type: "SSE_EVENT", eventType: evType, data: data as any }));
+    const u11 = c.onSse((_c, _sid, evType, data) => {
+      dispatch({ type: "SSE_EVENT", eventType: evType, data: data as any });
+    });
     return () => { u1(); u2(); u3(); u4(); u5(); u6(); u7(); u8(); u9(); u10(); u11(); c.disconnect(); };
   }, [serverUrl, deviceId, deviceName, platform]);
+
+  /* sync messages when app returns to foreground */
+  useEffect(() => {
+    const onVisible = () => {
+      if (document.visibilityState !== "visible") return;
+      wsRef.current?.connect();
+      wsRef.current?.listAgents().catch(() => {});
+      wsRef.current?.listConversations().then(res => {
+        res.conversations.forEach(conv => {
+          wsRef.current?.fetchConversationMessages(conv.conversationId).then(msgs => {
+            setMessages(msgs);
+          }).catch(() => {});
+        });
+      }).catch(() => {});
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, []);
 
   /* auto scroll */
   useEffect(() => { if (autoScroll.current) listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" }); }, [state.messages, state.streamingText, state.activeSteps]);
@@ -429,7 +449,7 @@ export function App({ platform }: { platform: "android" | "windows" | "unknown" 
   const onScroll = () => { if (listRef.current) autoScroll.current = listRef.current.scrollHeight - listRef.current.scrollTop - listRef.current.clientHeight < 40; };
   const send = () => { const t = state.inputText.trim(); if (!t) return; dispatch({ type: "SEND" }); wsRef.current?.sendText(t, `agent:${state.agentName}`); };
   const sendCmd = (cmd: string) => { wsRef.current?.sendText(cmd, `agent:${state.agentName}`); };
-  const pick = (v: string) => { if (!state.picker) return; dispatch({ type: "CLOSE_PICKER" }); setTimeout(() => wsRef.current?.sendText(`/${state.picker!.type} ${v}`, `agent:${state.agentName}`), 50); };
+  const pick = (v: string) => { if (!state.picker) return; const t = state.picker.type; dispatch({ type: "CLOSE_PICKER" }); dispatch({ type: "INPUT", text: `/${t} ${v}` }); };
 
   if (!state.authenticated) return <LoginScreen onLogin={() => dispatch({ type: "AUTH_OK" })} />;
 
@@ -457,7 +477,7 @@ export function App({ platform }: { platform: "android" | "windows" | "unknown" 
             <button className="command-btn" onClick={() => sendCmd("/session")}>/session</button>
           </div>
         )}
-        <textarea value={state.inputText} placeholder="Message OpenCode..." onChange={e => dispatch({ type: "INPUT", text: e.target.value })} onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } }} rows={1} />
+        <textarea value={state.inputText} placeholder="Message OpenCode..." onChange={e => { const val = e.target.value; dispatch({ type: "INPUT", text: val }); const t = val.trim(); if (t === "/session" || t === "/agent" || t === "/model") { wsRef.current?.sendText(t, `agent:${state.agentName}`); } }} onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } }} rows={1} />
       </div>
 
       <StatusBar agentName={state.agentName} modelName={state.modelName} tokenUsed={state.tokenUsed} tokenTotal={state.tokenTotal} sessionId={state.sessionId} />
