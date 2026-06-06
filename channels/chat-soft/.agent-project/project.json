@@ -1,0 +1,20 @@
+{
+  "apiVersion": "agent-project/v1",
+  "kind": "Project",
+  "metadata": {
+    "id": "chat-soft",
+    "name": "chat-soft",
+    "description": "手机端与本机 opencode serve 之间的 SSE 实时桥接通道，含手机 App / 云中转 / 本机 Bridge 三层架构",
+    "root": "D:\\agent_workspace\\capability-library\\mycli\\channels\\chat-soft",
+    "owner": "千束",
+    "tags": []
+  },
+  "spec": {
+    "project_type": "coding",
+    "project_mode": "finite"
+  },
+  "timestamps": {
+    "created_at": "2026-06-07T03:04:52+08:00",
+    "updated_at": "2026-06-07T03:04:52+08:00"
+  }
+}
