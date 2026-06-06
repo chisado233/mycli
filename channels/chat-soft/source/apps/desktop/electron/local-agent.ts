@@ -921,7 +921,6 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
     for (const state of agentCliAgents.values()) {
       if (state.agent.conversationId === event.conversationId) {
         if (state.running) return;
-        if (!sseReady) { console.error("[bridge-ws] SSE not ready, skipping"); return; }
         state.running = true;
         try {
           const text = event.message.text?.trim() || "";
@@ -1753,17 +1752,14 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
   const opencodeBin = "C:\\Users\\38188\\AppData\\Roaming\\npm\\node_modules\\opencode-ai\\bin\\opencode.exe";
   const agentName = config.agentCliMappedAgent.includes("/") ? config.agentCliMappedAgent.split("/")[1] : config.agentCliMappedAgent;
   let sseResponse: any = null;
-  let sseReady = false;
 
   async function ensureOpenCodeServe() {
     try {
-      const r = await fetch(`${OPENCODE_SERVE_URL}/health`);
-      const text = await r.text();
-      if (text.includes('"ok"')) return;
-      console.error("[sse] stale serve (no API), killing and restarting...");
+      await fetch(`${OPENCODE_SERVE_URL}/health`);
+      return;
     } catch {}
     spawn(opencodeBin, ["serve", "--port", String(OPENCODE_SERVE_PORT), "--hostname", "127.0.0.1"], {
-      stdio: "pipe", windowsHide: true,
+      stdio: "ignore", windowsHide: true,
       env: { ...process.env, XDG_CONFIG_HOME: "D:\\agent_workspace\\agent" }
     });
     for (let i = 0; i < 30; i++) {
@@ -1774,12 +1770,13 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
   }
 
   async function connectSSE() {
+    // Kill any stale serve from previous boot
+    try { const r = spawnSync("powershell", ["-c", `(Get-NetTCPConnection -LocalPort ${OPENCODE_SERVE_PORT} -State Listen -ErrorAction SilentlyContinue).OwningProcess`], { encoding: "utf8" }); const pid = parseInt(r.stdout.trim()); if (pid) { try { process.kill(pid); console.error("[sse] killed stale serve PID:", pid); } catch {} } } catch {}
     await ensureOpenCodeServe();
     console.error("[sse] connecting to /event...");
     http.get(`${OPENCODE_SERVE_URL}/event`, (res: any) => {
       console.error("[sse] connected, status:", res.statusCode, "ct:", res.headers["content-type"]);
       sseResponse = res;
-      sseReady = true;
       let buf = "";
       res.on("data", (chunk: Buffer) => {
         buf += chunk.toString();
@@ -1796,9 +1793,9 @@ export async function startLocalAgent(initial?: Partial<LocalAgentConfig>) {
           sendBridge({ type: "bridge.sse", conversationId: `agent:${agentName}`, eventType: parsed.type || "raw", data: parsed });
         }
       });
-      res.on("error", () => { sseResponse = null; sseReady = false; setTimeout(connectSSE, 3000); });
-      res.on("close", () => { sseResponse = null; sseReady = false; setTimeout(connectSSE, 3000); });
-    }).on("error", () => { sseReady = false; setTimeout(connectSSE, 3000); });
+      res.on("error", () => { sseResponse = null; setTimeout(connectSSE, 3000); });
+      res.on("close", () => { sseResponse = null; setTimeout(connectSSE, 3000); });
+    }).on("error", () => { setTimeout(connectSSE, 3000); });
   }
 
   async function sendPromptAsync(sessionId: string, text: string) {
